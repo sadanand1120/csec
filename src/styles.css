@@ -29,7 +29,7 @@ select {
 }
 
 .app-shell,
-.methodology-page {
+.article-page {
   width: min(1440px, 100%);
   margin: 0 auto;
   padding: 24px;
@@ -56,8 +56,7 @@ select {
   color: #0f766e;
 }
 
-.app-header,
-.methodology-hero {
+.app-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -67,8 +66,7 @@ select {
   padding-bottom: 20px;
 }
 
-.app-header h1,
-.methodology-hero h1 {
+.app-header h1 {
   max-width: 880px;
   margin: 0;
   color: #15191b;
@@ -77,8 +75,7 @@ select {
   letter-spacing: 0;
 }
 
-.app-header p,
-.methodology-hero p {
+.app-header p {
   max-width: 760px;
   margin: 12px 0 0;
   color: #526064;
@@ -179,16 +176,6 @@ input[type="range"] {
 .salary-row strong {
   color: #9f2f45;
   white-space: nowrap;
-}
-
-.assumption-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 10px;
-}
-
-.assumption-grid .wide {
-  grid-column: 1 / -1;
 }
 
 .map-panel {
@@ -298,8 +285,7 @@ input[type="range"] {
 }
 
 .metric-grid,
-.tax-grid,
-.data-list {
+.tax-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-column: 1 / -1;
@@ -307,8 +293,7 @@ input[type="range"] {
 }
 
 .metric-grid div,
-.tax-grid div,
-.data-list div {
+.tax-grid div {
   border: 1px solid #e0e6e5;
   border-radius: 8px;
   background: #fbfcfb;
@@ -316,8 +301,7 @@ input[type="range"] {
 }
 
 .metric-grid span,
-.tax-grid span,
-.data-list span {
+.tax-grid span {
   display: block;
   color: #627073;
   font-size: 0.78rem;
@@ -325,8 +309,7 @@ input[type="range"] {
 }
 
 .metric-grid strong,
-.tax-grid strong,
-.data-list strong {
+.tax-grid strong {
   display: block;
   margin-top: 5px;
   color: #15191b;
@@ -337,6 +320,24 @@ input[type="range"] {
   display: block;
   margin-top: 4px;
   color: #657174;
+}
+
+.fixed-profile {
+  margin-top: 18px;
+  border: 1px solid #e0e6e5;
+  border-radius: 8px;
+  background: #fbfcfb;
+  padding: 14px;
+}
+
+.fixed-profile ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: #405054;
+  font-size: 0.92rem;
+  line-height: 1.35;
 }
 
 .detail-grid,
@@ -417,14 +418,91 @@ input[type="range"] {
   margin: 14px 0;
 }
 
-.data-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 16px 0;
+.article-doc {
+  width: min(920px, 100%);
+  margin: 42px auto 80px;
 }
 
-.data-list strong {
-  font-size: 0.92rem;
-  line-height: 1.35;
+.article-doc h1 {
+  max-width: 840px;
+  margin: 0;
+  color: #15191b;
+  font-size: clamp(2.45rem, 6vw, 5.4rem);
+  line-height: 0.98;
+  letter-spacing: 0;
+}
+
+.article-doc h2 {
+  margin: 42px 0 12px;
+  color: #15191b;
+  font-size: clamp(1.35rem, 2.2vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.article-doc p,
+.article-doc li,
+.article-doc dd {
+  color: #405054;
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.article-doc a {
+  color: #0f766e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.article-lede {
+  margin-top: 22px;
+  color: #2f4146;
+  font-size: clamp(1.12rem, 2vw, 1.35rem);
+  line-height: 1.58;
+}
+
+.article-doc pre {
+  margin: 22px 0;
+}
+
+.source-list {
+  display: grid;
+  gap: 36px;
+  margin-top: 42px;
+}
+
+.source-entry {
+  border-top: 1px solid #d9e0de;
+  padding-top: 28px;
+}
+
+.source-entry h2 {
+  margin-top: 0;
+}
+
+.source-entry dl {
+  display: grid;
+  gap: 12px;
+  margin: 18px 0 0;
+}
+
+.source-entry dl div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.source-entry dt {
+  color: #0f766e;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.source-entry dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 
 pre {
@@ -438,12 +516,11 @@ pre {
 
 @media (max-width: 980px) {
   .app-shell,
-  .methodology-page {
+  .article-page {
     padding: 16px;
   }
 
-  .app-header,
-  .methodology-hero {
+  .app-header {
     display: grid;
   }
 
@@ -455,13 +532,16 @@ pre {
   }
 
   .metric-grid,
-  .tax-grid,
-  .data-list {
+  .tax-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .factor-pill {
     justify-self: start;
+  }
+
+  .article-doc {
+    margin-top: 28px;
   }
 }
 
@@ -475,10 +555,8 @@ pre {
     text-align: center;
   }
 
-  .assumption-grid,
   .metric-grid,
-  .tax-grid,
-  .data-list {
+  .tax-grid {
     grid-template-columns: 1fr;
   }
 
@@ -500,5 +578,10 @@ pre {
 
   .bar-row strong {
     text-align: left;
+  }
+
+  .source-entry dl div {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }

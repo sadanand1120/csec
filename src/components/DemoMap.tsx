@@ -23,10 +23,10 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
   const max = Math.max(...values.map((value) => value.factor));
 
   return (
-    <section className="map-panel" aria-label="Demo county heatmap">
+    <section className="map-panel" aria-label="Six-city equivalent salary map">
       <div className="section-heading">
-        <p className="eyebrow">Demo heatmap</p>
-        <h3>Equivalent salary factor by county proxy</h3>
+        <p className="eyebrow">Six-city map</p>
+        <h3>Equivalent salary factor</h3>
       </div>
       <div className="map-canvas">
         <div className="us-outline" aria-hidden="true" />

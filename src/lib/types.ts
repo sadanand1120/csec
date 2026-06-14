@@ -6,12 +6,17 @@ export type ExpenseCategory =
   | "internet_mobile"
   | "other_nonhousing";
 
+export type NonHousingExpenseCategory = Exclude<ExpenseCategory, "housing">;
+
+export type PriceIndexKey = "all" | "goods" | "housing" | "utilities" | "servicesOther";
+
 export type TaxBreakdown = {
   federalIncomeTax: number;
   stateIncomeTax: number;
   payrollTaxEmployee: number;
   localIncomeTax: number;
   statePayrollItems: number;
+  taxComponentResidual: number;
   totalTax: number;
   netIncome: number;
   effectiveRate: number;
@@ -21,19 +26,26 @@ export type LocationProfile = {
   id: string;
   displayName: string;
   shortName: string;
+  placeGeoid: string;
+  countyFips: string;
   countyName: string;
   state: string;
   stateName: string;
+  cbsaCode: string;
   cbsaName: string;
-  computationLocationId: string;
   lat: number;
   lon: number;
   mapX: number;
   mapY: number;
+  monthlyRent1Br: number;
   annualRent1Br: number;
-  priceIndex: Record<Exclude<ExpenseCategory, "housing">, number>;
+  priceIndex: Record<PriceIndexKey, number>;
+  taxFlags: {
+    inNyc?: boolean;
+    denverOccupationalPrivilegeTax?: boolean;
+  };
+  resolutionNote: string;
   confidence: "high" | "medium" | "low";
-  notes: string[];
 };
 
 export type Basket = {
@@ -64,4 +76,63 @@ export type EquivalenceResult = {
   confidence: "high" | "medium" | "low";
   modelVersion: string;
   dataVintage: Record<string, string>;
+};
+
+export type V0BasketBand = {
+  id: string;
+  label: string;
+  minGrossIncome: number;
+  maxGrossIncome: number | null;
+  sourceYearMinGrossIncome: number;
+  sourceYearMaxGrossIncome: number | null;
+  nationalAnnual: Record<NonHousingExpenseCategory, number>;
+  unweightedQuarterRecords: number;
+};
+
+export type V0TaxCurve = {
+  grossIncome: readonly number[];
+  netIncome: readonly number[];
+  totalTax: readonly number[];
+  federalIncomeTax: readonly number[];
+  stateIncomeTax: readonly number[];
+  payrollTaxEmployee: readonly number[];
+  localIncomeTax: readonly number[];
+  statePayrollItems: readonly number[];
+  taxComponentResidual: readonly number[];
+};
+
+export type V0Source = {
+  name: string;
+  vintage: string;
+  url: string;
+  notes: string;
+};
+
+export type V0Dataset = {
+  modelVersion: string;
+  defaultSourceId: string;
+  defaultTargetId: string;
+  defaultGrossIncome: number;
+  taxYear: number;
+  dollarNormalization: {
+    seriesId: string;
+    base: string;
+    target: string;
+    baseIndex: number;
+    targetIndex: number;
+    factor: number;
+  };
+  fixedProfile: {
+    filingStatus: "single";
+    citizenship: "US citizen";
+    incomeType: "W-2 wages only";
+    adults: 1;
+    children: 0;
+    housing: string;
+  };
+  categoryPriceWeights: Record<NonHousingExpenseCategory, Partial<Record<PriceIndexKey, number>>>;
+  basketBands: readonly V0BasketBand[];
+  locations: readonly LocationProfile[];
+  taxCurves: Record<string, V0TaxCurve>;
+  sources: Record<string, V0Source>;
 };

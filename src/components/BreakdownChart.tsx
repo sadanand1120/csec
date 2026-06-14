@@ -8,12 +8,12 @@ type BreakdownChartProps = {
 export default function BreakdownChart({ result }: BreakdownChartProps) {
   const rows = [
     {
-      label: "Housing",
+      label: "Housing COLB",
       value: result.breakdown.housingDelta,
       tone: "rent",
     },
     {
-      label: "Non-housing basket",
+      label: "Non-housing COLB",
       value: result.breakdown.nonhousingDelta,
       tone: "prices",
     },
@@ -60,12 +60,13 @@ export default function BreakdownChart({ result }: BreakdownChartProps) {
           <strong>{formatCurrency(result.targetTax.federalIncomeTax)}</strong>
         </div>
         <div>
-          <span>State/local target</span>
+          <span>State/local/residual target</span>
           <strong>
             {formatCurrency(
               result.targetTax.stateIncomeTax +
                 result.targetTax.localIncomeTax +
-                result.targetTax.statePayrollItems,
+                result.targetTax.statePayrollItems +
+                result.targetTax.taxComponentResidual,
             )}
           </strong>
         </div>

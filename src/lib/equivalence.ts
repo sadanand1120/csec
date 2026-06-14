@@ -1,15 +1,16 @@
-import {
-  DATA_VINTAGE,
-  DEMO_LOCATIONS,
-  DISCRETIONARY_GROSS_SHARE,
-  MODEL_VERSION,
-  NATIONAL_BASELINE_EXPENSES,
-  OTHER_BASELINE_EXPENSE,
-} from "./demoData";
-import { estimateTax, grossRequiredForNet } from "./tax";
-import type { Basket, EquivalenceResult, ExpenseCategory, LocationProfile } from "./types";
+import { V0_DATA } from "./v0Data";
+import type {
+  Basket,
+  EquivalenceResult,
+  ExpenseCategory,
+  LocationProfile,
+  NonHousingExpenseCategory,
+  TaxBreakdown,
+  V0BasketBand,
+  V0TaxCurve,
+} from "./types";
 
-const NONHOUSING_CATEGORIES: Exclude<ExpenseCategory, "housing">[] = [
+const NONHOUSING_CATEGORIES: NonHousingExpenseCategory[] = [
   "food",
   "transportation",
   "healthcare",
@@ -17,27 +18,61 @@ const NONHOUSING_CATEGORIES: Exclude<ExpenseCategory, "housing">[] = [
   "other_nonhousing",
 ];
 
+export const LOCATIONS = V0_DATA.locations;
+export const DEFAULT_SOURCE_ID = V0_DATA.defaultSourceId;
+export const DEFAULT_TARGET_ID = V0_DATA.defaultTargetId;
+export const DEFAULT_GROSS_INCOME = V0_DATA.defaultGrossIncome;
+export const MODEL_VERSION = V0_DATA.modelVersion;
+export const FIXED_PROFILE = V0_DATA.fixedProfile;
+const TAX_CURVES: Record<string, V0TaxCurve> = V0_DATA.taxCurves;
+
+const DATA_VINTAGE = Object.fromEntries(
+  Object.entries(V0_DATA.sources).map(([key, source]) => [key, source.vintage]),
+);
+
 export function getLocation(locationId: string) {
-  const location = DEMO_LOCATIONS.find((entry) => entry.id === locationId);
+  const location = LOCATIONS.find((entry) => entry.id === locationId);
   if (!location) {
     throw new Error(`Unknown location: ${locationId}`);
   }
   return location;
 }
 
+function pickBasketBand(grossIncome: number): V0BasketBand {
+  const band = V0_DATA.basketBands.find(
+    (entry) =>
+      grossIncome >= entry.minGrossIncome &&
+      (entry.maxGrossIncome === null || grossIncome < entry.maxGrossIncome),
+  );
+  return band ?? V0_DATA.basketBands[V0_DATA.basketBands.length - 1];
+}
+
+function categoryPriceMultiplier(
+  location: LocationProfile,
+  category: NonHousingExpenseCategory,
+) {
+  const weights = V0_DATA.categoryPriceWeights[category];
+  return Object.entries(weights).reduce((sum, [indexKey, weight]) => {
+    if (weight === undefined) return sum;
+    const priceIndex = location.priceIndex[indexKey as keyof LocationProfile["priceIndex"]];
+    return sum + (priceIndex / 100) * weight;
+  }, 0);
+}
+
 function buildSourceBasket(location: LocationProfile, grossIncome: number): Basket {
-  const categories = {
+  const band = pickBasketBand(grossIncome);
+  const categories: Record<ExpenseCategory, number> = {
     housing: location.annualRent1Br,
-    food: NATIONAL_BASELINE_EXPENSES.food * (location.priceIndex.food / 100),
-    transportation:
-      NATIONAL_BASELINE_EXPENSES.transportation * (location.priceIndex.transportation / 100),
-    healthcare: NATIONAL_BASELINE_EXPENSES.healthcare * (location.priceIndex.healthcare / 100),
-    internet_mobile:
-      NATIONAL_BASELINE_EXPENSES.internet_mobile * (location.priceIndex.internet_mobile / 100),
-    other_nonhousing:
-      (OTHER_BASELINE_EXPENSE + grossIncome * DISCRETIONARY_GROSS_SHARE) *
-      (location.priceIndex.other_nonhousing / 100),
+    food: 0,
+    transportation: 0,
+    healthcare: 0,
+    internet_mobile: 0,
+    other_nonhousing: 0,
   };
+
+  for (const category of NONHOUSING_CATEGORIES) {
+    categories[category] = band.nationalAnnual[category] * categoryPriceMultiplier(location, category);
+  }
 
   return {
     categories,
@@ -60,9 +95,9 @@ function repriceBasket(
   };
 
   for (const category of NONHOUSING_CATEGORIES) {
-    const sourceIndex = source.priceIndex[category];
-    const targetIndex = target.priceIndex[category];
-    categories[category] = sourceBasket.categories[category] * (targetIndex / sourceIndex);
+    const sourceMultiplier = categoryPriceMultiplier(source, category);
+    const targetMultiplier = categoryPriceMultiplier(target, category);
+    categories[category] = sourceBasket.categories[category] * (targetMultiplier / sourceMultiplier);
   }
 
   return {
@@ -71,14 +106,70 @@ function repriceBasket(
   };
 }
 
+function interpolate(xs: readonly number[], ys: readonly number[], x: number) {
+  if (x <= xs[0]) return ys[0];
+
+  const lastIndex = xs.length - 1;
+  if (x >= xs[lastIndex]) {
+    const slope = (ys[lastIndex] - ys[lastIndex - 1]) / (xs[lastIndex] - xs[lastIndex - 1]);
+    return ys[lastIndex] + (x - xs[lastIndex]) * slope;
+  }
+
+  let low = 0;
+  let high = lastIndex;
+  while (low + 1 < high) {
+    const mid = Math.floor((low + high) / 2);
+    if (xs[mid] <= x) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  const span = xs[high] - xs[low];
+  const ratio = span === 0 ? 0 : (x - xs[low]) / span;
+  return ys[low] + (ys[high] - ys[low]) * ratio;
+}
+
+function taxCurveFor(location: LocationProfile): V0TaxCurve {
+  const curve = TAX_CURVES[location.id];
+  if (!curve) {
+    throw new Error(`Missing tax curve for ${location.id}`);
+  }
+  return curve;
+}
+
+function estimateTax(grossIncome: number, location: LocationProfile): TaxBreakdown {
+  const curve = taxCurveFor(location);
+  const grossGrid = curve.grossIncome;
+  const totalTax = interpolate(grossGrid, curve.totalTax, grossIncome);
+
+  return {
+    federalIncomeTax: interpolate(grossGrid, curve.federalIncomeTax, grossIncome),
+    stateIncomeTax: interpolate(grossGrid, curve.stateIncomeTax, grossIncome),
+    payrollTaxEmployee: interpolate(grossGrid, curve.payrollTaxEmployee, grossIncome),
+    localIncomeTax: interpolate(grossGrid, curve.localIncomeTax, grossIncome),
+    statePayrollItems: interpolate(grossGrid, curve.statePayrollItems, grossIncome),
+    taxComponentResidual: interpolate(grossGrid, curve.taxComponentResidual, grossIncome),
+    totalTax,
+    netIncome: grossIncome - totalTax,
+    effectiveRate: grossIncome <= 0 ? 0 : totalTax / grossIncome,
+  };
+}
+
+function grossRequiredForNet(netIncome: number, location: LocationProfile) {
+  const curve = taxCurveFor(location);
+  return interpolate(curve.netIncome, curve.grossIncome, netIncome);
+}
+
 function nonhousingTotal(basket: Basket) {
   return NONHOUSING_CATEGORIES.reduce((sum, category) => sum + basket.categories[category], 0);
 }
 
 function confidenceFor(source: LocationProfile, target: LocationProfile): "high" | "medium" | "low" {
-  if (source.id === target.id) return "high";
   if (source.confidence === "low" || target.confidence === "low") return "low";
-  return "medium";
+  if (source.confidence === "medium" || target.confidence === "medium") return "medium";
+  return "high";
 }
 
 export function computeEquivalence(
@@ -96,18 +187,18 @@ export function computeEquivalence(
   const targetEquivalentGrossIncome = grossRequiredForNet(requiredTargetNetIncome, target);
   const targetTax = estimateTax(targetEquivalentGrossIncome, target);
   const targetSurplus = targetTax.netIncome - targetBasket.total;
-  const sourceTaxAtEquivalentGross = estimateTax(targetEquivalentGrossIncome, source);
   const targetTaxDelta = targetTax.totalTax - sourceTax.totalTax;
-  const grossUpDueToTaxes =
-    targetEquivalentGrossIncome - sourceGrossIncome - (targetBasket.total - sourceBasket.total);
   const warnings = Array.from(
     new Set([
-      "This local demo uses temporary six-location fixture data, not final public ETL outputs.",
+      "Fixed profile only: single U.S. citizen, W-2 wages, single filer, no children, renter living alone in a 1BR apartment.",
       `${source.displayName} resolves to ${source.countyName}; ${target.displayName} resolves to ${target.countyName}.`,
-      "Default rent is shaped like HUD FMR 1BR data, but these demo values are placeholders.",
-      "RSUs, bonuses, relocation costs, owner costs, and employer-specific benefits are not modeled.",
-      ...source.notes,
-      ...target.notes,
+      "HUD FMR is a gross-rent affordability standard, not a live apartment listing or owner-cost estimate.",
+      "BEA RPP is metro-level; city-neighborhood variation inside each metro is not modeled in v0.",
+      "BLS CEX COLB inputs are national single-person renter wage/salary consumer-unit averages by income band, then CPI-adjusted and repriced by BEA metro indices.",
+      "Tax component lines are explanatory; total tax and net income are anchored to PolicyEngine household_tax.",
+      "RSUs, bonuses, retirement contributions, itemized deductions, AMT, moving costs, owner costs, and employer benefits are excluded.",
+      source.resolutionNote,
+      target.resolutionNote,
     ]),
   );
 
@@ -128,8 +219,7 @@ export function computeEquivalence(
       housingDelta: targetBasket.categories.housing - sourceBasket.categories.housing,
       nonhousingDelta: nonhousingTotal(targetBasket) - nonhousingTotal(sourceBasket),
       targetTaxDelta,
-      grossUpDueToTaxes:
-        grossUpDueToTaxes - (sourceTaxAtEquivalentGross.totalTax - sourceTax.totalTax),
+      grossUpDueToTaxes: targetEquivalentGrossIncome - requiredTargetNetIncome,
     },
     warnings,
     confidence: confidenceFor(source, target),
@@ -139,7 +229,7 @@ export function computeEquivalence(
 }
 
 export function computeHeatmap(sourceLocationId: string, sourceGrossIncome: number) {
-  return DEMO_LOCATIONS.map((location) => {
+  return LOCATIONS.map((location) => {
     const result = computeEquivalence(sourceLocationId, location.id, sourceGrossIncome);
     return {
       location,

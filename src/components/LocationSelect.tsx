@@ -4,7 +4,7 @@ type LocationSelectProps = {
   id: string;
   label: string;
   value: string;
-  locations: LocationProfile[];
+  locations: readonly LocationProfile[];
   onChange: (locationId: string) => void;
 };
 

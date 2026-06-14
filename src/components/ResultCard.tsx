@@ -18,24 +18,24 @@ export default function ResultCard({ result }: ResultCardProps) {
       <div className="factor-pill">{formatFactor(result.factor)}</div>
       <div className="metric-grid">
         <div>
-          <span>Source after-tax income</span>
+          <span>Source net income</span>
           <strong>{formatCurrency(result.sourceTax.netIncome)}</strong>
           <small>{formatPercent(result.sourceTax.effectiveRate)} effective tax</small>
         </div>
         <div>
-          <span>Target required after-tax income</span>
+          <span>Target required net income</span>
           <strong>{formatCurrency(result.requiredTargetNetIncome)}</strong>
           <small>{formatPercent(result.targetTax.effectiveRate)} target effective tax</small>
         </div>
         <div>
-          <span>Source basket cost</span>
+          <span>Source COLB</span>
           <strong>{formatCurrency(result.sourceBasket.total)}</strong>
-          <small>{formatCurrency(result.sourceSurplus)} after-basket surplus</small>
+          <small>{formatCurrency(result.sourceSurplus)} post-tax+COLB surplus</small>
         </div>
         <div>
-          <span>Target basket cost</span>
+          <span>Target COLB</span>
           <strong>{formatCurrency(result.targetBasket.total)}</strong>
-          <small>{formatCurrency(result.targetSurplus)} after-basket surplus</small>
+          <small>{formatCurrency(result.targetSurplus)} post-tax+COLB surplus</small>
         </div>
       </div>
     </section>

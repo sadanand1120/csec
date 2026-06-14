@@ -1,5 +1,4 @@
 import { useMemo, useState } from "react";
-import AssumptionControls from "./components/AssumptionControls";
 import BreakdownChart from "./components/BreakdownChart";
 import DemoMap from "./components/DemoMap";
 import ExplanationPanel from "./components/ExplanationPanel";
@@ -10,75 +9,238 @@ import {
   DEFAULT_GROSS_INCOME,
   DEFAULT_SOURCE_ID,
   DEFAULT_TARGET_ID,
-  DEMO_LOCATIONS,
-} from "./lib/demoData";
-import { computeEquivalence, computeHeatmap } from "./lib/equivalence";
+  FIXED_PROFILE,
+  LOCATIONS,
+  MODEL_VERSION,
+  computeEquivalence,
+  computeHeatmap,
+} from "./lib/equivalence";
+import { V0_DATA } from "./lib/v0Data";
+
+type PageName = "calculator" | "methodology" | "sources";
+type SourceKey = keyof typeof V0_DATA.sources;
+
+const SOURCE_EXPLAINERS: Array<{
+  key: SourceKey;
+  title: string;
+  description: string;
+  usedFor: string;
+}> = [
+  {
+    key: "policyengine",
+    title: "PolicyEngine US",
+    description:
+      "PolicyEngine US is an open-source tax and benefit calculation engine. In this app it turns a gross salary into federal income tax, employee payroll tax, state income tax, supported local tax, and net income for the fixed single W-2 profile.",
+    usedFor:
+      "Tax year 2026 curves for Austin, Sunnyvale, New York, Seattle, Denver, and Raleigh. The frontend interpolates those precomputed curves instead of running tax code in the browser.",
+  },
+  {
+    key: "hudFmr",
+    title: "U.S. Department of Housing and Urban Development Fair Market Rents",
+    description:
+      "The U.S. Department of Housing and Urban Development publishes Fair Market Rents, often abbreviated HUD FMR. FMR is a gross-rent standard used in housing programs; it includes shelter rent plus tenant-paid utilities for a typical rental unit size.",
+    usedFor:
+      "The annual housing part of the cost-of-living-basket: each city uses the fiscal year 2026 one-bedroom FMR multiplied by twelve.",
+  },
+  {
+    key: "beaRpp",
+    title: "Bureau of Economic Analysis Regional Price Parities",
+    description:
+      "The Bureau of Economic Analysis, abbreviated BEA, publishes Regional Price Parities, abbreviated RPP. RPP compares price levels across metro areas relative to the national average of 100.",
+    usedFor:
+      "Metro-level price multipliers for goods and other services. These reprice the non-housing parts of the cost-of-living-basket from one metro area to another.",
+  },
+  {
+    key: "blsCex",
+    title: "Bureau of Labor Statistics Consumer Expenditure Survey",
+    description:
+      "The Bureau of Labor Statistics, abbreviated BLS, runs the Consumer Expenditure Survey, abbreviated CEX. The public-use microdata files contain anonymized household-level spending records.",
+    usedFor:
+      "The national non-housing cost-of-living-basket for a single-person renter consumer unit with wage or salary income and no farm or non-farm business income.",
+  },
+  {
+    key: "blsCpi",
+    title: "Bureau of Labor Statistics Consumer Price Index",
+    description:
+      "The Consumer Price Index, abbreviated CPI, measures how consumer prices change over time. This app uses CPI-U, the Consumer Price Index for All Urban Consumers.",
+    usedFor:
+      "Inflating 2024 Consumer Expenditure Survey dollar amounts to May 2026 dollars, so the COLB is closer to the same dollar year as the 2026 tax and rent inputs.",
+  },
+  {
+    key: "census",
+    title: "U.S. Census Bureau Geography",
+    description:
+      "The U.S. Census Bureau publishes official place, county, and metro-area identifiers. TIGERweb is a Census mapping service, and CBSA means Core Based Statistical Area, the official metro-area grouping used by several federal datasets.",
+    usedFor:
+      "Mapping each displayed city to the county used for taxes and the metro area used for price indexes.",
+  },
+];
+
+function TopNav({ page }: { page: PageName }) {
+  return (
+    <nav className="top-nav">
+      <a href="/" aria-current={page === "calculator" ? "page" : undefined}>
+        Calculator
+      </a>
+      <a href="/methodology" aria-current={page === "methodology" ? "page" : undefined}>
+        Methodology
+      </a>
+      <a href="/sources" aria-current={page === "sources" ? "page" : undefined}>
+        Sources
+      </a>
+    </nav>
+  );
+}
+
+function FixedProfileSummary() {
+  return (
+    <section className="fixed-profile" aria-label="Fixed v0 profile">
+      <p className="eyebrow">Fixed profile</p>
+      <ul>
+        <li>Single W-2 employee</li>
+        <li>U.S. citizen, single filer</li>
+        <li>No children or dependents</li>
+        <li>{FIXED_PROFILE.housing}</li>
+      </ul>
+    </section>
+  );
+}
 
 function MethodologyPage() {
   return (
-    <main className="methodology-page">
-      <nav className="top-nav">
-        <a href="/">Calculator</a>
-        <a href="/methodology" aria-current="page">
-          Methodology
-        </a>
-      </nav>
-      <section className="methodology-hero">
-        <p className="eyebrow">Methodology</p>
-        <h1>After-tax disposable-income equivalence</h1>
-        <p>
-          We estimate what you keep after taxes in the source city, subtract what the selected
-          lifestyle costs there, then find the target-city gross salary that leaves you with the
-          same amount after paying target-city taxes and buying the same basket at target-city
-          prices.
+    <main className="article-page">
+      <TopNav page="methodology" />
+      <article className="article-doc">
+        <p className="eyebrow">Six-city v0 methodology</p>
+        <h1>How the salary equivalence calculation works</h1>
+        <p className="article-lede">
+          The calculator answers one question: what gross salary in a target city leaves the same
+          post-tax+COLB surplus as a known gross salary in a source city? COLB means
+          cost-of-living-basket: the fixed bundle of housing and non-housing costs used by this
+          v0 model.
         </p>
-      </section>
-      <section className="method-grid">
-        <div className="panel">
-          <h2>Core formula</h2>
-          <pre>{`N_S = after_tax_income(X, S, P)
-C_S = annual_cost_of_basket(S, X, P, B)
-R_S = N_S - C_S
 
-Find Y:
-after_tax_income(Y, T, P)
-  - annual_cost_of_same_basket(T, S, X, P, B)
-  = R_S`}</pre>
+        <h2>The fixed profile</h2>
+        <p>
+          V0 intentionally keeps the household simple: one single W-2 employee, a U.S. citizen,
+          single tax filer, no children or dependents, renting a one-bedroom apartment alone.
+          There are no visa, spouse, dependent, owner-cost, bonus, stock-compensation, or itemized
+          deduction branches in this version.
+        </p>
+
+        <h2>The language used in the calculator</h2>
+        <p>
+          Gross salary means pre-tax salary. Net income means post-tax income. More generally,
+          <strong> pre-X</strong> means before deducting X, and <strong>post-X</strong> means after
+          deducting X. So post-COLB income is income after the cost-of-living-basket is paid, and
+          post-tax+COLB surplus is what remains after both taxes and the modeled COLB are paid.
+        </p>
+
+        <h2>The actual equation</h2>
+        <p>
+          First, the app computes the source city net income from the source gross salary. Then it
+          subtracts the source city COLB. That gives source post-tax+COLB surplus.
+        </p>
+        <pre>{`source_net = post_tax(source_gross, source_city)
+source_surplus = source_net - COLB(source_city)
+
+Find target_gross such that:
+post_tax(target_gross, target_city) - COLB(target_city)
+  = source_surplus`}</pre>
+        <p>
+          In other words, the target gross salary is not chosen by matching rent alone or tax alone.
+          It is chosen by preserving the same post-tax+COLB surplus.
+        </p>
+
+        <h2>What is inside COLB</h2>
+        <p>
+          The cost-of-living-basket has one housing line and five non-housing lines: food,
+          transportation, healthcare, internet/mobile, and other non-housing spending. Housing is
+          the one-bedroom fair-market rent for the location. Non-housing spending starts from a
+          national COLB estimate for similar single renter households, then gets repriced with
+          metro-area price indexes.
+        </p>
+
+        <h2>How the target salary is solved</h2>
+        <p>
+          The backend precomputes tax curves for each city. A curve says, for many possible gross
+          salaries, what the post-tax net income would be. During interaction, the frontend finds
+          the target gross salary whose net income is just high enough to pay the target COLB while
+          preserving the source surplus. If the exact salary falls between two curve points, it uses
+          linear interpolation.
+        </p>
+
+        <h2>Important limits</h2>
+        <p>
+          V0 uses one county and one metro area for each city. It does not model neighborhood-level
+          rents, employer benefits, pre-tax retirement contributions, health savings accounts,
+          flexible spending accounts, alternative minimum tax, relocation costs, or ownership costs.
+          The result is salary-dependent and directional: Austin to Sunnyvale is not the same
+          operation as Sunnyvale to Austin.
+        </p>
+      </article>
+    </main>
+  );
+}
+
+function SourcesPage() {
+  return (
+    <main className="article-page">
+      <TopNav page="sources" />
+      <article className="article-doc">
+        <p className="eyebrow">Backend sources</p>
+        <h1>What data powers the calculator</h1>
+        <p className="article-lede">
+          The app uses a generated local data artifact, <code>src/lib/v0Data.ts</code>. That file is
+          built from public data sources plus a few explicit model assumptions. This page explains
+          each source in plain language.
+        </p>
+
+        <div className="source-list">
+          {SOURCE_EXPLAINERS.map((entry) => {
+            const source = V0_DATA.sources[entry.key];
+            return (
+              <section className="source-entry" key={entry.key}>
+                <h2>{entry.title}</h2>
+                <p>{entry.description}</p>
+                <p>{entry.usedFor}</p>
+                <dl>
+                  <div>
+                    <dt>Vintage used</dt>
+                    <dd>{source.vintage}</dd>
+                  </div>
+                  <div>
+                    <dt>Source link</dt>
+                    <dd>
+                      <a href={source.url}>{source.url}</a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>Pipeline note</dt>
+                    <dd>{source.notes}</dd>
+                  </div>
+                </dl>
+              </section>
+            );
+          })}
         </div>
-        <div className="panel">
-          <h2>Current prototype</h2>
-          <p>
-            This local version uses six temporary fixture locations so the full interaction can be
-            tested before implementing Census, HUD, BEA, BLS, USDA, and PolicyEngine pipelines.
-          </p>
-        </div>
-        <div className="panel">
-          <h2>Planned data</h2>
-          <ul>
-            <li>PolicyEngine US for federal, state, and payroll taxes.</li>
-            <li>HUD Fair Market Rents for renter housing costs.</li>
-            <li>BEA Regional Price Parities for non-housing price levels.</li>
-            <li>Census files for locations, crosswalks, and county boundaries.</li>
-          </ul>
-        </div>
-        <div className="panel">
-          <h2>Limitations</h2>
-          <ul>
-            <li>Fixture values are not production estimates.</li>
-            <li>City geography is approximated by county and metro labels.</li>
-            <li>RSUs, bonuses, AMT, owner costs, and employer benefits are excluded.</li>
-            <li>The factor is salary-dependent and not symmetric.</li>
-          </ul>
-        </div>
-      </section>
+
+        <h2>Model assumptions that are not raw public data</h2>
+        <p>
+          The category mapping from broad federal price indexes to app categories is a v0 modeling
+          choice. For example, food uses the goods price index, healthcare uses the other-services
+          price index, and transportation uses a blended goods/services multiplier. These weights
+          are stored in the generated data file so they are visible and reproducible.
+        </p>
+      </article>
     </main>
   );
 }
 
 function CalculatorPage() {
-  const [sourceId, setSourceId] = useState(DEFAULT_SOURCE_ID);
-  const [targetId, setTargetId] = useState(DEFAULT_TARGET_ID);
-  const [salary, setSalary] = useState(DEFAULT_GROSS_INCOME);
+  const [sourceId, setSourceId] = useState<string>(DEFAULT_SOURCE_ID);
+  const [targetId, setTargetId] = useState<string>(DEFAULT_TARGET_ID);
+  const [salary, setSalary] = useState<number>(DEFAULT_GROSS_INCOME);
 
   const result = useMemo(
     () => computeEquivalence(sourceId, targetId, salary),
@@ -88,22 +250,17 @@ function CalculatorPage() {
 
   return (
     <main className="app-shell">
-      <nav className="top-nav">
-        <a href="/" aria-current="page">
-          Calculator
-        </a>
-        <a href="/methodology">Methodology</a>
-      </nav>
+      <TopNav page="calculator" />
       <header className="app-header">
         <div>
-          <p className="eyebrow">Local deterministic demo</p>
-          <h1>After-tax salary equivalence across U.S. cities</h1>
+          <p className="eyebrow">Six-city real-source v0</p>
+          <h1>Post-tax+COLB salary equivalence across U.S. cities</h1>
           <p>
-            Compare gross salaries after taxes, housing, local prices, and preserved after-basket
-            surplus.
+            Compare gross salaries for a fixed single W-2 profile using PolicyEngine taxes,
+            HUD 1BR FMR rent, BEA metro price parities, and BLS spending data.
           </p>
         </div>
-        <div className="version-badge">demo_v0_1</div>
+        <div className="version-badge">{MODEL_VERSION}</div>
       </header>
 
       <section className="workspace">
@@ -116,18 +273,18 @@ function CalculatorPage() {
             id="source"
             label="Source city"
             value={sourceId}
-            locations={DEMO_LOCATIONS}
+            locations={LOCATIONS}
             onChange={setSourceId}
           />
           <LocationSelect
             id="target"
             label="Target city"
             value={targetId}
-            locations={DEMO_LOCATIONS}
+            locations={LOCATIONS}
             onChange={setTargetId}
           />
           <SalaryControl value={salary} onChange={setSalary} />
-          <AssumptionControls />
+          <FixedProfileSummary />
         </aside>
         <DemoMap
           values={heatmap}
@@ -150,6 +307,9 @@ function CalculatorPage() {
 export default function App() {
   if (window.location.pathname === "/methodology") {
     return <MethodologyPage />;
+  }
+  if (window.location.pathname === "/sources") {
+    return <SourcesPage />;
   }
 
   return <CalculatorPage />;
