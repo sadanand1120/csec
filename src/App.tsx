@@ -1,7 +1,6 @@
 import { useMemo, useState } from "react";
-import BreakdownChart from "./components/BreakdownChart";
+import ComputationBreakdown from "./components/ComputationBreakdown";
 import DemoMap from "./components/DemoMap";
-import ExplanationPanel from "./components/ExplanationPanel";
 import LocationSelect from "./components/LocationSelect";
 import ResultCard from "./components/ResultCard";
 import SalaryControl from "./components/SalaryControl";
@@ -178,6 +177,28 @@ post_tax(target_gross, target_city) - COLB(target_city)
           The result is salary-dependent and directional: Austin to Sunnyvale is not the same
           operation as Sunnyvale to Austin.
         </p>
+
+        <h2>Concrete model assumptions in v0</h2>
+        <ul>
+          <li>The person is one adult, modeled as age 30 for tax-simulation purposes.</li>
+          <li>The person is a U.S. citizen, single, unmarried, with no children or dependents.</li>
+          <li>All compensation entered in the calculator is W-2 wage income.</li>
+          <li>No bonuses, restricted stock units, stock options, self-employment income, capital gains, or investment income are modeled.</li>
+          <li>No pre-tax 401(k), health savings account, flexible spending account, commuter benefit, or insurance-premium deductions are modeled.</li>
+          <li>The person takes whatever baseline tax treatment PolicyEngine applies for this simple single-filer situation; no custom itemized deductions are entered.</li>
+          <li>The person rents alone in a one-bedroom apartment.</li>
+          <li>Housing COLB is exactly HUD fiscal year 2026 one-bedroom Fair Market Rent multiplied by twelve.</li>
+          <li>Non-housing COLB uses BLS Consumer Expenditure Survey single-person renter consumer units with wage or salary income and no farm or non-farm business income.</li>
+          <li>2024 Consumer Expenditure Survey dollar amounts are inflated to May 2026 using CPI-U, the Consumer Price Index for All Urban Consumers.</li>
+          <li>Food uses the BEA goods price index.</li>
+          <li>Transportation uses 65% BEA goods and 35% BEA other-services price indexes.</li>
+          <li>Healthcare uses the BEA other-services price index.</li>
+          <li>Internet/mobile uses the BEA other-services price index.</li>
+          <li>Other non-housing COLB uses 45% BEA goods and 55% BEA other-services price indexes.</li>
+          <li>Each city is resolved to one tax county and one metro area in v0.</li>
+          <li>Target gross salary is solved by linear interpolation over precomputed PolicyEngine tax curves.</li>
+          <li>Tax component lines are explanatory; total tax and net income are anchored to PolicyEngine <code>household_tax</code>.</li>
+        </ul>
       </article>
     </main>
   );
@@ -192,8 +213,8 @@ function SourcesPage() {
         <h1>What data powers the calculator</h1>
         <p className="article-lede">
           The app uses a generated local data artifact, <code>src/lib/v0Data.ts</code>. That file is
-          built from public data sources plus a few explicit model assumptions. This page explains
-          each source in plain language.
+          built from the public external data sources listed below. This page explains each source
+          in plain language.
         </p>
 
         <div className="source-list">
@@ -224,14 +245,6 @@ function SourcesPage() {
             );
           })}
         </div>
-
-        <h2>Model assumptions that are not raw public data</h2>
-        <p>
-          The category mapping from broad federal price indexes to app categories is a v0 modeling
-          choice. For example, food uses the goods price index, healthcare uses the other-services
-          price index, and transportation uses a blended goods/services multiplier. These weights
-          are stored in the generated data file so they are visible and reproducible.
-        </p>
       </article>
     </main>
   );
@@ -296,10 +309,7 @@ function CalculatorPage() {
 
       <ResultCard result={result} />
 
-      <section className="detail-grid">
-        <BreakdownChart result={result} />
-        <ExplanationPanel result={result} />
-      </section>
+      <ComputationBreakdown result={result} />
     </main>
   );
 }
