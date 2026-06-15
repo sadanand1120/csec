@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatCurrency, formatPercent } from "../lib/format";
 import type {
   EquivalenceResult,
@@ -7,11 +7,8 @@ import type {
   NonHousingExpenseCategory,
   PriceIndexKey,
   TaxBreakdown,
-  V0TaxCurve,
 } from "../lib/types";
 import { V0_DATA } from "../lib/v0Data";
-
-const TAX_CURVES: Record<string, V0TaxCurve> = V0_DATA.taxCurves;
 
 type DetailKind = "source" | "gross" | "tax" | "net" | "colb" | "surplus";
 
@@ -69,35 +66,18 @@ function categoryPriceMultiplier(location: LocationProfile, category: NonHousing
 }
 
 function taxComponentRows(tax: TaxBreakdown) {
+  const stateIncomeTaxNet = tax.stateIncomeTax + tax.taxComponentResidual;
   return [
     ["Federal income tax", tax.federalIncomeTax],
-    ["Employee payroll tax", tax.payrollTaxEmployee],
-    ["State income tax", tax.stateIncomeTax],
+    ["Federal payroll (FICA)", tax.payrollTaxEmployee],
+    ["State income tax, net", stateIncomeTaxNet],
     ["Local income tax", tax.localIncomeTax],
-    ["State/local payroll items", tax.statePayrollItems],
-    ["Component residual", tax.taxComponentResidual],
+    ["State/local payroll taxes", tax.statePayrollItems],
   ] as const;
 }
 
 function interpolationDetail(result: EquivalenceResult) {
-  const curve = TAX_CURVES[result.target.id];
-  const requiredNet = result.requiredTargetNetIncome;
-  let low = 0;
-  let high = curve.netIncome.length - 1;
-  while (low + 1 < high) {
-    const mid = Math.floor((low + high) / 2);
-    if (curve.netIncome[mid] <= requiredNet) {
-      low = mid;
-    } else {
-      high = mid;
-    }
-  }
-  return {
-    grossLow: curve.grossIncome[low],
-    netLow: curve.netIncome[low],
-    grossHigh: curve.grossIncome[high],
-    netHigh: curve.netIncome[high],
-  };
+  return result.targetTaxInterpolation;
 }
 
 function DetailButton({
@@ -297,7 +277,7 @@ function CityFlow({
       value: formatCurrency(tax.totalTax),
       kind: "tax",
       source: V0_DATA.sources.policyengine.name,
-      formula: `${formatCurrency(tax.federalIncomeTax)} federal income tax + ${formatCurrency(tax.payrollTaxEmployee)} employee payroll tax + ${formatCurrency(tax.stateIncomeTax)} state income tax + ${formatCurrency(tax.localIncomeTax)} local income tax + ${formatCurrency(tax.statePayrollItems)} state/local payroll items + ${formatCurrency(tax.taxComponentResidual)} residual = ${formatCurrency(tax.totalTax)} total tax.`,
+      formula: `${formatCurrency(tax.federalIncomeTax)} federal income tax + ${formatCurrency(tax.payrollTaxEmployee)} federal payroll/FICA taxes + ${formatCurrency(tax.stateIncomeTax + tax.taxComponentResidual)} net state income tax + ${formatCurrency(tax.localIncomeTax)} local income tax + ${formatCurrency(tax.statePayrollItems)} state/local payroll taxes = ${formatCurrency(tax.totalTax)} total tax.`,
       notes: [`Effective tax rate: ${formatPercent(tax.effectiveRate)}.`],
     },
     {
@@ -360,7 +340,7 @@ function CityFlow({
               value: formatCurrency(value),
               kind: "tax",
               source: V0_DATA.sources.policyengine.name,
-              formula: `PolicyEngine component value included in ${location.displayName} total tax.`,
+              formula: `PolicyEngine component value included in ${location.displayName} total tax. State income tax is shown net of internal PolicyEngine reconciliation so the displayed components add back to total tax.`,
             }}
             key={label}
             onSelect={onSelect}
@@ -446,6 +426,10 @@ export default function ComputationBreakdown({ result }: { result: EquivalenceRe
     [result],
   );
   const [activeDetail, setActiveDetail] = useState<Detail>(initialDetail);
+
+  useEffect(() => {
+    setActiveDetail(initialDetail);
+  }, [initialDetail]);
 
   return (
     <section className="computation-panel" aria-label="Computation breakdown">

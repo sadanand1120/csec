@@ -11,6 +11,7 @@ import io
 import json
 import math
 import os
+import re
 import shutil
 import tempfile
 import urllib.request
@@ -20,6 +21,8 @@ from typing import Callable
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "src/lib/v0Data.ts"
+CITY_OUT_DIR = ROOT / "src/lib/cities"
+CITY_LOADER_OUT = ROOT / "src/lib/cityTaxCurves.ts"
 TAX_YEAR = "2026"
 MODEL_VERSION = "v0_1_six_city_real_sources"
 
@@ -336,7 +339,11 @@ def build_cex_bands(inflation_factor: float) -> list[dict]:
 
 
 def gross_grid() -> list[int]:
-    return list(range(0, 500_001, 1_000)) + list(range(505_000, 1_000_001, 5_000))
+    return (
+        list(range(0, 500_001, 1_000))
+        + list(range(505_000, 1_000_001, 5_000))
+        + list(range(1_020_000, 10_000_001, 20_000))
+    )
 
 
 def make_policyengine_situation(location: dict, gross_values: list[int]) -> dict:
@@ -426,12 +433,74 @@ def build_tax_curve(location: dict, gross_values: list[int]) -> dict:
     }
 
 
+def city_module_name(location: dict) -> str:
+    parts = re.sub(r"[^A-Za-z0-9]+", " ", f'{location["shortName"]} {location["state"]}').split()
+    if not parts:
+        raise ValueError(f'Cannot build city module name for {location["displayName"]}')
+    return parts[0].lower() + "".join(part[:1].upper() + part[1:].lower() for part in parts[1:])
+
+
 def write_typescript(dataset: dict) -> None:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     serialized = json.dumps(dataset, indent=2, sort_keys=True)
     OUT.write_text(
         "import type { V0Dataset } from \"./types\";\n\n"
         f"export const V0_DATA = {serialized} as const satisfies V0Dataset;\n",
+        encoding="utf-8",
+    )
+
+
+def write_city_tax_curves(locations: list[dict], tax_curves: dict[str, dict]) -> None:
+    CITY_OUT_DIR.mkdir(parents=True, exist_ok=True)
+    for existing in CITY_OUT_DIR.glob("*.ts"):
+        existing.unlink()
+
+    loader_entries = []
+    for location in locations:
+        module_name = city_module_name(location)
+        curve = tax_curves[location["id"]]
+        serialized = json.dumps(curve, indent=2, sort_keys=True)
+        (CITY_OUT_DIR / f"{module_name}.ts").write_text(
+            "import type { V0TaxCurve } from \"../types\";\n\n"
+            f"export const CITY_ID = {json.dumps(location['id'])};\n\n"
+            f"export const CITY_TAX_CURVE = {serialized} as const satisfies V0TaxCurve;\n",
+            encoding="utf-8",
+        )
+        loader_entries.append((location["id"], module_name))
+
+    loader_lines = "\n".join(
+        f"  {json.dumps(location_id)}: () => import(\"./cities/{module_name}\"),"
+        for location_id, module_name in loader_entries
+    )
+    CITY_LOADER_OUT.write_text(
+        "import type { V0TaxCurve } from \"./types\";\n\n"
+        "type CityTaxCurveModule = {\n"
+        "  CITY_TAX_CURVE: V0TaxCurve;\n"
+        "};\n\n"
+        "const LOADERS: Record<string, () => Promise<CityTaxCurveModule>> = {\n"
+        f"{loader_lines}\n"
+        "};\n\n"
+        "const CACHE = new Map<string, Promise<V0TaxCurve>>();\n\n"
+        "export function loadTaxCurve(locationId: string): Promise<V0TaxCurve> {\n"
+        "  const loader = LOADERS[locationId];\n"
+        "  if (!loader) {\n"
+        "    throw new Error(`Missing city tax curve loader for ${locationId}`);\n"
+        "  }\n\n"
+        "  let cached = CACHE.get(locationId);\n"
+        "  if (!cached) {\n"
+        "    cached = loader().then((module) => module.CITY_TAX_CURVE);\n"
+        "    CACHE.set(locationId, cached);\n"
+        "  }\n\n"
+        "  return cached;\n"
+        "}\n\n"
+        "export async function loadTaxCurveMap(\n"
+        "  locationIds: readonly string[],\n"
+        "): Promise<Record<string, V0TaxCurve>> {\n"
+        "  const entries = await Promise.all(\n"
+        "    locationIds.map(async (locationId) => [locationId, await loadTaxCurve(locationId)] as const),\n"
+        "  );\n"
+        "  return Object.fromEntries(entries);\n"
+        "}\n",
         encoding="utf-8",
     )
 
@@ -480,7 +549,6 @@ def main() -> None:
                 },
                 "basketBands": cex_bands,
                 "locations": locations,
-                "taxCurves": tax_curves,
                 "sources": {
                     "hudFmr": {
                         "name": "HUD Fair Market Rents",
@@ -521,6 +589,7 @@ def main() -> None:
                 },
             }
             write_typescript(dataset)
+            write_city_tax_curves(locations, tax_curves)
         finally:
             os.chdir(original_cwd)
             shutil.rmtree(ROOT / "data", ignore_errors=True)

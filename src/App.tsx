@@ -1,6 +1,5 @@
-import { useMemo, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import ComputationBreakdown from "./components/ComputationBreakdown";
-import DemoMap from "./components/DemoMap";
 import LocationSelect from "./components/LocationSelect";
 import ResultCard from "./components/ResultCard";
 import SalaryControl from "./components/SalaryControl";
@@ -14,7 +13,11 @@ import {
   computeEquivalence,
   computeHeatmap,
 } from "./lib/equivalence";
+import type { HeatmapValue } from "./lib/equivalence";
+import type { EquivalenceResult } from "./lib/types";
 import { V0_DATA } from "./lib/v0Data";
+
+const DemoMap = lazy(() => import("./components/DemoMap"));
 
 type PageName = "calculator" | "methodology" | "sources";
 type SourceKey = keyof typeof V0_DATA.sources;
@@ -29,9 +32,9 @@ const SOURCE_EXPLAINERS: Array<{
     key: "policyengine",
     title: "PolicyEngine US",
     description:
-      "PolicyEngine US is an open-source tax and benefit calculation engine. In this app it turns a gross salary into federal income tax, employee payroll tax, state income tax, supported local tax, and net income for the fixed single W-2 profile.",
+      "PolicyEngine US is an open-source tax and benefit calculation engine. In this app it turns a gross salary into federal income tax, employee payroll tax, state income tax, supported local tax, total household tax, and net income for the fixed single W-2 profile.",
     usedFor:
-      "Tax year 2026 curves for Austin, Sunnyvale, New York, Seattle, Denver, and Raleigh. The frontend interpolates those precomputed curves instead of running tax code in the browser.",
+      "The backend builds tax year 2026 curves for Austin, Sunnyvale, New York, Seattle, Denver, and Raleigh over the full v0 salary grid. The frontend interpolates those precomputed curves instead of running tax code in the browser.",
   },
   {
     key: "hudFmr",
@@ -39,15 +42,15 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The U.S. Department of Housing and Urban Development publishes Fair Market Rents, often abbreviated HUD FMR. FMR is a gross-rent standard used in housing programs; it includes shelter rent plus tenant-paid utilities for a typical rental unit size.",
     usedFor:
-      "The annual housing part of the cost-of-living-basket: each city uses the fiscal year 2026 one-bedroom FMR multiplied by twelve.",
+      "The annual housing part of the cost-of-living-basket: each city uses the fiscal year 2026 one-bedroom FMR multiplied by twelve. The six v0 monthly rent values are stored in the generated data artifact after being extracted from the HUD FY2026 schedule rows for the relevant FMR areas.",
   },
   {
     key: "beaRpp",
     title: "Bureau of Economic Analysis Regional Price Parities",
     description:
-      "The Bureau of Economic Analysis, abbreviated BEA, publishes Regional Price Parities, abbreviated RPP. RPP compares price levels across metro areas relative to the national average of 100.",
+      "The Bureau of Economic Analysis, abbreviated BEA, publishes Regional Price Parities, abbreviated RPP. RPP compares price levels across metro areas relative to the national average of 100. The backend downloads the BEA MARPP file and reads line code 1 for all items, line code 2 for goods, line code 3 for housing, line code 4 for utilities, and line code 5 for other services.",
     usedFor:
-      "Metro-level price multipliers for goods and other services. These reprice the non-housing parts of the cost-of-living-basket from one metro area to another.",
+      "V0 currently uses line code 2, goods, and line code 5, other services, to reprice the non-housing COLB categories. Line code 1, all items, line code 3, housing, and line code 4, utilities, are kept in the local data artifact for auditability and future model work, but they are not used in the current calculator formula because housing comes from HUD FMR.",
   },
   {
     key: "blsCex",
@@ -55,7 +58,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The Bureau of Labor Statistics, abbreviated BLS, runs the Consumer Expenditure Survey, abbreviated CEX. The public-use microdata files contain anonymized household-level spending records.",
     usedFor:
-      "The national non-housing cost-of-living-basket for a single-person renter consumer unit with wage or salary income and no farm or non-farm business income.",
+      "The backend uses the 2024 Interview Survey public-use microdata to estimate national non-housing COLB categories for single-person renter consumer units with wage or salary income and no farm or non-farm business income. It reads the BLS family summary files and combines the quarter suffixes specified in the BLS public-use microdata layout.",
   },
   {
     key: "blsCpi",
@@ -63,7 +66,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The Consumer Price Index, abbreviated CPI, measures how consumer prices change over time. This app uses CPI-U, the Consumer Price Index for All Urban Consumers.",
     usedFor:
-      "Inflating 2024 Consumer Expenditure Survey dollar amounts to May 2026 dollars, so the COLB is closer to the same dollar year as the 2026 tax and rent inputs.",
+      "The backend calls the BLS public API for CPI-U all items, U.S. city average, not seasonally adjusted. It inflates 2024 Consumer Expenditure Survey dollar amounts and income-band thresholds to the latest available 2026 CPI month used by the generated artifact.",
   },
   {
     key: "census",
@@ -71,7 +74,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The U.S. Census Bureau publishes official place, county, and metro-area identifiers. TIGERweb is a Census mapping service, and CBSA means Core Based Statistical Area, the official metro-area grouping used by several federal datasets.",
     usedFor:
-      "Mapping each displayed city to the county used for taxes and the metro area used for price indexes.",
+      "V0 uses fixed Census-derived city-to-county and city-to-CBSA mappings for the six places. The county feeds the tax simulation; the CBSA selects the metro Regional Price Parity values used to reprice non-housing COLB.",
   },
 ];
 
@@ -101,6 +104,35 @@ function FixedProfileSummary() {
         <li>No children or dependents</li>
         <li>{FIXED_PROFILE.housing}</li>
       </ul>
+    </section>
+  );
+}
+
+function errorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error);
+}
+
+function StatusPanel({ title, message, tone = "neutral" }: { title: string; message: string; tone?: "neutral" | "error" }) {
+  return (
+    <section className={`status-panel ${tone}`} role={tone === "error" ? "alert" : "status"}>
+      <p className="eyebrow">{tone === "error" ? "Data load error" : "Loading"}</p>
+      <h3>{title}</h3>
+      <p>{message}</p>
+    </section>
+  );
+}
+
+function MapLoadingPanel() {
+  return (
+    <section className="map-panel">
+      <div className="section-heading">
+        <p className="eyebrow">Interactive U.S. map</p>
+        <h3>Equivalent salary factor</h3>
+      </div>
+      <div className="map-loading" role="status">
+        <strong>Loading city tax curves</strong>
+        <span>Fetching the city-level files needed for the map.</span>
+      </div>
     </section>
   );
 }
@@ -162,11 +194,11 @@ post_tax(target_gross, target_city) - COLB(target_city)
 
         <h2>How the target salary is solved</h2>
         <p>
-          The backend precomputes tax curves for each city. A curve says, for many possible gross
-          salaries, what the post-tax net income would be. During interaction, the frontend finds
-          the target gross salary whose net income is just high enough to pay the target COLB while
-          preserving the source surplus. If the exact salary falls between two curve points, it uses
-          linear interpolation.
+          The backend precomputes tax curves into one generated file per city. A curve says, for
+          many possible gross salaries, what the post-tax net income would be. During interaction,
+          the frontend lazily loads the city curve files it needs, then finds the target gross salary
+          whose net income is just high enough to pay the target COLB while preserving the source
+          surplus. If the exact salary falls between two curve points, it uses linear interpolation.
         </p>
 
         <h2>Important limits</h2>
@@ -212,7 +244,8 @@ function SourcesPage() {
         <p className="eyebrow">Backend sources</p>
         <h1>What data powers the calculator</h1>
         <p className="article-lede">
-          The app uses a generated local data artifact, <code>src/lib/v0Data.ts</code>. That file is
+          The app uses generated local data artifacts: <code>src/lib/v0Data.ts</code> for shared
+          metadata and <code>src/lib/cities/</code> for one tax-curve file per city. Those files are
           built from the public external data sources listed below. This page explains each source
           in plain language.
         </p>
@@ -236,10 +269,6 @@ function SourcesPage() {
                       <a href={source.url}>{source.url}</a>
                     </dd>
                   </div>
-                  <div>
-                    <dt>Pipeline note</dt>
-                    <dd>{source.notes}</dd>
-                  </div>
                 </dl>
               </section>
             );
@@ -254,12 +283,59 @@ function CalculatorPage() {
   const [sourceId, setSourceId] = useState<string>(DEFAULT_SOURCE_ID);
   const [targetId, setTargetId] = useState<string>(DEFAULT_TARGET_ID);
   const [salary, setSalary] = useState<number>(DEFAULT_GROSS_INCOME);
+  const [result, setResult] = useState<EquivalenceResult | null>(null);
+  const [heatmap, setHeatmap] = useState<HeatmapValue[] | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+  const [resultLoading, setResultLoading] = useState(true);
 
-  const result = useMemo(
-    () => computeEquivalence(sourceId, targetId, salary),
-    [sourceId, targetId, salary],
-  );
-  const heatmap = useMemo(() => computeHeatmap(sourceId, salary), [sourceId, salary]);
+  useEffect(() => {
+    let cancelled = false;
+    setResultLoading(true);
+    setResult(null);
+    setLoadError(null);
+
+    computeEquivalence(sourceId, targetId, salary)
+      .then((nextResult) => {
+        if (!cancelled) {
+          setResult(nextResult);
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setLoadError(errorMessage(error));
+        }
+      })
+      .finally(() => {
+        if (!cancelled) {
+          setResultLoading(false);
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [sourceId, targetId, salary]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setHeatmap(null);
+
+    computeHeatmap(sourceId, salary)
+      .then((nextHeatmap) => {
+        if (!cancelled) {
+          setHeatmap(nextHeatmap);
+        }
+      })
+      .catch((error) => {
+        if (!cancelled) {
+          setLoadError(errorMessage(error));
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [sourceId, salary]);
 
   return (
     <main className="app-shell">
@@ -299,17 +375,41 @@ function CalculatorPage() {
           <SalaryControl value={salary} onChange={setSalary} />
           <FixedProfileSummary />
         </aside>
-        <DemoMap
-          values={heatmap}
-          sourceId={sourceId}
-          targetId={targetId}
-          onSelectTarget={setTargetId}
-        />
+        {heatmap ? (
+          <Suspense fallback={<MapLoadingPanel />}>
+            <DemoMap
+              values={heatmap}
+              sourceId={sourceId}
+              targetId={targetId}
+              onSelectTarget={setTargetId}
+            />
+          </Suspense>
+        ) : (
+          <MapLoadingPanel />
+        )}
       </section>
 
-      <ResultCard result={result} />
+      {loadError && (
+        <StatusPanel
+          title="Could not load city data"
+          message={loadError}
+          tone="error"
+        />
+      )}
 
-      <ComputationBreakdown result={result} />
+      {resultLoading && !result && (
+        <StatusPanel
+          title="Loading selected comparison"
+          message="Fetching the city-level tax curve files for the selected source and target."
+        />
+      )}
+
+      {result && (
+        <>
+          <ResultCard result={result} />
+          <ComputationBreakdown result={result} />
+        </>
+      )}
     </main>
   );
 }

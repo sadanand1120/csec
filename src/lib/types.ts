@@ -66,6 +66,12 @@ export type EquivalenceResult = {
   sourceSurplus: number;
   targetSurplus: number;
   requiredTargetNetIncome: number;
+  targetTaxInterpolation: {
+    grossLow: number;
+    netLow: number;
+    grossHigh: number;
+    netHigh: number;
+  };
   breakdown: {
     housingDelta: number;
     nonhousingDelta: number;
@@ -133,6 +139,5 @@ export type V0Dataset = {
   categoryPriceWeights: Record<NonHousingExpenseCategory, Partial<Record<PriceIndexKey, number>>>;
   basketBands: readonly V0BasketBand[];
   locations: readonly LocationProfile[];
-  taxCurves: Record<string, V0TaxCurve>;
   sources: Record<string, V0Source>;
 };

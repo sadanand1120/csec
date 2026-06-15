@@ -1,4 +1,5 @@
 import { V0_DATA } from "./v0Data";
+import { loadTaxCurveMap } from "./cityTaxCurves";
 import type {
   Basket,
   EquivalenceResult,
@@ -24,11 +25,17 @@ export const DEFAULT_TARGET_ID = V0_DATA.defaultTargetId;
 export const DEFAULT_GROSS_INCOME = V0_DATA.defaultGrossIncome;
 export const MODEL_VERSION = V0_DATA.modelVersion;
 export const FIXED_PROFILE = V0_DATA.fixedProfile;
-const TAX_CURVES: Record<string, V0TaxCurve> = V0_DATA.taxCurves;
 
 const DATA_VINTAGE = Object.fromEntries(
   Object.entries(V0_DATA.sources).map(([key, source]) => [key, source.vintage]),
 );
+
+export type HeatmapValue = {
+  location: LocationProfile;
+  factor: number;
+  equivalentSalary: number;
+  confidence: "high" | "medium" | "low";
+};
 
 export function getLocation(locationId: string) {
   const location = LOCATIONS.find((entry) => entry.id === locationId);
@@ -131,16 +138,23 @@ function interpolate(xs: readonly number[], ys: readonly number[], x: number) {
   return ys[low] + (ys[high] - ys[low]) * ratio;
 }
 
-function taxCurveFor(location: LocationProfile): V0TaxCurve {
-  const curve = TAX_CURVES[location.id];
+function taxCurveFor(
+  curves: Record<string, V0TaxCurve>,
+  location: LocationProfile,
+): V0TaxCurve {
+  const curve = curves[location.id];
   if (!curve) {
     throw new Error(`Missing tax curve for ${location.id}`);
   }
   return curve;
 }
 
-function estimateTax(grossIncome: number, location: LocationProfile): TaxBreakdown {
-  const curve = taxCurveFor(location);
+function estimateTax(
+  grossIncome: number,
+  location: LocationProfile,
+  curves: Record<string, V0TaxCurve>,
+): TaxBreakdown {
+  const curve = taxCurveFor(curves, location);
   const grossGrid = curve.grossIncome;
   const totalTax = interpolate(grossGrid, curve.totalTax, grossIncome);
 
@@ -157,9 +171,44 @@ function estimateTax(grossIncome: number, location: LocationProfile): TaxBreakdo
   };
 }
 
-function grossRequiredForNet(netIncome: number, location: LocationProfile) {
-  const curve = taxCurveFor(location);
-  return interpolate(curve.netIncome, curve.grossIncome, netIncome);
+function interpolationBounds(xs: readonly number[], ys: readonly number[], x: number) {
+  const lastIndex = xs.length - 1;
+  let low = 0;
+  let high = 1;
+
+  if (x >= xs[lastIndex]) {
+    low = lastIndex - 1;
+    high = lastIndex;
+  } else if (x > xs[0]) {
+    high = lastIndex;
+    while (low + 1 < high) {
+      const mid = Math.floor((low + high) / 2);
+      if (xs[mid] <= x) {
+        low = mid;
+      } else {
+        high = mid;
+      }
+    }
+  }
+
+  return {
+    grossLow: ys[low],
+    netLow: xs[low],
+    grossHigh: ys[high],
+    netHigh: xs[high],
+  };
+}
+
+function grossRequiredForNet(
+  netIncome: number,
+  location: LocationProfile,
+  curves: Record<string, V0TaxCurve>,
+) {
+  const curve = taxCurveFor(curves, location);
+  return {
+    grossIncome: interpolate(curve.netIncome, curve.grossIncome, netIncome),
+    bounds: interpolationBounds(curve.netIncome, curve.grossIncome, netIncome),
+  };
 }
 
 function nonhousingTotal(basket: Basket) {
@@ -172,20 +221,22 @@ function confidenceFor(source: LocationProfile, target: LocationProfile): "high"
   return "high";
 }
 
-export function computeEquivalence(
+function computeEquivalenceWithCurves(
   sourceLocationId: string,
   targetLocationId: string,
   sourceGrossIncome: number,
+  curves: Record<string, V0TaxCurve>,
 ): EquivalenceResult {
   const source = getLocation(sourceLocationId);
   const target = getLocation(targetLocationId);
-  const sourceTax = estimateTax(sourceGrossIncome, source);
+  const sourceTax = estimateTax(sourceGrossIncome, source, curves);
   const sourceBasket = buildSourceBasket(source, sourceGrossIncome);
   const targetBasket = repriceBasket(sourceBasket, source, target);
   const sourceSurplus = sourceTax.netIncome - sourceBasket.total;
   const requiredTargetNetIncome = targetBasket.total + sourceSurplus;
-  const targetEquivalentGrossIncome = grossRequiredForNet(requiredTargetNetIncome, target);
-  const targetTax = estimateTax(targetEquivalentGrossIncome, target);
+  const targetGross = grossRequiredForNet(requiredTargetNetIncome, target, curves);
+  const targetEquivalentGrossIncome = targetGross.grossIncome;
+  const targetTax = estimateTax(targetEquivalentGrossIncome, target, curves);
   const targetSurplus = targetTax.netIncome - targetBasket.total;
   const targetTaxDelta = targetTax.totalTax - sourceTax.totalTax;
   const warnings = Array.from(
@@ -215,6 +266,7 @@ export function computeEquivalence(
     sourceSurplus,
     targetSurplus,
     requiredTargetNetIncome,
+    targetTaxInterpolation: targetGross.bounds,
     breakdown: {
       housingDelta: targetBasket.categories.housing - sourceBasket.categories.housing,
       nonhousingDelta: nonhousingTotal(targetBasket) - nonhousingTotal(sourceBasket),
@@ -228,9 +280,29 @@ export function computeEquivalence(
   };
 }
 
-export function computeHeatmap(sourceLocationId: string, sourceGrossIncome: number) {
+export async function computeEquivalence(
+  sourceLocationId: string,
+  targetLocationId: string,
+  sourceGrossIncome: number,
+): Promise<EquivalenceResult> {
+  const curves = await loadTaxCurveMap([sourceLocationId, targetLocationId]);
+  return computeEquivalenceWithCurves(sourceLocationId, targetLocationId, sourceGrossIncome, curves);
+}
+
+export async function computeHeatmap(
+  sourceLocationId: string,
+  sourceGrossIncome: number,
+): Promise<HeatmapValue[]> {
+  const locationIds = LOCATIONS.map((location) => location.id);
+  const curves = await loadTaxCurveMap([sourceLocationId, ...locationIds]);
+
   return LOCATIONS.map((location) => {
-    const result = computeEquivalence(sourceLocationId, location.id, sourceGrossIncome);
+    const result = computeEquivalenceWithCurves(
+      sourceLocationId,
+      location.id,
+      sourceGrossIncome,
+      curves,
+    );
     return {
       location,
       factor: result.factor,
