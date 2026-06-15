@@ -1,6 +1,6 @@
 // Google Analytics 4 tracking for the salary calculator.
 (function () {
-  const GA4_MEASUREMENT_ID = "G-ZTPGT8WSHJ";
+  const GA4_MEASUREMENT_ID = "G-YDCPVD6PQS";
   const trackedScrollMilestones = new Set();
 
   if (window.__csecAnalyticsInitialized) {
