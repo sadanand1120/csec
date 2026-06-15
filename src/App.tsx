@@ -21,17 +21,16 @@ type SourceKey = keyof typeof SALARY_DATA.sources;
 const APP_BASE_PATH = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL.replace(/\/$/, "");
 
 function appHref(path: "/" | "/methodology" | "/sources") {
-  return path === "/" ? `${APP_BASE_PATH}/` : `${APP_BASE_PATH}${path}`;
+  return path === "/" ? `${APP_BASE_PATH}/` : `${APP_BASE_PATH}${path}/`;
 }
 
 function currentAppPath() {
-  const pathname = window.location.pathname;
-  if (!APP_BASE_PATH) return pathname;
+  let pathname = window.location.pathname;
   if (pathname === APP_BASE_PATH) return "/";
   if (pathname.startsWith(`${APP_BASE_PATH}/`)) {
-    return pathname.slice(APP_BASE_PATH.length) || "/";
+    pathname = pathname.slice(APP_BASE_PATH.length) || "/";
   }
-  return pathname;
+  return pathname === "/" ? "/" : pathname.replace(/\/+$/, "");
 }
 
 const SOURCE_EXPLAINERS: Array<{
