@@ -8,14 +8,33 @@ import maplibregl, {
   type StyleSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import type { LocationProfile } from "../lib/types";
+import { estimateCityBasket } from "../lib/equivalence";
+import { formatCurrency, formatPercent } from "../lib/format";
+import {
+  interpolateMapTaxRate,
+  loadMapTaxMetricBundle,
+  type MapTaxMetricBundle,
+  type MapTaxMetricKind,
+} from "../lib/mapTaxMetrics";
+import type { Basket, ExpenseCategory, LocationProfile } from "../lib/types";
 
 type DemoMapProps = {
   locations: readonly LocationProfile[];
   sourceId: string | null;
   targetId: string | null;
+  salary: number;
   onSelectLocation: (locationId: string) => void;
 };
+
+type MapViewId =
+  | "standard"
+  | "federal_tax_rate"
+  | "state_tax_rate"
+  | "total_tax_rate"
+  | "housing"
+  | "medical"
+  | "transport"
+  | "cost_of_living";
 
 type CityFeature = {
   type: "Feature";
@@ -28,6 +47,9 @@ type CityFeature = {
     stateFips: string;
     displayName: string;
     shortName: string;
+    dotColor: string;
+    metricLabel: string;
+    metricText: string;
   };
 };
 
@@ -37,6 +59,54 @@ type CityFeatureCollection = {
 };
 
 type Coordinate = [number, number];
+
+type CityVoronoiFeature = {
+  type: "Feature";
+  geometry: {
+    type: "MultiPolygon";
+    coordinates: Coordinate[][][];
+  };
+  properties: {
+    id: string;
+    displayName: string;
+    stateFips: string;
+    fillColor?: string;
+    hasMetric?: boolean;
+  };
+};
+
+type CityVoronoiFeatureCollection = {
+  type: "FeatureCollection";
+  features: CityVoronoiFeature[];
+};
+
+type MetricKind = "rate" | "currency";
+
+type MapViewConfig = {
+  id: MapViewId;
+  label: string;
+  legendLabel: string;
+  hoverLabel: string;
+  kind?: MetricKind;
+  taxMetric?: MapTaxMetricKind;
+  basketMetric?: ExpenseCategory | "total";
+};
+
+type MetricState =
+  | {
+      values: Map<string, number>;
+      min: number;
+      max: number;
+      loading: false;
+      message: string | null;
+    }
+  | {
+      values: Map<string, number>;
+      min: null;
+      max: null;
+      loading: boolean;
+      message: string | null;
+    };
 
 type StateLabelFeatureCollection = {
   type: "FeatureCollection";
@@ -71,6 +141,87 @@ const US_DISPLAY_BOUNDS: [[number, number], [number, number]] = [
   [-66, 57],
 ];
 const EMPTY_STATE_FILTER: FilterSpecification = ["==", ["get", "STATE"], ""];
+const STANDARD_CITY_COLOR = "#38545b";
+const SOURCE_CITY_COLOR = "#137b70";
+const TARGET_CITY_COLOR = "#d79a26";
+const LOW_METRIC_COLOR = "#137b70";
+const MID_METRIC_COLOR = "#d79a26";
+const HIGH_METRIC_COLOR = "#9f2f45";
+const NO_WASH_COLOR = "#ffffff";
+const EMPTY_CITY_VORONOI_GEOJSON: CityVoronoiFeatureCollection = {
+  type: "FeatureCollection",
+  features: [],
+};
+const DOT_COLOR_EXPRESSION = ["get", "dotColor"] as ExpressionSpecification;
+const TAX_VIEW_IDS = new Set<MapViewId>([
+  "federal_tax_rate",
+  "state_tax_rate",
+  "total_tax_rate",
+]);
+const MAP_VIEW_CONFIGS: MapViewConfig[] = [
+  {
+    id: "standard",
+    label: "Standard",
+    legendLabel: "Standard city selector",
+    hoverLabel: "",
+  },
+  {
+    id: "federal_tax_rate",
+    label: "Fed tax %",
+    legendLabel: "Federal income tax + FICA as share of gross salary",
+    hoverLabel: "Fed + FICA tax",
+    kind: "rate",
+    taxMetric: "federal",
+  },
+  {
+    id: "state_tax_rate",
+    label: "State/local tax %",
+    legendLabel: "State, local, and residual tax as share of gross salary",
+    hoverLabel: "State/local tax",
+    kind: "rate",
+    taxMetric: "state",
+  },
+  {
+    id: "total_tax_rate",
+    label: "Total tax %",
+    legendLabel: "Total effective tax as share of gross salary",
+    hoverLabel: "Total tax",
+    kind: "rate",
+    taxMetric: "total",
+  },
+  {
+    id: "housing",
+    label: "Housing",
+    legendLabel: "Annual one-bedroom housing cost",
+    hoverLabel: "Housing",
+    kind: "currency",
+    basketMetric: "housing",
+  },
+  {
+    id: "medical",
+    label: "Medical",
+    legendLabel: "Annual medical spending inside the living-cost basket",
+    hoverLabel: "Medical",
+    kind: "currency",
+    basketMetric: "healthcare",
+  },
+  {
+    id: "transport",
+    label: "Transport",
+    legendLabel: "Annual transportation spending inside the living-cost basket",
+    hoverLabel: "Transport",
+    kind: "currency",
+    basketMetric: "transportation",
+  },
+  {
+    id: "cost_of_living",
+    label: "Cost of living",
+    legendLabel: "Annual cost-of-living basket, excluding taxes",
+    hoverLabel: "Cost of living",
+    kind: "currency",
+    basketMetric: "total",
+  },
+];
 const STATE_POINT_DISPLAY_TRANSFORMS: Record<
   string,
   {
@@ -110,22 +261,135 @@ function displayCoordinate(coordinate: Coordinate, stateFips: string): Coordinat
   ];
 }
 
-function makeCityGeoJson(locations: readonly LocationProfile[]): CityFeatureCollection {
+function activeViewConfig(viewId: MapViewId) {
+  return MAP_VIEW_CONFIGS.find((config) => config.id === viewId) ?? MAP_VIEW_CONFIGS[0];
+}
+
+function publicAssetPath(filename: string) {
+  return `${import.meta.env.BASE_URL}${filename}`;
+}
+
+function hexToRgb(hex: string) {
+  const value = Number.parseInt(hex.slice(1), 16);
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
+}
+
+function blendHex(startHex: string, endHex: string, amount: number) {
+  const start = hexToRgb(startHex);
+  const end = hexToRgb(endHex);
+  const mix = (from: number, to: number) => Math.round(from + (to - from) * amount);
+  return `#${[mix(start.r, end.r), mix(start.g, end.g), mix(start.b, end.b)]
+    .map((channel) => channel.toString(16).padStart(2, "0"))
+    .join("")}`;
+}
+
+function metricColor(value: number, min: number, max: number) {
+  if (max <= min) return MID_METRIC_COLOR;
+  const normalized = Math.max(0, Math.min(1, (value - min) / (max - min)));
+  if (normalized <= 0.5) {
+    return blendHex(LOW_METRIC_COLOR, MID_METRIC_COLOR, normalized * 2);
+  }
+  return blendHex(MID_METRIC_COLOR, HIGH_METRIC_COLOR, (normalized - 0.5) * 2);
+}
+
+function formatMetric(value: number, kind: MetricKind) {
+  return kind === "rate" ? `${formatPercent(value)} of gross` : `${formatCurrency(value)} / yr`;
+}
+
+function selectedDotColor(locationId: string, sourceId: string | null, targetId: string | null) {
+  if (locationId === sourceId) return SOURCE_CITY_COLOR;
+  if (locationId === targetId) return TARGET_CITY_COLOR;
+  return STANDARD_CITY_COLOR;
+}
+
+function cityDotColor(
+  locationId: string,
+  sourceId: string | null,
+  targetId: string | null,
+  viewId: MapViewId,
+  metricState: MetricState,
+) {
+  if (viewId === "standard" || metricState.min === null || metricState.max === null) {
+    return selectedDotColor(locationId, sourceId, targetId);
+  }
+
+  const value = metricState.values.get(locationId);
+  return value === undefined
+    ? selectedDotColor(locationId, sourceId, targetId)
+    : metricColor(value, metricState.min, metricState.max);
+}
+
+function cityMetricValue(locationId: string, metricState: MetricState) {
+  if (metricState.min === null || metricState.max === null) return null;
+  const value = metricState.values.get(locationId);
+  return value === undefined || !Number.isFinite(value) ? null : value;
+}
+
+function makeCityGeoJson(
+  locations: readonly LocationProfile[],
+  viewConfig: MapViewConfig,
+  viewId: MapViewId,
+  metricState: MetricState,
+  sourceId: string | null,
+  targetId: string | null,
+): CityFeatureCollection {
   return {
     type: "FeatureCollection",
-    features: locations.map((location) => ({
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: displayCoordinate([location.lon, location.lat], location.countyFips.slice(0, 2)),
-      },
-      properties: {
-        id: location.id,
-        stateFips: location.countyFips.slice(0, 2),
-        displayName: location.displayName,
-        shortName: location.shortName,
-      },
-    })),
+    features: locations.map((location) => {
+      const metricValue = cityMetricValue(location.id, metricState);
+      return {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: displayCoordinate(
+            [location.lon, location.lat],
+            location.countyFips.slice(0, 2),
+          ),
+        },
+        properties: {
+          id: location.id,
+          stateFips: location.countyFips.slice(0, 2),
+          displayName: location.displayName,
+          shortName: location.shortName,
+          dotColor: cityDotColor(location.id, sourceId, targetId, viewId, metricState),
+          metricLabel: viewId === "standard" ? "" : viewConfig.hoverLabel,
+          metricText:
+            viewConfig.kind && metricValue !== null
+              ? formatMetric(metricValue, viewConfig.kind)
+              : metricState.message ?? "",
+        },
+      };
+    }),
+  };
+}
+
+function makeCityVoronoiGeoJson(
+  cells: CityVoronoiFeatureCollection | null,
+  viewId: MapViewId,
+  metricState: MetricState,
+): CityVoronoiFeatureCollection {
+  if (!cells || viewId === "standard" || metricState.min === null || metricState.max === null) {
+    return EMPTY_CITY_VORONOI_GEOJSON;
+  }
+
+  return {
+    type: "FeatureCollection",
+    features: cells.features.map((cell) => {
+      const value = metricState.values.get(cell.properties.id);
+      const hasMetric = value !== undefined && Number.isFinite(value);
+      return {
+        ...cell,
+        properties: {
+          ...cell.properties,
+          hasMetric,
+          fillColor: hasMetric ? metricColor(value, metricState.min, metricState.max) : NO_WASH_COLOR,
+        },
+      };
+    }),
   };
 }
 
@@ -156,14 +420,7 @@ function cityPaintExpression(sourceId: string | null, targetId: string | null) {
   const sourceKey = sourceId ?? "";
   const targetKey = targetId ?? "";
   return {
-    color: [
-      "case",
-      ["==", ["get", "id"], sourceKey],
-      "#137b70",
-      ["==", ["get", "id"], targetKey],
-      "#d79a26",
-      "#38545b",
-    ] as ExpressionSpecification,
+    color: DOT_COLOR_EXPRESSION,
     radius: [
       "case",
       ["==", ["get", "id"], sourceKey],
@@ -200,6 +457,28 @@ function updateCityPaint(map: MapLibreMap, sourceId: string | null, targetId: st
   map.setPaintProperty("cities-circle", "circle-stroke-color", expression.strokeColor);
 }
 
+function updateSelectionLayers(
+  map: MapLibreMap,
+  source: LocationProfile | undefined,
+  target: LocationProfile | undefined,
+  showStateSelection: boolean,
+) {
+  const sourceFilter = showStateSelection ? stateFilterFor(source) : EMPTY_STATE_FILTER;
+  const targetFilter = showStateSelection ? stateFilterFor(target) : EMPTY_STATE_FILTER;
+  if (map.getLayer("source-state-fill")) {
+    map.setFilter("source-state-fill", sourceFilter);
+  }
+  if (map.getLayer("target-state-fill")) {
+    map.setFilter("target-state-fill", targetFilter);
+  }
+  if (map.getLayer("source-state-line")) {
+    map.setFilter("source-state-line", sourceFilter);
+  }
+  if (map.getLayer("target-state-line")) {
+    map.setFilter("target-state-line", targetFilter);
+  }
+}
+
 function fitState(map: MapLibreMap, feature: MapGeoJSONFeature) {
   const bounds = featureBounds(feature);
   if (bounds.isEmpty()) return;
@@ -215,10 +494,20 @@ function showCityPopup(
   popupRef: MutableRefObject<maplibregl.Popup | null>,
   coordinates: [number, number],
   cityName: string,
+  metricLabel = "",
+  metricText = "",
 ) {
   popupRef.current?.remove();
-  const content = document.createElement("strong");
-  content.textContent = cityName;
+  const content = document.createElement("div");
+  content.className = "map-popup-content";
+  const title = document.createElement("strong");
+  title.textContent = cityName;
+  content.append(title);
+  if (metricText) {
+    const detail = document.createElement("span");
+    detail.textContent = metricLabel ? `${metricLabel}: ${metricText}` : metricText;
+    content.append(detail);
+  }
   popupRef.current = new maplibregl.Popup({ closeButton: false, offset: 14 })
     .setLngLat(coordinates)
     .setDOMContent(content)
@@ -235,7 +524,7 @@ async function loadStateLabelMarkers(
   markersRef: MutableRefObject<maplibregl.Marker[]>,
   isDisposed: () => boolean,
 ) {
-  const response = await fetch("/us-state-labels-display.geojson");
+  const response = await fetch(publicAssetPath("us-state-labels-display.geojson"));
   if (!response.ok) {
     throw new Error(`Could not load U.S. state labels: ${response.status}`);
   }
@@ -260,6 +549,7 @@ export default function DemoMap({
   locations,
   sourceId,
   targetId,
+  salary,
   onSelectLocation,
 }: DemoMapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
@@ -270,17 +560,145 @@ export default function DemoMap({
   const onSelectLocationRef = useRef(onSelectLocation);
   const sourceIdRef = useRef(sourceId);
   const targetIdRef = useRef(targetId);
+  const mapViewRef = useRef<MapViewId>("standard");
   const [selectedState, setSelectedState] = useState<string | null>(null);
-  const cityGeoJson = useMemo(() => makeCityGeoJson(locations), [locations]);
+  const [mapView, setMapView] = useState<MapViewId>("standard");
+  const [taxMetricBundle, setTaxMetricBundle] = useState<MapTaxMetricBundle | null>(null);
+  const [cityVoronoiCells, setCityVoronoiCells] =
+    useState<CityVoronoiFeatureCollection | null>(null);
+  const [taxMetricStatus, setTaxMetricStatus] = useState<"idle" | "loading" | "ready" | "error">(
+    "idle",
+  );
+  const viewConfig = activeViewConfig(mapView);
+  const salaryReady = Number.isFinite(salary) && salary > 0;
+  const needsTaxCurves = TAX_VIEW_IDS.has(mapView);
+  const metricState = useMemo<MetricState>(() => {
+    if (mapView === "standard") {
+      return { values: new Map(), min: null, max: null, loading: false, message: null };
+    }
+    if (!salaryReady) {
+      return {
+        values: new Map(),
+        min: null,
+        max: null,
+        loading: false,
+        message: "Enter a gross salary to activate this view.",
+      };
+    }
+    if (viewConfig.taxMetric) {
+      if (taxMetricStatus === "error") {
+        return {
+          values: new Map(),
+          min: null,
+          max: null,
+          loading: false,
+          message: "Could not load map tax metrics.",
+        };
+      }
+      if (!taxMetricBundle) {
+        return {
+          values: new Map(),
+          min: null,
+          max: null,
+          loading: true,
+          message: "Loading map tax metrics.",
+        };
+      }
+    }
+
+    const values = new Map<string, number>();
+    for (const location of locations) {
+      if (viewConfig.taxMetric && taxMetricBundle) {
+        values.set(
+          location.id,
+          interpolateMapTaxRate(taxMetricBundle, location.id, salary, viewConfig.taxMetric),
+        );
+      } else if (viewConfig.basketMetric) {
+        const basket: Basket = estimateCityBasket(location, salary);
+        values.set(
+          location.id,
+          viewConfig.basketMetric === "total"
+            ? basket.total
+            : basket.categories[viewConfig.basketMetric],
+        );
+      }
+    }
+
+    const finiteValues = [...values.values()].filter((value) => Number.isFinite(value));
+    if (finiteValues.length === 0) {
+      return { values, min: null, max: null, loading: false, message: null };
+    }
+    return {
+      values,
+      min: Math.min(...finiteValues),
+      max: Math.max(...finiteValues),
+      loading: false,
+      message: null,
+    };
+  }, [locations, mapView, salary, salaryReady, taxMetricBundle, taxMetricStatus, viewConfig]);
+  const cityGeoJson = useMemo(
+    () => makeCityGeoJson(locations, viewConfig, mapView, metricState, sourceId, targetId),
+    [locations, mapView, metricState, sourceId, targetId, viewConfig],
+  );
+  const cityVoronoiGeoJson = useMemo(
+    () => makeCityVoronoiGeoJson(cityVoronoiCells, mapView, metricState),
+    [cityVoronoiCells, mapView, metricState],
+  );
   const source = locations.find((location) => location.id === sourceId);
   const target = locations.find((location) => location.id === targetId);
+
+  useEffect(() => {
+    if (mapView === "standard" || cityVoronoiCells) return;
+    let cancelled = false;
+    fetch(publicAssetPath("city-voronoi-cells.geojson"))
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Could not load city map cells: ${response.status}`);
+        }
+        return response.json() as Promise<CityVoronoiFeatureCollection>;
+      })
+      .then((cells) => {
+        if (!cancelled) {
+          setCityVoronoiCells(cells);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [cityVoronoiCells, mapView]);
+
+  useEffect(() => {
+    if (!needsTaxCurves || !salaryReady || taxMetricBundle) return;
+    let cancelled = false;
+    setTaxMetricStatus("loading");
+    loadMapTaxMetricBundle()
+      .then((bundle) => {
+        if (!cancelled) {
+          setTaxMetricBundle(bundle);
+          setTaxMetricStatus("ready");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        if (!cancelled) {
+          setTaxMetricStatus("error");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [needsTaxCurves, salaryReady, taxMetricBundle]);
 
   useEffect(() => {
     locationsRef.current = locations;
     onSelectLocationRef.current = onSelectLocation;
     sourceIdRef.current = sourceId;
     targetIdRef.current = targetId;
-  }, [locations, onSelectLocation, sourceId, targetId]);
+    mapViewRef.current = mapView;
+  }, [locations, mapView, onSelectLocation, sourceId, targetId]);
 
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
@@ -306,11 +724,15 @@ export default function DemoMap({
     map.on("load", () => {
       map.addSource("states", {
         type: "geojson",
-        data: "/us-states-display.geojson",
+        data: publicAssetPath("us-states-display.geojson"),
       });
       map.addSource("cities", {
         type: "geojson",
-        data: makeCityGeoJson(locationsRef.current),
+        data: cityGeoJson,
+      });
+      map.addSource("city-voronoi", {
+        type: "geojson",
+        data: EMPTY_CITY_VORONOI_GEOJSON,
       });
 
       map.addLayer({
@@ -323,13 +745,42 @@ export default function DemoMap({
         },
       });
       map.addLayer({
+        id: "city-voronoi-fill",
+        type: "fill",
+        source: "city-voronoi",
+        paint: {
+          "fill-color": ["get", "fillColor"] as ExpressionSpecification,
+          "fill-opacity": [
+            "case",
+            ["==", ["get", "hasMetric"], true],
+            0.58,
+            0,
+          ] as ExpressionSpecification,
+        },
+      });
+      map.addLayer({
+        id: "city-voronoi-line",
+        type: "line",
+        source: "city-voronoi",
+        paint: {
+          "line-color": "#ffffff",
+          "line-opacity": [
+            "case",
+            ["==", ["get", "hasMetric"], true],
+            0.28,
+            0,
+          ] as ExpressionSpecification,
+          "line-width": 0.35,
+        },
+      });
+      map.addLayer({
         id: "source-state-fill",
         type: "fill",
         source: "states",
         filter: EMPTY_STATE_FILTER,
         paint: {
           "fill-color": "#8eb6ad",
-          "fill-opacity": 0.36,
+          "fill-opacity": 0.44,
         },
       });
       map.addLayer({
@@ -339,7 +790,7 @@ export default function DemoMap({
         filter: EMPTY_STATE_FILTER,
         paint: {
           "fill-color": "#f0b429",
-          "fill-opacity": 0.34,
+          "fill-opacity": 0.42,
         },
       });
       map.addLayer({
@@ -349,6 +800,28 @@ export default function DemoMap({
         paint: {
           "line-color": "#ffffff",
           "line-width": 0.8,
+        },
+      });
+      map.addLayer({
+        id: "source-state-line",
+        type: "line",
+        source: "states",
+        filter: EMPTY_STATE_FILTER,
+        paint: {
+          "line-color": "#0d332f",
+          "line-width": 2.1,
+          "line-opacity": 0.88,
+        },
+      });
+      map.addLayer({
+        id: "target-state-line",
+        type: "line",
+        source: "states",
+        filter: EMPTY_STATE_FILTER,
+        paint: {
+          "line-color": "#b9780a",
+          "line-width": 2.1,
+          "line-opacity": 0.9,
         },
       });
 
@@ -372,8 +845,7 @@ export default function DemoMap({
       const currentTarget = locationsRef.current.find(
         (location) => location.id === targetIdRef.current,
       );
-      map.setFilter("source-state-fill", stateFilterFor(currentSource));
-      map.setFilter("target-state-fill", stateFilterFor(currentTarget));
+      updateSelectionLayers(map, currentSource, currentTarget, mapViewRef.current === "standard");
 
       loadStateLabelMarkers(map, stateLabelMarkersRef, () => disposed).catch((error) => {
         console.error(error);
@@ -389,11 +861,14 @@ export default function DemoMap({
         map.getCanvas().style.cursor = "pointer";
         const feature = event.features?.[0];
         if (!feature || feature.geometry.type !== "Point") return;
+        const properties = feature.properties ?? {};
         showCityPopup(
           map,
           popupRef,
           feature.geometry.coordinates as [number, number],
-          String(feature.properties?.displayName ?? ""),
+          String(properties.displayName ?? ""),
+          String(properties.metricLabel ?? ""),
+          String(properties.metricText ?? ""),
         );
       });
       map.on("mouseleave", "cities-circle", () => {
@@ -419,10 +894,18 @@ export default function DemoMap({
         const feature = event.features?.[0];
         if (!feature || feature.geometry.type !== "Point") return;
         const cityId = String(feature.properties?.id ?? "");
-        const cityName = String(feature.properties?.displayName ?? "");
+        const properties = feature.properties ?? {};
+        const cityName = String(properties.displayName ?? "");
         const coordinates = feature.geometry.coordinates as [number, number];
         onSelectLocationRef.current(cityId);
-        showCityPopup(map, popupRef, coordinates, cityName);
+        showCityPopup(
+          map,
+          popupRef,
+          coordinates,
+          cityName,
+          String(properties.metricLabel ?? ""),
+          String(properties.metricText ?? ""),
+        );
       });
     });
 
@@ -437,21 +920,27 @@ export default function DemoMap({
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map?.isStyleLoaded()) return;
+    if (!map) return;
     const sourceData = map.getSource("cities") as GeoJSONSource | undefined;
     sourceData?.setData(cityGeoJson);
   }, [cityGeoJson]);
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map?.isStyleLoaded()) return;
+    if (!map) return;
+    const sourceData = map.getSource("city-voronoi") as GeoJSONSource | undefined;
+    sourceData?.setData(cityVoronoiGeoJson);
+  }, [cityVoronoiGeoJson]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
     updateCityPaint(map, sourceId, targetId);
-    map.setFilter("source-state-fill", stateFilterFor(source));
-    map.setFilter("target-state-fill", stateFilterFor(target));
+    updateSelectionLayers(map, source, target, mapView === "standard");
 
     const focus = target ?? source;
     setSelectedState(focus?.stateName ?? null);
-  }, [source, sourceId, target, targetId]);
+  }, [mapView, source, sourceId, target, targetId]);
 
   return (
     <section className="map-panel" aria-label="Interactive U.S. city selector map">
@@ -459,6 +948,40 @@ export default function DemoMap({
         <p className="eyebrow">Interactive U.S. map</p>
         <h3>Pick cities on the map</h3>
       </div>
+      <div className="map-toolbar" aria-label="Map view selector">
+        <span>Map view</span>
+        <div className="map-view-buttons">
+          {MAP_VIEW_CONFIGS.map((config) => (
+            <button
+              aria-pressed={mapView === config.id}
+              className="map-view-button"
+              key={config.id}
+              onClick={() => setMapView(config.id)}
+              type="button"
+            >
+              {config.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      {mapView !== "standard" && (
+        <div className="map-legend" aria-live="polite">
+          <div>
+            <strong>{viewConfig.legendLabel}</strong>
+            {metricState.message && <span>{metricState.message}</span>}
+          </div>
+          {metricState.min !== null && metricState.max !== null && viewConfig.kind && (
+            <div className="legend-scale" aria-label="Color scale">
+              <div className="legend-bar" />
+              <div className="legend-labels">
+                <span>{formatMetric(metricState.min, viewConfig.kind)}</span>
+                <span>{formatMetric((metricState.min + metricState.max) / 2, viewConfig.kind)}</span>
+                <span>{formatMetric(metricState.max, viewConfig.kind)}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
       <div className="map-canvas">
         <div className="maplibre-map" ref={mapContainerRef} />
       </div>

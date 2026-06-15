@@ -1,5 +1,6 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import ComputationBreakdown from "./components/ComputationBreakdown";
+import IconGlyph, { type IconName } from "./components/IconGlyph";
 import LocationSelect from "./components/LocationSelect";
 import ResultCard from "./components/ResultCard";
 import SalaryControl from "./components/SalaryControl";
@@ -17,14 +18,32 @@ const DemoMap = lazy(() => import("./components/DemoMap"));
 type PageName = "calculator" | "methodology" | "sources";
 type SourceKey = keyof typeof SALARY_DATA.sources;
 
+const APP_BASE_PATH = import.meta.env.BASE_URL === "/" ? "" : import.meta.env.BASE_URL.replace(/\/$/, "");
+
+function appHref(path: "/" | "/methodology" | "/sources") {
+  return path === "/" ? `${APP_BASE_PATH}/` : `${APP_BASE_PATH}${path}`;
+}
+
+function currentAppPath() {
+  const pathname = window.location.pathname;
+  if (!APP_BASE_PATH) return pathname;
+  if (pathname === APP_BASE_PATH) return "/";
+  if (pathname.startsWith(`${APP_BASE_PATH}/`)) {
+    return pathname.slice(APP_BASE_PATH.length) || "/";
+  }
+  return pathname;
+}
+
 const SOURCE_EXPLAINERS: Array<{
   key: SourceKey;
+  icon: IconName;
   title: string;
   description: string;
   usedFor: string;
 }> = [
   {
     key: "policyengine",
+    icon: "tax",
     title: "PolicyEngine US",
     description:
       "PolicyEngine US is an open-source tax and benefit engine. Here it converts gross W-2 salary into federal income tax, payroll tax, supported state/local taxes, total tax, and net income for the fixed single-filer profile.",
@@ -33,6 +52,7 @@ const SOURCE_EXPLAINERS: Array<{
   },
   {
     key: "hudFmr",
+    icon: "housing",
     title: "U.S. Department of Housing and Urban Development Fair Market Rents",
     description:
       "The U.S. Department of Housing and Urban Development publishes Fair Market Rents, often abbreviated HUD FMR. FMR is a gross-rent standard used in housing programs; it includes shelter rent plus tenant-paid utilities for a typical rental unit size.",
@@ -41,6 +61,7 @@ const SOURCE_EXPLAINERS: Array<{
   },
   {
     key: "beaRpp",
+    icon: "map",
     title: "Bureau of Economic Analysis Regional Price Parities",
     description:
       "The Bureau of Economic Analysis, abbreviated BEA, publishes Regional Price Parities, abbreviated RPP. RPP compares metro-area price levels against the national average of 100.",
@@ -49,6 +70,7 @@ const SOURCE_EXPLAINERS: Array<{
   },
   {
     key: "blsCex",
+    icon: "basket",
     title: "Bureau of Labor Statistics Consumer Expenditure Survey",
     description:
       "The Bureau of Labor Statistics, abbreviated BLS, runs the Consumer Expenditure Survey, abbreviated CEX. The public-use microdata files contain anonymized household-level spending records.",
@@ -57,6 +79,7 @@ const SOURCE_EXPLAINERS: Array<{
   },
   {
     key: "blsCpi",
+    icon: "data",
     title: "Bureau of Labor Statistics Consumer Price Index",
     description:
       "The Consumer Price Index, abbreviated CPI, measures how consumer prices change over time. This app uses CPI-U, the Consumer Price Index for All Urban Consumers.",
@@ -65,6 +88,7 @@ const SOURCE_EXPLAINERS: Array<{
   },
   {
     key: "census",
+    icon: "map",
     title: "U.S. Census Bureau Geography",
     description:
       "The U.S. Census Bureau publishes official place, county, and metro-area identifiers. TIGERweb is a Census mapping service, and CBSA means Core Based Statistical Area, the official metro-area grouping used by several federal datasets.",
@@ -76,13 +100,13 @@ const SOURCE_EXPLAINERS: Array<{
 function TopNav({ page }: { page: PageName }) {
   return (
     <nav className="top-nav">
-      <a href="/" aria-current={page === "calculator" ? "page" : undefined}>
+      <a href={appHref("/")} aria-current={page === "calculator" ? "page" : undefined}>
         Calculator
       </a>
-      <a href="/methodology" aria-current={page === "methodology" ? "page" : undefined}>
+      <a href={appHref("/methodology")} aria-current={page === "methodology" ? "page" : undefined}>
         Methodology
       </a>
-      <a href="/sources" aria-current={page === "sources" ? "page" : undefined}>
+      <a href={appHref("/sources")} aria-current={page === "sources" ? "page" : undefined}>
         Sources
       </a>
     </nav>
@@ -94,10 +118,10 @@ function FixedProfileSummary() {
     <section className="fixed-profile" aria-label="Fixed household profile">
       <p className="eyebrow">Fixed profile</p>
       <ul>
-        <li>Single W-2 employee</li>
-        <li>U.S. citizen, single filer</li>
-        <li>No children or dependents</li>
-        <li>{FIXED_PROFILE.housing}</li>
+        <li><IconGlyph name="salary" />Single W-2 employee</li>
+        <li><IconGlyph name="profile" />U.S. citizen, single filer</li>
+        <li><IconGlyph name="profile" />No children or dependents</li>
+        <li><IconGlyph name="housing" />{FIXED_PROFILE.housing}</li>
       </ul>
     </section>
   );
@@ -185,28 +209,46 @@ post_tax(target_gross, target_city) - cost_basket(target_city)
         <h2>What is inside the cost-of-living basket</h2>
         <ul className="component-list">
           <li>
-            <strong>Housing:</strong> one-bedroom Fair Market Rent from the U.S. Department of
-            Housing and Urban Development, multiplied by twelve.
+            <IconGlyph name="housing" />
+            <span>
+              <strong>Housing:</strong> one-bedroom Fair Market Rent from the U.S. Department of
+              Housing and Urban Development, multiplied by twelve.
+            </span>
           </li>
           <li>
-            <strong>Food:</strong> national single-renter spending from the Consumer Expenditure
-            Survey, repriced with the metro goods price index.
+            <IconGlyph name="food" />
+            <span>
+              <strong>Food:</strong> national single-renter spending from the Consumer Expenditure
+              Survey, repriced with the metro goods price index.
+            </span>
           </li>
           <li>
-            <strong>Transportation:</strong> national spending repriced with a weighted goods and
-            other-services price index.
+            <IconGlyph name="transport" />
+            <span>
+              <strong>Transportation:</strong> national spending repriced with a weighted goods and
+              other-services price index.
+            </span>
           </li>
           <li>
-            <strong>Healthcare:</strong> national spending repriced with the metro other-services
-            price index.
+            <IconGlyph name="healthcare" />
+            <span>
+              <strong>Healthcare:</strong> national spending repriced with the metro other-services
+              price index.
+            </span>
           </li>
           <li>
-            <strong>Internet/mobile:</strong> national spending repriced with the metro
-            other-services price index.
+            <IconGlyph name="phone" />
+            <span>
+              <strong>Internet/mobile:</strong> national spending repriced with the metro
+              other-services price index.
+            </span>
           </li>
           <li>
-            <strong>Other non-housing:</strong> remaining modeled spending repriced with a weighted
-            goods and other-services price index.
+            <IconGlyph name="other" />
+            <span>
+              <strong>Other non-housing:</strong> remaining modeled spending repriced with a weighted
+              goods and other-services price index.
+            </span>
           </li>
         </ul>
 
@@ -226,12 +268,12 @@ target_gross = interpolate(
 
         <h2>Scope and assumptions</h2>
         <ul className="assumption-list">
-          <li>Profile: one U.S. citizen, single filer, W-2 income only, no children or dependents.</li>
-          <li>Housing: renter living alone in a one-bedroom apartment; no owner costs.</li>
-          <li>Coverage: 343 U.S. Census city/town estimate records with 2025 population of at least 100,000.</li>
-          <li>Taxes: PolicyEngine US tax year 2026, with supported state and local taxes; known unsupported municipal taxes are flagged city by city.</li>
-          <li>Excluded income: bonuses, equity compensation, self-employment, and investment income.</li>
-          <li>Excluded deductions: custom itemization, pre-tax retirement, HSA/FSA, commuter benefits, and insurance-premium deductions.</li>
+          <li><IconGlyph name="profile" /><span>Profile: one U.S. citizen, single filer, W-2 income only, no children or dependents.</span></li>
+          <li><IconGlyph name="housing" /><span>Housing: renter living alone in a one-bedroom apartment; no owner costs.</span></li>
+          <li><IconGlyph name="map" /><span>Coverage: 343 U.S. Census city/town estimate records with 2025 population of at least 100,000.</span></li>
+          <li><IconGlyph name="tax" /><span>Taxes: PolicyEngine US tax year 2026, with supported state and local taxes; known unsupported municipal taxes are flagged city by city.</span></li>
+          <li><IconGlyph name="salary" /><span>Excluded income: bonuses, equity compensation, self-employment, and investment income.</span></li>
+          <li><IconGlyph name="data" /><span>Excluded deductions: custom itemization, pre-tax retirement, HSA/FSA, commuter benefits, and insurance-premium deductions.</span></li>
         </ul>
       </article>
     </main>
@@ -256,7 +298,10 @@ function SourcesPage() {
             return (
               <section className="source-entry" key={entry.key}>
                 <div className="source-entry-heading">
-                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>
+                    <IconGlyph name={entry.icon} />
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <h2>{entry.title}</h2>
                 </div>
                 <div className="source-copy">
@@ -367,8 +412,18 @@ function CalculatorPage() {
       <TopNav page="calculator" />
       <header className="app-header">
         <div>
-          <p className="eyebrow">Salary comparison tool</p>
-          <h1>City Salary Equivalence Calculator</h1>
+          <div className="app-brand-row">
+            <img
+              alt=""
+              aria-hidden="true"
+              className="app-mark"
+              src={`${import.meta.env.BASE_URL}salary-equivalence-mark.png`}
+            />
+            <div>
+              <p className="eyebrow">Salary comparison tool</p>
+              <h1>City Salary Equivalence Calculator</h1>
+            </div>
+          </div>
           <p>
             Estimate the gross salary you would need in another city to preserve your surplus after
             both taxes and cost of living are included. Taxes cover federal, payroll, state, and
@@ -377,18 +432,24 @@ function CalculatorPage() {
           </p>
           <div className="intro-summary" aria-label="Quick explanation">
             <div>
+              <IconGlyph name="map" />
               <strong>How to use it</strong>
-              <span>Pick a source city, target city, and gross salary. The map and dropdowns stay in sync.</span>
+              <span>
+                Pick a source city, target city, and gross salary. The map and dropdowns stay in sync.
+              </span>
             </div>
             <div>
+              <IconGlyph name="equal" />
               <strong>Equivalent salary</strong>
               <span>The target gross salary that preserves the same surplus after taxes and living costs.</span>
             </div>
             <div>
+              <IconGlyph name="basket" />
               <strong>Living costs</strong>
               <span>One-bedroom rent plus food, transportation, healthcare, internet/mobile, and other spending.</span>
             </div>
             <div>
+              <IconGlyph name="profile" />
               <strong>Fixed profile</strong>
               <span>Single W-2 U.S. citizen, single filer, no dependents, renting alone.</span>
             </div>
@@ -426,6 +487,7 @@ function CalculatorPage() {
             locations={LOCATIONS}
             sourceId={sourceId}
             targetId={targetId}
+            salary={salary}
             onSelectLocation={selectMapLocation}
           />
         </Suspense>
@@ -457,10 +519,11 @@ function CalculatorPage() {
 }
 
 export default function App() {
-  if (window.location.pathname === "/methodology") {
+  const appPath = currentAppPath();
+  if (appPath === "/methodology") {
     return <MethodologyPage />;
   }
-  if (window.location.pathname === "/sources") {
+  if (appPath === "/sources") {
     return <SourcesPage />;
   }
 

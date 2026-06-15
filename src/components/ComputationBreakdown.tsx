@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { formatCurrency, formatPercent } from "../lib/format";
+import IconGlyph, { type IconName } from "./IconGlyph";
 import type {
   EquivalenceResult,
   ExpenseCategory,
@@ -17,6 +18,7 @@ type Detail = {
   title: string;
   value: string;
   kind: DetailKind;
+  icon?: IconName;
   source: string;
   formula: string;
   notes?: string[];
@@ -45,6 +47,15 @@ const CATEGORY_CODE_NAMES: Record<ExpenseCategory, string> = {
   healthcare: "healthcare",
   internet_mobile: "internet_mobile",
   other_nonhousing: "other_nonhousing",
+};
+
+const CATEGORY_ICONS: Record<ExpenseCategory, IconName> = {
+  housing: "housing",
+  food: "food",
+  transportation: "transport",
+  healthcare: "healthcare",
+  internet_mobile: "phone",
+  other_nonhousing: "other",
 };
 
 const PRICE_INDEX_CODE_NAMES: Record<PriceIndexKey, string> = {
@@ -268,6 +279,7 @@ function DetailButton({
       type="button"
       onClick={() => onSelect(detail)}
     >
+      {detail.icon && <IconGlyph name={detail.icon} />}
       {children}
     </button>
   );
@@ -299,6 +311,7 @@ function CityFlow({
         title: `${location.displayName} gross salary`,
         value: formatCurrency(gross),
         kind: "gross",
+        icon: "salary",
         source: "User input",
         formula: sourceGrossCode(gross),
       }
@@ -307,6 +320,7 @@ function CityFlow({
         title: `${location.displayName} equivalent gross salary`,
         value: formatCurrency(gross),
         kind: "gross",
+        icon: "equal",
         source: "Solved from PolicyEngine tax curve",
         formula: targetGrossCode(result),
       };
@@ -318,6 +332,7 @@ function CityFlow({
       title: `${location.displayName} total tax`,
       value: formatCurrency(tax.totalTax),
       kind: "tax",
+      icon: "tax",
       source: SALARY_DATA.sources.policyengine.name,
       formula: taxCode(location, gross, tax),
       notes: [`Effective tax rate: ${formatPercent(tax.effectiveRate)}.`],
@@ -327,6 +342,7 @@ function CityFlow({
       title: `${location.displayName} net income`,
       value: formatCurrency(tax.netIncome),
       kind: "net",
+      icon: "net",
       source: "Computed from gross and PolicyEngine total tax",
       formula: netIncomeCode(gross, tax),
     },
@@ -335,6 +351,7 @@ function CityFlow({
       title: `${location.displayName} cost-of-living basket`,
       value: formatCurrency(basket.total),
       kind: "colb",
+      icon: "basket",
       source:
         "HUD Fair Market Rents, BLS Consumer Expenditure Survey, BLS Consumer Price Index, BEA Regional Price Parities",
       formula: basketCode(basket),
@@ -344,6 +361,7 @@ function CityFlow({
       title: `${location.displayName} surplus`,
       value: formatCurrency(surplus),
       kind: "surplus",
+      icon: "surplus",
       source: "Computed",
       formula: surplusCode(tax, basket, surplus),
     },
@@ -378,6 +396,7 @@ function CityFlow({
             title: `${location.displayName}: ${label}`,
             value: formatCurrency(value),
             kind: "tax",
+            icon: "tax",
             source: SALARY_DATA.sources.policyengine.name,
             formula: taxComponentCode(location, gross, label, value),
           };
@@ -406,6 +425,7 @@ function CityFlow({
             title: `${location.displayName}: ${CATEGORY_LABELS[expenseCategory]} cost`,
             value: formatCurrency(value),
             kind: "colb",
+            icon: CATEGORY_ICONS[expenseCategory],
             source:
               expenseCategory === "housing"
                 ? "HUD Fair Market Rents"

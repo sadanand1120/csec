@@ -11,7 +11,7 @@ import type {
   TaxCurve,
 } from "./types";
 
-const NONHOUSING_CATEGORIES: NonHousingExpenseCategory[] = [
+export const NONHOUSING_CATEGORIES: NonHousingExpenseCategory[] = [
   "food",
   "transportation",
   "healthcare",
@@ -59,7 +59,7 @@ function categoryPriceMultiplier(
   }, 0);
 }
 
-function buildSourceBasket(location: LocationProfile, grossIncome: number): Basket {
+export function estimateCityBasket(location: LocationProfile, grossIncome: number): Basket {
   const band = pickBasketBand(grossIncome);
   const categories: Record<ExpenseCategory, number> = {
     housing: location.annualRent1Br,
@@ -142,12 +142,7 @@ function taxCurveFor(
   return curve;
 }
 
-function estimateTax(
-  grossIncome: number,
-  location: LocationProfile,
-  curves: Record<string, TaxCurve>,
-): TaxBreakdown {
-  const curve = taxCurveFor(curves, location);
+export function estimateTaxFromCurve(grossIncome: number, curve: TaxCurve): TaxBreakdown {
   const grossGrid = curve.grossIncome;
   const totalTax = interpolate(grossGrid, curve.totalTax, grossIncome);
 
@@ -162,6 +157,14 @@ function estimateTax(
     netIncome: grossIncome - totalTax,
     effectiveRate: grossIncome <= 0 ? 0 : totalTax / grossIncome,
   };
+}
+
+function estimateTax(
+  grossIncome: number,
+  location: LocationProfile,
+  curves: Record<string, TaxCurve>,
+): TaxBreakdown {
+  return estimateTaxFromCurve(grossIncome, taxCurveFor(curves, location));
 }
 
 function interpolationBounds(xs: readonly number[], ys: readonly number[], x: number) {
@@ -224,7 +227,7 @@ function computeEquivalenceWithCurves(
   const source = getLocation(sourceLocationId);
   const target = getLocation(targetLocationId);
   const sourceTax = estimateTax(sourceGrossIncome, source, curves);
-  const sourceBasket = buildSourceBasket(source, sourceGrossIncome);
+  const sourceBasket = estimateCityBasket(source, sourceGrossIncome);
   const targetBasket = repriceBasket(sourceBasket, source, target);
   const sourceSurplus = sourceTax.netIncome - sourceBasket.total;
   const requiredTargetNetIncome = targetBasket.total + sourceSurplus;

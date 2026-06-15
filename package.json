@@ -1,5 +1,5 @@
 {
-  "name": "statescomparison",
+  "name": "csec",
   "private": true,
   "version": "0.1.0",
   "type": "module",
@@ -11,10 +11,12 @@
     "build:price-spending": "python3 scripts/build_price_spending_inputs.py",
     "build:tax-jurisdictions": "python3 scripts/build_tax_jurisdictions.py",
     "build:tax-curves": "uvx --python 3.10 --with policyengine-us==1.729.0 python scripts/build_tax_curves.py",
+    "build:map-tax-metrics": "python3 scripts/build_map_tax_metrics.py",
     "build:nationwide-app-data": "python3 scripts/build_nationwide_app_data.py",
-    "build:nationwide-data": "npm run build:city-universe && npm run build:geography && npm run build:housing && npm run build:price-spending && npm run build:tax-jurisdictions && npm run build:tax-curves && npm run build:nationwide-app-data",
+    "build:nationwide-data": "npm run build:city-universe && npm run build:geography && npm run build:housing && npm run build:price-spending && npm run build:tax-jurisdictions && npm run build:tax-curves && npm run build:map-tax-metrics && npm run build:nationwide-app-data",
     "build:data": "npm run build:nationwide-data",
-    "build:map": "node scripts/build_display_states.mjs",
+    "build:city-voronoi": "node scripts/build_city_voronoi_cells.mjs",
+    "build:map": "node scripts/build_display_states.mjs && npm run build:city-voronoi",
     "build": "tsc && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit"
