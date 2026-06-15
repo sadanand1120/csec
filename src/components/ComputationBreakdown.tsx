@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { formatCurrency, formatPercent } from "../lib/format";
 import type {
   EquivalenceResult,
@@ -10,7 +10,7 @@ import type {
 } from "../lib/types";
 import { V0_DATA } from "../lib/v0Data";
 
-type DetailKind = "source" | "gross" | "tax" | "net" | "colb" | "surplus";
+type DetailKind = "gross" | "tax" | "net" | "colb" | "surplus";
 
 type Detail = {
   id: string;
@@ -22,13 +22,12 @@ type Detail = {
   notes?: string[];
 };
 
-const NONHOUSING_CATEGORIES: NonHousingExpenseCategory[] = [
-  "food",
-  "transportation",
-  "healthcare",
-  "internet_mobile",
-  "other_nonhousing",
-];
+type ClosingDetail = {
+  detail: Detail;
+  key: number;
+};
+
+const DETAIL_ANIMATION_MS = 220;
 
 const CATEGORY_LABELS: Record<ExpenseCategory, string> = {
   housing: "Housing",
@@ -39,12 +38,33 @@ const CATEGORY_LABELS: Record<ExpenseCategory, string> = {
   other_nonhousing: "Other non-housing",
 };
 
-function formatIndex(value: number) {
-  return value.toFixed(3);
-}
+const CATEGORY_CODE_NAMES: Record<ExpenseCategory, string> = {
+  housing: "housing",
+  food: "food",
+  transportation: "transportation",
+  healthcare: "healthcare",
+  internet_mobile: "internet_mobile",
+  other_nonhousing: "other_nonhousing",
+};
 
-function formatMultiplier(value: number) {
-  return value.toFixed(6);
+const PRICE_INDEX_CODE_NAMES: Record<PriceIndexKey, string> = {
+  all: "all_items_rpp",
+  goods: "goods_rpp",
+  housing: "housing_rpp",
+  servicesOther: "other_services_rpp",
+  utilities: "utilities_rpp",
+};
+
+const TAX_COMPONENT_CODE_NAMES: Record<string, string> = {
+  "Federal income tax": "federal_income_tax",
+  "Federal payroll (FICA)": "federal_payroll_tax",
+  "State income tax, net": "state_income_tax_net",
+  "Local income tax": "local_income_tax",
+  "State/local payroll taxes": "state_local_payroll_taxes",
+};
+
+function codeNumber(value: number, digits = 0) {
+  return digits === 0 ? String(Math.round(value)) : value.toFixed(digits);
 }
 
 function pickBasketBand(grossIncome: number) {
@@ -55,14 +75,6 @@ function pickBasketBand(grossIncome: number) {
         (entry.maxGrossIncome === null || grossIncome < entry.maxGrossIncome),
     ) ?? V0_DATA.basketBands[V0_DATA.basketBands.length - 1]
   );
-}
-
-function categoryPriceMultiplier(location: LocationProfile, category: NonHousingExpenseCategory) {
-  const weights = V0_DATA.categoryPriceWeights[category];
-  return Object.entries(weights).reduce((sum, [indexKey, weight]) => {
-    if (weight === undefined) return sum;
-    return sum + (location.priceIndex[indexKey as PriceIndexKey] / 100) * weight;
-  }, 0);
 }
 
 function taxComponentRows(tax: TaxBreakdown) {
@@ -80,6 +92,161 @@ function interpolationDetail(result: EquivalenceResult) {
   return result.targetTaxInterpolation;
 }
 
+function sourceGrossCode(gross: number) {
+  return [
+    "# User-entered pre-tax W-2 wage income",
+    `gross_salary = ${codeNumber(gross)}`,
+  ].join("\n");
+}
+
+function targetGrossCode(result: EquivalenceResult) {
+  const interpolation = interpolationDetail(result);
+  return [
+    "# Solve for the target gross salary that preserves source surplus",
+    `target_cost_basket = ${codeNumber(result.targetBasket.total, 2)}`,
+    `source_surplus = ${codeNumber(result.sourceSurplus, 2)}`,
+    "required_net_income = target_cost_basket + source_surplus",
+    "",
+    "# Interpolate on the target city's PolicyEngine tax curve",
+    `gross_low = ${codeNumber(interpolation.grossLow)}`,
+    `net_low = ${codeNumber(interpolation.netLow, 2)}`,
+    `gross_high = ${codeNumber(interpolation.grossHigh)}`,
+    `net_high = ${codeNumber(interpolation.netHigh, 2)}`,
+    "equivalent_gross = gross_low + (",
+    "    (required_net_income - net_low)",
+    "    / (net_high - net_low)",
+    "    * (gross_high - gross_low)",
+    ")",
+    `# equivalent_gross = ${formatCurrency(result.targetEquivalentGrossIncome)}`,
+  ].join("\n");
+}
+
+function taxCode(location: LocationProfile, gross: number, tax: TaxBreakdown) {
+  return [
+    `# Source: ${V0_DATA.sources.policyengine.name}, ${V0_DATA.sources.policyengine.vintage}`,
+    `tax_year = ${V0_DATA.taxYear}`,
+    `county_fips = "${location.countyFips}"  # ${location.countyName}`,
+    `gross_salary = ${codeNumber(gross)}`,
+    "",
+    `federal_income_tax = ${codeNumber(tax.federalIncomeTax, 2)}`,
+    `federal_payroll_tax = ${codeNumber(tax.payrollTaxEmployee, 2)}`,
+    `state_income_tax_net = ${codeNumber(tax.stateIncomeTax + tax.taxComponentResidual, 2)}`,
+    `local_income_tax = ${codeNumber(tax.localIncomeTax, 2)}`,
+    `state_local_payroll_taxes = ${codeNumber(tax.statePayrollItems, 2)}`,
+    "total_tax = (",
+    "    federal_income_tax",
+    "    + federal_payroll_tax",
+    "    + state_income_tax_net",
+    "    + local_income_tax",
+    "    + state_local_payroll_taxes",
+    ")",
+    `# total_tax = ${formatCurrency(tax.totalTax)}`,
+  ].join("\n");
+}
+
+function taxComponentCode(
+  location: LocationProfile,
+  gross: number,
+  label: string,
+  value: number,
+) {
+  const variableName = TAX_COMPONENT_CODE_NAMES[label] ?? "tax_component";
+  return [
+    `# Source: ${V0_DATA.sources.policyengine.name}, ${V0_DATA.sources.policyengine.vintage}`,
+    `tax_year = ${V0_DATA.taxYear}`,
+    `county_fips = "${location.countyFips}"  # ${location.countyName}`,
+    `gross_salary = ${codeNumber(gross)}`,
+    `${variableName} = ${codeNumber(value, 2)}`,
+    `# ${variableName} = ${formatCurrency(value)}`,
+  ].join("\n");
+}
+
+function netIncomeCode(gross: number, tax: TaxBreakdown) {
+  return [
+    `gross_salary = ${codeNumber(gross, 2)}`,
+    `total_tax = ${codeNumber(tax.totalTax, 2)}`,
+    "net_income = gross_salary - total_tax",
+    `# net_income = ${formatCurrency(tax.netIncome)}`,
+  ].join("\n");
+}
+
+function priceMultiplierCode(location: LocationProfile, category: NonHousingExpenseCategory) {
+  const weights = V0_DATA.categoryPriceWeights[category];
+  const entries = Object.entries(weights).flatMap(([indexKey, weight]) =>
+    weight === undefined ? [] : [[indexKey as PriceIndexKey, weight] as const],
+  );
+  const indexLines = entries.map(([indexKey]) => {
+    const variableName = PRICE_INDEX_CODE_NAMES[indexKey];
+    return `${variableName} = ${location.priceIndex[indexKey].toFixed(3)}  # BEA RPP for ${location.cbsaName}`;
+  });
+  const expression = entries
+    .map(([indexKey, weight]) => {
+      const variableName = PRICE_INDEX_CODE_NAMES[indexKey];
+      return weight === 1
+        ? `${variableName} / 100`
+        : `${codeNumber(weight, 2)} * (${variableName} / 100)`;
+    })
+    .join(" + ");
+  return { expression, indexLines };
+}
+
+function categoryCostCode(
+  location: LocationProfile,
+  category: ExpenseCategory,
+  value: number,
+  sourceGrossIncome: number,
+) {
+  const variableName = CATEGORY_CODE_NAMES[category];
+  if (category === "housing") {
+    return [
+      "# Source: HUD FY2026 one-bedroom Fair Market Rent",
+      `hud_fmr_1br_monthly = ${codeNumber(location.monthlyRent1Br)}  # ${location.displayName}`,
+      "housing = hud_fmr_1br_monthly * 12",
+      `# housing = ${formatCurrency(value)}`,
+    ].join("\n");
+  }
+
+  const band = pickBasketBand(sourceGrossIncome);
+  const { expression, indexLines } = priceMultiplierCode(location, category);
+  return [
+    "# Sources: BLS CEX spending, BLS CPI inflation adjustment, BEA RPP price index",
+    `# Spending band: ${band.label}`,
+    `national_${variableName} = ${codeNumber(band.nationalAnnual[category], 2)}`,
+    ...indexLines,
+    `price_multiplier = ${expression}`,
+    `${variableName} = national_${variableName} * price_multiplier`,
+    `# ${variableName} = ${formatCurrency(value)}`,
+  ].join("\n");
+}
+
+function basketCode(basket: EquivalenceResult["sourceBasket"]) {
+  const lines = Object.entries(basket.categories).map(([category, value]) => {
+    const variableName = CATEGORY_CODE_NAMES[category as ExpenseCategory];
+    return `${variableName} = ${codeNumber(value, 2)}`;
+  });
+  return [
+    ...lines,
+    "cost_basket = (",
+    "    housing",
+    "    + food",
+    "    + transportation",
+    "    + healthcare",
+    "    + internet_mobile",
+    "    + other_nonhousing",
+    ")",
+    `# cost_basket = ${formatCurrency(basket.total)}`,
+  ].join("\n");
+}
+
+function surplusCode(tax: TaxBreakdown, basket: EquivalenceResult["sourceBasket"], surplus: number) {
+  return [
+    `net_income = ${codeNumber(tax.netIncome, 2)}`,
+    `cost_basket = ${codeNumber(basket.total, 2)}`,
+    "surplus = net_income - cost_basket",
+    `# surplus = ${formatCurrency(surplus)}`,
+  ].join("\n");
+}
+
 function DetailButton({
   detail,
   activeId,
@@ -88,14 +255,16 @@ function DetailButton({
   className = "",
 }: {
   detail: Detail;
-  activeId: string;
+  activeId: string | null;
   onSelect: (detail: Detail) => void;
   children: React.ReactNode;
   className?: string;
 }) {
+  const isActive = activeId === detail.id;
   return (
     <button
-      className={`detail-chip ${detail.kind} ${activeId === detail.id ? "active" : ""} ${className}`}
+      aria-expanded={isActive}
+      className={`detail-chip ${detail.kind} ${isActive ? "active" : ""} ${className}`}
       type="button"
       onClick={() => onSelect(detail)}
     >
@@ -104,143 +273,17 @@ function DetailButton({
   );
 }
 
-function ExternalInputs({
-  result,
-  activeId,
-  onSelect,
-}: {
-  result: EquivalenceResult;
-  activeId: string;
-  onSelect: (detail: Detail) => void;
-}) {
-  const band = pickBasketBand(result.sourceGrossIncome);
-  const cexSummary = [
-    `Food ${formatCurrency(band.nationalAnnual.food)}`,
-    `Transport ${formatCurrency(band.nationalAnnual.transportation)}`,
-    `Healthcare ${formatCurrency(band.nationalAnnual.healthcare)}`,
-    `Internet/mobile ${formatCurrency(band.nationalAnnual.internet_mobile)}`,
-    `Other ${formatCurrency(band.nationalAnnual.other_nonhousing)}`,
-  ].join("; ");
-  const rows = [
-    {
-      label: "Tax county",
-      sourceValue: `${result.source.countyName} (${result.source.countyFips})`,
-      targetValue: `${result.target.countyName} (${result.target.countyFips})`,
-      sourceDetail: `Census geography maps ${result.source.displayName} to ${result.source.countyName} for v0 tax calculation.`,
-      targetDetail: `Census geography maps ${result.target.displayName} to ${result.target.countyName} for v0 tax calculation.`,
-      dataSource: V0_DATA.sources.census.name,
-    },
-    {
-      label: "Price metro",
-      sourceValue: `${result.source.cbsaName} (${result.source.cbsaCode})`,
-      targetValue: `${result.target.cbsaName} (${result.target.cbsaCode})`,
-      sourceDetail: `BEA Regional Price Parities are read for CBSA ${result.source.cbsaCode}.`,
-      targetDetail: `BEA Regional Price Parities are read for CBSA ${result.target.cbsaCode}.`,
-      dataSource: V0_DATA.sources.beaRpp.name,
-    },
-    {
-      label: "HUD 1BR FMR",
-      sourceValue: `${formatCurrency(result.source.monthlyRent1Br)}/mo`,
-      targetValue: `${formatCurrency(result.target.monthlyRent1Br)}/mo`,
-      sourceDetail: `${formatCurrency(result.source.monthlyRent1Br)} x 12 = ${formatCurrency(result.source.annualRent1Br)} annual housing COLB.`,
-      targetDetail: `${formatCurrency(result.target.monthlyRent1Br)} x 12 = ${formatCurrency(result.target.annualRent1Br)} annual housing COLB.`,
-      dataSource: V0_DATA.sources.hudFmr.name,
-    },
-    {
-      label: "BEA goods RPP",
-      sourceValue: formatIndex(result.source.priceIndex.goods),
-      targetValue: formatIndex(result.target.priceIndex.goods),
-      sourceDetail: `Goods price index used directly for food and partly for transportation/other non-housing COLB.`,
-      targetDetail: `Goods price index used directly for food and partly for transportation/other non-housing COLB.`,
-      dataSource: V0_DATA.sources.beaRpp.name,
-    },
-    {
-      label: "BEA other-services RPP",
-      sourceValue: formatIndex(result.source.priceIndex.servicesOther),
-      targetValue: formatIndex(result.target.priceIndex.servicesOther),
-      sourceDetail: `Other-services price index used for healthcare and internet/mobile, and partly for transportation/other non-housing COLB.`,
-      targetDetail: `Other-services price index used for healthcare and internet/mobile, and partly for transportation/other non-housing COLB.`,
-      dataSource: V0_DATA.sources.beaRpp.name,
-    },
-    {
-      label: "BLS CEX COLB band",
-      sourceValue: `${formatCurrency(band.minGrossIncome)}+`,
-      targetValue: `${formatCurrency(band.minGrossIncome)}+`,
-      sourceDetail: `${band.label}; ${band.unweightedQuarterRecords} unweighted quarter records. National annual inputs: ${cexSummary}.`,
-      targetDetail: `${band.label}; the same source salary band defines the fixed basket being repriced into ${result.target.displayName}.`,
-      dataSource: V0_DATA.sources.blsCex.name,
-    },
-    {
-      label: "BLS CPI adjustment",
-      sourceValue: `${V0_DATA.dollarNormalization.factor.toFixed(6)}x`,
-      targetValue: `${V0_DATA.dollarNormalization.factor.toFixed(6)}x`,
-      sourceDetail: `${V0_DATA.dollarNormalization.baseIndex} (${V0_DATA.dollarNormalization.base}) to ${V0_DATA.dollarNormalization.targetIndex} (${V0_DATA.dollarNormalization.target}).`,
-      targetDetail: `${V0_DATA.dollarNormalization.baseIndex} (${V0_DATA.dollarNormalization.base}) to ${V0_DATA.dollarNormalization.targetIndex} (${V0_DATA.dollarNormalization.target}).`,
-      dataSource: V0_DATA.sources.blsCpi.name,
-    },
-  ];
-
-  return (
-    <section className="calc-section">
-      <div className="section-heading">
-        <p className="eyebrow">External inputs</p>
-        <h3>Public-source data used for this pair</h3>
-      </div>
-      <div className="input-table">
-        <div className="input-row header">
-          <span>Input</span>
-          <span>{result.source.displayName}</span>
-          <span>{result.target.displayName}</span>
-        </div>
-        {rows.map((row) => (
-          <div className="input-row" key={row.label}>
-            <span>{row.label}</span>
-            <DetailButton
-              activeId={activeId}
-              className="source-chip"
-              detail={{
-                id: `source-input-${row.label}`,
-                title: `${row.label}: ${result.source.displayName}`,
-                value: row.sourceValue,
-                kind: "source",
-                source: row.dataSource,
-                formula: row.sourceDetail,
-              }}
-              onSelect={onSelect}
-            >
-              {row.sourceValue}
-            </DetailButton>
-            <DetailButton
-              activeId={activeId}
-              className="source-chip"
-              detail={{
-                id: `target-input-${row.label}`,
-                title: `${row.label}: ${result.target.displayName}`,
-                value: row.targetValue,
-                kind: "source",
-                source: row.dataSource,
-                formula: row.targetDetail,
-              }}
-              onSelect={onSelect}
-            >
-              {row.targetValue}
-            </DetailButton>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function CityFlow({
   cityRole,
   result,
   activeId,
+  closingDetail,
   onSelect,
 }: {
   cityRole: "source" | "target";
   result: EquivalenceResult;
-  activeId: string;
+  activeId: string | null;
+  closingDetail: ClosingDetail | null;
   onSelect: (detail: Detail) => void;
 }) {
   const isSource = cityRole === "source";
@@ -249,7 +292,6 @@ function CityFlow({
   const tax = isSource ? result.sourceTax : result.targetTax;
   const basket = isSource ? result.sourceBasket : result.targetBasket;
   const surplus = isSource ? result.sourceSurplus : result.targetSurplus;
-  const interpolation = interpolationDetail(result);
   const taxRows = taxComponentRows(tax);
   const grossDetail: Detail = isSource
     ? {
@@ -258,7 +300,7 @@ function CityFlow({
         value: formatCurrency(gross),
         kind: "gross",
         source: "User input",
-        formula: "This is the pre-tax salary entered in the calculator.",
+        formula: sourceGrossCode(gross),
       }
     : {
         id: "target-gross",
@@ -266,7 +308,7 @@ function CityFlow({
         value: formatCurrency(gross),
         kind: "gross",
         source: "Solved from PolicyEngine tax curve",
-        formula: `Required target net income is ${formatCurrency(result.requiredTargetNetIncome)}. The target tax curve gives ${formatCurrency(interpolation.netLow)} net at ${formatCurrency(interpolation.grossLow)} gross and ${formatCurrency(interpolation.netHigh)} net at ${formatCurrency(interpolation.grossHigh)} gross. Linear interpolation gives ${formatCurrency(gross)} gross.`,
+        formula: targetGrossCode(result),
       };
 
   const steps: Detail[] = [
@@ -277,7 +319,7 @@ function CityFlow({
       value: formatCurrency(tax.totalTax),
       kind: "tax",
       source: V0_DATA.sources.policyengine.name,
-      formula: `${formatCurrency(tax.federalIncomeTax)} federal income tax + ${formatCurrency(tax.payrollTaxEmployee)} federal payroll/FICA taxes + ${formatCurrency(tax.stateIncomeTax + tax.taxComponentResidual)} net state income tax + ${formatCurrency(tax.localIncomeTax)} local income tax + ${formatCurrency(tax.statePayrollItems)} state/local payroll taxes = ${formatCurrency(tax.totalTax)} total tax.`,
+      formula: taxCode(location, gross, tax),
       notes: [`Effective tax rate: ${formatPercent(tax.effectiveRate)}.`],
     },
     {
@@ -286,26 +328,24 @@ function CityFlow({
       value: formatCurrency(tax.netIncome),
       kind: "net",
       source: "Computed from gross and PolicyEngine total tax",
-      formula: `${formatCurrency(gross)} gross salary - ${formatCurrency(tax.totalTax)} total tax = ${formatCurrency(tax.netIncome)} net income.`,
+      formula: netIncomeCode(gross, tax),
     },
     {
       id: `${cityRole}-colb`,
-      title: `${location.displayName} total COLB`,
+      title: `${location.displayName} cost-of-living basket`,
       value: formatCurrency(basket.total),
       kind: "colb",
-      source: "HUD FMR + BLS CEX + BEA RPP + BLS CPI",
-      formula: Object.entries(basket.categories)
-        .map(([category, value]) => `${CATEGORY_LABELS[category as ExpenseCategory]} ${formatCurrency(value)}`)
-        .join(" + ")
-        .concat(` = ${formatCurrency(basket.total)} total COLB.`),
+      source:
+        "HUD Fair Market Rents, BLS Consumer Expenditure Survey, BLS Consumer Price Index, BEA Regional Price Parities",
+      formula: basketCode(basket),
     },
     {
       id: `${cityRole}-surplus`,
-      title: `${location.displayName} post-tax+COLB surplus`,
+      title: `${location.displayName} surplus`,
       value: formatCurrency(surplus),
       kind: "surplus",
       source: "Computed",
-      formula: `${formatCurrency(tax.netIncome)} net income - ${formatCurrency(basket.total)} COLB = ${formatCurrency(surplus)} post-tax+COLB surplus.`,
+      formula: surplusCode(tax, basket, surplus),
     },
   ];
 
@@ -317,68 +357,79 @@ function CityFlow({
       </div>
       <div className="flow-steps">
         {steps.map((step) => (
-          <DetailButton
-            activeId={activeId}
-            detail={step}
-            key={step.id}
-            onSelect={onSelect}
-          >
-            <span>{step.title.replace(`${location.displayName} `, "")}</span>
-            <strong>{step.value}</strong>
-          </DetailButton>
+          <Fragment key={step.id}>
+            <DetailButton
+              activeId={activeId}
+              detail={step}
+              onSelect={onSelect}
+            >
+              <span>{step.title.replace(`${location.displayName} `, "")}</span>
+              <strong>{step.value}</strong>
+            </DetailButton>
+            <DetailSlot activeId={activeId} closingDetail={closingDetail} detail={step} />
+          </Fragment>
         ))}
       </div>
       <div className="mini-breakdown">
         <h4>Tax components</h4>
-        {taxRows.map(([label, value]) => (
-          <DetailButton
-            activeId={activeId}
-            className="mini-chip"
-            detail={{
-              id: `${cityRole}-tax-${label}`,
-              title: `${location.displayName}: ${label}`,
-              value: formatCurrency(value),
-              kind: "tax",
-              source: V0_DATA.sources.policyengine.name,
-              formula: `PolicyEngine component value included in ${location.displayName} total tax. State income tax is shown net of internal PolicyEngine reconciliation so the displayed components add back to total tax.`,
-            }}
-            key={label}
-            onSelect={onSelect}
-          >
-            <span>{label}</span>
-            <strong>{formatCurrency(value)}</strong>
-          </DetailButton>
-        ))}
+        {taxRows.map(([label, value]) => {
+          const detail: Detail = {
+            id: `${cityRole}-tax-${label}`,
+            title: `${location.displayName}: ${label}`,
+            value: formatCurrency(value),
+            kind: "tax",
+            source: V0_DATA.sources.policyengine.name,
+            formula: taxComponentCode(location, gross, label, value),
+          };
+          return (
+            <Fragment key={label}>
+              <DetailButton
+                activeId={activeId}
+                className="mini-chip"
+                detail={detail}
+                onSelect={onSelect}
+              >
+                <span>{label}</span>
+                <strong>{formatCurrency(value)}</strong>
+              </DetailButton>
+              <DetailSlot activeId={activeId} closingDetail={closingDetail} detail={detail} />
+            </Fragment>
+          );
+        })}
       </div>
       <div className="mini-breakdown">
-        <h4>COLB components</h4>
+        <h4>Cost basket components</h4>
         {Object.entries(basket.categories).map(([category, value]) => {
           const expenseCategory = category as ExpenseCategory;
-          const categoryDetail =
-            expenseCategory === "housing"
-              ? `${formatCurrency(location.monthlyRent1Br)} monthly HUD 1BR FMR x 12 = ${formatCurrency(value)}.`
-              : `${formatCurrency(pickBasketBand(result.sourceGrossIncome).nationalAnnual[expenseCategory])} national CEX value x ${formatMultiplier(categoryPriceMultiplier(location, expenseCategory))} ${location.displayName} price multiplier = ${formatCurrency(value)}.`;
+          const detail: Detail = {
+            id: `${cityRole}-colb-${category}`,
+            title: `${location.displayName}: ${CATEGORY_LABELS[expenseCategory]} cost`,
+            value: formatCurrency(value),
+            kind: "colb",
+            source:
+              expenseCategory === "housing"
+                ? "HUD Fair Market Rents"
+                : "BLS Consumer Expenditure Survey, BLS Consumer Price Index, BEA Regional Price Parities",
+            formula: categoryCostCode(
+              location,
+              expenseCategory,
+              value,
+              result.sourceGrossIncome,
+            ),
+          };
           return (
-            <DetailButton
-              activeId={activeId}
-              className="mini-chip"
-              detail={{
-                id: `${cityRole}-colb-${category}`,
-                title: `${location.displayName}: ${CATEGORY_LABELS[expenseCategory]} COLB`,
-                value: formatCurrency(value),
-                kind: "colb",
-                source:
-                  expenseCategory === "housing"
-                    ? V0_DATA.sources.hudFmr.name
-                    : "BLS CEX, BLS CPI, BEA RPP",
-                formula: categoryDetail,
-              }}
-              key={category}
-              onSelect={onSelect}
-            >
-              <span>{CATEGORY_LABELS[expenseCategory]}</span>
-              <strong>{formatCurrency(value)}</strong>
-            </DetailButton>
+            <Fragment key={category}>
+              <DetailButton
+                activeId={activeId}
+                className="mini-chip"
+                detail={detail}
+                onSelect={onSelect}
+              >
+                <span>{CATEGORY_LABELS[expenseCategory]}</span>
+                <strong>{formatCurrency(value)}</strong>
+              </DetailButton>
+              <DetailSlot activeId={activeId} closingDetail={closingDetail} detail={detail} />
+            </Fragment>
           );
         })}
       </div>
@@ -386,78 +437,125 @@ function CityFlow({
   );
 }
 
-function DetailPanel({ detail }: { detail: Detail }) {
+function DetailSlot({
+  activeId,
+  closingDetail,
+  detail,
+}: {
+  activeId: string | null;
+  closingDetail: ClosingDetail | null;
+  detail: Detail;
+}) {
+  const isOpen = activeId === detail.id;
+  const isClosing = closingDetail?.detail.id === detail.id;
+  if (!isOpen && !isClosing) return null;
+
   return (
-    <aside className={`detail-panel ${detail.kind}`} aria-live="polite">
-      <p className="eyebrow">Selected number</p>
-      <h3>{detail.title}</h3>
-      <strong>{detail.value}</strong>
-      <dl>
-        <div>
-          <dt>Source</dt>
-          <dd>{detail.source}</dd>
+    <InlineDetail
+      detail={isClosing ? closingDetail.detail : detail}
+      state={isOpen ? "open" : "closing"}
+      key={isClosing ? closingDetail.key : detail.id}
+    />
+  );
+}
+
+function InlineDetail({ detail, state }: { detail: Detail; state: "open" | "closing" }) {
+  return (
+    <div className={`inline-detail-shell ${state}`}>
+      <div
+        aria-hidden={state === "closing"}
+        className={`inline-detail ${detail.kind}`}
+        role="region"
+        aria-label={`${detail.title} details`}
+      >
+        <div className="inline-detail-header">
+          <h4>{detail.title}</h4>
+          <strong>{detail.value}</strong>
         </div>
-        <div>
-          <dt>How it is computed</dt>
-          <dd>{detail.formula}</dd>
-        </div>
-      </dl>
-      {detail.notes && (
-        <ul>
-          {detail.notes.map((note) => (
-            <li key={note}>{note}</li>
-          ))}
-        </ul>
-      )}
-    </aside>
+        <dl>
+          <div>
+            <dt>Source</dt>
+            <dd>{detail.source}</dd>
+          </div>
+          <div>
+            <dt>How it is computed</dt>
+            <dd>
+              <pre className="formula-code">
+                <code>{detail.formula}</code>
+              </pre>
+            </dd>
+          </div>
+        </dl>
+        {detail.notes && (
+          <ul>
+            {detail.notes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
   );
 }
 
 export default function ComputationBreakdown({ result }: { result: EquivalenceResult }) {
-  const initialDetail = useMemo<Detail>(
-    () => ({
-      id: "target-gross",
-      title: `${result.target.displayName} equivalent gross salary`,
-      value: formatCurrency(result.targetEquivalentGrossIncome),
-      kind: "gross",
-      source: "Solved from PolicyEngine tax curve",
-      formula: `${formatCurrency(result.targetBasket.total)} target COLB + ${formatCurrency(result.sourceSurplus)} preserved source surplus = ${formatCurrency(result.requiredTargetNetIncome)} required target net income. The target gross salary is the gross value whose tax curve reaches that net income.`,
-    }),
-    [result],
-  );
-  const [activeDetail, setActiveDetail] = useState<Detail>(initialDetail);
+  const [activeDetail, setActiveDetail] = useState<Detail | null>(null);
+  const [closingDetail, setClosingDetail] = useState<ClosingDetail | null>(null);
 
   useEffect(() => {
-    setActiveDetail(initialDetail);
-  }, [initialDetail]);
+    setActiveDetail(null);
+    setClosingDetail(null);
+  }, [result]);
+
+  useEffect(() => {
+    if (closingDetail === null) return undefined;
+    const timeoutId = window.setTimeout(() => {
+      setClosingDetail((currentDetail) =>
+        currentDetail?.key === closingDetail.key ? null : currentDetail,
+      );
+    }, DETAIL_ANIMATION_MS);
+    return () => window.clearTimeout(timeoutId);
+  }, [closingDetail]);
+
+  function toggleDetail(detail: Detail) {
+    if (activeDetail?.id === detail.id) {
+      setClosingDetail({ detail: activeDetail, key: Date.now() });
+      setActiveDetail(null);
+      return;
+    }
+    if (activeDetail !== null) {
+      setClosingDetail({ detail: activeDetail, key: Date.now() });
+    }
+    setActiveDetail(detail);
+  }
 
   return (
     <section className="computation-panel" aria-label="Computation breakdown">
       <div className="section-heading">
         <p className="eyebrow">Computation breakdown</p>
-        <h2>Click any number to inspect the formula</h2>
+        <h2>Click any number to see how it was calculated</h2>
       </div>
-      <ExternalInputs result={result} activeId={activeDetail.id} onSelect={setActiveDetail} />
       <div className="flow-grid">
         <CityFlow
-          activeId={activeDetail.id}
+          activeId={activeDetail?.id ?? null}
           cityRole="source"
-          onSelect={setActiveDetail}
+          closingDetail={closingDetail}
+          onSelect={toggleDetail}
           result={result}
         />
         <div className="flow-link">
           <span>Preserve</span>
           <strong>{formatCurrency(result.sourceSurplus)}</strong>
-          <em>post-tax+COLB surplus</em>
+          <em>surplus</em>
         </div>
         <CityFlow
-          activeId={activeDetail.id}
+          activeId={activeDetail?.id ?? null}
           cityRole="target"
-          onSelect={setActiveDetail}
+          closingDetail={closingDetail}
+          onSelect={toggleDetail}
           result={result}
         />
       </div>
-      <DetailPanel detail={activeDetail} />
     </section>
   );
 }

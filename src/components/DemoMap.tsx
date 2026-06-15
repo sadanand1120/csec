@@ -1,20 +1,20 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from "react";
 import maplibregl, {
-  type GeoJSONSource,
   type ExpressionSpecification,
-  type MapGeoJSONFeature,
+  type FilterSpecification,
+  type GeoJSONSource,
   type Map as MapLibreMap,
+  type MapGeoJSONFeature,
   type StyleSpecification,
 } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { formatCompactCurrency, formatFactor } from "../lib/format";
-import type { HeatmapValue } from "../lib/equivalence";
+import type { LocationProfile } from "../lib/types";
 
 type DemoMapProps = {
-  values: HeatmapValue[];
-  sourceId: string;
-  targetId: string;
-  onSelectTarget: (locationId: string) => void;
+  locations: readonly LocationProfile[];
+  sourceId: string | null;
+  targetId: string | null;
+  onSelectLocation: (locationId: string) => void;
 };
 
 type CityFeature = {
@@ -28,15 +28,28 @@ type CityFeature = {
     stateFips: string;
     displayName: string;
     shortName: string;
-    factorLabel: string;
-    salaryLabel: string;
-    color: string;
   };
 };
 
 type CityFeatureCollection = {
   type: "FeatureCollection";
   features: CityFeature[];
+};
+
+type Coordinate = [number, number];
+
+type StateLabelFeatureCollection = {
+  type: "FeatureCollection";
+  features: Array<{
+    type: "Feature";
+    geometry: {
+      type: "Point";
+      coordinates: Coordinate;
+    };
+    properties: {
+      ABBR: string;
+    };
+  }>;
 };
 
 const MAP_STYLE: StyleSpecification = {
@@ -53,37 +66,64 @@ const MAP_STYLE: StyleSpecification = {
   ],
 };
 
-const US_CENTER: [number, number] = [-98.5795, 39.8283];
-const US_BOUNDS: [[number, number], [number, number]] = [
-  [-127.5, 23.4],
-  [-65.5, 50.6],
+const US_DISPLAY_BOUNDS: [[number, number], [number, number]] = [
+  [-143, 24],
+  [-66, 57],
 ];
+const EMPTY_STATE_FILTER: FilterSpecification = ["==", ["get", "STATE"], ""];
+const STATE_POINT_DISPLAY_TRANSFORMS: Record<
+  string,
+  {
+    sourceAnchor: Coordinate;
+    targetAnchor: Coordinate;
+    scale: number;
+    normalizeAntimeridian: boolean;
+  }
+> = {
+  "02": {
+    sourceAnchor: [-158.759196, 61.286211],
+    targetAnchor: [-132, 53],
+    scale: 0.3,
+    normalizeAntimeridian: true,
+  },
+  "15": {
+    sourceAnchor: [-157.682575, 20.575318],
+    targetAnchor: [-130, 30],
+    scale: 2.25,
+    normalizeAntimeridian: false,
+  },
+};
 
-function colorForFactor(factor: number) {
-  if (factor < 0.9) return "#1f9d7a";
-  if (factor < 1.05) return "#79a63a";
-  if (factor < 1.25) return "#d79a26";
-  if (factor < 1.5) return "#cf5b3f";
-  return "#9f2f45";
+function displayCoordinate(coordinate: Coordinate, stateFips: string): Coordinate {
+  const transform = STATE_POINT_DISPLAY_TRANSFORMS[stateFips];
+  if (!transform) return coordinate;
+  const [sourceLon, sourceLat] = transform.sourceAnchor;
+  const [targetLon, targetLat] = transform.targetAnchor;
+  const lon =
+    transform.normalizeAntimeridian && coordinate[0] > 0
+      ? coordinate[0] - 360
+      : coordinate[0];
+  const lat = coordinate[1];
+  return [
+    targetLon + (lon - sourceLon) * transform.scale,
+    targetLat + (lat - sourceLat) * transform.scale,
+  ];
 }
 
-function makeCityGeoJson(values: HeatmapValue[]): CityFeatureCollection {
+function makeCityGeoJson(locations: readonly LocationProfile[]): CityFeatureCollection {
   return {
     type: "FeatureCollection",
-    features: values.map(({ location, factor, equivalentSalary }) => ({
+    features: locations.map((location) => ({
       type: "Feature",
       geometry: {
         type: "Point",
-        coordinates: [location.lon, location.lat],
+        coordinates: displayCoordinate([location.lon, location.lat], location.countyFips.slice(0, 2)),
       },
       properties: {
         id: location.id,
         stateFips: location.countyFips.slice(0, 2),
         displayName: location.displayName,
         shortName: location.shortName,
-        factorLabel: formatFactor(factor),
-        salaryLabel: formatCompactCurrency(equivalentSalary),
-        color: colorForFactor(factor),
       },
     })),
   };
@@ -106,38 +146,55 @@ function featureBounds(feature: MapGeoJSONFeature) {
   return bounds;
 }
 
-function cityPaintExpression(sourceId: string, targetId: string) {
+function stateFilterFor(location: LocationProfile | undefined): FilterSpecification {
+  return location
+    ? ["==", ["get", "STATE"], location.countyFips.slice(0, 2)]
+    : EMPTY_STATE_FILTER;
+}
+
+function cityPaintExpression(sourceId: string | null, targetId: string | null) {
+  const sourceKey = sourceId ?? "";
+  const targetKey = targetId ?? "";
   return {
+    color: [
+      "case",
+      ["==", ["get", "id"], sourceKey],
+      "#137b70",
+      ["==", ["get", "id"], targetKey],
+      "#d79a26",
+      "#38545b",
+    ] as ExpressionSpecification,
     radius: [
       "case",
-      ["==", ["get", "id"], targetId],
+      ["==", ["get", "id"], sourceKey],
+      9,
+      ["==", ["get", "id"], targetKey],
       10,
-      ["==", ["get", "id"], sourceId],
-      8,
-      7,
+      6.5,
     ] as ExpressionSpecification,
     strokeWidth: [
       "case",
-      ["==", ["get", "id"], targetId],
+      ["==", ["get", "id"], sourceKey],
       4,
-      ["==", ["get", "id"], sourceId],
-      3,
+      ["==", ["get", "id"], targetKey],
+      4,
       2,
     ] as ExpressionSpecification,
     strokeColor: [
       "case",
-      ["==", ["get", "id"], targetId],
+      ["==", ["get", "id"], sourceKey],
+      "#0d332f",
+      ["==", ["get", "id"], targetKey],
       "#f0b429",
-      ["==", ["get", "id"], sourceId],
-      "#162224",
       "#ffffff",
     ] as ExpressionSpecification,
   };
 }
 
-function updateCityPaint(map: MapLibreMap, sourceId: string, targetId: string) {
+function updateCityPaint(map: MapLibreMap, sourceId: string | null, targetId: string | null) {
   if (!map.getLayer("cities-circle")) return;
   const expression = cityPaintExpression(sourceId, targetId);
+  map.setPaintProperty("cities-circle", "circle-color", expression.color);
   map.setPaintProperty("cities-circle", "circle-radius", expression.radius);
   map.setPaintProperty("cities-circle", "circle-stroke-width", expression.strokeWidth);
   map.setPaintProperty("cities-circle", "circle-stroke-color", expression.strokeColor);
@@ -153,41 +210,93 @@ function fitState(map: MapLibreMap, feature: MapGeoJSONFeature) {
   });
 }
 
-export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: DemoMapProps) {
+function showCityPopup(
+  map: MapLibreMap,
+  popupRef: MutableRefObject<maplibregl.Popup | null>,
+  coordinates: [number, number],
+  cityName: string,
+) {
+  popupRef.current?.remove();
+  const content = document.createElement("strong");
+  content.textContent = cityName;
+  popupRef.current = new maplibregl.Popup({ closeButton: false, offset: 14 })
+    .setLngLat(coordinates)
+    .setDOMContent(content)
+    .addTo(map);
+}
+
+function clearStateLabelMarkers(markersRef: MutableRefObject<maplibregl.Marker[]>) {
+  markersRef.current.forEach((marker) => marker.remove());
+  markersRef.current = [];
+}
+
+async function loadStateLabelMarkers(
+  map: MapLibreMap,
+  markersRef: MutableRefObject<maplibregl.Marker[]>,
+  isDisposed: () => boolean,
+) {
+  const response = await fetch("/us-state-labels-display.geojson");
+  if (!response.ok) {
+    throw new Error(`Could not load U.S. state labels: ${response.status}`);
+  }
+
+  const labels = (await response.json()) as StateLabelFeatureCollection;
+  if (isDisposed()) return;
+  clearStateLabelMarkers(markersRef);
+  markersRef.current = labels.features.map((feature) => {
+    const element = document.createElement("span");
+    element.className = "state-label-marker";
+    element.textContent = feature.properties.ABBR;
+    element.setAttribute("aria-hidden", "true");
+    element.setAttribute("role", "presentation");
+    element.tabIndex = -1;
+    return new maplibregl.Marker({ element, anchor: "center" })
+      .setLngLat(feature.geometry.coordinates)
+      .addTo(map);
+  });
+}
+
+export default function DemoMap({
+  locations,
+  sourceId,
+  targetId,
+  onSelectLocation,
+}: DemoMapProps) {
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const popupRef = useRef<maplibregl.Popup | null>(null);
-  const valuesRef = useRef(values);
-  const onSelectTargetRef = useRef(onSelectTarget);
+  const stateLabelMarkersRef = useRef<maplibregl.Marker[]>([]);
+  const locationsRef = useRef(locations);
+  const onSelectLocationRef = useRef(onSelectLocation);
   const sourceIdRef = useRef(sourceId);
   const targetIdRef = useRef(targetId);
   const [selectedState, setSelectedState] = useState<string | null>(null);
-  const min = Math.min(...values.map((value) => value.factor));
-  const max = Math.max(...values.map((value) => value.factor));
-  const cityGeoJson = useMemo(() => makeCityGeoJson(values), [values]);
-  const target = values.find((value) => value.location.id === targetId);
-  const source = values.find((value) => value.location.id === sourceId);
+  const cityGeoJson = useMemo(() => makeCityGeoJson(locations), [locations]);
+  const source = locations.find((location) => location.id === sourceId);
+  const target = locations.find((location) => location.id === targetId);
 
   useEffect(() => {
-    valuesRef.current = values;
-    onSelectTargetRef.current = onSelectTarget;
+    locationsRef.current = locations;
+    onSelectLocationRef.current = onSelectLocation;
     sourceIdRef.current = sourceId;
     targetIdRef.current = targetId;
-  }, [onSelectTarget, sourceId, targetId, values]);
+  }, [locations, onSelectLocation, sourceId, targetId]);
 
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
+    let disposed = false;
 
     const map = new maplibregl.Map({
       container: mapContainerRef.current,
       style: MAP_STYLE,
-      center: US_CENTER,
-      zoom: 2.75,
-      minZoom: 2,
+      bounds: US_DISPLAY_BOUNDS,
+      fitBoundsOptions: { padding: 18 },
+      minZoom: 0.85,
       maxZoom: 8,
-      maxBounds: US_BOUNDS,
+      maxBounds: US_DISPLAY_BOUNDS,
       attributionControl: false,
       cooperativeGestures: true,
+      renderWorldCopies: false,
     });
 
     mapRef.current = map;
@@ -197,11 +306,11 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
     map.on("load", () => {
       map.addSource("states", {
         type: "geojson",
-        data: "/us-states-20m.geojson",
+        data: "/us-states-display.geojson",
       });
       map.addSource("cities", {
         type: "geojson",
-        data: makeCityGeoJson(valuesRef.current),
+        data: makeCityGeoJson(locationsRef.current),
       });
 
       map.addLayer({
@@ -217,7 +326,7 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
         id: "source-state-fill",
         type: "fill",
         source: "states",
-        filter: ["==", ["get", "STATE"], sourceIdRef.current.slice(0, 0)],
+        filter: EMPTY_STATE_FILTER,
         paint: {
           "fill-color": "#8eb6ad",
           "fill-opacity": 0.36,
@@ -227,7 +336,7 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
         id: "target-state-fill",
         type: "fill",
         source: "states",
-        filter: ["==", ["get", "STATE"], targetIdRef.current.slice(0, 0)],
+        filter: EMPTY_STATE_FILTER,
         paint: {
           "fill-color": "#f0b429",
           "fill-opacity": 0.34,
@@ -250,34 +359,25 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
         source: "cities",
         paint: {
           "circle-radius": expression.radius,
-          "circle-color": ["get", "color"],
+          "circle-color": expression.color,
           "circle-stroke-color": expression.strokeColor,
           "circle-stroke-width": expression.strokeWidth,
           "circle-opacity": 0.95,
         },
       });
 
-      const currentSource = valuesRef.current.find(
-        ({ location }) => location.id === sourceIdRef.current,
+      const currentSource = locationsRef.current.find(
+        (location) => location.id === sourceIdRef.current,
       );
-      const currentTarget = valuesRef.current.find(
-        ({ location }) => location.id === targetIdRef.current,
+      const currentTarget = locationsRef.current.find(
+        (location) => location.id === targetIdRef.current,
       );
-      if (currentSource) {
-        map.setFilter("source-state-fill", [
-          "==",
-          ["get", "STATE"],
-          currentSource.location.countyFips.slice(0, 2),
-        ]);
-      }
-      if (currentTarget) {
-        map.setFilter("target-state-fill", [
-          "==",
-          ["get", "STATE"],
-          currentTarget.location.countyFips.slice(0, 2),
-        ]);
-        setSelectedState(currentTarget.location.stateName);
-      }
+      map.setFilter("source-state-fill", stateFilterFor(currentSource));
+      map.setFilter("target-state-fill", stateFilterFor(currentTarget));
+
+      loadStateLabelMarkers(map, stateLabelMarkersRef, () => disposed).catch((error) => {
+        console.error(error);
+      });
 
       map.on("mouseenter", "states-fill", () => {
         map.getCanvas().style.cursor = "pointer";
@@ -285,11 +385,20 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
       map.on("mouseleave", "states-fill", () => {
         map.getCanvas().style.cursor = "";
       });
-      map.on("mouseenter", "cities-circle", () => {
+      map.on("mouseenter", "cities-circle", (event) => {
         map.getCanvas().style.cursor = "pointer";
+        const feature = event.features?.[0];
+        if (!feature || feature.geometry.type !== "Point") return;
+        showCityPopup(
+          map,
+          popupRef,
+          feature.geometry.coordinates as [number, number],
+          String(feature.properties?.displayName ?? ""),
+        );
       });
       map.on("mouseleave", "cities-circle", () => {
         map.getCanvas().style.cursor = "";
+        popupRef.current?.remove();
       });
 
       map.on("click", "states-fill", (event) => {
@@ -305,11 +414,11 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
         setSelectedState(stateName);
         fitState(map, feature);
 
-        const stateCity = valuesRef.current.find(
-          ({ location }) => location.countyFips.slice(0, 2) === stateFips,
+        const stateCity = locationsRef.current.find(
+          (location) => location.countyFips.slice(0, 2) === stateFips,
         );
         if (stateCity) {
-          onSelectTargetRef.current(stateCity.location.id);
+          onSelectLocationRef.current(stateCity.id);
         }
       });
 
@@ -318,28 +427,15 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
         if (!feature || feature.geometry.type !== "Point") return;
         const cityId = String(feature.properties?.id ?? "");
         const cityName = String(feature.properties?.displayName ?? "");
-        const factorLabel = String(feature.properties?.factorLabel ?? "");
-        const salaryLabel = String(feature.properties?.salaryLabel ?? "");
         const coordinates = feature.geometry.coordinates as [number, number];
-        onSelectTargetRef.current(cityId);
-        map.flyTo({
-          center: coordinates,
-          zoom: Math.max(map.getZoom(), 4.4),
-          duration: 650,
-          essential: true,
-        });
-
-        popupRef.current?.remove();
-        popupRef.current = new maplibregl.Popup({ closeButton: false, offset: 14 })
-          .setLngLat(coordinates)
-          .setHTML(
-            `<strong>${cityName}</strong><span>${factorLabel} / ${salaryLabel}</span>`,
-          )
-          .addTo(map);
+        onSelectLocationRef.current(cityId);
+        showCityPopup(map, popupRef, coordinates, cityName);
       });
     });
 
     return () => {
+      disposed = true;
+      clearStateLabelMarkers(stateLabelMarkersRef);
       popupRef.current?.remove();
       map.remove();
       mapRef.current = null;
@@ -349,35 +445,26 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
   useEffect(() => {
     const map = mapRef.current;
     if (!map?.isStyleLoaded()) return;
-    const source = map.getSource("cities") as GeoJSONSource | undefined;
-    source?.setData(cityGeoJson);
+    const sourceData = map.getSource("cities") as GeoJSONSource | undefined;
+    sourceData?.setData(cityGeoJson);
   }, [cityGeoJson]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map?.isStyleLoaded()) return;
     updateCityPaint(map, sourceId, targetId);
+    map.setFilter("source-state-fill", stateFilterFor(source));
+    map.setFilter("target-state-fill", stateFilterFor(target));
 
-    if (source) {
-      map.setFilter("source-state-fill", ["==", ["get", "STATE"], source.location.countyFips.slice(0, 2)]);
-    }
-    if (target) {
-      setSelectedState(target.location.stateName);
-      map.setFilter("target-state-fill", ["==", ["get", "STATE"], target.location.countyFips.slice(0, 2)]);
-      map.flyTo({
-        center: [target.location.lon, target.location.lat],
-        zoom: Math.max(map.getZoom(), 3.6),
-        duration: 500,
-        essential: true,
-      });
-    }
+    const focus = target ?? source;
+    setSelectedState(focus?.stateName ?? null);
   }, [source, sourceId, target, targetId]);
 
   return (
-    <section className="map-panel" aria-label="Interactive U.S. equivalent salary map">
+    <section className="map-panel" aria-label="Interactive U.S. city selector map">
       <div className="section-heading">
         <p className="eyebrow">Interactive U.S. map</p>
-        <h3>Equivalent salary factor</h3>
+        <h3>Pick cities on the map</h3>
       </div>
       <div className="map-canvas">
         <div className="maplibre-map" ref={mapContainerRef} />
@@ -385,35 +472,16 @@ export default function DemoMap({ values, sourceId, targetId, onSelectTarget }: 
       <div className="map-summary">
         <div>
           <span>Source</span>
-          <strong>{source?.location.displayName ?? "Source city"}</strong>
+          <strong>{source?.displayName ?? "Not selected"}</strong>
         </div>
         <div>
           <span>Target</span>
-          <strong>{target?.location.displayName ?? "Target city"}</strong>
+          <strong>{target?.displayName ?? "Not selected"}</strong>
         </div>
         <div>
           <span>State focus</span>
-          <strong>{selectedState ?? target?.location.stateName ?? "United States"}</strong>
+          <strong>{selectedState ?? "United States"}</strong>
         </div>
-      </div>
-      <div className="map-city-list" aria-label="City targets">
-        {values.map(({ location, factor, equivalentSalary }) => (
-          <button
-            key={location.id}
-            className={`${location.id === sourceId ? "source" : ""} ${location.id === targetId ? "target" : ""}`}
-            type="button"
-            onClick={() => onSelectTarget(location.id)}
-          >
-            <span>{location.shortName}</span>
-            <strong>{formatFactor(factor)}</strong>
-            <em>{formatCompactCurrency(equivalentSalary)}</em>
-          </button>
-        ))}
-      </div>
-      <div className="legend" aria-label="Heatmap legend">
-        <span>{formatFactor(min)}</span>
-        <div className="legend-ramp" />
-        <span>{formatFactor(max)}</span>
       </div>
     </section>
   );

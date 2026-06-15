@@ -5,15 +5,10 @@ import ResultCard from "./components/ResultCard";
 import SalaryControl from "./components/SalaryControl";
 import {
   DEFAULT_GROSS_INCOME,
-  DEFAULT_SOURCE_ID,
-  DEFAULT_TARGET_ID,
   FIXED_PROFILE,
   LOCATIONS,
-  MODEL_VERSION,
   computeEquivalence,
-  computeHeatmap,
 } from "./lib/equivalence";
-import type { HeatmapValue } from "./lib/equivalence";
 import type { EquivalenceResult } from "./lib/types";
 import { V0_DATA } from "./lib/v0Data";
 
@@ -32,9 +27,9 @@ const SOURCE_EXPLAINERS: Array<{
     key: "policyengine",
     title: "PolicyEngine US",
     description:
-      "PolicyEngine US is an open-source tax and benefit calculation engine. In this app it turns a gross salary into federal income tax, employee payroll tax, state income tax, supported local tax, total household tax, and net income for the fixed single W-2 profile.",
+      "PolicyEngine US is an open-source tax and benefit engine. Here it converts gross W-2 salary into federal income tax, payroll tax, supported state/local taxes, total tax, and net income for the fixed single-filer profile.",
     usedFor:
-      "The backend builds tax year 2026 curves for Austin, Sunnyvale, New York, Seattle, Denver, and Raleigh over the full v0 salary grid. The frontend interpolates those precomputed curves instead of running tax code in the browser.",
+      "Tax year 2026 gross-to-net curves. The browser loads the selected city curves and interpolates them when solving for the target salary.",
   },
   {
     key: "hudFmr",
@@ -42,15 +37,15 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The U.S. Department of Housing and Urban Development publishes Fair Market Rents, often abbreviated HUD FMR. FMR is a gross-rent standard used in housing programs; it includes shelter rent plus tenant-paid utilities for a typical rental unit size.",
     usedFor:
-      "The annual housing part of the cost-of-living-basket: each city uses the fiscal year 2026 one-bedroom FMR multiplied by twelve. The six v0 monthly rent values are stored in the generated data artifact after being extracted from the HUD FY2026 schedule rows for the relevant FMR areas.",
+      "Annual housing cost: fiscal year 2026 one-bedroom FMR multiplied by twelve.",
   },
   {
     key: "beaRpp",
     title: "Bureau of Economic Analysis Regional Price Parities",
     description:
-      "The Bureau of Economic Analysis, abbreviated BEA, publishes Regional Price Parities, abbreviated RPP. RPP compares price levels across metro areas relative to the national average of 100. The backend downloads the BEA MARPP file and reads line code 1 for all items, line code 2 for goods, line code 3 for housing, line code 4 for utilities, and line code 5 for other services.",
+      "The Bureau of Economic Analysis, abbreviated BEA, publishes Regional Price Parities, abbreviated RPP. RPP compares metro-area price levels against the national average of 100.",
     usedFor:
-      "V0 currently uses line code 2, goods, and line code 5, other services, to reprice the non-housing COLB categories. Line code 1, all items, line code 3, housing, and line code 4, utilities, are kept in the local data artifact for auditability and future model work, but they are not used in the current calculator formula because housing comes from HUD FMR.",
+      "Goods and other-services RPP values reprice food, transportation, healthcare, internet/mobile, and other non-housing spending. Housing comes from HUD FMR instead.",
   },
   {
     key: "blsCex",
@@ -58,7 +53,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The Bureau of Labor Statistics, abbreviated BLS, runs the Consumer Expenditure Survey, abbreviated CEX. The public-use microdata files contain anonymized household-level spending records.",
     usedFor:
-      "The backend uses the 2024 Interview Survey public-use microdata to estimate national non-housing COLB categories for single-person renter consumer units with wage or salary income and no farm or non-farm business income. It reads the BLS family summary files and combines the quarter suffixes specified in the BLS public-use microdata layout.",
+      "National non-housing spending estimates for single-person renter consumer units with wage or salary income.",
   },
   {
     key: "blsCpi",
@@ -66,7 +61,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The Consumer Price Index, abbreviated CPI, measures how consumer prices change over time. This app uses CPI-U, the Consumer Price Index for All Urban Consumers.",
     usedFor:
-      "The backend calls the BLS public API for CPI-U all items, U.S. city average, not seasonally adjusted. It inflates 2024 Consumer Expenditure Survey dollar amounts and income-band thresholds to the latest available 2026 CPI month used by the generated artifact.",
+      "Inflates 2024 Consumer Expenditure Survey dollar amounts and income-band thresholds to May 2026 dollars.",
   },
   {
     key: "census",
@@ -74,7 +69,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The U.S. Census Bureau publishes official place, county, and metro-area identifiers. TIGERweb is a Census mapping service, and CBSA means Core Based Statistical Area, the official metro-area grouping used by several federal datasets.",
     usedFor:
-      "V0 uses fixed Census-derived city-to-county and city-to-CBSA mappings for the six places. The county feeds the tax simulation; the CBSA selects the metro Regional Price Parity values used to reprice non-housing COLB.",
+      "Maps each supported city to one tax county and one metro area. County feeds taxes; metro area selects BEA price indexes.",
   },
 ];
 
@@ -96,7 +91,7 @@ function TopNav({ page }: { page: PageName }) {
 
 function FixedProfileSummary() {
   return (
-    <section className="fixed-profile" aria-label="Fixed v0 profile">
+    <section className="fixed-profile" aria-label="Fixed household profile">
       <p className="eyebrow">Fixed profile</p>
       <ul>
         <li>Single W-2 employee</li>
@@ -127,11 +122,11 @@ function MapLoadingPanel() {
     <section className="map-panel">
       <div className="section-heading">
         <p className="eyebrow">Interactive U.S. map</p>
-        <h3>Equivalent salary factor</h3>
+        <h3>Pick cities on the map</h3>
       </div>
       <div className="map-loading" role="status">
-        <strong>Loading city tax curves</strong>
-        <span>Fetching the city-level files needed for the map.</span>
+        <strong>Loading map</strong>
+        <span>Preparing the city map.</span>
       </div>
     </section>
   );
@@ -142,94 +137,100 @@ function MethodologyPage() {
     <main className="article-page">
       <TopNav page="methodology" />
       <article className="article-doc">
-        <p className="eyebrow">Six-city v0 methodology</p>
+        <p className="eyebrow">Methodology</p>
         <h1>How the salary equivalence calculation works</h1>
         <p className="article-lede">
-          The calculator answers one question: what gross salary in a target city leaves the same
-          post-tax+COLB surplus as a known gross salary in a source city? COLB means
-          cost-of-living-basket: the fixed bundle of housing and non-housing costs used by this
-          v0 model.
+          <strong>
+            Have you ever asked what salary in one city matches your salary in another, then gotten
+            wildly different answers?
+          </strong>{" "}
+          Public tools like{" "}
+          <a href="https://www.forbes.com/advisor/mortgages/real-estate/cost-of-living-calculator/">
+            Forbes Advisor
+          </a>,{" "}
+          <a href="https://www.nerdwallet.com/cost-of-living-calculator">NerdWallet</a>, and{" "}
+          <a href="https://www.bankrate.com/personal-finance/cost-of-living-calculator/">
+            Bankrate
+          </a>{" "}
+          are useful quick checks, but they usually do not expose the full tax, rent, spending, and
+          interpolation math. That opacity is exactly how a city salary conversion can badly over-
+          or under-estimate for a specific person.
         </p>
 
-        <h2>The fixed profile</h2>
-        <p>
-          V0 intentionally keeps the household simple: one single W-2 employee, a U.S. citizen,
-          single tax filer, no children or dependents, renting a one-bedroom apartment alone.
-          There are no visa, spouse, dependent, owner-cost, bonus, stock-compensation, or itemized
-          deduction branches in this version.
-        </p>
-
-        <h2>The language used in the calculator</h2>
-        <p>
-          Gross salary means pre-tax salary. Net income means post-tax income. More generally,
-          <strong> pre-X</strong> means before deducting X, and <strong>post-X</strong> means after
-          deducting X. So post-COLB income is income after the cost-of-living-basket is paid, and
-          post-tax+COLB surplus is what remains after both taxes and the modeled COLB are paid.
-        </p>
+        <section className="article-callout" aria-label="TLDR">
+          <h2>TLDR</h2>
+          <p>
+            This calculator makes the comparison explicit: compute net income after taxes, subtract
+            a modeled cost-of-living basket, then solve for the target-city gross salary that
+            preserves the same surplus.
+          </p>
+        </section>
 
         <h2>The actual equation</h2>
         <p>
-          First, the app computes the source city net income from the source gross salary. Then it
-          subtracts the source city COLB. That gives source post-tax+COLB surplus.
+          Gross salary is pre-tax W-2 wage income. Net income is gross salary minus modeled taxes.
+          Surplus is net income minus the cost-of-living basket.
         </p>
         <pre>{`source_net = post_tax(source_gross, source_city)
-source_surplus = source_net - COLB(source_city)
+source_surplus = source_net - cost_basket(source_city)
 
 Find target_gross such that:
-post_tax(target_gross, target_city) - COLB(target_city)
+post_tax(target_gross, target_city) - cost_basket(target_city)
   = source_surplus`}</pre>
         <p>
-          In other words, the target gross salary is not chosen by matching rent alone or tax alone.
-          It is chosen by preserving the same post-tax+COLB surplus.
+          The target gross salary is therefore not just a rent adjustment or a tax adjustment. It is
+          the salary that preserves the same surplus after both are included.
         </p>
 
-        <h2>What is inside COLB</h2>
-        <p>
-          The cost-of-living-basket has one housing line and five non-housing lines: food,
-          transportation, healthcare, internet/mobile, and other non-housing spending. Housing is
-          the one-bedroom fair-market rent for the location. Non-housing spending starts from a
-          national COLB estimate for similar single renter households, then gets repriced with
-          metro-area price indexes.
-        </p>
+        <h2>What is inside the cost-of-living basket</h2>
+        <ul className="component-list">
+          <li>
+            <strong>Housing:</strong> one-bedroom Fair Market Rent from the U.S. Department of
+            Housing and Urban Development, multiplied by twelve.
+          </li>
+          <li>
+            <strong>Food:</strong> national single-renter spending from the Consumer Expenditure
+            Survey, repriced with the metro goods price index.
+          </li>
+          <li>
+            <strong>Transportation:</strong> national spending repriced with a weighted goods and
+            other-services price index.
+          </li>
+          <li>
+            <strong>Healthcare:</strong> national spending repriced with the metro other-services
+            price index.
+          </li>
+          <li>
+            <strong>Internet/mobile:</strong> national spending repriced with the metro
+            other-services price index.
+          </li>
+          <li>
+            <strong>Other non-housing:</strong> remaining modeled spending repriced with a weighted
+            goods and other-services price index.
+          </li>
+        </ul>
 
         <h2>How the target salary is solved</h2>
         <p>
-          The backend precomputes tax curves into one generated file per city. A curve says, for
-          many possible gross salaries, what the post-tax net income would be. During interaction,
-          the frontend lazily loads the city curve files it needs, then finds the target gross salary
-          whose net income is just high enough to pay the target COLB while preserving the source
-          surplus. If the exact salary falls between two curve points, it uses linear interpolation.
+          The tax side comes from PolicyEngine US. For each city, the app stores a precomputed tax
+          curve for tax year 2026: gross salary in, net income out. During interaction, the browser
+          loads only the selected city curve files, computes the target net income needed, then
+          interpolates on the target city's PolicyEngine curve.
         </p>
+        <pre>{`target_required_net = target_cost_basket + source_surplus
+target_gross = interpolate(
+    target_policyengine_curve.net_income,
+    target_policyengine_curve.gross_salary,
+    target_required_net,
+)`}</pre>
 
-        <h2>Important limits</h2>
-        <p>
-          V0 uses one county and one metro area for each city. It does not model neighborhood-level
-          rents, employer benefits, pre-tax retirement contributions, health savings accounts,
-          flexible spending accounts, alternative minimum tax, relocation costs, or ownership costs.
-          The result is salary-dependent and directional: Austin to Sunnyvale is not the same
-          operation as Sunnyvale to Austin.
-        </p>
-
-        <h2>Concrete model assumptions in v0</h2>
-        <ul>
-          <li>The person is one adult, modeled as age 30 for tax-simulation purposes.</li>
-          <li>The person is a U.S. citizen, single, unmarried, with no children or dependents.</li>
-          <li>All compensation entered in the calculator is W-2 wage income.</li>
-          <li>No bonuses, restricted stock units, stock options, self-employment income, capital gains, or investment income are modeled.</li>
-          <li>No pre-tax 401(k), health savings account, flexible spending account, commuter benefit, or insurance-premium deductions are modeled.</li>
-          <li>The person takes whatever baseline tax treatment PolicyEngine applies for this simple single-filer situation; no custom itemized deductions are entered.</li>
-          <li>The person rents alone in a one-bedroom apartment.</li>
-          <li>Housing COLB is exactly HUD fiscal year 2026 one-bedroom Fair Market Rent multiplied by twelve.</li>
-          <li>Non-housing COLB uses BLS Consumer Expenditure Survey single-person renter consumer units with wage or salary income and no farm or non-farm business income.</li>
-          <li>2024 Consumer Expenditure Survey dollar amounts are inflated to May 2026 using CPI-U, the Consumer Price Index for All Urban Consumers.</li>
-          <li>Food uses the BEA goods price index.</li>
-          <li>Transportation uses 65% BEA goods and 35% BEA other-services price indexes.</li>
-          <li>Healthcare uses the BEA other-services price index.</li>
-          <li>Internet/mobile uses the BEA other-services price index.</li>
-          <li>Other non-housing COLB uses 45% BEA goods and 55% BEA other-services price indexes.</li>
-          <li>Each city is resolved to one tax county and one metro area in v0.</li>
-          <li>Target gross salary is solved by linear interpolation over precomputed PolicyEngine tax curves.</li>
-          <li>Tax component lines are explanatory; total tax and net income are anchored to PolicyEngine <code>household_tax</code>.</li>
+        <h2>Scope and assumptions</h2>
+        <ul className="assumption-list">
+          <li>Profile: one U.S. citizen, single filer, W-2 income only, no children or dependents.</li>
+          <li>Housing: renter living alone in a one-bedroom apartment; no owner costs.</li>
+          <li>Taxes: PolicyEngine US tax year 2026, with supported state and local taxes.</li>
+          <li>Excluded income: bonuses, equity compensation, self-employment, and investment income.</li>
+          <li>Excluded deductions: custom itemization, pre-tax retirement, HSA/FSA, commuter benefits, and insurance-premium deductions.</li>
         </ul>
       </article>
     </main>
@@ -241,23 +242,30 @@ function SourcesPage() {
     <main className="article-page">
       <TopNav page="sources" />
       <article className="article-doc">
-        <p className="eyebrow">Backend sources</p>
+        <p className="eyebrow">Data sources</p>
         <h1>What data powers the calculator</h1>
         <p className="article-lede">
-          The app uses generated local data artifacts: <code>src/lib/v0Data.ts</code> for shared
-          metadata and <code>src/lib/cities/</code> for one tax-curve file per city. Those files are
-          built from the public external data sources listed below. This page explains each source
-          in plain language.
+          The calculator is built from trusted official government sources, plus the open-source
+          PolicyEngine tax model. This page explains what each source contributes.
         </p>
 
         <div className="source-list">
-          {SOURCE_EXPLAINERS.map((entry) => {
+          {SOURCE_EXPLAINERS.map((entry, index) => {
             const source = V0_DATA.sources[entry.key];
             return (
               <section className="source-entry" key={entry.key}>
-                <h2>{entry.title}</h2>
-                <p>{entry.description}</p>
-                <p>{entry.usedFor}</p>
+                <div className="source-entry-heading">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <h2>{entry.title}</h2>
+                </div>
+                <div className="source-copy">
+                  <p>
+                    <strong>What it is:</strong> {entry.description}
+                  </p>
+                  <p>
+                    <strong>How it is used:</strong> {entry.usedFor}
+                  </p>
+                </div>
                 <dl>
                   <div>
                     <dt>Vintage used</dt>
@@ -280,20 +288,57 @@ function SourcesPage() {
 }
 
 function CalculatorPage() {
-  const [sourceId, setSourceId] = useState<string>(DEFAULT_SOURCE_ID);
-  const [targetId, setTargetId] = useState<string>(DEFAULT_TARGET_ID);
+  const [sourceId, setSourceId] = useState<string | null>(null);
+  const [targetId, setTargetId] = useState<string | null>(null);
   const [salary, setSalary] = useState<number>(DEFAULT_GROSS_INCOME);
   const [result, setResult] = useState<EquivalenceResult | null>(null);
-  const [heatmap, setHeatmap] = useState<HeatmapValue[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [resultLoading, setResultLoading] = useState(true);
+  const [resultLoading, setResultLoading] = useState(false);
+
+  function updateSource(nextSourceId: string | null) {
+    setSourceId(nextSourceId);
+    setTargetId((currentTargetId) =>
+      nextSourceId !== null && currentTargetId === nextSourceId ? null : currentTargetId,
+    );
+  }
+
+  function updateTarget(nextTargetId: string | null) {
+    setTargetId(nextTargetId !== null && nextTargetId === sourceId ? null : nextTargetId);
+  }
+
+  function selectMapLocation(locationId: string) {
+    if (sourceId === locationId) {
+      setSourceId(null);
+      return;
+    }
+    if (targetId === locationId) {
+      setTargetId(null);
+      return;
+    }
+    if (sourceId === null) {
+      setSourceId(locationId);
+      return;
+    }
+    if (targetId === null) {
+      setTargetId(locationId);
+      return;
+    }
+    setTargetId(locationId);
+  }
 
   useEffect(() => {
     let cancelled = false;
-    setResultLoading(true);
     setResult(null);
     setLoadError(null);
 
+    if (sourceId === null || targetId === null) {
+      setResultLoading(false);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    setResultLoading(true);
     computeEquivalence(sourceId, targetId, salary)
       .then((nextResult) => {
         if (!cancelled) {
@@ -316,77 +361,72 @@ function CalculatorPage() {
     };
   }, [sourceId, targetId, salary]);
 
-  useEffect(() => {
-    let cancelled = false;
-    setHeatmap(null);
-
-    computeHeatmap(sourceId, salary)
-      .then((nextHeatmap) => {
-        if (!cancelled) {
-          setHeatmap(nextHeatmap);
-        }
-      })
-      .catch((error) => {
-        if (!cancelled) {
-          setLoadError(errorMessage(error));
-        }
-      });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [sourceId, salary]);
-
   return (
     <main className="app-shell">
       <TopNav page="calculator" />
       <header className="app-header">
         <div>
-          <p className="eyebrow">Six-city real-source v0</p>
-          <h1>Post-tax+COLB salary equivalence across U.S. cities</h1>
+          <p className="eyebrow">Salary comparison tool</p>
+          <h1>City Salary Equivalence Calculator</h1>
           <p>
-            Compare gross salaries for a fixed single W-2 profile using PolicyEngine taxes,
-            HUD 1BR FMR rent, BEA metro price parities, and BLS spending data.
+            Estimate the gross salary you would need in another city to preserve your surplus after
+            both taxes and cost of living are included. Taxes cover federal, payroll, state, and
+            supported local taxes; living costs include one-bedroom rent plus everyday spending.
           </p>
+          <div className="intro-summary" aria-label="Quick explanation">
+            <div>
+              <strong>How to use it</strong>
+              <span>Pick a source city, target city, and gross salary. The map and dropdowns stay in sync.</span>
+            </div>
+            <div>
+              <strong>Equivalent salary</strong>
+              <span>The target gross salary that preserves the same surplus after taxes and living costs.</span>
+            </div>
+            <div>
+              <strong>Living costs</strong>
+              <span>One-bedroom rent plus food, transportation, healthcare, internet/mobile, and other spending.</span>
+            </div>
+            <div>
+              <strong>Fixed profile</strong>
+              <span>Single W-2 U.S. citizen, single filer, no dependents, renting alone.</span>
+            </div>
+          </div>
         </div>
-        <div className="version-badge">{MODEL_VERSION}</div>
       </header>
 
       <section className="workspace">
         <aside className="control-panel">
           <div className="section-heading">
             <p className="eyebrow">Controls</p>
-            <h2>Scenario</h2>
+            <h2>Choose your comparison</h2>
           </div>
           <LocationSelect
             id="source"
             label="Source city"
             value={sourceId}
             locations={LOCATIONS}
-            onChange={setSourceId}
+            onChange={updateSource}
+            placeholder="Select source city"
           />
           <LocationSelect
             id="target"
             label="Target city"
             value={targetId}
             locations={LOCATIONS}
-            onChange={setTargetId}
+            onChange={updateTarget}
+            placeholder="Select target city"
           />
           <SalaryControl value={salary} onChange={setSalary} />
           <FixedProfileSummary />
         </aside>
-        {heatmap ? (
-          <Suspense fallback={<MapLoadingPanel />}>
-            <DemoMap
-              values={heatmap}
-              sourceId={sourceId}
-              targetId={targetId}
-              onSelectTarget={setTargetId}
-            />
-          </Suspense>
-        ) : (
-          <MapLoadingPanel />
-        )}
+        <Suspense fallback={<MapLoadingPanel />}>
+          <DemoMap
+            locations={LOCATIONS}
+            sourceId={sourceId}
+            targetId={targetId}
+            onSelectLocation={selectMapLocation}
+          />
+        </Suspense>
       </section>
 
       {loadError && (
@@ -397,10 +437,10 @@ function CalculatorPage() {
         />
       )}
 
-      {resultLoading && !result && (
+      {sourceId !== null && targetId !== null && resultLoading && !result && (
         <StatusPanel
           title="Loading selected comparison"
-          message="Fetching the city-level tax curve files for the selected source and target."
+          message="Fetching the selected city data and tax curves."
         />
       )}
 

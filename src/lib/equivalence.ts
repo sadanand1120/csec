@@ -30,13 +30,6 @@ const DATA_VINTAGE = Object.fromEntries(
   Object.entries(V0_DATA.sources).map(([key, source]) => [key, source.vintage]),
 );
 
-export type HeatmapValue = {
-  location: LocationProfile;
-  factor: number;
-  equivalentSalary: number;
-  confidence: "high" | "medium" | "low";
-};
-
 export function getLocation(locationId: string) {
   const location = LOCATIONS.find((entry) => entry.id === locationId);
   if (!location) {
@@ -244,8 +237,8 @@ function computeEquivalenceWithCurves(
       "Fixed profile only: single U.S. citizen, W-2 wages, single filer, no children, renter living alone in a 1BR apartment.",
       `${source.displayName} resolves to ${source.countyName}; ${target.displayName} resolves to ${target.countyName}.`,
       "HUD FMR is a gross-rent affordability standard, not a live apartment listing or owner-cost estimate.",
-      "BEA RPP is metro-level; city-neighborhood variation inside each metro is not modeled in v0.",
-      "BLS CEX COLB inputs are national single-person renter wage/salary consumer-unit averages by income band, then CPI-adjusted and repriced by BEA metro indices.",
+      "BEA RPP is metro-level; city-neighborhood variation inside each metro is not modeled.",
+      "BLS CEX spending inputs are national single-person renter wage/salary consumer-unit averages by income band, then CPI-adjusted and repriced by BEA metro indices.",
       "Tax component lines are explanatory; total tax and net income are anchored to PolicyEngine household_tax.",
       "RSUs, bonuses, retirement contributions, itemized deductions, AMT, moving costs, owner costs, and employer benefits are excluded.",
       source.resolutionNote,
@@ -287,27 +280,4 @@ export async function computeEquivalence(
 ): Promise<EquivalenceResult> {
   const curves = await loadTaxCurveMap([sourceLocationId, targetLocationId]);
   return computeEquivalenceWithCurves(sourceLocationId, targetLocationId, sourceGrossIncome, curves);
-}
-
-export async function computeHeatmap(
-  sourceLocationId: string,
-  sourceGrossIncome: number,
-): Promise<HeatmapValue[]> {
-  const locationIds = LOCATIONS.map((location) => location.id);
-  const curves = await loadTaxCurveMap([sourceLocationId, ...locationIds]);
-
-  return LOCATIONS.map((location) => {
-    const result = computeEquivalenceWithCurves(
-      sourceLocationId,
-      location.id,
-      sourceGrossIncome,
-      curves,
-    );
-    return {
-      location,
-      factor: result.factor,
-      equivalentSalary: result.targetEquivalentGrossIncome,
-      confidence: result.confidence,
-    };
-  });
 }

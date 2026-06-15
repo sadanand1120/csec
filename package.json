@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build:data": "uvx --python 3.10 --with policyengine-us==1.729.0 python scripts/build_v0_data.py",
+    "build:map": "node scripts/build_display_states.mjs",
     "build": "tsc && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit"

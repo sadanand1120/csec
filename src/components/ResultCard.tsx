@@ -28,14 +28,14 @@ export default function ResultCard({ result }: ResultCardProps) {
           <small>{formatPercent(result.targetTax.effectiveRate)} target effective tax</small>
         </div>
         <div>
-          <span>Source COLB</span>
+          <span>Source cost basket</span>
           <strong>{formatCurrency(result.sourceBasket.total)}</strong>
-          <small>{formatCurrency(result.sourceSurplus)} post-tax+COLB surplus</small>
+          <small>{formatCurrency(result.sourceSurplus)} surplus</small>
         </div>
         <div>
-          <span>Target COLB</span>
+          <span>Target cost basket</span>
           <strong>{formatCurrency(result.targetBasket.total)}</strong>
-          <small>{formatCurrency(result.targetSurplus)} post-tax+COLB surplus</small>
+          <small>{formatCurrency(result.targetSurplus)} surplus</small>
         </div>
       </div>
     </section>

@@ -128,7 +128,7 @@ export const V0_DATA = {
         "servicesOther": 96.24,
         "utilities": 82.044
       },
-      "resolutionNote": "Austin spans multiple counties; v0 uses Travis County as the computation county.",
+      "resolutionNote": "Austin spans multiple counties; this calculator uses Travis County as the computation county.",
       "shortName": "Austin",
       "state": "TX",
       "stateName": "Texas",
@@ -156,7 +156,7 @@ export const V0_DATA = {
         "servicesOther": 100.267,
         "utilities": 156.659
       },
-      "resolutionNote": "Sunnyvale is wholly resolved to Santa Clara County for v0.",
+      "resolutionNote": "Sunnyvale is resolved to Santa Clara County.",
       "shortName": "Sunnyvale",
       "state": "CA",
       "stateName": "California",
@@ -184,7 +184,7 @@ export const V0_DATA = {
         "servicesOther": 105.836,
         "utilities": 127.018
       },
-      "resolutionNote": "New York City spans five counties; v0 uses New York County and enables NYC resident tax.",
+      "resolutionNote": "New York City spans five counties; this calculator uses New York County and enables NYC resident tax.",
       "shortName": "New York",
       "state": "NY",
       "stateName": "New York",
@@ -214,7 +214,7 @@ export const V0_DATA = {
         "servicesOther": 106.835,
         "utilities": 92.814
       },
-      "resolutionNote": "Seattle is resolved to King County for v0.",
+      "resolutionNote": "Seattle is resolved to King County.",
       "shortName": "Seattle",
       "state": "WA",
       "stateName": "Washington",
@@ -272,14 +272,14 @@ export const V0_DATA = {
         "servicesOther": 98.186,
         "utilities": 88.96
       },
-      "resolutionNote": "Raleigh spans Wake and Durham counties; v0 uses Wake County as the computation county.",
+      "resolutionNote": "Raleigh spans Wake and Durham counties; this calculator uses Wake County as the computation county.",
       "shortName": "Raleigh",
       "state": "NC",
       "stateName": "North Carolina",
       "taxFlags": {}
     }
   ],
-  "modelVersion": "v0_1_six_city_real_sources",
+  "modelVersion": "six_city_salary_equivalence",
   "sources": {
     "beaRpp": {
       "name": "BEA Regional Price Parities",
@@ -301,13 +301,13 @@ export const V0_DATA = {
     },
     "census": {
       "name": "U.S. Census geography identifiers",
-      "notes": "v0 uses fixed city-to-county/CBSA mappings for six places.",
+      "notes": "Fixed city-to-county/CBSA mappings for the supported places.",
       "url": "https://tigerweb.geo.census.gov/tigerwebmain/TIGERweb_main.html",
       "vintage": "2025 TIGERweb places/counties and 2023 CBSA delineations"
     },
     "hudFmr": {
       "name": "HUD Fair Market Rents",
-      "notes": "1BR monthly FMR values manually extracted from HUD FY2026 schedule rows for the six v0 FMR areas; FMR is a gross rent standard, not live market rent.",
+      "notes": "1BR monthly FMR values manually extracted from HUD FY2026 schedule rows for the supported FMR areas; FMR is a gross rent standard, not live market rent.",
       "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY2026_FMR_Schedule.pdf",
       "vintage": "FY2026"
     },
