@@ -37,6 +37,9 @@ jobs:
       - name: Prepare Pages artifact
         run: |
           cp dist/index.html dist/404.html
+          mkdir -p dist/methodology dist/sources
+          cp dist/index.html dist/methodology/index.html
+          cp dist/index.html dist/sources/index.html
           touch dist/.nojekyll
 
       - name: Upload Pages artifact
