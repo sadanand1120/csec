@@ -8,7 +8,7 @@ import type {
   PriceIndexKey,
   TaxBreakdown,
 } from "../lib/types";
-import { V0_DATA } from "../lib/v0Data";
+import { SALARY_DATA } from "../lib/nationwideData";
 
 type DetailKind = "gross" | "tax" | "net" | "colb" | "surplus";
 
@@ -69,11 +69,11 @@ function codeNumber(value: number, digits = 0) {
 
 function pickBasketBand(grossIncome: number) {
   return (
-    V0_DATA.basketBands.find(
+    SALARY_DATA.basketBands.find(
       (entry) =>
         grossIncome >= entry.minGrossIncome &&
         (entry.maxGrossIncome === null || grossIncome < entry.maxGrossIncome),
-    ) ?? V0_DATA.basketBands[V0_DATA.basketBands.length - 1]
+    ) ?? SALARY_DATA.basketBands[SALARY_DATA.basketBands.length - 1]
   );
 }
 
@@ -123,8 +123,8 @@ function targetGrossCode(result: EquivalenceResult) {
 
 function taxCode(location: LocationProfile, gross: number, tax: TaxBreakdown) {
   return [
-    `# Source: ${V0_DATA.sources.policyengine.name}, ${V0_DATA.sources.policyengine.vintage}`,
-    `tax_year = ${V0_DATA.taxYear}`,
+    `# Source: ${SALARY_DATA.sources.policyengine.name}, ${SALARY_DATA.sources.policyengine.vintage}`,
+    `tax_year = ${SALARY_DATA.taxYear}`,
     `county_fips = "${location.countyFips}"  # ${location.countyName}`,
     `gross_salary = ${codeNumber(gross)}`,
     "",
@@ -152,8 +152,8 @@ function taxComponentCode(
 ) {
   const variableName = TAX_COMPONENT_CODE_NAMES[label] ?? "tax_component";
   return [
-    `# Source: ${V0_DATA.sources.policyengine.name}, ${V0_DATA.sources.policyengine.vintage}`,
-    `tax_year = ${V0_DATA.taxYear}`,
+    `# Source: ${SALARY_DATA.sources.policyengine.name}, ${SALARY_DATA.sources.policyengine.vintage}`,
+    `tax_year = ${SALARY_DATA.taxYear}`,
     `county_fips = "${location.countyFips}"  # ${location.countyName}`,
     `gross_salary = ${codeNumber(gross)}`,
     `${variableName} = ${codeNumber(value, 2)}`,
@@ -171,7 +171,7 @@ function netIncomeCode(gross: number, tax: TaxBreakdown) {
 }
 
 function priceMultiplierCode(location: LocationProfile, category: NonHousingExpenseCategory) {
-  const weights = V0_DATA.categoryPriceWeights[category];
+  const weights = SALARY_DATA.categoryPriceWeights[category];
   const entries = Object.entries(weights).flatMap(([indexKey, weight]) =>
     weight === undefined ? [] : [[indexKey as PriceIndexKey, weight] as const],
   );
@@ -318,7 +318,7 @@ function CityFlow({
       title: `${location.displayName} total tax`,
       value: formatCurrency(tax.totalTax),
       kind: "tax",
-      source: V0_DATA.sources.policyengine.name,
+      source: SALARY_DATA.sources.policyengine.name,
       formula: taxCode(location, gross, tax),
       notes: [`Effective tax rate: ${formatPercent(tax.effectiveRate)}.`],
     },
@@ -378,7 +378,7 @@ function CityFlow({
             title: `${location.displayName}: ${label}`,
             value: formatCurrency(value),
             kind: "tax",
-            source: V0_DATA.sources.policyengine.name,
+            source: SALARY_DATA.sources.policyengine.name,
             formula: taxComponentCode(location, gross, label, value),
           };
           return (

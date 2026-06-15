@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "artifacts": {
+    "hud_fmr_1br": "data/intermediate/housing/hud_fmr_1br.json",
+    "place_hud_area_crosswalk": "data/intermediate/housing/place_hud_area_crosswalk.json",
+    "review": "data/review/housing/hud_fmr_city_review.json"
+  },
+  "artifact_sha256": {
+    "hud_fmr_1br": "49a27b8d5ed86cbd9414861d7d31592cfc379a002ef8e34209f023940371a54b",
+    "place_hud_area_crosswalk": "2adb93992378044ef3b641c405519789db706d5aa3f64192ab41ed97d03b2748",
+    "review": "3faca120541b4ee39f31686bcbfeec6ee5aa141fb776ccfe73d10e483d1370a5"
+  },
+  "status": "generated",
+  "generated_at": "2026-06-15T09:18:06.819974+00:00",
+  "sources": {
+    "hud_fmr_revised_workbook": {
+      "name": "FY2026 HUD revised county-level Fair Market Rents",
+      "url": "https://www.huduser.gov/portal/datasets/fmr/fmr2026/FY26_FMRs_revised.xlsx",
+      "documentation_page_url": "https://www.huduser.gov/portal/datasets/fmr.html",
+      "local_path": "data/intermediate/housing/FY26_FMRs_revised.xlsx",
+      "sha256": "0b130fd046c7bedbee5d206ab55654d390d27da423ff22e307e0698fbb56ad9c",
+      "fiscal_year": 2026,
+      "effective_date": "2026-05-21"
+    },
+    "place_county_cbsa_crosswalk": {
+      "local_path": "data/intermediate/geography/place_county_cbsa_crosswalk.json",
+      "sha256": "99e68a641c3c156b0941fc1a2348235ef64ec27862183a320ecff5679e8731db"
+    }
+  },
+  "qa": {
+    "hud_locality_row_count": 4764,
+    "hud_area_count": 2622,
+    "city_count": 343,
+    "resolved_city_count": 327,
+    "multi_hud_city_count": 16,
+    "ambiguous_city_count": 0,
+    "unresolved_city_count": 0,
+    "new_england_city_count": 16,
+    "new_england_unresolved_city_count": 0,
+    "review_record_count": 16,
+    "annual_rent_check_failures": 0
+  }
+}

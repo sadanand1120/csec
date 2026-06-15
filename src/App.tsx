@@ -10,12 +10,12 @@ import {
   computeEquivalence,
 } from "./lib/equivalence";
 import type { EquivalenceResult } from "./lib/types";
-import { V0_DATA } from "./lib/v0Data";
+import { SALARY_DATA } from "./lib/nationwideData";
 
 const DemoMap = lazy(() => import("./components/DemoMap"));
 
 type PageName = "calculator" | "methodology" | "sources";
-type SourceKey = keyof typeof V0_DATA.sources;
+type SourceKey = keyof typeof SALARY_DATA.sources;
 
 const SOURCE_EXPLAINERS: Array<{
   key: SourceKey;
@@ -29,7 +29,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "PolicyEngine US is an open-source tax and benefit engine. Here it converts gross W-2 salary into federal income tax, payroll tax, supported state/local taxes, total tax, and net income for the fixed single-filer profile.",
     usedFor:
-      "Tax year 2026 gross-to-net curves. The browser loads the selected city curves and interpolates them when solving for the target salary.",
+      "Tax year 2026 gross-to-net curves for all supported cities. The browser loads only the selected city curves and interpolates them when solving for the target salary. Known municipal-tax gaps are flagged on affected cities.",
   },
   {
     key: "hudFmr",
@@ -69,7 +69,7 @@ const SOURCE_EXPLAINERS: Array<{
     description:
       "The U.S. Census Bureau publishes official place, county, and metro-area identifiers. TIGERweb is a Census mapping service, and CBSA means Core Based Statistical Area, the official metro-area grouping used by several federal datasets.",
     usedFor:
-      "Maps each supported city to one tax county and one metro area. County feeds taxes; metro area selects BEA price indexes.",
+      "Defines the 343-city universe using 2025 Census city/town population estimates, maps each city to county parts, and selects the primary metro area used for BEA price indexes.",
   },
 ];
 
@@ -211,8 +211,8 @@ post_tax(target_gross, target_city) - cost_basket(target_city)
         </ul>
 
         <h2>How the target salary is solved</h2>
-        <p>
-          The tax side comes from PolicyEngine US. For each city, the app stores a precomputed tax
+          <p>
+            The tax side comes from PolicyEngine US. For each city, the app stores a precomputed tax
           curve for tax year 2026: gross salary in, net income out. During interaction, the browser
           loads only the selected city curve files, computes the target net income needed, then
           interpolates on the target city's PolicyEngine curve.
@@ -228,7 +228,8 @@ target_gross = interpolate(
         <ul className="assumption-list">
           <li>Profile: one U.S. citizen, single filer, W-2 income only, no children or dependents.</li>
           <li>Housing: renter living alone in a one-bedroom apartment; no owner costs.</li>
-          <li>Taxes: PolicyEngine US tax year 2026, with supported state and local taxes.</li>
+          <li>Coverage: 343 U.S. Census city/town estimate records with 2025 population of at least 100,000.</li>
+          <li>Taxes: PolicyEngine US tax year 2026, with supported state and local taxes; known unsupported municipal taxes are flagged city by city.</li>
           <li>Excluded income: bonuses, equity compensation, self-employment, and investment income.</li>
           <li>Excluded deductions: custom itemization, pre-tax retirement, HSA/FSA, commuter benefits, and insurance-premium deductions.</li>
         </ul>
@@ -251,7 +252,7 @@ function SourcesPage() {
 
         <div className="source-list">
           {SOURCE_EXPLAINERS.map((entry, index) => {
-            const source = V0_DATA.sources[entry.key];
+            const source = SALARY_DATA.sources[entry.key];
             return (
               <section className="source-entry" key={entry.key}>
                 <div className="source-entry-heading">
@@ -372,6 +373,7 @@ function CalculatorPage() {
             Estimate the gross salary you would need in another city to preserve your surplus after
             both taxes and cost of living are included. Taxes cover federal, payroll, state, and
             supported local taxes; living costs include one-bedroom rent plus everyday spending.
+            The current dataset covers 343 large U.S. cities.
           </p>
           <div className="intro-summary" aria-label="Quick explanation">
             <div>

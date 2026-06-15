@@ -1,0 +1,389 @@
+[
+  {
+    "id": "PLACE:3651000",
+    "display_name": "New York, NY",
+    "state_abbr": "NY",
+    "county_fips": "36047",
+    "coverage": "supported",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {
+      "in_nyc": true
+    },
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "NYC resident income tax enabled through PolicyEngine `in_nyc`."
+    ]
+  },
+  {
+    "id": "PLACE:4260000",
+    "display_name": "Philadelphia, PA",
+    "state_abbr": "PA",
+    "county_fips": "42101",
+    "coverage": "supported",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {
+      "pa_philadelphia_wage_tax_resident": true
+    },
+    "person_gross_inputs": {
+      "pa_philadelphia_wage_tax_taxable_wages": "grossIncome"
+    },
+    "notes": [
+      "Philadelphia resident wage tax enabled through PolicyEngine Philadelphia wage-tax inputs."
+    ]
+  },
+  {
+    "id": "PLACE:3918000",
+    "display_name": "Columbus, OH",
+    "state_abbr": "OH",
+    "county_fips": "39049",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Ohio municipal income taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:0820000",
+    "display_name": "Denver, CO",
+    "state_abbr": "CO",
+    "county_fips": "08031",
+    "coverage": "supported",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {
+      "co_denver_employee_occupational_privilege_tax_months": 12
+    },
+    "person_gross_inputs": {},
+    "notes": [
+      "Denver employee occupational privilege tax enabled for all 12 months."
+    ]
+  },
+  {
+    "id": "PLACE:2622000",
+    "display_name": "Detroit, MI",
+    "state_abbr": "MI",
+    "county_fips": "26163",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2148006",
+    "display_name": "Louisville/Jefferson County, KY",
+    "state_abbr": "KY",
+    "county_fips": "21111",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Kentucky local occupational/license taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:4159000",
+    "display_name": "Portland, OR",
+    "state_abbr": "OR",
+    "county_fips": "41051",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Portland-area Metro/Multnomah local personal taxes are only partially modeled; Multnomah PFA may be modeled by county, but Metro SHS is not confirmed in PolicyEngine 1.729.0."
+    ]
+  },
+  {
+    "id": "PLACE:2938000",
+    "display_name": "Kansas City, MO",
+    "state_abbr": "MO",
+    "county_fips": "29095",
+    "coverage": "supported",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {
+      "mo_kansas_city_earnings_tax_taxable_earnings": "grossIncome"
+    },
+    "notes": [
+      "Kansas City earnings tax enabled through PolicyEngine taxable earnings input."
+    ]
+  },
+  {
+    "id": "PLACE:3916000",
+    "display_name": "Cleveland, OH",
+    "state_abbr": "OH",
+    "county_fips": "39035",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Ohio municipal income taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2146027",
+    "display_name": "Lexington-Fayette urban county, KY",
+    "state_abbr": "KY",
+    "county_fips": "21067",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Kentucky local occupational/license taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:3915000",
+    "display_name": "Cincinnati, OH",
+    "state_abbr": "OH",
+    "county_fips": "39061",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Ohio municipal income taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:4261000",
+    "display_name": "Pittsburgh, PA",
+    "state_abbr": "PA",
+    "county_fips": "42003",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Pennsylvania local earned-income/local-services taxes outside Philadelphia are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2965000",
+    "display_name": "St. Louis, MO",
+    "state_abbr": "MO",
+    "county_fips": "29510",
+    "coverage": "supported",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {
+      "mo_st_louis_earnings_tax_taxable_earnings": "grossIncome"
+    },
+    "notes": [
+      "St. Louis earnings tax enabled through PolicyEngine taxable earnings input."
+    ]
+  },
+  {
+    "id": "PLACE:3977000",
+    "display_name": "Toledo, OH",
+    "state_abbr": "OH",
+    "county_fips": "39095",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Ohio municipal income taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2634000",
+    "display_name": "Grand Rapids, MI",
+    "state_abbr": "MI",
+    "county_fips": "26081",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:0107000",
+    "display_name": "Birmingham, AL",
+    "state_abbr": "AL",
+    "county_fips": "01073",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Birmingham occupational/license tax is not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:3901000",
+    "display_name": "Akron, OH",
+    "state_abbr": "OH",
+    "county_fips": "39153",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Ohio municipal income taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2684000",
+    "display_name": "Warren, MI",
+    "state_abbr": "MI",
+    "county_fips": "26099",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:3921000",
+    "display_name": "Dayton, OH",
+    "state_abbr": "OH",
+    "county_fips": "39113",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Ohio municipal income taxes are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2676460",
+    "display_name": "Sterling Heights, MI",
+    "state_abbr": "MI",
+    "county_fips": "26099",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:4202000",
+    "display_name": "Allentown, PA",
+    "state_abbr": "PA",
+    "county_fips": "42077",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Pennsylvania local earned-income/local-services taxes outside Philadelphia are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2603000",
+    "display_name": "Ann Arbor, MI",
+    "state_abbr": "MI",
+    "county_fips": "26161",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:2646000",
+    "display_name": "Lansing, MI",
+    "state_abbr": "MI",
+    "county_fips": "26065",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  },
+  {
+    "id": "PLACE:4131250",
+    "display_name": "Gresham, OR",
+    "state_abbr": "OR",
+    "county_fips": "41051",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Portland-area Metro/Multnomah local personal taxes are only partially modeled; Multnomah PFA may be modeled by county, but Metro SHS is not confirmed in PolicyEngine 1.729.0."
+    ]
+  },
+  {
+    "id": "PLACE:2621000",
+    "display_name": "Dearborn, MI",
+    "state_abbr": "MI",
+    "county_fips": "26163",
+    "coverage": "partial_local_missing",
+    "policyengine_us_version": "1.729.0",
+    "tax_year": 2026,
+    "household_inputs": {},
+    "person_inputs": {},
+    "person_gross_inputs": {},
+    "notes": [
+      "Michigan city income taxes, including Detroit where applicable, are not modeled by PolicyEngine 1.729.0 in this pipeline."
+    ]
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "artifact": "data/intermediate/city_universe/canonical_places_2025_pop_ge_100k.json",
+  "status": "generated",
+  "generated_at": "2026-06-15T08:44:25.297031+00:00",
+  "inclusion_rule": {
+    "source": "U.S. Census subcounty city/town estimates",
+    "sumlev": "162",
+    "population_column": "POPESTIMATE2025",
+    "minimum_population": 100000,
+    "expected_count": 343,
+    "actual_count": 343,
+    "special_case_note": "The 343-place Census convention includes Urban Honolulu CDP, Hawaii; general CDPs are not included."
+  },
+  "sources": {
+    "population_estimates": {
+      "name": "Subcounty Resident Population Estimates: April 1, 2020 to July 1, 2025 (SUB-EST2025)",
+      "url": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025.csv",
+      "local_path": "data/raw/census/popest/2025/sub-est2025.csv",
+      "sha256": "e3508f5201465913476d4ddf91740f191f7977c9f2614a2a7e30b5fd22027934"
+    },
+    "gazetteer": {
+      "name": "2025 Census National Places Gazetteer File",
+      "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_place_national.zip",
+      "local_path": "data/raw/census/gazetteer/2025/2025_Gaz_place_national.zip",
+      "sha256": "49644173a453469d9bd77fb7a493b027f87567e209edaf2078aac7543ac2ee29"
+    }
+  },
+  "qa": {
+    "unique_ids": true,
+    "unique_slugs": true,
+    "min_population_observed": 100109,
+    "max_population_observed": 8584629
+  }
+}

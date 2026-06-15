@@ -413,13 +413,6 @@ export default function DemoMap({
         const stateName = String(feature.properties?.NAME ?? "Selected state");
         setSelectedState(stateName);
         fitState(map, feature);
-
-        const stateCity = locationsRef.current.find(
-          (location) => location.countyFips.slice(0, 2) === stateFips,
-        );
-        if (stateCity) {
-          onSelectLocationRef.current(stateCity.id);
-        }
       });
 
       map.on("click", "cities-circle", (event) => {

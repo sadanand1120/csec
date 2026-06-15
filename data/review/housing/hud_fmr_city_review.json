@@ -1,0 +1,1780 @@
+[
+  {
+    "id": "PLACE:4865000",
+    "place_geoid": "4865000",
+    "display_name": "San Antonio, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO41700M41700",
+      "hud_area_name": "San Antonio-New Braunfels, TX HUD Metro FMR Area",
+      "monthly_fmr_1br": 1177,
+      "annual_fmr_1br": 14124,
+      "population_2025": 1548411,
+      "population_share_2025": 0.9999929,
+      "source": {
+        "source_rows": [
+          3835
+        ],
+        "source_fips": [
+          "4802999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO41700M41700",
+        "hud_area_name": "San Antonio-New Braunfels, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1177,
+        "annual_fmr_1br": 14124,
+        "population_2025": 1548411,
+        "population_share_2025": 0.9999929,
+        "source": {
+          "source_rows": [
+            3835
+          ],
+          "source_fips": [
+            "4802999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO41700N48325",
+        "hud_area_name": "Medina County, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 912,
+        "annual_fmr_1br": 10944,
+        "population_2025": 11,
+        "population_share_2025": 7.1e-06,
+        "source": {
+          "source_rows": [
+            3983
+          ],
+          "source_fips": [
+            "4832599999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48029",
+        "county_name": "Bexar County",
+        "county_part_population_2025": 1548411,
+        "county_part_population_share_2025": 0.9999929,
+        "lookup_method": "county_fips",
+        "lookup_key": "48029",
+        "hud_area_ids": [
+          "METRO41700M41700"
+        ],
+        "source_rows": [
+          3835
+        ]
+      },
+      {
+        "county_fips": "48325",
+        "county_name": "Medina County",
+        "county_part_population_2025": 11,
+        "county_part_population_share_2025": 7.1e-06,
+        "lookup_method": "county_fips",
+        "lookup_key": "48325",
+        "hud_area_ids": [
+          "METRO41700N48325"
+        ],
+        "source_rows": [
+          3983
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4827000",
+    "place_geoid": "4827000",
+    "display_name": "Fort Worth, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO19100MM2800",
+      "hud_area_name": "Fort Worth-Arlington, TX HUD Metro FMR Area",
+      "monthly_fmr_1br": 1473,
+      "annual_fmr_1br": 17676,
+      "population_2025": 1008540,
+      "population_share_2025": 0.9809584,
+      "source": {
+        "source_rows": [
+          4004,
+          4040
+        ],
+        "source_fips": [
+          "4836799999",
+          "4843999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO19100MM2800",
+        "hud_area_name": "Fort Worth-Arlington, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1473,
+        "annual_fmr_1br": 17676,
+        "population_2025": 1008540,
+        "population_share_2025": 0.9809584,
+        "source": {
+          "source_rows": [
+            4004,
+            4040
+          ],
+          "source_fips": [
+            "4836799999",
+            "4843999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO19100M19100",
+        "hud_area_name": "Dallas, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1648,
+        "annual_fmr_1br": 19776,
+        "population_2025": 19577,
+        "population_share_2025": 0.01904161,
+        "source": {
+          "source_rows": [
+            3881
+          ],
+          "source_fips": [
+            "4812199999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48439",
+        "county_name": "Tarrant County",
+        "county_part_population_2025": 1006863,
+        "county_part_population_share_2025": 0.97932726,
+        "lookup_method": "county_fips",
+        "lookup_key": "48439",
+        "hud_area_ids": [
+          "METRO19100MM2800"
+        ],
+        "source_rows": [
+          4040
+        ]
+      },
+      {
+        "county_fips": "48121",
+        "county_name": "Denton County",
+        "county_part_population_2025": 19577,
+        "county_part_population_share_2025": 0.01904161,
+        "lookup_method": "county_fips",
+        "lookup_key": "48121",
+        "hud_area_ids": [
+          "METRO19100M19100"
+        ],
+        "source_rows": [
+          3881
+        ]
+      },
+      {
+        "county_fips": "48367",
+        "county_name": "Parker County",
+        "county_part_population_2025": 1677,
+        "county_part_population_share_2025": 0.00163114,
+        "lookup_method": "county_fips",
+        "lookup_key": "48367",
+        "hud_area_ids": [
+          "METRO19100MM2800"
+        ],
+        "source_rows": [
+          4004
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4055000",
+    "place_geoid": "4055000",
+    "display_name": "Oklahoma City, OK",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO36420M36420",
+      "hud_area_name": "Oklahoma City, OK HUD Metro FMR Area",
+      "monthly_fmr_1br": 1017,
+      "annual_fmr_1br": 12204,
+      "population_2025": 719764,
+      "population_share_2025": 0.99988192,
+      "source": {
+        "source_rows": [
+          3403,
+          3408,
+          3449
+        ],
+        "source_fips": [
+          "4001799999",
+          "4002799999",
+          "4010999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO36420M36420",
+        "hud_area_name": "Oklahoma City, OK HUD Metro FMR Area",
+        "monthly_fmr_1br": 1017,
+        "annual_fmr_1br": 12204,
+        "population_2025": 719764,
+        "population_share_2025": 0.99988192,
+        "source": {
+          "source_rows": [
+            3403,
+            3408,
+            3449
+          ],
+          "source_fips": [
+            "4001799999",
+            "4002799999",
+            "4010999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "NCNTY40125N40125",
+        "hud_area_name": "Pottawatomie County, OK",
+        "monthly_fmr_1br": 714,
+        "annual_fmr_1br": 8568,
+        "population_2025": 85,
+        "population_share_2025": 0.00011808,
+        "source": {
+          "source_rows": [
+            3457
+          ],
+          "source_fips": [
+            "4012599999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "40109",
+        "county_name": "Oklahoma County",
+        "county_part_population_2025": 544374,
+        "county_part_population_share_2025": 0.7562336,
+        "lookup_method": "county_fips",
+        "lookup_key": "40109",
+        "hud_area_ids": [
+          "METRO36420M36420"
+        ],
+        "source_rows": [
+          3449
+        ]
+      },
+      {
+        "county_fips": "40017",
+        "county_name": "Canadian County",
+        "county_part_population_2025": 94011,
+        "county_part_population_share_2025": 0.13059822,
+        "lookup_method": "county_fips",
+        "lookup_key": "40017",
+        "hud_area_ids": [
+          "METRO36420M36420"
+        ],
+        "source_rows": [
+          3403
+        ]
+      },
+      {
+        "county_fips": "40027",
+        "county_name": "Cleveland County",
+        "county_part_population_2025": 81379,
+        "county_part_population_share_2025": 0.1130501,
+        "lookup_method": "county_fips",
+        "lookup_key": "40027",
+        "hud_area_ids": [
+          "METRO36420M36420"
+        ],
+        "source_rows": [
+          3408
+        ]
+      },
+      {
+        "county_fips": "40125",
+        "county_name": "Pottawatomie County",
+        "county_part_population_2025": 85,
+        "county_part_population_share_2025": 0.00011808,
+        "lookup_method": "county_fips",
+        "lookup_key": "40125",
+        "hud_area_ids": [
+          "NCNTY40125N40125"
+        ],
+        "source_rows": [
+          3457
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:3755000",
+    "place_geoid": "3755000",
+    "display_name": "Raleigh, NC",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO39580M39580",
+      "hud_area_name": "Raleigh-Cary, NC MSA",
+      "monthly_fmr_1br": 1596,
+      "annual_fmr_1br": 19152,
+      "population_2025": 504646,
+      "population_share_2025": 0.99672135,
+      "source": {
+        "source_rows": [
+          3245
+        ],
+        "source_fips": [
+          "3718399999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO39580M39580",
+        "hud_area_name": "Raleigh-Cary, NC MSA",
+        "monthly_fmr_1br": 1596,
+        "annual_fmr_1br": 19152,
+        "population_2025": 504646,
+        "population_share_2025": 0.99672135,
+        "source": {
+          "source_rows": [
+            3245
+          ],
+          "source_fips": [
+            "3718399999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO20500M20500",
+        "hud_area_name": "Durham-Chapel Hill, NC HUD Metro FMR Area",
+        "monthly_fmr_1br": 1507,
+        "annual_fmr_1br": 18084,
+        "population_2025": 1660,
+        "population_share_2025": 0.00327865,
+        "source": {
+          "source_rows": [
+            3185
+          ],
+          "source_fips": [
+            "3706399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "37183",
+        "county_name": "Wake County",
+        "county_part_population_2025": 504646,
+        "county_part_population_share_2025": 0.99672135,
+        "lookup_method": "county_fips",
+        "lookup_key": "37183",
+        "hud_area_ids": [
+          "METRO39580M39580"
+        ],
+        "source_rows": [
+          3245
+        ]
+      },
+      {
+        "county_fips": "37063",
+        "county_name": "Durham County",
+        "county_part_population_2025": 1660,
+        "county_part_population_share_2025": 0.00327865,
+        "lookup_method": "county_fips",
+        "lookup_key": "37063",
+        "hud_area_ids": [
+          "METRO20500M20500"
+        ],
+        "source_rows": [
+          3185
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4817000",
+    "place_geoid": "4817000",
+    "display_name": "Corpus Christi, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO18580M18580",
+      "hud_area_name": "Corpus Christi, TX HUD Metro FMR Area",
+      "monthly_fmr_1br": 1117,
+      "annual_fmr_1br": 13404,
+      "population_2025": 317246,
+      "population_share_2025": 0.99999685,
+      "source": {
+        "source_rows": [
+          3998,
+          4025
+        ],
+        "source_fips": [
+          "4835599999",
+          "4840999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO18580M18580",
+        "hud_area_name": "Corpus Christi, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1117,
+        "annual_fmr_1br": 13404,
+        "population_2025": 317246,
+        "population_share_2025": 0.99999685,
+        "source": {
+          "source_rows": [
+            3998,
+            4025
+          ],
+          "source_fips": [
+            "4835599999",
+            "4840999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "NCNTY48273N48273",
+        "hud_area_name": "Kleberg County, TX",
+        "monthly_fmr_1br": 953,
+        "annual_fmr_1br": 11436,
+        "population_2025": 1,
+        "population_share_2025": 3.15e-06,
+        "source": {
+          "source_rows": [
+            3957
+          ],
+          "source_fips": [
+            "4827399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48355",
+        "county_name": "Nueces County",
+        "county_part_population_2025": 317241,
+        "county_part_population_share_2025": 0.99998109,
+        "lookup_method": "county_fips",
+        "lookup_key": "48355",
+        "hud_area_ids": [
+          "METRO18580M18580"
+        ],
+        "source_rows": [
+          3998
+        ]
+      },
+      {
+        "county_fips": "48409",
+        "county_name": "San Patricio County",
+        "county_part_population_2025": 5,
+        "county_part_population_share_2025": 1.576e-05,
+        "lookup_method": "county_fips",
+        "lookup_key": "48409",
+        "hud_area_ids": [
+          "METRO18580M18580"
+        ],
+        "source_rows": [
+          4025
+        ]
+      },
+      {
+        "county_fips": "48273",
+        "county_name": "Kleberg County",
+        "county_part_population_2025": 1,
+        "county_part_population_share_2025": 3.15e-06,
+        "lookup_method": "county_fips",
+        "lookup_key": "48273",
+        "hud_area_ids": [
+          "NCNTY48273N48273"
+        ],
+        "source_rows": [
+          3957
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:3719000",
+    "place_geoid": "3719000",
+    "display_name": "Durham, NC",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO20500M20500",
+      "hud_area_name": "Durham-Chapel Hill, NC HUD Metro FMR Area",
+      "monthly_fmr_1br": 1507,
+      "annual_fmr_1br": 18084,
+      "population_2025": 305263,
+      "population_share_2025": 0.99902474,
+      "source": {
+        "source_rows": [
+          3185,
+          3221
+        ],
+        "source_fips": [
+          "3706399999",
+          "3713599999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO20500M20500",
+        "hud_area_name": "Durham-Chapel Hill, NC HUD Metro FMR Area",
+        "monthly_fmr_1br": 1507,
+        "annual_fmr_1br": 18084,
+        "population_2025": 305263,
+        "population_share_2025": 0.99902474,
+        "source": {
+          "source_rows": [
+            3185,
+            3221
+          ],
+          "source_fips": [
+            "3706399999",
+            "3713599999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO39580M39580",
+        "hud_area_name": "Raleigh-Cary, NC MSA",
+        "monthly_fmr_1br": 1596,
+        "annual_fmr_1br": 19152,
+        "population_2025": 298,
+        "population_share_2025": 0.00097526,
+        "source": {
+          "source_rows": [
+            3245
+          ],
+          "source_fips": [
+            "3718399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "37063",
+        "county_name": "Durham County",
+        "county_part_population_2025": 305116,
+        "county_part_population_share_2025": 0.99854366,
+        "lookup_method": "county_fips",
+        "lookup_key": "37063",
+        "hud_area_ids": [
+          "METRO20500M20500"
+        ],
+        "source_rows": [
+          3185
+        ]
+      },
+      {
+        "county_fips": "37183",
+        "county_name": "Wake County",
+        "county_part_population_2025": 298,
+        "county_part_population_share_2025": 0.00097526,
+        "lookup_method": "county_fips",
+        "lookup_key": "37183",
+        "hud_area_ids": [
+          "METRO39580M39580"
+        ],
+        "source_rows": [
+          3245
+        ]
+      },
+      {
+        "county_fips": "37135",
+        "county_name": "Orange County",
+        "county_part_population_2025": 147,
+        "county_part_population_share_2025": 0.00048108,
+        "lookup_method": "county_fips",
+        "lookup_key": "37135",
+        "hud_area_ids": [
+          "METRO20500M20500"
+        ],
+        "source_rows": [
+          3221
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:0137000",
+    "place_geoid": "0137000",
+    "display_name": "Huntsville, AL",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO26620M26620",
+      "hud_area_name": "Huntsville, AL MSA",
+      "monthly_fmr_1br": 1136,
+      "annual_fmr_1br": 13632,
+      "population_2025": 233622,
+      "population_share_2025": 0.9999786,
+      "source": {
+        "source_rows": [
+          43,
+          46
+        ],
+        "source_fips": [
+          "0108399999",
+          "0108999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO26620M26620",
+        "hud_area_name": "Huntsville, AL MSA",
+        "monthly_fmr_1br": 1136,
+        "annual_fmr_1br": 13632,
+        "population_2025": 233622,
+        "population_share_2025": 0.9999786,
+        "source": {
+          "source_rows": [
+            43,
+            46
+          ],
+          "source_fips": [
+            "0108399999",
+            "0108999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO19460M19460",
+        "hud_area_name": "Decatur, AL MSA",
+        "monthly_fmr_1br": 776,
+        "annual_fmr_1br": 9312,
+        "population_2025": 5,
+        "population_share_2025": 2.14e-05,
+        "source": {
+          "source_rows": [
+            53
+          ],
+          "source_fips": [
+            "0110399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "01089",
+        "county_name": "Madison County",
+        "county_part_population_2025": 228416,
+        "county_part_population_share_2025": 0.97769522,
+        "lookup_method": "county_fips",
+        "lookup_key": "01089",
+        "hud_area_ids": [
+          "METRO26620M26620"
+        ],
+        "source_rows": [
+          46
+        ]
+      },
+      {
+        "county_fips": "01083",
+        "county_name": "Limestone County",
+        "county_part_population_2025": 5206,
+        "county_part_population_share_2025": 0.02228338,
+        "lookup_method": "county_fips",
+        "lookup_key": "01083",
+        "hud_area_ids": [
+          "METRO26620M26620"
+        ],
+        "source_rows": [
+          43
+        ]
+      },
+      {
+        "county_fips": "01103",
+        "county_name": "Morgan County",
+        "county_part_population_2025": 5,
+        "county_part_population_share_2025": 2.14e-05,
+        "lookup_method": "county_fips",
+        "lookup_key": "01103",
+        "hud_area_ids": [
+          "METRO19460M19460"
+        ],
+        "source_rows": [
+          53
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4830464",
+    "place_geoid": "4830464",
+    "display_name": "Grand Prairie, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO19100M19100",
+      "hud_area_name": "Dallas, TX HUD Metro FMR Area",
+      "monthly_fmr_1br": 1648,
+      "annual_fmr_1br": 19776,
+      "population_2025": 133319,
+      "population_share_2025": 0.63656808,
+      "source": {
+        "source_rows": [
+          3877,
+          3890
+        ],
+        "source_fips": [
+          "4811399999",
+          "4813999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO19100M19100",
+        "hud_area_name": "Dallas, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1648,
+        "annual_fmr_1br": 19776,
+        "population_2025": 133319,
+        "population_share_2025": 0.63656808,
+        "source": {
+          "source_rows": [
+            3877,
+            3890
+          ],
+          "source_fips": [
+            "4811399999",
+            "4813999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO19100MM2800",
+        "hud_area_name": "Fort Worth-Arlington, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1473,
+        "annual_fmr_1br": 17676,
+        "population_2025": 76115,
+        "population_share_2025": 0.36343191,
+        "source": {
+          "source_rows": [
+            3946,
+            4040
+          ],
+          "source_fips": [
+            "4825199999",
+            "4843999999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48113",
+        "county_name": "Dallas County",
+        "county_part_population_2025": 133293,
+        "county_part_population_share_2025": 0.63644394,
+        "lookup_method": "county_fips",
+        "lookup_key": "48113",
+        "hud_area_ids": [
+          "METRO19100M19100"
+        ],
+        "source_rows": [
+          3877
+        ]
+      },
+      {
+        "county_fips": "48439",
+        "county_name": "Tarrant County",
+        "county_part_population_2025": 76110,
+        "county_part_population_share_2025": 0.36340804,
+        "lookup_method": "county_fips",
+        "lookup_key": "48439",
+        "hud_area_ids": [
+          "METRO19100MM2800"
+        ],
+        "source_rows": [
+          4040
+        ]
+      },
+      {
+        "county_fips": "48139",
+        "county_name": "Ellis County",
+        "county_part_population_2025": 26,
+        "county_part_population_share_2025": 0.00012414,
+        "lookup_method": "county_fips",
+        "lookup_key": "48139",
+        "hud_area_ids": [
+          "METRO19100M19100"
+        ],
+        "source_rows": [
+          3890
+        ]
+      },
+      {
+        "county_fips": "48251",
+        "county_name": "Johnson County",
+        "county_part_population_2025": 5,
+        "county_part_population_share_2025": 2.387e-05,
+        "lookup_method": "county_fips",
+        "lookup_key": "48251",
+        "hud_area_ids": [
+          "METRO19100MM2800"
+        ],
+        "source_rows": [
+          3946
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:3710740",
+    "place_geoid": "3710740",
+    "display_name": "Cary, NC",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO39580M39580",
+      "hud_area_name": "Raleigh-Cary, NC MSA",
+      "monthly_fmr_1br": 1596,
+      "annual_fmr_1br": 19152,
+      "population_2025": 179502,
+      "population_share_2025": 0.9777756,
+      "source": {
+        "source_rows": [
+          3245
+        ],
+        "source_fips": [
+          "3718399999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO39580M39580",
+        "hud_area_name": "Raleigh-Cary, NC MSA",
+        "monthly_fmr_1br": 1596,
+        "annual_fmr_1br": 19152,
+        "population_2025": 179502,
+        "population_share_2025": 0.9777756,
+        "source": {
+          "source_rows": [
+            3245
+          ],
+          "source_fips": [
+            "3718399999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO20500M20500",
+        "hud_area_name": "Durham-Chapel Hill, NC HUD Metro FMR Area",
+        "monthly_fmr_1br": 1507,
+        "annual_fmr_1br": 18084,
+        "population_2025": 4080,
+        "population_share_2025": 0.0222244,
+        "source": {
+          "source_rows": [
+            3172,
+            3185
+          ],
+          "source_fips": [
+            "3703799999",
+            "3706399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "37183",
+        "county_name": "Wake County",
+        "county_part_population_2025": 179502,
+        "county_part_population_share_2025": 0.9777756,
+        "lookup_method": "county_fips",
+        "lookup_key": "37183",
+        "hud_area_ids": [
+          "METRO39580M39580"
+        ],
+        "source_rows": [
+          3245
+        ]
+      },
+      {
+        "county_fips": "37037",
+        "county_name": "Chatham County",
+        "county_part_population_2025": 4079,
+        "county_part_population_share_2025": 0.02221895,
+        "lookup_method": "county_fips",
+        "lookup_key": "37037",
+        "hud_area_ids": [
+          "METRO20500M20500"
+        ],
+        "source_rows": [
+          3172
+        ]
+      },
+      {
+        "county_fips": "37063",
+        "county_name": "Durham County",
+        "county_part_population_2025": 1,
+        "county_part_population_share_2025": 5.45e-06,
+        "lookup_method": "county_fips",
+        "lookup_key": "37063",
+        "hud_area_ids": [
+          "METRO20500M20500"
+        ],
+        "source_rows": [
+          3185
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:1703012",
+    "place_geoid": "1703012",
+    "display_name": "Aurora, IL",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO16980M16980",
+      "hud_area_name": "Chicago-Joliet-Naperville, IL HUD Metro FMR Area",
+      "monthly_fmr_1br": 1581,
+      "annual_fmr_1br": 18972,
+      "population_2025": 175004,
+      "population_share_2025": 0.9641828,
+      "source": {
+        "source_rows": [
+          780,
+          803,
+          857
+        ],
+        "source_fips": [
+          "1704399999",
+          "1708999999",
+          "1719799999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO16980M16980",
+        "hud_area_name": "Chicago-Joliet-Naperville, IL HUD Metro FMR Area",
+        "monthly_fmr_1br": 1581,
+        "annual_fmr_1br": 18972,
+        "population_2025": 175004,
+        "population_share_2025": 0.9641828,
+        "source": {
+          "source_rows": [
+            780,
+            803,
+            857
+          ],
+          "source_fips": [
+            "1704399999",
+            "1708999999",
+            "1719799999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO16980MM3780",
+        "hud_area_name": "Kendall County, IL HUD Metro FMR Area",
+        "monthly_fmr_1br": 1562,
+        "annual_fmr_1br": 18744,
+        "population_2025": 6501,
+        "population_share_2025": 0.0358172,
+        "source": {
+          "source_rows": [
+            805
+          ],
+          "source_fips": [
+            "1709399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "17089",
+        "county_name": "Kane County",
+        "county_part_population_2025": 110937,
+        "county_part_population_share_2025": 0.6112063,
+        "lookup_method": "county_fips",
+        "lookup_key": "17089",
+        "hud_area_ids": [
+          "METRO16980M16980"
+        ],
+        "source_rows": [
+          803
+        ]
+      },
+      {
+        "county_fips": "17043",
+        "county_name": "DuPage County",
+        "county_part_population_2025": 52191,
+        "county_part_population_share_2025": 0.2875458,
+        "lookup_method": "county_fips",
+        "lookup_key": "17043",
+        "hud_area_ids": [
+          "METRO16980M16980"
+        ],
+        "source_rows": [
+          780
+        ]
+      },
+      {
+        "county_fips": "17197",
+        "county_name": "Will County",
+        "county_part_population_2025": 11876,
+        "county_part_population_share_2025": 0.0654307,
+        "lookup_method": "county_fips",
+        "lookup_key": "17197",
+        "hud_area_ids": [
+          "METRO16980M16980"
+        ],
+        "source_rows": [
+          857
+        ]
+      },
+      {
+        "county_fips": "17093",
+        "county_name": "Kendall County",
+        "county_part_population_2025": 6501,
+        "county_part_population_share_2025": 0.0358172,
+        "lookup_method": "county_fips",
+        "lookup_key": "17093",
+        "hud_area_ids": [
+          "METRO16980MM3780"
+        ],
+        "source_rows": [
+          805
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:1738570",
+    "place_geoid": "1738570",
+    "display_name": "Joliet, IL",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO16980M16980",
+      "hud_area_name": "Chicago-Joliet-Naperville, IL HUD Metro FMR Area",
+      "monthly_fmr_1br": 1581,
+      "annual_fmr_1br": 18972,
+      "population_2025": 137691,
+      "population_share_2025": 0.90442785,
+      "source": {
+        "source_rows": [
+          857
+        ],
+        "source_fips": [
+          "1719799999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO16980M16980",
+        "hud_area_name": "Chicago-Joliet-Naperville, IL HUD Metro FMR Area",
+        "monthly_fmr_1br": 1581,
+        "annual_fmr_1br": 18972,
+        "population_2025": 137691,
+        "population_share_2025": 0.90442785,
+        "source": {
+          "source_rows": [
+            857
+          ],
+          "source_fips": [
+            "1719799999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO16980MM3780",
+        "hud_area_name": "Kendall County, IL HUD Metro FMR Area",
+        "monthly_fmr_1br": 1562,
+        "annual_fmr_1br": 18744,
+        "population_2025": 14550,
+        "population_share_2025": 0.09557215,
+        "source": {
+          "source_rows": [
+            805
+          ],
+          "source_fips": [
+            "1709399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "17197",
+        "county_name": "Will County",
+        "county_part_population_2025": 137691,
+        "county_part_population_share_2025": 0.90442785,
+        "lookup_method": "county_fips",
+        "lookup_key": "17197",
+        "hud_area_ids": [
+          "METRO16980M16980"
+        ],
+        "source_rows": [
+          857
+        ]
+      },
+      {
+        "county_fips": "17093",
+        "county_name": "Kendall County",
+        "county_part_population_2025": 14550,
+        "county_part_population_share_2025": 0.09557215,
+        "lookup_method": "county_fips",
+        "lookup_key": "17093",
+        "hud_area_ids": [
+          "METRO16980MM3780"
+        ],
+        "source_rows": [
+          805
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4848072",
+    "place_geoid": "4848072",
+    "display_name": "Midland, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO33260M33260",
+      "hud_area_name": "Midland, TX HUD Metro FMR Area",
+      "monthly_fmr_1br": 1449,
+      "annual_fmr_1br": 17388,
+      "population_2025": 147565,
+      "population_share_2025": 0.99966128,
+      "source": {
+        "source_rows": [
+          3985
+        ],
+        "source_fips": [
+          "4832999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO33260M33260",
+        "hud_area_name": "Midland, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1449,
+        "annual_fmr_1br": 17388,
+        "population_2025": 147565,
+        "population_share_2025": 0.99966128,
+        "source": {
+          "source_rows": [
+            3985
+          ],
+          "source_fips": [
+            "4832999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO33260N48317",
+        "hud_area_name": "Martin County, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1441,
+        "annual_fmr_1br": 17292,
+        "population_2025": 50,
+        "population_share_2025": 0.00033872,
+        "source": {
+          "source_rows": [
+            3979
+          ],
+          "source_fips": [
+            "4831799999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48329",
+        "county_name": "Midland County",
+        "county_part_population_2025": 147565,
+        "county_part_population_share_2025": 0.99966128,
+        "lookup_method": "county_fips",
+        "lookup_key": "48329",
+        "hud_area_ids": [
+          "METRO33260M33260"
+        ],
+        "source_rows": [
+          3985
+        ]
+      },
+      {
+        "county_fips": "48317",
+        "county_name": "Martin County",
+        "county_part_population_2025": 50,
+        "county_part_population_share_2025": 0.00033872,
+        "lookup_method": "county_fips",
+        "lookup_key": "48317",
+        "hud_area_ids": [
+          "METRO33260N48317"
+        ],
+        "source_rows": [
+          3979
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4856348",
+    "place_geoid": "4856348",
+    "display_name": "Pearland, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO26420MM1145",
+      "hud_area_name": "Brazoria County, TX HUD Metro FMR Area",
+      "monthly_fmr_1br": 1240,
+      "annual_fmr_1br": 14880,
+      "population_2025": 115821,
+      "population_share_2025": 0.89141076,
+      "source": {
+        "source_rows": [
+          3840
+        ],
+        "source_fips": [
+          "4803999999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO26420MM1145",
+        "hud_area_name": "Brazoria County, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1240,
+        "annual_fmr_1br": 14880,
+        "population_2025": 115821,
+        "population_share_2025": 0.89141076,
+        "source": {
+          "source_rows": [
+            3840
+          ],
+          "source_fips": [
+            "4803999999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO26420M26420",
+        "hud_area_name": "Houston-The Woodlands-Sugar Land, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1323,
+        "annual_fmr_1br": 15876,
+        "population_2025": 14109,
+        "population_share_2025": 0.10858924,
+        "source": {
+          "source_rows": [
+            3899,
+            3921
+          ],
+          "source_fips": [
+            "4815799999",
+            "4820199999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48039",
+        "county_name": "Brazoria County",
+        "county_part_population_2025": 115821,
+        "county_part_population_share_2025": 0.89141076,
+        "lookup_method": "county_fips",
+        "lookup_key": "48039",
+        "hud_area_ids": [
+          "METRO26420MM1145"
+        ],
+        "source_rows": [
+          3840
+        ]
+      },
+      {
+        "county_fips": "48201",
+        "county_name": "Harris County",
+        "county_part_population_2025": 8219,
+        "county_part_population_share_2025": 0.06325714,
+        "lookup_method": "county_fips",
+        "lookup_key": "48201",
+        "hud_area_ids": [
+          "METRO26420M26420"
+        ],
+        "source_rows": [
+          3921
+        ]
+      },
+      {
+        "county_fips": "48157",
+        "county_name": "Fort Bend County",
+        "county_part_population_2025": 5890,
+        "county_part_population_share_2025": 0.0453321,
+        "lookup_method": "county_fips",
+        "lookup_key": "48157",
+        "hud_area_ids": [
+          "METRO26420M26420"
+        ],
+        "source_rows": [
+          3899
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:4853388",
+    "place_geoid": "4853388",
+    "display_name": "Odessa, TX",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO36220M36220",
+      "hud_area_name": "Odessa, TX MSA",
+      "monthly_fmr_1br": 1269,
+      "annual_fmr_1br": 15228,
+      "population_2025": 118390,
+      "population_share_2025": 0.96481863,
+      "source": {
+        "source_rows": [
+          3888
+        ],
+        "source_fips": [
+          "4813599999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO36220M36220",
+        "hud_area_name": "Odessa, TX MSA",
+        "monthly_fmr_1br": 1269,
+        "annual_fmr_1br": 15228,
+        "population_2025": 118390,
+        "population_share_2025": 0.96481863,
+        "source": {
+          "source_rows": [
+            3888
+          ],
+          "source_fips": [
+            "4813599999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO33260M33260",
+        "hud_area_name": "Midland, TX HUD Metro FMR Area",
+        "monthly_fmr_1br": 1449,
+        "annual_fmr_1br": 17388,
+        "population_2025": 4317,
+        "population_share_2025": 0.03518137,
+        "source": {
+          "source_rows": [
+            3985
+          ],
+          "source_fips": [
+            "4832999999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "48135",
+        "county_name": "Ector County",
+        "county_part_population_2025": 118390,
+        "county_part_population_share_2025": 0.96481863,
+        "lookup_method": "county_fips",
+        "lookup_key": "48135",
+        "hud_area_ids": [
+          "METRO36220M36220"
+        ],
+        "source_rows": [
+          3888
+        ]
+      },
+      {
+        "county_fips": "48329",
+        "county_name": "Midland County",
+        "county_part_population_2025": 4317,
+        "county_part_population_share_2025": 0.03518137,
+        "lookup_method": "county_fips",
+        "lookup_key": "48329",
+        "hud_area_ids": [
+          "METRO33260M33260"
+        ],
+        "source_rows": [
+          3985
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:3731400",
+    "place_geoid": "3731400",
+    "display_name": "High Point, NC",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO24660M24660",
+      "hud_area_name": "Greensboro-High Point, NC HUD Metro FMR Area",
+      "monthly_fmr_1br": 1213,
+      "annual_fmr_1br": 14556,
+      "population_2025": 112869,
+      "population_share_2025": 0.93612062,
+      "source": {
+        "source_rows": [
+          3194,
+          3229
+        ],
+        "source_fips": [
+          "3708199999",
+          "3715199999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO24660M24660",
+        "hud_area_name": "Greensboro-High Point, NC HUD Metro FMR Area",
+        "monthly_fmr_1br": 1213,
+        "annual_fmr_1br": 14556,
+        "population_2025": 112869,
+        "population_share_2025": 0.93612062,
+        "source": {
+          "source_rows": [
+            3194,
+            3229
+          ],
+          "source_fips": [
+            "3708199999",
+            "3715199999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO49180N37057",
+        "hud_area_name": "Davidson County, NC HUD Metro FMR Area",
+        "monthly_fmr_1br": 876,
+        "annual_fmr_1br": 10512,
+        "population_2025": 7254,
+        "population_share_2025": 0.06016372,
+        "source": {
+          "source_rows": [
+            3182
+          ],
+          "source_fips": [
+            "3705799999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO49180M49180",
+        "hud_area_name": "Winston-Salem, NC HUD Metro FMR Area",
+        "monthly_fmr_1br": 1082,
+        "annual_fmr_1br": 12984,
+        "population_2025": 448,
+        "population_share_2025": 0.00371565,
+        "source": {
+          "source_rows": [
+            3187
+          ],
+          "source_fips": [
+            "3706799999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "37081",
+        "county_name": "Guilford County",
+        "county_part_population_2025": 112858,
+        "county_part_population_share_2025": 0.93602939,
+        "lookup_method": "county_fips",
+        "lookup_key": "37081",
+        "hud_area_ids": [
+          "METRO24660M24660"
+        ],
+        "source_rows": [
+          3194
+        ]
+      },
+      {
+        "county_fips": "37057",
+        "county_name": "Davidson County",
+        "county_part_population_2025": 7254,
+        "county_part_population_share_2025": 0.06016372,
+        "lookup_method": "county_fips",
+        "lookup_key": "37057",
+        "hud_area_ids": [
+          "METRO49180N37057"
+        ],
+        "source_rows": [
+          3182
+        ]
+      },
+      {
+        "county_fips": "37067",
+        "county_name": "Forsyth County",
+        "county_part_population_2025": 448,
+        "county_part_population_share_2025": 0.00371565,
+        "lookup_method": "county_fips",
+        "lookup_key": "37067",
+        "hud_area_ids": [
+          "METRO49180M49180"
+        ],
+        "source_rows": [
+          3187
+        ]
+      },
+      {
+        "county_fips": "37151",
+        "county_name": "Randolph County",
+        "county_part_population_2025": 11,
+        "county_part_population_share_2025": 9.123e-05,
+        "lookup_method": "county_fips",
+        "lookup_key": "37151",
+        "hud_area_ids": [
+          "METRO24660M24660"
+        ],
+        "source_rows": [
+          3229
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  },
+  {
+    "id": "PLACE:0845970",
+    "place_geoid": "0845970",
+    "display_name": "Longmont, CO",
+    "status": "multi_hud",
+    "selected_hud_area": {
+      "hud_area_id": "METRO14500M14500",
+      "hud_area_name": "Boulder, CO MSA",
+      "monthly_fmr_1br": 1795,
+      "annual_fmr_1br": 21540,
+      "population_2025": 98807,
+      "population_share_2025": 0.98699418,
+      "source": {
+        "source_rows": [
+          253
+        ],
+        "source_fips": [
+          "0801399999"
+        ]
+      }
+    },
+    "candidate_hud_areas": [
+      {
+        "hud_area_id": "METRO14500M14500",
+        "hud_area_name": "Boulder, CO MSA",
+        "monthly_fmr_1br": 1795,
+        "annual_fmr_1br": 21540,
+        "population_2025": 98807,
+        "population_share_2025": 0.98699418,
+        "source": {
+          "source_rows": [
+            253
+          ],
+          "source_fips": [
+            "0801399999"
+          ]
+        }
+      },
+      {
+        "hud_area_id": "METRO24540M24540",
+        "hud_area_name": "Greeley, CO MSA",
+        "monthly_fmr_1br": 1238,
+        "annual_fmr_1br": 14856,
+        "population_2025": 1302,
+        "population_share_2025": 0.01300582,
+        "source": {
+          "source_rows": [
+            309
+          ],
+          "source_fips": [
+            "0812399999"
+          ]
+        }
+      }
+    ],
+    "county_part_mappings": [
+      {
+        "county_fips": "08013",
+        "county_name": "Boulder County",
+        "county_part_population_2025": 98807,
+        "county_part_population_share_2025": 0.98699418,
+        "lookup_method": "county_fips",
+        "lookup_key": "08013",
+        "hud_area_ids": [
+          "METRO14500M14500"
+        ],
+        "source_rows": [
+          253
+        ]
+      },
+      {
+        "county_fips": "08123",
+        "county_name": "Weld County",
+        "county_part_population_2025": 1302,
+        "county_part_population_share_2025": 0.01300582,
+        "lookup_method": "county_fips",
+        "lookup_key": "08123",
+        "hud_area_ids": [
+          "METRO24540M24540"
+        ],
+        "source_rows": [
+          309
+        ]
+      }
+    ],
+    "unresolved_parts": [],
+    "ambiguous_parts": [],
+    "flags": {
+      "review_required": true,
+      "unresolved": false,
+      "ambiguous": false,
+      "multi_hud": true,
+      "new_england": false
+    }
+  }
+]

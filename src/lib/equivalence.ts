@@ -1,4 +1,4 @@
-import { V0_DATA } from "./v0Data";
+import { SALARY_DATA } from "./nationwideData";
 import { loadTaxCurveMap } from "./cityTaxCurves";
 import type {
   Basket,
@@ -7,8 +7,8 @@ import type {
   LocationProfile,
   NonHousingExpenseCategory,
   TaxBreakdown,
-  V0BasketBand,
-  V0TaxCurve,
+  BasketBand,
+  TaxCurve,
 } from "./types";
 
 const NONHOUSING_CATEGORIES: NonHousingExpenseCategory[] = [
@@ -19,15 +19,15 @@ const NONHOUSING_CATEGORIES: NonHousingExpenseCategory[] = [
   "other_nonhousing",
 ];
 
-export const LOCATIONS = V0_DATA.locations;
-export const DEFAULT_SOURCE_ID = V0_DATA.defaultSourceId;
-export const DEFAULT_TARGET_ID = V0_DATA.defaultTargetId;
-export const DEFAULT_GROSS_INCOME = V0_DATA.defaultGrossIncome;
-export const MODEL_VERSION = V0_DATA.modelVersion;
-export const FIXED_PROFILE = V0_DATA.fixedProfile;
+export const LOCATIONS = SALARY_DATA.locations;
+export const DEFAULT_SOURCE_ID = SALARY_DATA.defaultSourceId;
+export const DEFAULT_TARGET_ID = SALARY_DATA.defaultTargetId;
+export const DEFAULT_GROSS_INCOME = SALARY_DATA.defaultGrossIncome;
+export const MODEL_VERSION = SALARY_DATA.modelVersion;
+export const FIXED_PROFILE = SALARY_DATA.fixedProfile;
 
 const DATA_VINTAGE = Object.fromEntries(
-  Object.entries(V0_DATA.sources).map(([key, source]) => [key, source.vintage]),
+  Object.entries(SALARY_DATA.sources).map(([key, source]) => [key, source.vintage]),
 );
 
 export function getLocation(locationId: string) {
@@ -38,20 +38,20 @@ export function getLocation(locationId: string) {
   return location;
 }
 
-function pickBasketBand(grossIncome: number): V0BasketBand {
-  const band = V0_DATA.basketBands.find(
+function pickBasketBand(grossIncome: number): BasketBand {
+  const band = SALARY_DATA.basketBands.find(
     (entry) =>
       grossIncome >= entry.minGrossIncome &&
       (entry.maxGrossIncome === null || grossIncome < entry.maxGrossIncome),
   );
-  return band ?? V0_DATA.basketBands[V0_DATA.basketBands.length - 1];
+  return band ?? SALARY_DATA.basketBands[SALARY_DATA.basketBands.length - 1];
 }
 
 function categoryPriceMultiplier(
   location: LocationProfile,
   category: NonHousingExpenseCategory,
 ) {
-  const weights = V0_DATA.categoryPriceWeights[category];
+  const weights = SALARY_DATA.categoryPriceWeights[category];
   return Object.entries(weights).reduce((sum, [indexKey, weight]) => {
     if (weight === undefined) return sum;
     const priceIndex = location.priceIndex[indexKey as keyof LocationProfile["priceIndex"]];
@@ -132,9 +132,9 @@ function interpolate(xs: readonly number[], ys: readonly number[], x: number) {
 }
 
 function taxCurveFor(
-  curves: Record<string, V0TaxCurve>,
+  curves: Record<string, TaxCurve>,
   location: LocationProfile,
-): V0TaxCurve {
+): TaxCurve {
   const curve = curves[location.id];
   if (!curve) {
     throw new Error(`Missing tax curve for ${location.id}`);
@@ -145,7 +145,7 @@ function taxCurveFor(
 function estimateTax(
   grossIncome: number,
   location: LocationProfile,
-  curves: Record<string, V0TaxCurve>,
+  curves: Record<string, TaxCurve>,
 ): TaxBreakdown {
   const curve = taxCurveFor(curves, location);
   const grossGrid = curve.grossIncome;
@@ -195,12 +195,13 @@ function interpolationBounds(xs: readonly number[], ys: readonly number[], x: nu
 function grossRequiredForNet(
   netIncome: number,
   location: LocationProfile,
-  curves: Record<string, V0TaxCurve>,
+  curves: Record<string, TaxCurve>,
 ) {
   const curve = taxCurveFor(curves, location);
+  const invertibleNetIncome = curve.netIncomeForInversion ?? curve.netIncome;
   return {
-    grossIncome: interpolate(curve.netIncome, curve.grossIncome, netIncome),
-    bounds: interpolationBounds(curve.netIncome, curve.grossIncome, netIncome),
+    grossIncome: interpolate(invertibleNetIncome, curve.grossIncome, netIncome),
+    bounds: interpolationBounds(invertibleNetIncome, curve.grossIncome, netIncome),
   };
 }
 
@@ -218,7 +219,7 @@ function computeEquivalenceWithCurves(
   sourceLocationId: string,
   targetLocationId: string,
   sourceGrossIncome: number,
-  curves: Record<string, V0TaxCurve>,
+  curves: Record<string, TaxCurve>,
 ): EquivalenceResult {
   const source = getLocation(sourceLocationId);
   const target = getLocation(targetLocationId);
@@ -232,6 +233,14 @@ function computeEquivalenceWithCurves(
   const targetTax = estimateTax(targetEquivalentGrossIncome, target, curves);
   const targetSurplus = targetTax.netIncome - targetBasket.total;
   const targetTaxDelta = targetTax.totalTax - sourceTax.totalTax;
+  const sourceTaxNotes =
+    source.taxCoverageStatus && source.taxCoverageStatus !== "supported"
+      ? source.taxNotes ?? []
+      : [];
+  const targetTaxNotes =
+    target.taxCoverageStatus && target.taxCoverageStatus !== "supported"
+      ? target.taxNotes ?? []
+      : [];
   const warnings = Array.from(
     new Set([
       "Fixed profile only: single U.S. citizen, W-2 wages, single filer, no children, renter living alone in a 1BR apartment.",
@@ -243,6 +252,8 @@ function computeEquivalenceWithCurves(
       "RSUs, bonuses, retirement contributions, itemized deductions, AMT, moving costs, owner costs, and employer benefits are excluded.",
       source.resolutionNote,
       target.resolutionNote,
+      ...sourceTaxNotes.map((note) => `${source.displayName}: ${note}`),
+      ...targetTaxNotes.map((note) => `${target.displayName}: ${note}`),
     ]),
   );
 

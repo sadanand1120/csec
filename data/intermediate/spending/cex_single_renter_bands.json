@@ -1,0 +1,1622 @@
+{
+  "schema_version": "1.0",
+  "source_year": 2024,
+  "cpi_target": "May 2026",
+  "cpi_factor": 1.068329390112176,
+  "cex_files": [
+    {
+      "file": "intrvw24/fmli241x.csv",
+      "calendar_suffixes": [
+        "CQ"
+      ]
+    },
+    {
+      "file": "intrvw24/fmli242.csv",
+      "calendar_suffixes": [
+        "PQ",
+        "CQ"
+      ]
+    },
+    {
+      "file": "intrvw24/fmli243.csv",
+      "calendar_suffixes": [
+        "PQ",
+        "CQ"
+      ]
+    },
+    {
+      "file": "intrvw24/fmli244.csv",
+      "calendar_suffixes": [
+        "PQ",
+        "CQ"
+      ]
+    },
+    {
+      "file": "intrvw24/fmli251.csv",
+      "calendar_suffixes": [
+        "PQ"
+      ]
+    }
+  ],
+  "category_variables": {
+    "food": [
+      "FDHOME",
+      "FDAWAY"
+    ],
+    "transportation": [
+      "TRANS"
+    ],
+    "healthcare": [
+      "HEALTH"
+    ],
+    "internet_mobile": [
+      "TELEPH"
+    ],
+    "other_nonhousing": [
+      "ALCBEV",
+      "APPAR",
+      "HOUSEQ",
+      "HOUSOP",
+      "ENTERT",
+      "PERSCA",
+      "READ",
+      "EDUCA",
+      "TOBACC",
+      "MISC"
+    ]
+  },
+  "bands": [
+    {
+      "id": "single_under_50k",
+      "label": "Single-person CEX, income under $50k, CPI-adjusted to May 2026 dollars",
+      "minGrossIncome": 0,
+      "maxGrossIncome": 53416,
+      "sourceYearMinGrossIncome": 0,
+      "sourceYearMaxGrossIncome": 50000,
+      "nationalAnnual": {
+        "food": 3252.68,
+        "transportation": 6064.86,
+        "healthcare": 1767.97,
+        "internet_mobile": 762.54,
+        "other_nonhousing": 5941.04
+      },
+      "sourceYearNationalAnnual": {
+        "food": 3044.64,
+        "transportation": 5676.95,
+        "healthcare": 1654.89,
+        "internet_mobile": 713.76,
+        "other_nonhousing": 5561.06
+      },
+      "unweightedQuarterRecords": 1498,
+      "weightedQuarterRecords": 44679030.51,
+      "filter": {
+        "FAM_SIZE": 1,
+        "CUTENURE": "4",
+        "FSALARYX": "> 0",
+        "FSMPFRMX": 0
+      },
+      "qa": {
+        "unweightedConsumerUnitRows": 938,
+        "weightedConsumerUnitRows": 27917555.14,
+        "unweightedQuarterRecords": 1498,
+        "weightedQuarterRecords": 44679030.51,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 206,
+            "weightedConsumerUnitRows": 5817055.55,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 179,
+            "weightedConsumerUnitRows": 5343284.89,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 187,
+            "weightedConsumerUnitRows": 5598541.72,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 194,
+            "weightedConsumerUnitRows": 5819648.75,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 172,
+            "weightedConsumerUnitRows": 5339024.22,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        },
+        "categoryStats": {
+          "food": {
+            "unweightedQuarterRecords": 1498,
+            "weightedQuarterRecords": 44679030.51,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 206,
+                "weightedRecords": 5817055.55,
+                "sourceYearQuarterMean": 522.41
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 478.93
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 202.83
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 489.66
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 256.65
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 413.58
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 209.13
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 172,
+                "weightedRecords": 5339024.22,
+                "sourceYearQuarterMean": 471.46
+              }
+            ]
+          },
+          "transportation": {
+            "unweightedQuarterRecords": 1498,
+            "weightedQuarterRecords": 44679030.51,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 206,
+                "weightedRecords": 5817055.55,
+                "sourceYearQuarterMean": 536.8
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 774.66
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 442.96
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 1172.41
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 500.78
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 938.67
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 524.3
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 172,
+                "weightedRecords": 5339024.22,
+                "sourceYearQuarterMean": 786.38
+              }
+            ]
+          },
+          "healthcare": {
+            "unweightedQuarterRecords": 1498,
+            "weightedQuarterRecords": 44679030.51,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 206,
+                "weightedRecords": 5817055.55,
+                "sourceYearQuarterMean": 130.71
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 286.43
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 155.04
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 316.75
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 210.41
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 207.12
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 102.74
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 172,
+                "weightedRecords": 5339024.22,
+                "sourceYearQuarterMean": 245.7
+              }
+            ]
+          },
+          "internet_mobile": {
+            "unweightedQuarterRecords": 1498,
+            "weightedQuarterRecords": 44679030.51,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 206,
+                "weightedRecords": 5817055.55,
+                "sourceYearQuarterMean": 47.17
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 113.74
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 65.55
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 124.23
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 53.61
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 125.45
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 54.37
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 172,
+                "weightedRecords": 5339024.22,
+                "sourceYearQuarterMean": 129.64
+              }
+            ]
+          },
+          "other_nonhousing": {
+            "unweightedQuarterRecords": 1498,
+            "weightedQuarterRecords": 44679030.51,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 206,
+                "weightedRecords": 5817055.55,
+                "sourceYearQuarterMean": 647.28
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 937.98
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 179,
+                "weightedRecords": 5343284.89,
+                "sourceYearQuarterMean": 328.14
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 831.94
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 187,
+                "weightedRecords": 5598541.72,
+                "sourceYearQuarterMean": 660.71
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 949.94
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 194,
+                "weightedRecords": 5819648.75,
+                "sourceYearQuarterMean": 329.18
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 172,
+                "weightedRecords": 5339024.22,
+                "sourceYearQuarterMean": 875.89
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "single_50k_100k",
+      "label": "Single-person CEX, income $50k-$100k, CPI-adjusted to May 2026 dollars",
+      "minGrossIncome": 53416,
+      "maxGrossIncome": 106833,
+      "sourceYearMinGrossIncome": 50000,
+      "sourceYearMaxGrossIncome": 100000,
+      "nationalAnnual": {
+        "food": 4602.7,
+        "transportation": 8891.52,
+        "healthcare": 3565.82,
+        "internet_mobile": 989.04,
+        "other_nonhousing": 7219.11
+      },
+      "sourceYearNationalAnnual": {
+        "food": 4308.31,
+        "transportation": 8322.83,
+        "healthcare": 3337.75,
+        "internet_mobile": 925.79,
+        "other_nonhousing": 6757.38
+      },
+      "unweightedQuarterRecords": 988,
+      "weightedQuarterRecords": 27015733.03,
+      "filter": {
+        "FAM_SIZE": 1,
+        "CUTENURE": "4",
+        "FSALARYX": "> 0",
+        "FSMPFRMX": 0
+      },
+      "qa": {
+        "unweightedConsumerUnitRows": 614,
+        "weightedConsumerUnitRows": 17012719.34,
+        "unweightedQuarterRecords": 988,
+        "weightedQuarterRecords": 27015733.03,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 121,
+            "weightedConsumerUnitRows": 3275097.79,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 120,
+            "weightedConsumerUnitRows": 3379905.75,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 128,
+            "weightedConsumerUnitRows": 3344473.43,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 126,
+            "weightedConsumerUnitRows": 3278634.51,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 119,
+            "weightedConsumerUnitRows": 3734607.86,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        },
+        "categoryStats": {
+          "food": {
+            "unweightedQuarterRecords": 988,
+            "weightedQuarterRecords": 27015733.03,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 121,
+                "weightedRecords": 3275097.79,
+                "sourceYearQuarterMean": 612.92
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 622.5
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 347.22
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 654.7
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 364.08
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 694.07
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 434.74
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 119,
+                "weightedRecords": 3734607.86,
+                "sourceYearQuarterMean": 578.08
+              }
+            ]
+          },
+          "transportation": {
+            "unweightedQuarterRecords": 988,
+            "weightedQuarterRecords": 27015733.03,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 121,
+                "weightedRecords": 3275097.79,
+                "sourceYearQuarterMean": 787.96
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 1152.22
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 907.52
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 2101.23
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 849.71
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 1067.41
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 472.75
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 119,
+                "weightedRecords": 3734607.86,
+                "sourceYearQuarterMean": 984.03
+              }
+            ]
+          },
+          "healthcare": {
+            "unweightedQuarterRecords": 988,
+            "weightedQuarterRecords": 27015733.03,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 121,
+                "weightedRecords": 3275097.79,
+                "sourceYearQuarterMean": 288.27
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 483.84
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 297.03
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 570.21
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 228.6
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 559.03
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 298.26
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 119,
+                "weightedRecords": 3734607.86,
+                "sourceYearQuarterMean": 612.51
+              }
+            ]
+          },
+          "internet_mobile": {
+            "unweightedQuarterRecords": 988,
+            "weightedQuarterRecords": 27015733.03,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 121,
+                "weightedRecords": 3275097.79,
+                "sourceYearQuarterMean": 74.06
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 153.37
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 66.09
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 141.86
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 77.45
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 155.25
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 90.27
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 119,
+                "weightedRecords": 3734607.86,
+                "sourceYearQuarterMean": 167.43
+              }
+            ]
+          },
+          "other_nonhousing": {
+            "unweightedQuarterRecords": 988,
+            "weightedQuarterRecords": 27015733.03,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 121,
+                "weightedRecords": 3275097.79,
+                "sourceYearQuarterMean": 489.64
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 1067.17
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 120,
+                "weightedRecords": 3379905.75,
+                "sourceYearQuarterMean": 579.26
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 1219.12
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 128,
+                "weightedRecords": 3344473.43,
+                "sourceYearQuarterMean": 675.83
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 1015.74
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 126,
+                "weightedRecords": 3278634.51,
+                "sourceYearQuarterMean": 631.52
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 119,
+                "weightedRecords": 3734607.86,
+                "sourceYearQuarterMean": 1079.1
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "single_100k_155925",
+      "label": "Single-person CEX, income $100k-$155,925, CPI-adjusted to May 2026 dollars",
+      "minGrossIncome": 106833,
+      "maxGrossIncome": 166579,
+      "sourceYearMinGrossIncome": 100000,
+      "sourceYearMaxGrossIncome": 155925,
+      "nationalAnnual": {
+        "food": 7267.43,
+        "transportation": 13746.25,
+        "healthcare": 4897.85,
+        "internet_mobile": 1009.74,
+        "other_nonhousing": 10968.42
+      },
+      "sourceYearNationalAnnual": {
+        "food": 6802.61,
+        "transportation": 12867.05,
+        "healthcare": 4584.59,
+        "internet_mobile": 945.15,
+        "other_nonhousing": 10266.89
+      },
+      "unweightedQuarterRecords": 337,
+      "weightedQuarterRecords": 9113282.12,
+      "filter": {
+        "FAM_SIZE": 1,
+        "CUTENURE": "4",
+        "FSALARYX": "> 0",
+        "FSMPFRMX": 0
+      },
+      "qa": {
+        "unweightedConsumerUnitRows": 211,
+        "weightedConsumerUnitRows": 5748641.55,
+        "unweightedQuarterRecords": 337,
+        "weightedQuarterRecords": 9113282.12,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 49,
+            "weightedConsumerUnitRows": 1351012.68,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 48,
+            "weightedConsumerUnitRows": 1383837.25,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 42,
+            "weightedConsumerUnitRows": 1126423.47,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 36,
+            "weightedConsumerUnitRows": 854379.86,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 36,
+            "weightedConsumerUnitRows": 1032988.29,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        },
+        "categoryStats": {
+          "food": {
+            "unweightedQuarterRecords": 337,
+            "weightedQuarterRecords": 9113282.12,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 49,
+                "weightedRecords": 1351012.68,
+                "sourceYearQuarterMean": 904.33
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 1034.42
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 321.42
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 1315.09
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 377.1
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 1230.97
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 559.29
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 1032988.29,
+                "sourceYearQuarterMean": 1059.99
+              }
+            ]
+          },
+          "transportation": {
+            "unweightedQuarterRecords": 337,
+            "weightedQuarterRecords": 9113282.12,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 49,
+                "weightedRecords": 1351012.68,
+                "sourceYearQuarterMean": 1169.37
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 1293.12
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 1229.12
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 3251.92
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 1691.42
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 1019.31
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 507.69
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 1032988.29,
+                "sourceYearQuarterMean": 2705.1
+              }
+            ]
+          },
+          "healthcare": {
+            "unweightedQuarterRecords": 337,
+            "weightedQuarterRecords": 9113282.12,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 49,
+                "weightedRecords": 1351012.68,
+                "sourceYearQuarterMean": 681.56
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 898.68
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 437.91
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 618.46
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 236.91
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 781.92
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 233.18
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 1032988.29,
+                "sourceYearQuarterMean": 695.97
+              }
+            ]
+          },
+          "internet_mobile": {
+            "unweightedQuarterRecords": 337,
+            "weightedQuarterRecords": 9113282.12,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 49,
+                "weightedRecords": 1351012.68,
+                "sourceYearQuarterMean": 59.01
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 196.02
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 44.37
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 173.83
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 80.66
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 161.98
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 68.86
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 1032988.29,
+                "sourceYearQuarterMean": 160.43
+              }
+            ]
+          },
+          "other_nonhousing": {
+            "unweightedQuarterRecords": 337,
+            "weightedQuarterRecords": 9113282.12,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 49,
+                "weightedRecords": 1351012.68,
+                "sourceYearQuarterMean": 639.88
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 2256.68
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 48,
+                "weightedRecords": 1383837.25,
+                "sourceYearQuarterMean": 494.6
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 1711.83
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 42,
+                "weightedRecords": 1126423.47,
+                "sourceYearQuarterMean": 588.43
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 1968.77
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 854379.86,
+                "sourceYearQuarterMean": 1113.86
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 36,
+                "weightedRecords": 1032988.29,
+                "sourceYearQuarterMean": 1492.83
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "single_155925_plus",
+      "label": "Single-person CEX, income $155,925+, CPI-adjusted to May 2026 dollars",
+      "minGrossIncome": 166579,
+      "maxGrossIncome": null,
+      "sourceYearMinGrossIncome": 155925,
+      "sourceYearMaxGrossIncome": null,
+      "nationalAnnual": {
+        "food": 9265.54,
+        "transportation": 11331.61,
+        "healthcare": 8179.79,
+        "internet_mobile": 993.29,
+        "other_nonhousing": 16604.08
+      },
+      "sourceYearNationalAnnual": {
+        "food": 8672.93,
+        "transportation": 10606.85,
+        "healthcare": 7656.62,
+        "internet_mobile": 929.76,
+        "other_nonhousing": 15542.1
+      },
+      "unweightedQuarterRecords": 71,
+      "weightedQuarterRecords": 1701324.18,
+      "filter": {
+        "FAM_SIZE": 1,
+        "CUTENURE": "4",
+        "FSALARYX": "> 0",
+        "FSMPFRMX": 0
+      },
+      "qa": {
+        "unweightedConsumerUnitRows": 45,
+        "weightedConsumerUnitRows": 1088198.08,
+        "unweightedQuarterRecords": 71,
+        "weightedQuarterRecords": 1701324.18,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 8,
+            "weightedConsumerUnitRows": 186112.99,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 6,
+            "weightedConsumerUnitRows": 130500.66,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 10,
+            "weightedConsumerUnitRows": 194685.68,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 10,
+            "weightedConsumerUnitRows": 287939.76,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 11,
+            "weightedConsumerUnitRows": 288958.99,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        },
+        "categoryStats": {
+          "food": {
+            "unweightedQuarterRecords": 71,
+            "weightedQuarterRecords": 1701324.18,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 8,
+                "weightedRecords": 186112.99,
+                "sourceYearQuarterMean": 990.53
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 1704.19
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 122.71
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 1765.03
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 657.18
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 907.91
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 430.17
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 11,
+                "weightedRecords": 288958.99,
+                "sourceYearQuarterMean": 2095.2
+              }
+            ]
+          },
+          "transportation": {
+            "unweightedQuarterRecords": 71,
+            "weightedQuarterRecords": 1701324.18,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 8,
+                "weightedRecords": 186112.99,
+                "sourceYearQuarterMean": 687.48
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 1368.21
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 218.7
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 3346.19
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 391.43
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 752.69
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 575.39
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 11,
+                "weightedRecords": 288958.99,
+                "sourceYearQuarterMean": 3266.76
+              }
+            ]
+          },
+          "healthcare": {
+            "unweightedQuarterRecords": 71,
+            "weightedQuarterRecords": 1701324.18,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 8,
+                "weightedRecords": 186112.99,
+                "sourceYearQuarterMean": 170.12
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 2120.92
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 87.5
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 522.05
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 436.95
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 736.83
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 568.46
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 11,
+                "weightedRecords": 288958.99,
+                "sourceYearQuarterMean": 3013.77
+              }
+            ]
+          },
+          "internet_mobile": {
+            "unweightedQuarterRecords": 71,
+            "weightedQuarterRecords": 1701324.18,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 8,
+                "weightedRecords": 186112.99,
+                "sourceYearQuarterMean": 60.67
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 115.86
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 29.43
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 91.2
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 21.52
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 193.81
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 41.49
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 11,
+                "weightedRecords": 288958.99,
+                "sourceYearQuarterMean": 375.76
+              }
+            ]
+          },
+          "other_nonhousing": {
+            "unweightedQuarterRecords": 71,
+            "weightedQuarterRecords": 1701324.18,
+            "suffixStats": [
+              {
+                "file": "intrvw24/fmli241x.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 8,
+                "weightedRecords": 186112.99,
+                "sourceYearQuarterMean": 434.1
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 3397.97
+              },
+              {
+                "file": "intrvw24/fmli242.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 6,
+                "weightedRecords": 130500.66,
+                "sourceYearQuarterMean": 416.44
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 1985.07
+              },
+              {
+                "file": "intrvw24/fmli243.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 194685.68,
+                "sourceYearQuarterMean": 661.6
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 3789.41
+              },
+              {
+                "file": "intrvw24/fmli244.csv",
+                "suffix": "CQ",
+                "unweightedRecords": 10,
+                "weightedRecords": 287939.76,
+                "sourceYearQuarterMean": 607.05
+              },
+              {
+                "file": "intrvw24/fmli251.csv",
+                "suffix": "PQ",
+                "unweightedRecords": 11,
+                "weightedRecords": 288958.99,
+                "sourceYearQuarterMean": 4250.45
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

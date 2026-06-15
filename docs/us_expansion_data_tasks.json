@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0",
+  "created_for": "nationwide_city_salary_equivalence_expansion",
+  "status": "planning_only_no_data_gathering_started",
+  "goal": "Enumerate the data work needed to expand the calculator to broad U.S. city coverage while preserving factual accuracy, provenance, and auditability.",
+  "fixed_user_profile": {
+    "person": "single W-2 individual",
+    "citizenship": "U.S. citizen",
+    "filing_status": "single",
+    "dependents": 0,
+    "housing_profile": "renter living alone in a one-bedroom apartment",
+    "excluded_complexities": [
+      "visa status",
+      "spouse income",
+      "children or dependents",
+      "owner costs",
+      "bonuses",
+      "equity compensation",
+      "self-employment income",
+      "investment income",
+      "custom itemized deductions",
+      "pre-tax retirement contributions",
+      "HSA/FSA contributions",
+      "employer benefits"
+    ]
+  },
+  "source_policy": {
+    "primary_rule": "Use official government sources for geography, housing, price indexes, inflation, and spending data wherever possible. Use PolicyEngine US for tax modeling.",
+    "provenance_required": true,
+    "manual_entry_policy": "Manual overrides are allowed only as reviewed exceptions with source citation, reviewer, date, and reason.",
+    "forbidden_as_core_sources": [
+      "Numbeo",
+      "Expatistan",
+      "Salary.com",
+      "NerdWallet calculator outputs",
+      "Bankrate calculator outputs",
+      "Forbes calculator outputs",
+      "Zillow scrape",
+      "Redfin scrape",
+      "Apartments.com scrape",
+      "MIT Living Wage Calculator scraped data"
+    ],
+    "allowed_as_validation_only": [
+      "Public calculator outputs from Forbes, NerdWallet, Bankrate, or similar tools may be used only as qualitative comparison checks, not as source data."
+    ]
+  },
+  "global_acceptance_criteria": [
+    "Every generated city record has stable identifiers for Census place, state, county mapping, metro mapping, housing source geography, tax geography, and price-index geography.",
+    "Every numeric field has source name, vintage, source row/key, ingestion timestamp, transform version, and checksum or reproducible query reference.",
+    "No city-level value is silently hand-entered into application code.",
+    "All high-impact ambiguous geography mappings are explicitly flagged with confidence and explanation.",
+    "The calculator can lazily load a city-level data file without requiring all cities to load in the browser.",
+    "A reverse-check test exists: source A to target B, then target B equivalent salary back to source A should approximately recover the original salary, subject to interpolation and income-band boundaries.",
+    "Spot-check reports exist for at least one city per state plus all special local-tax jurisdictions."
+  ],
+  "recommended_output_layout": {
+    "raw": "data/raw/<source>/<vintage>/...",
+    "intermediate": "data/intermediate/<model_version>/...",
+    "review": "data/review/<model_version>/...",
+    "generated_app_data": "src/lib/cities/<citySlug>.ts and src/lib/nationwideData.ts",
+    "provenance": "data/provenance/<model_version>/manifest.json",
+    "qa_reports": "data/qa/<model_version>/..."
+  },
+  "task_groups": [
+    {
+      "id": "G0",
+      "name": "Scope and Data Contract",
+      "purpose": "Freeze definitions before gathering any nationwide data.",
+      "parallelizable": false,
+      "tasks": [
+        {
+          "id": "G0.1",
+          "title": "Define city universe rule",
+          "status": "not_started",
+          "agent_brief": "Define exactly which U.S. places are in scope. Do not assume the final count. Produce a rule, then later the data will determine the count.",
+          "inputs_needed": [
+            "Product requirement: broad U.S. city coverage",
+            "Official Census place datasets",
+            "Population threshold decision, e.g. incorporated places and census-designated places above a chosen population threshold"
+          ],
+          "outputs": [
+            "docs/city_universe_definition.md",
+            "machine-readable inclusion rule in nationwide data config"
+          ],
+          "acceptance_checks": [
+            "Rule says whether to include incorporated places, census-designated places, county equivalents, Puerto Rico, and other territories.",
+            "Rule says whether cities below the population threshold can be manually included.",
+            "Rule avoids hard-coding an assumed number such as 300."
+          ]
+        },
+        {
+          "id": "G0.2",
+          "title": "Define canonical data schema",
+          "status": "not_started",
+          "agent_brief": "Design the city, geography, housing, price, spending, tax-curve, and provenance schema before ingestion.",
+          "outputs": [
+            "docs/nationwide_data_schema.md",
+            "src/lib/nationwideTypes.ts draft or JSON schema draft"
+          ],
+          "acceptance_checks": [
+            "Schema distinguishes display city from tax county, HUD rent geography, and BEA price geography.",
+            "Schema includes confidence fields and provenance fields.",
+            "Schema supports one file per city for lazy loading."
+          ]
+        },
+        {
+          "id": "G0.3",
+          "title": "Define review gates",
+          "status": "not_started",
+          "agent_brief": "Create a checklist that every data source and transform must pass before it can enter generated app data.",
+          "outputs": [
+            "docs/data_review_checklist.md"
+          ],
+          "acceptance_checks": [
+            "Checklist includes source vintage, license/redistribution check, checksum, row counts, missing values, and spot checks.",
+            "Checklist defines when a city gets high, medium, or low confidence."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "Official Geography and City Universe",
+      "purpose": "Build the canonical national place list and map each place to counties and metro areas.",
+      "parallelizable": true,
+      "tasks": [
+        {
+          "id": "G1.1",
+          "title": "Ingest Census place universe",
+          "status": "not_started",
+          "primary_sources": [
+            "U.S. Census Bureau Gazetteer files",
+            "U.S. Census TIGER/Line or TIGERweb place data"
+          ],
+          "outputs": [
+            "data/intermediate/places/canonical_places.json",
+            "data/provenance/places_manifest.json"
+          ],
+          "fields": [
+            "place_geoid",
+            "display_name",
+            "state_fips",
+            "state_abbr",
+            "state_name",
+            "place_type",
+            "population_if_used",
+            "centroid_lat",
+            "centroid_lon"
+          ],
+          "acceptance_checks": [
+            "Every included place has a Census GEOID.",
+            "No duplicate display city/state pairs without disambiguation.",
+            "Population threshold and inclusion rule are applied reproducibly."
+          ]
+        },
+        {
+          "id": "G1.2",
+          "title": "Build place-to-county mapping",
+          "status": "not_started",
+          "primary_sources": [
+            "U.S. Census place geometries",
+            "U.S. Census county geometries"
+          ],
+          "outputs": [
+            "data/intermediate/geography/place_county_crosswalk.json"
+          ],
+          "acceptance_checks": [
+            "Multi-county places are detected, not flattened silently.",
+            "Each mapping records all intersecting counties and the selected computation county or weighting rule.",
+            "High-impact multi-county cities are flagged for review."
+          ],
+          "review_notes": [
+            "The initial local implementation chose one county. Nationwide coverage should explicitly decide whether to keep one computation county or use population-weighted counties where tax modeling supports it."
+          ]
+        },
+        {
+          "id": "G1.3",
+          "title": "Build place-to-CBSA mapping",
+          "status": "not_started",
+          "primary_sources": [
+            "Office of Management and Budget CBSA delineation files",
+            "U.S. Census CBSA relationship files"
+          ],
+          "outputs": [
+            "data/intermediate/geography/place_cbsa_crosswalk.json"
+          ],
+          "acceptance_checks": [
+            "Each city has a CBSA where applicable.",
+            "Non-CBSA or ambiguous cases are flagged with fallback policy.",
+            "CBSA code and name match the BEA RPP geography."
+          ]
+        },
+        {
+          "id": "G1.4",
+          "title": "Identify special local-tax jurisdictions",
+          "status": "not_started",
+          "primary_sources": [
+            "PolicyEngine US documentation/source code",
+            "Official city/state/local tax agency pages for validation"
+          ],
+          "outputs": [
+            "data/intermediate/tax/local_tax_jurisdictions_review.json"
+          ],
+          "acceptance_checks": [
+            "Cities with known local income/payroll taxes are explicitly listed.",
+            "Each local tax is marked as modeled by PolicyEngine, unsupported, or needs custom official-source implementation.",
+            "Unsupported local taxes produce a visible confidence warning rather than silent omission."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "Housing Cost Data",
+      "purpose": "Map each city to an official one-bedroom rent measure.",
+      "parallelizable": true,
+      "tasks": [
+        {
+          "id": "G2.1",
+          "title": "Ingest HUD Fair Market Rent data",
+          "status": "not_started",
+          "primary_sources": [
+            "HUD USER Fair Market Rent datasets"
+          ],
+          "outputs": [
+            "data/intermediate/housing/hud_fmr_1br.json",
+            "data/provenance/hud_fmr_manifest.json"
+          ],
+          "fields": [
+            "hud_area_id",
+            "hud_area_name",
+            "fiscal_year",
+            "bedroom_size",
+            "monthly_fmr",
+            "source_row_id"
+          ],
+          "acceptance_checks": [
+            "Data is ingested from a tabular official HUD source where available, not manually extracted from PDFs for nationwide scale.",
+            "One-bedroom FMR exists for every mapped HUD area.",
+            "Monthly and annual rent values are both generated, with annual = monthly * 12."
+          ]
+        },
+        {
+          "id": "G2.2",
+          "title": "Map cities to HUD FMR areas",
+          "status": "not_started",
+          "primary_sources": [
+            "HUD FMR area definitions",
+            "Census county/place mappings"
+          ],
+          "outputs": [
+            "data/intermediate/housing/place_hud_area_crosswalk.json"
+          ],
+          "acceptance_checks": [
+            "Every city maps to exactly one chosen HUD FMR area or is flagged for review.",
+            "Metro-area and county-level FMR differences are resolved with an explicit rule.",
+            "Ambiguous mappings include explanation and confidence."
+          ]
+        },
+        {
+          "id": "G2.3",
+          "title": "Optional housing validation against ACS",
+          "status": "not_started",
+          "primary_sources": [
+            "U.S. Census ACS gross rent tables"
+          ],
+          "outputs": [
+            "data/qa/housing/acs_vs_hud_rent_validation.json"
+          ],
+          "acceptance_checks": [
+            "Validation is not used to override HUD FMR unless a separate reviewed method is approved.",
+            "Large HUD-vs-ACS divergences are flagged for human review."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Non-Housing Spending and Price Data",
+      "purpose": "Build the national spending basket and reprice it to each metro.",
+      "parallelizable": true,
+      "tasks": [
+        {
+          "id": "G3.1",
+          "title": "Ingest BEA Regional Price Parities",
+          "status": "not_started",
+          "primary_sources": [
+            "BEA Regional Price Parities MARPP data"
+          ],
+          "outputs": [
+            "data/intermediate/prices/bea_rpp_by_cbsa.json"
+          ],
+          "fields": [
+            "cbsa_code",
+            "year",
+            "all_items_rpp",
+            "goods_rpp",
+            "housing_rpp",
+            "utilities_rpp",
+            "other_services_rpp"
+          ],
+          "acceptance_checks": [
+            "All CBSA codes used by city mappings have BEA values or documented fallback.",
+            "Line codes are recorded and validated.",
+            "Non-CBSA fallback policy is documented before generation."
+          ]
+        },
+        {
+          "id": "G3.2",
+          "title": "Build BLS CEX national spending bands",
+          "status": "not_started",
+          "primary_sources": [
+            "BLS Consumer Expenditure Survey Public Use Microdata"
+          ],
+          "outputs": [
+            "data/intermediate/spending/cex_single_renter_bands.json"
+          ],
+          "acceptance_checks": [
+            "Filtering rule exactly matches fixed profile: single-person renter consumer units with wage/salary income.",
+            "Income bands are documented and CPI-adjusted.",
+            "Unweighted and weighted record counts are reported for each band.",
+            "Sparse bands are flagged."
+          ]
+        },
+        {
+          "id": "G3.3",
+          "title": "Ingest BLS CPI inflation factor",
+          "status": "not_started",
+          "primary_sources": [
+            "BLS CPI-U all items, U.S. city average, not seasonally adjusted"
+          ],
+          "outputs": [
+            "data/intermediate/inflation/cpi_normalization.json"
+          ],
+          "acceptance_checks": [
+            "Base CEX year and target month are explicit.",
+            "Inflation factor is reproducible from source index values."
+          ]
+        },
+        {
+          "id": "G3.4",
+          "title": "Review category-to-price-index weights",
+          "status": "not_started",
+          "primary_sources": [
+            "Current methodology",
+            "BEA RPP line definitions",
+            "BLS CEX category definitions"
+          ],
+          "outputs": [
+            "docs/category_price_weight_methodology.md",
+            "data/intermediate/spending/category_price_weights.json"
+          ],
+          "acceptance_checks": [
+            "Each non-housing category has an explicit BEA price-index weighting.",
+            "Weights sum to 1 for every category.",
+            "Any heuristic weighting is labeled as methodological assumption, not source fact."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "Tax Curves",
+      "purpose": "Generate gross-to-net tax curves for every supported city.",
+      "parallelizable": true,
+      "tasks": [
+        {
+          "id": "G4.1",
+          "title": "Audit PolicyEngine city/county/state parameter support",
+          "status": "not_started",
+          "primary_sources": [
+            "PolicyEngine US package and documentation"
+          ],
+          "outputs": [
+            "data/review/tax/policyengine_support_matrix.json"
+          ],
+          "acceptance_checks": [
+            "State income tax support is verified for all states in scope.",
+            "Local income/payroll tax support is verified or flagged.",
+            "Unsupported jurisdictions are listed before tax curves are generated."
+          ]
+        },
+        {
+          "id": "G4.2",
+          "title": "Generate salary grid specification",
+          "status": "not_started",
+          "outputs": [
+            "docs/tax_curve_grid_spec.md"
+          ],
+          "recommended_grid": [
+            "0 to 500000 gross: 1000 increments",
+            "500000 to 1000000 gross: 5000 increments",
+            "1000000 to 10000000 gross: 20000 increments"
+          ],
+          "acceptance_checks": [
+            "Grid covers all salaries the UI supports.",
+            "Interpolation error tolerance is defined.",
+            "Out-of-range behavior is documented."
+          ]
+        },
+        {
+          "id": "G4.3",
+          "title": "Generate city tax curves",
+          "status": "not_started",
+          "depends_on": [
+            "G1.2",
+            "G1.4",
+            "G4.1",
+            "G4.2"
+          ],
+          "outputs": [
+            "src/lib/cities/<citySlug>.ts",
+            "data/intermediate/tax/city_tax_curve_manifest.json"
+          ],
+          "acceptance_checks": [
+            "Each city curve records PolicyEngine version, tax year, state, county, and local flags.",
+            "Curves include component arrays for federal income tax, payroll tax, state tax, local tax, state payroll items, residual, total tax, and net income.",
+            "Curve monotonicity checks pass or exceptions are reviewed."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "Integrated City Data Generation",
+      "purpose": "Join geography, housing, price, spending, and tax data into app-ready city files.",
+      "parallelizable": false,
+      "tasks": [
+        {
+          "id": "G5.1",
+          "title": "Build nationwide city index",
+          "status": "not_started",
+          "depends_on": [
+            "G1",
+            "G2",
+            "G3",
+            "G4"
+          ],
+          "outputs": [
+            "src/lib/nationwideData.ts",
+            "data/provenance/nationwide_manifest.json"
+          ],
+          "acceptance_checks": [
+            "Index contains lightweight city metadata only.",
+            "Large tax curves remain in lazy-loaded city files.",
+            "Every city has confidence and resolution notes."
+          ]
+        },
+        {
+          "id": "G5.2",
+          "title": "Build per-city lazy-load files",
+          "status": "not_started",
+          "outputs": [
+            "src/lib/cities/<citySlug>.ts"
+          ],
+          "acceptance_checks": [
+            "Each file includes only the data needed for that city.",
+            "Imports are deterministic and generated from a manifest.",
+            "Bundle size is measured before and after generation."
+          ]
+        },
+        {
+          "id": "G5.3",
+          "title": "Build source/provenance manifest",
+          "status": "not_started",
+          "outputs": [
+            "data/provenance/nationwide_sources.json"
+          ],
+          "acceptance_checks": [
+            "Manifest lists every source file/API endpoint, vintage, checksum, retrieval time, and transform script.",
+            "Manifest can be displayed in the Sources page without manual copy-paste."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G6",
+      "name": "Quality Assurance and Review",
+      "purpose": "Catch factual errors before generated data is shipped.",
+      "parallelizable": true,
+      "tasks": [
+        {
+          "id": "G6.1",
+          "title": "Run structural QA",
+          "status": "not_started",
+          "outputs": [
+            "data/qa/structural_report.json"
+          ],
+          "checks": [
+            "No missing required fields",
+            "No duplicate city slugs",
+            "All referenced counties/CBSAs/HUD areas exist",
+            "All tax curves have same grid length",
+            "No NaN or infinite values",
+            "All annual rent values equal monthly rent times 12"
+          ]
+        },
+        {
+          "id": "G6.2",
+          "title": "Run numerical QA",
+          "status": "not_started",
+          "outputs": [
+            "data/qa/numerical_report.json"
+          ],
+          "checks": [
+            "Tax curve net income equals gross minus total tax within tolerance",
+            "Tax curve net income is broadly non-decreasing",
+            "Cost basket equals sum of components",
+            "Reverse equivalence property approximately holds",
+            "Extreme salary cases are reviewed"
+          ]
+        },
+        {
+          "id": "G6.3",
+          "title": "Human spot-check packet",
+          "status": "not_started",
+          "outputs": [
+            "data/review/spot_check_packet.md"
+          ],
+          "acceptance_checks": [
+            "At least one city per state is included.",
+            "All cities with special local tax flags are included.",
+            "Each spot check has direct source citations and computed outputs."
+          ]
+        },
+        {
+          "id": "G6.4",
+          "title": "Regression checks against baseline city outputs",
+          "status": "not_started",
+          "outputs": [
+            "data/qa/six_city_regression.json"
+          ],
+          "acceptance_checks": [
+            "Austin, Sunnyvale, New York, Seattle, Denver, and Raleigh remain explainable.",
+            "Any changed value is attributed to a source-vintage or methodology change."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Agent Handoff Strategy",
+      "purpose": "Split the work into small independent assignments.",
+      "parallelizable": true,
+      "handoff_units": [
+        {
+          "unit_id": "A",
+          "title": "City universe and Census geography",
+          "task_ids": [
+            "G1.1",
+            "G1.2",
+            "G1.3"
+          ]
+        },
+        {
+          "unit_id": "B",
+          "title": "HUD housing data",
+          "task_ids": [
+            "G2.1",
+            "G2.2",
+            "G2.3"
+          ]
+        },
+        {
+          "unit_id": "C",
+          "title": "BEA/BLS non-housing basket",
+          "task_ids": [
+            "G3.1",
+            "G3.2",
+            "G3.3",
+            "G3.4"
+          ]
+        },
+        {
+          "unit_id": "D",
+          "title": "Tax support and curve generation",
+          "task_ids": [
+            "G1.4",
+            "G4.1",
+            "G4.2",
+            "G4.3"
+          ]
+        },
+        {
+          "unit_id": "E",
+          "title": "Integrated generation and QA",
+          "task_ids": [
+            "G5.1",
+            "G5.2",
+            "G5.3",
+            "G6.1",
+            "G6.2",
+            "G6.3",
+            "G6.4"
+          ]
+        }
+      ],
+      "handoff_rule": "No agent should both gather a source dataset and approve its final app integration. A separate QA pass must review source rows, transformations, and generated outputs."
+    }
+  ],
+  "not_started_confirmation": {
+    "data_downloaded": false,
+    "scripts_modified_for_ingestion": false,
+    "generated_database_created": false,
+    "purpose_of_this_file": "planning_and_agent_handoff_only"
+  }
+}

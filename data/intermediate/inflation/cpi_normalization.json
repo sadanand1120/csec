@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "seriesId": "CUUR0000SA0",
+  "seriesName": "CPI-U all items, U.S. city average, not seasonally adjusted",
+  "base": "2024 annual average",
+  "target": "May 2026",
+  "targetYear": 2026,
+  "targetPeriod": "M05",
+  "baseIndex": 313.689,
+  "targetIndex": 335.123,
+  "factor": 1.068329390112176,
+  "available2026Periods": [
+    {
+      "period": "M01",
+      "periodName": "January",
+      "value": 325.252
+    },
+    {
+      "period": "M02",
+      "periodName": "February",
+      "value": 326.785
+    },
+    {
+      "period": "M03",
+      "periodName": "March",
+      "value": 330.213
+    },
+    {
+      "period": "M04",
+      "periodName": "April",
+      "value": 333.02
+    },
+    {
+      "period": "M05",
+      "periodName": "May",
+      "value": 335.123
+    }
+  ],
+  "source": {
+    "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2024&endyear=2026",
+    "responseSha256": "5c2f2d80c0c40b606b349a24e607c54749900373e7d2c8842c9f4e2ba7c8dff3"
+  }
+}

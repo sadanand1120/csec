@@ -1,0 +1,354 @@
+{
+  "schema_version": "1.0",
+  "artifact_group": "price_spending_inputs",
+  "status": "generated",
+  "generated_at": "2026-06-15T09:07:54.856752+00:00",
+  "sources": {
+    "geography_crosswalk": {
+      "local_path": "data/intermediate/geography/place_county_cbsa_crosswalk.json",
+      "sha256": "99e68a641c3c156b0941fc1a2348235ef64ec27862183a320ecff5679e8731db"
+    },
+    "bea_marpp": {
+      "name": "BEA Regional Price Parities, metro areas",
+      "url": "https://apps.bea.gov/regional/zip/MARPP.zip",
+      "sha256": "5dbf2e6ac2af222cc9abc205586c9b480344d89392752eb689c3ec823a34c83e",
+      "bytes": 146479,
+      "zip_artifact": "MARPP.zip",
+      "csv_file": "MARPP_MSA_2008_2024.csv"
+    },
+    "bea_sarpp": {
+      "name": "BEA Regional Price Parities, states",
+      "url": "https://apps.bea.gov/regional/zip/SARPP.zip",
+      "sha256": "38713c6224c4c26ae020ffecd4549b82dca84f43d34f93dfdb43f4070cf011da",
+      "bytes": 39230,
+      "zip_artifact": "SARPP.zip",
+      "csv_file": "SARPP_STATE_2008_2024.csv"
+    },
+    "bea_parpp": {
+      "name": "BEA Regional Price Parities, state portions",
+      "url": "https://apps.bea.gov/regional/zip/PARPP.zip",
+      "sha256": "eb1378571316b22d5e7557b5565019cbe01fe1b5ea7dcdfcd979fc5751764f79",
+      "bytes": 39148,
+      "zip_artifact": "PARPP.zip",
+      "csv_file": "PARPP_PORT_2008_2024.csv"
+    },
+    "bls_cex": {
+      "name": "BLS Consumer Expenditure Survey 2024 Interview Survey public-use microdata",
+      "url": "https://www.bls.gov/cex/pumd/data/csv/intrvw24.zip",
+      "sha256": "421ec90c2b8469c10f91eac27988f65f5d09fcfa9944e5069bb00b5460677f26",
+      "bytes": 53613162,
+      "zip_artifact": "intrvw24.zip",
+      "files": [
+        "intrvw24/fmli241x.csv",
+        "intrvw24/fmli242.csv",
+        "intrvw24/fmli243.csv",
+        "intrvw24/fmli244.csv",
+        "intrvw24/fmli251.csv"
+      ]
+    },
+    "bls_cpi": {
+      "name": "BLS CPI-U all items, U.S. city average, not seasonally adjusted",
+      "url": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SA0?startyear=2024&endyear=2026",
+      "sha256": "5c2f2d80c0c40b606b349a24e607c54749900373e7d2c8842c9f4e2ba7c8dff3",
+      "bytes": 2763,
+      "series_id": "CUUR0000SA0"
+    }
+  },
+  "artifacts": {
+    "bea_rpp_by_cbsa": {
+      "local_path": "data/intermediate/prices/bea_rpp_by_cbsa.json",
+      "sha256": "3e265b5e17da5a63182058cc0cda56475a82f689610bc14dd3e33a0836c6fd36"
+    },
+    "city_cbsa_rpp_mapping": {
+      "local_path": "data/intermediate/prices/city_cbsa_rpp_mapping.json",
+      "sha256": "4a31fef13417fb6f6938d29e9f1dbd40f2316cf4b386ebbbad5ffb5aba8537aa"
+    },
+    "cex_single_renter_bands": {
+      "local_path": "data/intermediate/spending/cex_single_renter_bands.json",
+      "sha256": "53631bfeaf922bda05f804d46356ced34ddb0b0d4341dcc4ca2d191ac8665b40"
+    },
+    "category_price_weights": {
+      "local_path": "data/intermediate/spending/category_price_weights.json",
+      "sha256": "f5cca6768b6531f813e884ea0d292dfb6c60fb57a6e79420cbcc8f500a842e0a"
+    },
+    "cpi_normalization": {
+      "local_path": "data/intermediate/inflation/cpi_normalization.json",
+      "sha256": "900a33189854b634dd56aa7f2df4ec4ae032aaf312623769aa6590281056bee6"
+    },
+    "qa_summary": {
+      "local_path": "data/review/price_spending/qa_summary.json",
+      "sha256": "24c26f71b3d5a27af691ed4be7951406df8ea374bda78ddad1c92ab24abe795b"
+    },
+    "cex_band_counts": {
+      "local_path": "data/review/price_spending/cex_band_counts.json",
+      "sha256": "56f868f13ed4390a2005dfbcae45521f245115bae920ff133f0ed17b8e693e11"
+    },
+    "city_rpp_fallbacks": {
+      "local_path": "data/review/price_spending/city_rpp_fallbacks.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    "missing_rpp_mappings": {
+      "local_path": "data/review/price_spending/missing_rpp_mappings.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  },
+  "input_contract": {
+    "expected_city_count": 343,
+    "bea_rpp_year": 2024,
+    "bea_line_codes": {
+      "1": "all_items",
+      "2": "goods",
+      "3": "housing",
+      "4": "utilities",
+      "5": "other_services"
+    },
+    "cex_filter": {
+      "FAM_SIZE": 1,
+      "CUTENURE": "4",
+      "FSALARYX": "> 0",
+      "FSMPFRMX": 0
+    },
+    "income_bands_source_year": [
+      {
+        "id": "single_under_50k",
+        "label": "Single-person CEX, income under $50k",
+        "min": 0,
+        "max": 50000
+      },
+      {
+        "id": "single_50k_100k",
+        "label": "Single-person CEX, income $50k-$100k",
+        "min": 50000,
+        "max": 100000
+      },
+      {
+        "id": "single_100k_155925",
+        "label": "Single-person CEX, income $100k-$155,925",
+        "min": 100000,
+        "max": 155925
+      },
+      {
+        "id": "single_155925_plus",
+        "label": "Single-person CEX, income $155,925+",
+        "min": 155925,
+        "max": null
+      }
+    ]
+  },
+  "qa": {
+    "schema_version": "1.0",
+    "city_count": 343,
+    "unique_primary_cbsa_count": 168,
+    "bea_cbsa_records_written": 168,
+    "city_rpp_records_written": 343,
+    "city_rpp_source_counts": {
+      "MARPP_MSA": 343
+    },
+    "city_rpp_confidence_counts": {
+      "high": 334,
+      "medium": 9
+    },
+    "city_rpp_fallback_count": 0,
+    "multi_cbsa_city_count": 9,
+    "cpi_target": "May 2026",
+    "cpi_factor": 1.068329390112176,
+    "cex_band_counts": [
+      {
+        "id": "single_under_50k",
+        "sourceYearMinGrossIncome": 0,
+        "sourceYearMaxGrossIncome": 50000,
+        "unweightedConsumerUnitRows": 938,
+        "weightedConsumerUnitRows": 27917555.14,
+        "unweightedQuarterRecords": 1498,
+        "weightedQuarterRecords": 44679030.51,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 206,
+            "weightedConsumerUnitRows": 5817055.55,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 179,
+            "weightedConsumerUnitRows": 5343284.89,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 187,
+            "weightedConsumerUnitRows": 5598541.72,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 194,
+            "weightedConsumerUnitRows": 5819648.75,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 172,
+            "weightedConsumerUnitRows": 5339024.22,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        }
+      },
+      {
+        "id": "single_50k_100k",
+        "sourceYearMinGrossIncome": 50000,
+        "sourceYearMaxGrossIncome": 100000,
+        "unweightedConsumerUnitRows": 614,
+        "weightedConsumerUnitRows": 17012719.34,
+        "unweightedQuarterRecords": 988,
+        "weightedQuarterRecords": 27015733.03,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 121,
+            "weightedConsumerUnitRows": 3275097.79,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 120,
+            "weightedConsumerUnitRows": 3379905.75,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 128,
+            "weightedConsumerUnitRows": 3344473.43,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 126,
+            "weightedConsumerUnitRows": 3278634.51,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 119,
+            "weightedConsumerUnitRows": 3734607.86,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        }
+      },
+      {
+        "id": "single_100k_155925",
+        "sourceYearMinGrossIncome": 100000,
+        "sourceYearMaxGrossIncome": 155925,
+        "unweightedConsumerUnitRows": 211,
+        "weightedConsumerUnitRows": 5748641.55,
+        "unweightedQuarterRecords": 337,
+        "weightedQuarterRecords": 9113282.12,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 49,
+            "weightedConsumerUnitRows": 1351012.68,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 48,
+            "weightedConsumerUnitRows": 1383837.25,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 42,
+            "weightedConsumerUnitRows": 1126423.47,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 36,
+            "weightedConsumerUnitRows": 854379.86,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 36,
+            "weightedConsumerUnitRows": 1032988.29,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        }
+      },
+      {
+        "id": "single_155925_plus",
+        "sourceYearMinGrossIncome": 155925,
+        "sourceYearMaxGrossIncome": null,
+        "unweightedConsumerUnitRows": 45,
+        "weightedConsumerUnitRows": 1088198.08,
+        "unweightedQuarterRecords": 71,
+        "weightedQuarterRecords": 1701324.18,
+        "fileRows": {
+          "intrvw24/fmli241x.csv": {
+            "consumerUnitRows": 8,
+            "weightedConsumerUnitRows": 186112.99,
+            "calendarSuffixes": [
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli242.csv": {
+            "consumerUnitRows": 6,
+            "weightedConsumerUnitRows": 130500.66,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli243.csv": {
+            "consumerUnitRows": 10,
+            "weightedConsumerUnitRows": 194685.68,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli244.csv": {
+            "consumerUnitRows": 10,
+            "weightedConsumerUnitRows": 287939.76,
+            "calendarSuffixes": [
+              "PQ",
+              "CQ"
+            ]
+          },
+          "intrvw24/fmli251.csv": {
+            "consumerUnitRows": 11,
+            "weightedConsumerUnitRows": 288958.99,
+            "calendarSuffixes": [
+              "PQ"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

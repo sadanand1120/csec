@@ -44,6 +44,8 @@ export type LocationProfile = {
     inNyc?: boolean;
     denverOccupationalPrivilegeTax?: boolean;
   };
+  taxCoverageStatus?: "supported" | "partial_local_missing" | "unsupported";
+  taxNotes?: readonly string[];
   resolutionNote: string;
   confidence: "high" | "medium" | "low";
 };
@@ -84,7 +86,7 @@ export type EquivalenceResult = {
   dataVintage: Record<string, string>;
 };
 
-export type V0BasketBand = {
+export type BasketBand = {
   id: string;
   label: string;
   minGrossIncome: number;
@@ -92,12 +94,17 @@ export type V0BasketBand = {
   sourceYearMinGrossIncome: number;
   sourceYearMaxGrossIncome: number | null;
   nationalAnnual: Record<NonHousingExpenseCategory, number>;
+  sourceYearNationalAnnual?: Record<NonHousingExpenseCategory, number>;
   unweightedQuarterRecords: number;
+  weightedQuarterRecords?: number;
+  filter?: Record<string, string | number>;
+  qa?: Record<string, unknown>;
 };
 
-export type V0TaxCurve = {
+export type TaxCurve = {
   grossIncome: readonly number[];
   netIncome: readonly number[];
+  netIncomeForInversion?: readonly number[];
   totalTax: readonly number[];
   federalIncomeTax: readonly number[];
   stateIncomeTax: readonly number[];
@@ -107,14 +114,14 @@ export type V0TaxCurve = {
   taxComponentResidual: readonly number[];
 };
 
-export type V0Source = {
+export type DataSource = {
   name: string;
   vintage: string;
   url: string;
   notes: string;
 };
 
-export type V0Dataset = {
+export type SalaryDataset = {
   modelVersion: string;
   defaultSourceId: string;
   defaultTargetId: string;
@@ -137,7 +144,7 @@ export type V0Dataset = {
     housing: string;
   };
   categoryPriceWeights: Record<NonHousingExpenseCategory, Partial<Record<PriceIndexKey, number>>>;
-  basketBands: readonly V0BasketBand[];
+  basketBands: readonly BasketBand[];
   locations: readonly LocationProfile[];
-  sources: Record<string, V0Source>;
+  sources: Record<string, DataSource>;
 };

@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0",
+  "city_count": 343,
+  "unique_primary_cbsa_count": 168,
+  "bea_cbsa_records_written": 168,
+  "city_rpp_records_written": 343,
+  "city_rpp_source_counts": {
+    "MARPP_MSA": 343
+  },
+  "city_rpp_confidence_counts": {
+    "high": 334,
+    "medium": 9
+  },
+  "city_rpp_fallback_count": 0,
+  "multi_cbsa_city_count": 9,
+  "cpi_target": "May 2026",
+  "cpi_factor": 1.068329390112176,
+  "cex_band_counts": [
+    {
+      "id": "single_under_50k",
+      "sourceYearMinGrossIncome": 0,
+      "sourceYearMaxGrossIncome": 50000,
+      "unweightedConsumerUnitRows": 938,
+      "weightedConsumerUnitRows": 27917555.14,
+      "unweightedQuarterRecords": 1498,
+      "weightedQuarterRecords": 44679030.51,
+      "fileRows": {
+        "intrvw24/fmli241x.csv": {
+          "consumerUnitRows": 206,
+          "weightedConsumerUnitRows": 5817055.55,
+          "calendarSuffixes": [
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli242.csv": {
+          "consumerUnitRows": 179,
+          "weightedConsumerUnitRows": 5343284.89,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli243.csv": {
+          "consumerUnitRows": 187,
+          "weightedConsumerUnitRows": 5598541.72,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli244.csv": {
+          "consumerUnitRows": 194,
+          "weightedConsumerUnitRows": 5819648.75,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli251.csv": {
+          "consumerUnitRows": 172,
+          "weightedConsumerUnitRows": 5339024.22,
+          "calendarSuffixes": [
+            "PQ"
+          ]
+        }
+      }
+    },
+    {
+      "id": "single_50k_100k",
+      "sourceYearMinGrossIncome": 50000,
+      "sourceYearMaxGrossIncome": 100000,
+      "unweightedConsumerUnitRows": 614,
+      "weightedConsumerUnitRows": 17012719.34,
+      "unweightedQuarterRecords": 988,
+      "weightedQuarterRecords": 27015733.03,
+      "fileRows": {
+        "intrvw24/fmli241x.csv": {
+          "consumerUnitRows": 121,
+          "weightedConsumerUnitRows": 3275097.79,
+          "calendarSuffixes": [
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli242.csv": {
+          "consumerUnitRows": 120,
+          "weightedConsumerUnitRows": 3379905.75,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli243.csv": {
+          "consumerUnitRows": 128,
+          "weightedConsumerUnitRows": 3344473.43,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli244.csv": {
+          "consumerUnitRows": 126,
+          "weightedConsumerUnitRows": 3278634.51,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli251.csv": {
+          "consumerUnitRows": 119,
+          "weightedConsumerUnitRows": 3734607.86,
+          "calendarSuffixes": [
+            "PQ"
+          ]
+        }
+      }
+    },
+    {
+      "id": "single_100k_155925",
+      "sourceYearMinGrossIncome": 100000,
+      "sourceYearMaxGrossIncome": 155925,
+      "unweightedConsumerUnitRows": 211,
+      "weightedConsumerUnitRows": 5748641.55,
+      "unweightedQuarterRecords": 337,
+      "weightedQuarterRecords": 9113282.12,
+      "fileRows": {
+        "intrvw24/fmli241x.csv": {
+          "consumerUnitRows": 49,
+          "weightedConsumerUnitRows": 1351012.68,
+          "calendarSuffixes": [
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli242.csv": {
+          "consumerUnitRows": 48,
+          "weightedConsumerUnitRows": 1383837.25,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli243.csv": {
+          "consumerUnitRows": 42,
+          "weightedConsumerUnitRows": 1126423.47,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli244.csv": {
+          "consumerUnitRows": 36,
+          "weightedConsumerUnitRows": 854379.86,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli251.csv": {
+          "consumerUnitRows": 36,
+          "weightedConsumerUnitRows": 1032988.29,
+          "calendarSuffixes": [
+            "PQ"
+          ]
+        }
+      }
+    },
+    {
+      "id": "single_155925_plus",
+      "sourceYearMinGrossIncome": 155925,
+      "sourceYearMaxGrossIncome": null,
+      "unweightedConsumerUnitRows": 45,
+      "weightedConsumerUnitRows": 1088198.08,
+      "unweightedQuarterRecords": 71,
+      "weightedQuarterRecords": 1701324.18,
+      "fileRows": {
+        "intrvw24/fmli241x.csv": {
+          "consumerUnitRows": 8,
+          "weightedConsumerUnitRows": 186112.99,
+          "calendarSuffixes": [
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli242.csv": {
+          "consumerUnitRows": 6,
+          "weightedConsumerUnitRows": 130500.66,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli243.csv": {
+          "consumerUnitRows": 10,
+          "weightedConsumerUnitRows": 194685.68,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli244.csv": {
+          "consumerUnitRows": 10,
+          "weightedConsumerUnitRows": 287939.76,
+          "calendarSuffixes": [
+            "PQ",
+            "CQ"
+          ]
+        },
+        "intrvw24/fmli251.csv": {
+          "consumerUnitRows": 11,
+          "weightedConsumerUnitRows": 288958.99,
+          "calendarSuffixes": [
+            "PQ"
+          ]
+        }
+      }
+    }
+  ]
+}

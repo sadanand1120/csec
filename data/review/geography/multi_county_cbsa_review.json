@@ -1,0 +1,5020 @@
+[
+  {
+    "id": "PLACE:3651000",
+    "place_geoid": "3651000",
+    "display_name": "New York, NY",
+    "computation_county_fips": "36047",
+    "computation_county_name": "Kings County",
+    "computation_county_population_share_2025": 0.30915291,
+    "primary_cbsa_code": "35620",
+    "primary_cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "36047",
+        "county_part_population_2025": 2653963,
+        "county_part_estimate_base_2020": 2736291,
+        "primary_geography_flag": "1",
+        "source_row": 47775,
+        "county_name": "Kings County",
+        "county_part_population_share_2025": 0.30915291,
+        "cbsa_code": "35620",
+        "cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "35614",
+        "metropolitan_division_title": "New York-Jersey City-White Plains, NY-NJ",
+        "csa_code": "408",
+        "csa_title": "New York-Newark, NY-NJ-CT-PA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "36081",
+        "county_part_population_2025": 2358182,
+        "county_part_estimate_base_2020": 2405427,
+        "primary_geography_flag": "1",
+        "source_row": 48657,
+        "county_name": "Queens County",
+        "county_part_population_share_2025": 0.27469818,
+        "cbsa_code": "35620",
+        "cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "35614",
+        "metropolitan_division_title": "New York-Jersey City-White Plains, NY-NJ",
+        "csa_code": "408",
+        "csa_title": "New York-Newark, NY-NJ-CT-PA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "36061",
+        "county_part_population_2025": 1664862,
+        "county_part_estimate_base_2020": 1694984,
+        "primary_geography_flag": "1",
+        "source_row": 48166,
+        "county_name": "New York County",
+        "county_part_population_share_2025": 0.19393523,
+        "cbsa_code": "35620",
+        "cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "35614",
+        "metropolitan_division_title": "New York-Jersey City-White Plains, NY-NJ",
+        "csa_code": "408",
+        "csa_title": "New York-Newark, NY-NJ-CT-PA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "36005",
+        "county_part_population_2025": 1406332,
+        "county_part_estimate_base_2020": 1472640,
+        "primary_geography_flag": "1",
+        "source_row": 46843,
+        "county_name": "Bronx County",
+        "county_part_population_share_2025": 0.16381978,
+        "cbsa_code": "35620",
+        "cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "35614",
+        "metropolitan_division_title": "New York-Jersey City-White Plains, NY-NJ",
+        "csa_code": "408",
+        "csa_title": "New York-Newark, NY-NJ-CT-PA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "36085",
+        "county_part_population_2025": 501290,
+        "county_part_estimate_base_2020": 496252,
+        "primary_geography_flag": "1",
+        "source_row": 48700,
+        "county_name": "Richmond County",
+        "county_part_population_share_2025": 0.0583939,
+        "cbsa_code": "35620",
+        "cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "35614",
+        "metropolitan_division_title": "New York-Jersey City-White Plains, NY-NJ",
+        "csa_code": "408",
+        "csa_title": "New York-Newark, NY-NJ-CT-PA",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "35620",
+        "cbsa_title": "New York-Newark-Jersey City, NY-NJ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 8584629,
+        "county_count": 5,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1714000",
+    "place_geoid": "1714000",
+    "display_name": "Chicago, IL",
+    "computation_county_fips": "17031",
+    "computation_county_name": "Cook County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "16980",
+    "primary_cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "17031",
+        "county_part_population_2025": 2731585,
+        "county_part_estimate_base_2020": 2748333,
+        "primary_geography_flag": "0",
+        "source_row": 9990,
+        "county_name": "Cook County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17043",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "0",
+        "source_row": 10599,
+        "county_name": "DuPage County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 2731585,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4835000",
+    "place_geoid": "4835000",
+    "display_name": "Houston, TX",
+    "computation_county_fips": "48201",
+    "computation_county_name": "Harris County",
+    "computation_county_population_share_2025": 0.97915626,
+    "primary_cbsa_code": "26420",
+    "primary_cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48201",
+        "county_part_population_2025": 2347346,
+        "county_part_estimate_base_2020": 2251198,
+        "primary_geography_flag": "1",
+        "source_row": 73104,
+        "county_name": "Harris County",
+        "county_part_population_share_2025": 0.97915626,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48157",
+        "county_part_population_2025": 43668,
+        "county_part_estimate_base_2020": 42451,
+        "primary_geography_flag": "1",
+        "source_row": 72933,
+        "county_name": "Fort Bend County",
+        "county_part_population_share_2025": 0.01821538,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48339",
+        "county_part_population_2025": 6301,
+        "county_part_estimate_base_2020": 6000,
+        "primary_geography_flag": "1",
+        "source_row": 73611,
+        "county_name": "Montgomery County",
+        "county_part_population_share_2025": 0.00262836,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48473",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 74083,
+        "county_name": "Waller County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 2397315,
+        "county_count": 4,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4865000",
+    "place_geoid": "4865000",
+    "display_name": "San Antonio, TX",
+    "computation_county_fips": "48029",
+    "computation_county_name": "Bexar County",
+    "computation_county_population_share_2025": 0.9999929,
+    "primary_cbsa_code": "41700",
+    "primary_cbsa_title": "San Antonio-New Braunfels, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48029",
+        "county_part_population_2025": 1548411,
+        "county_part_estimate_base_2020": 1433338,
+        "primary_geography_flag": "1",
+        "source_row": 72397,
+        "county_name": "Bexar County",
+        "county_part_population_share_2025": 0.9999929,
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "484",
+        "csa_title": "San Antonio-New Braunfels-Kerrville, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48325",
+        "county_part_population_2025": 11,
+        "county_part_estimate_base_2020": 10,
+        "primary_geography_flag": "1",
+        "source_row": 73577,
+        "county_name": "Medina County",
+        "county_part_population_share_2025": 7.1e-06,
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "484",
+        "csa_title": "San Antonio-New Braunfels-Kerrville, TX",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48091",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 72664,
+        "county_name": "Comal County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "484",
+        "csa_title": "San Antonio-New Braunfels-Kerrville, TX",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 1548422,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4819000",
+    "place_geoid": "4819000",
+    "display_name": "Dallas, TX",
+    "computation_county_fips": "48113",
+    "computation_county_name": "Dallas County",
+    "computation_county_population_share_2025": 0.93671563,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 1245355,
+        "county_part_estimate_base_2020": 1224042,
+        "primary_geography_flag": "1",
+        "source_row": 72724,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.93671563,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48085",
+        "county_part_population_2025": 54266,
+        "county_part_estimate_base_2020": 51758,
+        "primary_geography_flag": "1",
+        "source_row": 72622,
+        "county_name": "Collin County",
+        "county_part_population_share_2025": 0.04081712,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48121",
+        "county_part_population_2025": 29865,
+        "county_part_estimate_base_2020": 28536,
+        "primary_geography_flag": "1",
+        "source_row": 72773,
+        "county_name": "Denton County",
+        "county_part_population_share_2025": 0.02246348,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48397",
+        "county_part_population_2025": 5,
+        "county_part_estimate_base_2020": 5,
+        "primary_geography_flag": "1",
+        "source_row": 73815,
+        "county_name": "Rockwall County",
+        "county_part_population_share_2025": 3.76e-06,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48257",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 73366,
+        "county_name": "Kaufman County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 1329491,
+        "county_count": 5,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4827000",
+    "place_geoid": "4827000",
+    "display_name": "Fort Worth, TX",
+    "computation_county_fips": "48439",
+    "computation_county_name": "Tarrant County",
+    "computation_county_population_share_2025": 0.97932726,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48439",
+        "county_part_population_2025": 1006863,
+        "county_part_estimate_base_2020": 900644,
+        "primary_geography_flag": "1",
+        "source_row": 73949,
+        "county_name": "Tarrant County",
+        "county_part_population_share_2025": 0.97932726,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "23104",
+        "metropolitan_division_title": "Fort Worth-Arlington-Grapevine, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48121",
+        "county_part_population_2025": 19577,
+        "county_part_estimate_base_2020": 17000,
+        "primary_geography_flag": "1",
+        "source_row": 72778,
+        "county_name": "Denton County",
+        "county_part_population_share_2025": 0.01904161,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48367",
+        "county_part_population_2025": 1677,
+        "county_part_estimate_base_2020": 1248,
+        "primary_geography_flag": "1",
+        "source_row": 73730,
+        "county_name": "Parker County",
+        "county_part_population_share_2025": 0.00163114,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "23104",
+        "metropolitan_division_title": "Fort Worth-Arlington-Grapevine, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48251",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 73338,
+        "county_name": "Johnson County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "23104",
+        "metropolitan_division_title": "Fort Worth-Arlington-Grapevine, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48497",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 74172,
+        "county_name": "Wise County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "23104",
+        "metropolitan_division_title": "Fort Worth-Arlington-Grapevine, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 1028117,
+        "county_count": 5,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4805000",
+    "place_geoid": "4805000",
+    "display_name": "Austin, TX",
+    "computation_county_fips": "48453",
+    "computation_county_name": "Travis County",
+    "computation_county_population_share_2025": 0.92721657,
+    "primary_cbsa_code": "12420",
+    "primary_cbsa_title": "Austin-Round Rock-San Marcos, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48453",
+        "county_part_population_2025": 929657,
+        "county_part_estimate_base_2020": 897048,
+        "primary_geography_flag": "1",
+        "source_row": 74008,
+        "county_name": "Travis County",
+        "county_part_population_share_2025": 0.92721657,
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48491",
+        "county_part_population_2025": 72071,
+        "county_part_estimate_base_2020": 60319,
+        "primary_geography_flag": "1",
+        "source_row": 74134,
+        "county_name": "Williamson County",
+        "county_part_population_share_2025": 0.07188181,
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48209",
+        "county_part_population_2025": 904,
+        "county_part_estimate_base_2020": 784,
+        "primary_geography_flag": "1",
+        "source_row": 73151,
+        "county_name": "Hays County",
+        "county_part_population_share_2025": 0.00090163,
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48021",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 72351,
+        "county_name": "Bastrop County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 1002632,
+        "county_count": 4,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:3918000",
+    "place_geoid": "3918000",
+    "display_name": "Columbus, OH",
+    "computation_county_fips": "39049",
+    "computation_county_name": "Franklin County",
+    "computation_county_population_share_2025": 0.97101757,
+    "primary_cbsa_code": "18140",
+    "primary_cbsa_title": "Columbus, OH",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "39049",
+        "county_part_population_2025": 911199,
+        "county_part_estimate_base_2020": 880797,
+        "primary_geography_flag": "0",
+        "source_row": 56035,
+        "county_name": "Franklin County",
+        "county_part_population_share_2025": 0.97101757,
+        "cbsa_code": "18140",
+        "cbsa_title": "Columbus, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "198",
+        "csa_title": "Columbus-Marion-Zanesville, OH",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "39041",
+        "county_part_population_2025": 15455,
+        "county_part_estimate_base_2020": 14570,
+        "primary_geography_flag": "0",
+        "source_row": 55819,
+        "county_name": "Delaware County",
+        "county_part_population_share_2025": 0.01646959,
+        "cbsa_code": "18140",
+        "cbsa_title": "Columbus, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "198",
+        "csa_title": "Columbus-Marion-Zanesville, OH",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "39045",
+        "county_part_population_2025": 11742,
+        "county_part_estimate_base_2020": 10848,
+        "primary_geography_flag": "0",
+        "source_row": 55931,
+        "county_name": "Fairfield County",
+        "county_part_population_share_2025": 0.01251284,
+        "cbsa_code": "18140",
+        "cbsa_title": "Columbus, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "198",
+        "csa_title": "Columbus-Marion-Zanesville, OH",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "18140",
+        "cbsa_title": "Columbus, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 938396,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4055000",
+    "place_geoid": "4055000",
+    "display_name": "Oklahoma City, OK",
+    "computation_county_fips": "40109",
+    "computation_county_name": "Oklahoma County",
+    "computation_county_population_share_2025": 0.7562336,
+    "primary_cbsa_code": "36420",
+    "primary_cbsa_title": "Oklahoma City, OK",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.99988192,
+    "county_parts": [
+      {
+        "county_fips": "40109",
+        "county_part_population_2025": 544374,
+        "county_part_estimate_base_2020": 526127,
+        "primary_geography_flag": "1",
+        "source_row": 60512,
+        "county_name": "Oklahoma County",
+        "county_part_population_share_2025": 0.7562336,
+        "cbsa_code": "36420",
+        "cbsa_title": "Oklahoma City, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "416",
+        "csa_title": "Oklahoma City-Shawnee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40017",
+        "county_part_population_2025": 94011,
+        "county_part_estimate_base_2020": 76943,
+        "primary_geography_flag": "1",
+        "source_row": 60059,
+        "county_name": "Canadian County",
+        "county_part_population_share_2025": 0.13059822,
+        "cbsa_code": "36420",
+        "cbsa_title": "Oklahoma City, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "416",
+        "csa_title": "Oklahoma City-Shawnee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40027",
+        "county_part_population_2025": 81379,
+        "county_part_estimate_base_2020": 77790,
+        "primary_geography_flag": "1",
+        "source_row": 60098,
+        "county_name": "Cleveland County",
+        "county_part_population_share_2025": 0.1130501,
+        "cbsa_code": "36420",
+        "cbsa_title": "Oklahoma City, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "416",
+        "csa_title": "Oklahoma City-Shawnee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40125",
+        "county_part_population_2025": 85,
+        "county_part_estimate_base_2020": 76,
+        "primary_geography_flag": "1",
+        "source_row": 60623,
+        "county_name": "Pottawatomie County",
+        "county_part_population_share_2025": 0.00011808,
+        "cbsa_code": "43060",
+        "cbsa_title": "Shawnee, OK",
+        "cbsa_type": "Micropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "416",
+        "csa_title": "Oklahoma City-Shawnee, OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "36420",
+        "cbsa_title": "Oklahoma City, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 719764,
+        "county_count": 3,
+        "population_share_2025": 0.99988192
+      },
+      {
+        "cbsa_code": "43060",
+        "cbsa_title": "Shawnee, OK",
+        "cbsa_type": "Micropolitan Statistical Area",
+        "population_2025": 85,
+        "county_count": 1,
+        "population_share_2025": 0.00011808
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4159000",
+    "place_geoid": "4159000",
+    "display_name": "Portland, OR",
+    "computation_county_fips": "41051",
+    "computation_county_name": "Multnomah County",
+    "computation_county_population_share_2025": 0.99609201,
+    "primary_cbsa_code": "38900",
+    "primary_cbsa_title": "Portland-Vancouver-Hillsboro, OR-WA",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "41051",
+        "county_part_population_2025": 632627,
+        "county_part_estimate_base_2020": 649971,
+        "primary_geography_flag": "1",
+        "source_row": 61240,
+        "county_name": "Multnomah County",
+        "county_part_population_share_2025": 0.99609201,
+        "cbsa_code": "38900",
+        "cbsa_title": "Portland-Vancouver-Hillsboro, OR-WA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "440",
+        "csa_title": "Portland-Vancouver-Salem, OR-WA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "41067",
+        "county_part_population_2025": 1632,
+        "county_part_estimate_base_2020": 1641,
+        "primary_geography_flag": "1",
+        "source_row": 61316,
+        "county_name": "Washington County",
+        "county_part_population_share_2025": 0.00256964,
+        "cbsa_code": "38900",
+        "cbsa_title": "Portland-Vancouver-Hillsboro, OR-WA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "440",
+        "csa_title": "Portland-Vancouver-Salem, OR-WA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "41005",
+        "county_part_population_2025": 850,
+        "county_part_estimate_base_2020": 854,
+        "primary_geography_flag": "1",
+        "source_row": 61041,
+        "county_name": "Clackamas County",
+        "county_part_population_share_2025": 0.00133835,
+        "cbsa_code": "38900",
+        "cbsa_title": "Portland-Vancouver-Hillsboro, OR-WA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "440",
+        "csa_title": "Portland-Vancouver-Salem, OR-WA",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "38900",
+        "cbsa_title": "Portland-Vancouver-Hillsboro, OR-WA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 635109,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:5553000",
+    "place_geoid": "5553000",
+    "display_name": "Milwaukee, WI",
+    "computation_county_fips": "55079",
+    "computation_county_name": "Milwaukee County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "33340",
+    "primary_cbsa_title": "Milwaukee-Waukesha, WI",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "55079",
+        "county_part_population_2025": 562407,
+        "county_part_estimate_base_2020": 577894,
+        "primary_geography_flag": "0",
+        "source_row": 79528,
+        "county_name": "Milwaukee County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "33340",
+        "cbsa_title": "Milwaukee-Waukesha, WI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "376",
+        "csa_title": "Milwaukee-Racine-Waukesha, WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "55131",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "0",
+        "source_row": 80771,
+        "county_name": "Washington County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "33340",
+        "cbsa_title": "Milwaukee-Waukesha, WI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "376",
+        "csa_title": "Milwaukee-Racine-Waukesha, WI",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "55133",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "0",
+        "source_row": 80822,
+        "county_name": "Waukesha County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "33340",
+        "cbsa_title": "Milwaukee-Waukesha, WI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "376",
+        "csa_title": "Milwaukee-Racine-Waukesha, WI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "33340",
+        "cbsa_title": "Milwaukee-Waukesha, WI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 562407,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:1304000",
+    "place_geoid": "1304000",
+    "display_name": "Atlanta, GA",
+    "computation_county_fips": "13121",
+    "computation_county_name": "Fulton County",
+    "computation_county_population_share_2025": 0.91808887,
+    "primary_cbsa_code": "12060",
+    "primary_cbsa_title": "Atlanta-Sandy Springs-Roswell, GA",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "13121",
+        "county_part_population_2025": 485770,
+        "county_part_estimate_base_2020": 458534,
+        "primary_geography_flag": "1",
+        "source_row": 6895,
+        "county_name": "Fulton County",
+        "county_part_population_share_2025": 0.91808887,
+        "cbsa_code": "12060",
+        "cbsa_title": "Atlanta-Sandy Springs-Roswell, GA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "12054",
+        "metropolitan_division_title": "Atlanta-Sandy Springs-Roswell, GA",
+        "csa_code": "122",
+        "csa_title": "Atlanta--Athens-Clarke County--Sandy Springs, GA-AL",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "13089",
+        "county_part_population_2025": 43340,
+        "county_part_estimate_base_2020": 40271,
+        "primary_geography_flag": "1",
+        "source_row": 6796,
+        "county_name": "DeKalb County",
+        "county_part_population_share_2025": 0.08191113,
+        "cbsa_code": "12060",
+        "cbsa_title": "Atlanta-Sandy Springs-Roswell, GA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "12054",
+        "metropolitan_division_title": "Atlanta-Sandy Springs-Roswell, GA",
+        "csa_code": "122",
+        "csa_title": "Atlanta--Athens-Clarke County--Sandy Springs, GA-AL",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "12060",
+        "cbsa_title": "Atlanta-Sandy Springs-Roswell, GA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 529110,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:2938000",
+    "place_geoid": "2938000",
+    "display_name": "Kansas City, MO",
+    "computation_county_fips": "29095",
+    "computation_county_name": "Jackson County",
+    "computation_county_population_share_2025": 0.61546756,
+    "primary_cbsa_code": "28140",
+    "primary_cbsa_title": "Kansas City, MO-KS",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "29095",
+        "county_part_population_2025": 320794,
+        "county_part_estimate_base_2020": 316544,
+        "primary_geography_flag": "1",
+        "source_row": 40587,
+        "county_name": "Jackson County",
+        "county_part_population_share_2025": 0.61546756,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "29047",
+        "county_part_population_2025": 144263,
+        "county_part_estimate_base_2020": 138175,
+        "primary_geography_flag": "1",
+        "source_row": 40151,
+        "county_name": "Clay County",
+        "county_part_population_share_2025": 0.27677948,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "29165",
+        "county_part_population_2025": 56064,
+        "county_part_estimate_base_2020": 53194,
+        "primary_geography_flag": "1",
+        "source_row": 41079,
+        "county_name": "Platte County",
+        "county_part_population_share_2025": 0.10756303,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "29037",
+        "county_part_population_2025": 99,
+        "county_part_estimate_base_2020": 99,
+        "primary_geography_flag": "1",
+        "source_row": 40056,
+        "county_name": "Cass County",
+        "county_part_population_share_2025": 0.00018994,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 521220,
+        "county_count": 4,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:3755000",
+    "place_geoid": "3755000",
+    "display_name": "Raleigh, NC",
+    "computation_county_fips": "37183",
+    "computation_county_name": "Wake County",
+    "computation_county_population_share_2025": 0.99672135,
+    "primary_cbsa_code": "39580",
+    "primary_cbsa_title": "Raleigh-Cary, NC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.99672135,
+    "county_parts": [
+      {
+        "county_fips": "37183",
+        "county_part_population_2025": 504646,
+        "county_part_estimate_base_2020": 466556,
+        "primary_geography_flag": "1",
+        "source_row": 50852,
+        "county_name": "Wake County",
+        "county_part_population_share_2025": 0.99672135,
+        "cbsa_code": "39580",
+        "cbsa_title": "Raleigh-Cary, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37063",
+        "county_part_population_2025": 1660,
+        "county_part_estimate_base_2020": 1546,
+        "primary_geography_flag": "1",
+        "source_row": 50367,
+        "county_name": "Durham County",
+        "county_part_population_share_2025": 0.00327865,
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "39580",
+        "cbsa_title": "Raleigh-Cary, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 504646,
+        "county_count": 1,
+        "population_share_2025": 0.99672135
+      },
+      {
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 1660,
+        "county_count": 1,
+        "population_share_2025": 0.00327865
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4075000",
+    "place_geoid": "4075000",
+    "display_name": "Tulsa, OK",
+    "computation_county_fips": "40143",
+    "computation_county_name": "Tulsa County",
+    "computation_county_population_share_2025": 0.98586768,
+    "primary_cbsa_code": "46140",
+    "primary_cbsa_title": "Tulsa, OK",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "40143",
+        "county_part_population_2025": 410327,
+        "county_part_estimate_base_2020": 407215,
+        "primary_geography_flag": "1",
+        "source_row": 60724,
+        "county_name": "Tulsa County",
+        "county_part_population_share_2025": 0.98586768,
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "538",
+        "csa_title": "Tulsa-Bartlesville-Muskogee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40113",
+        "county_part_population_2025": 5832,
+        "county_part_estimate_base_2020": 5829,
+        "primary_geography_flag": "1",
+        "source_row": 60549,
+        "county_name": "Osage County",
+        "county_part_population_share_2025": 0.01401219,
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "538",
+        "csa_title": "Tulsa-Bartlesville-Muskogee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40145",
+        "county_part_population_2025": 37,
+        "county_part_estimate_base_2020": 36,
+        "primary_geography_flag": "1",
+        "source_row": 60736,
+        "county_name": "Wagoner County",
+        "county_part_population_share_2025": 8.89e-05,
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "538",
+        "csa_title": "Tulsa-Bartlesville-Muskogee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40131",
+        "county_part_population_2025": 13,
+        "county_part_estimate_base_2020": 13,
+        "primary_geography_flag": "1",
+        "source_row": 60656,
+        "county_name": "Rogers County",
+        "county_part_population_share_2025": 3.123e-05,
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "538",
+        "csa_title": "Tulsa-Bartlesville-Muskogee, OK",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 416209,
+        "county_count": 4,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0804000",
+    "place_geoid": "0804000",
+    "display_name": "Aurora, CO",
+    "computation_county_fips": "08005",
+    "computation_county_name": "Arapahoe County",
+    "computation_county_population_share_2025": 0.84052062,
+    "primary_cbsa_code": "19740",
+    "primary_cbsa_title": "Denver-Aurora-Centennial, CO",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "08005",
+        "county_part_population_2025": 344658,
+        "county_part_estimate_base_2020": 336023,
+        "primary_geography_flag": "1",
+        "source_row": 4228,
+        "county_name": "Arapahoe County",
+        "county_part_population_share_2025": 0.84052062,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "08001",
+        "county_part_population_2025": 61110,
+        "county_part_estimate_base_2020": 47725,
+        "primary_geography_flag": "1",
+        "source_row": 4213,
+        "county_name": "Adams County",
+        "county_part_population_share_2025": 0.14902952,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "08035",
+        "county_part_population_2025": 4285,
+        "county_part_estimate_base_2020": 2507,
+        "primary_geography_flag": "1",
+        "source_row": 4322,
+        "county_name": "Douglas County",
+        "county_part_population_share_2025": 0.01044987,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 410053,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4817000",
+    "place_geoid": "4817000",
+    "display_name": "Corpus Christi, TX",
+    "computation_county_fips": "48355",
+    "computation_county_name": "Nueces County",
+    "computation_county_population_share_2025": 0.99998109,
+    "primary_cbsa_code": "18580",
+    "primary_cbsa_title": "Corpus Christi, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.99999685,
+    "county_parts": [
+      {
+        "county_fips": "48355",
+        "county_part_population_2025": 317241,
+        "county_part_estimate_base_2020": 318084,
+        "primary_geography_flag": "1",
+        "source_row": 73682,
+        "county_name": "Nueces County",
+        "county_part_population_share_2025": 0.99998109,
+        "cbsa_code": "18580",
+        "cbsa_title": "Corpus Christi, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "204",
+        "csa_title": "Corpus Christi-Kingsville-Alice, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48409",
+        "county_part_population_2025": 5,
+        "county_part_estimate_base_2020": 5,
+        "primary_geography_flag": "1",
+        "source_row": 73856,
+        "county_name": "San Patricio County",
+        "county_part_population_share_2025": 1.576e-05,
+        "cbsa_code": "18580",
+        "cbsa_title": "Corpus Christi, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "204",
+        "csa_title": "Corpus Christi-Kingsville-Alice, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48273",
+        "county_part_population_2025": 1,
+        "county_part_estimate_base_2020": 1,
+        "primary_geography_flag": "1",
+        "source_row": 73407,
+        "county_name": "Kleberg County",
+        "county_part_population_share_2025": 3.15e-06,
+        "cbsa_code": "28780",
+        "cbsa_title": "Kingsville, TX",
+        "cbsa_type": "Micropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "204",
+        "csa_title": "Corpus Christi-Kingsville-Alice, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48007",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 72312,
+        "county_name": "Aransas County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "18580",
+        "cbsa_title": "Corpus Christi, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "204",
+        "csa_title": "Corpus Christi-Kingsville-Alice, TX",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "18580",
+        "cbsa_title": "Corpus Christi, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 317246,
+        "county_count": 3,
+        "population_share_2025": 0.99999685
+      },
+      {
+        "cbsa_code": "28780",
+        "cbsa_title": "Kingsville, TX",
+        "cbsa_type": "Micropolitan Statistical Area",
+        "population_2025": 1,
+        "county_count": 1,
+        "population_share_2025": 3.15e-06
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:3719000",
+    "place_geoid": "3719000",
+    "display_name": "Durham, NC",
+    "computation_county_fips": "37063",
+    "computation_county_name": "Durham County",
+    "computation_county_population_share_2025": 0.99854366,
+    "primary_cbsa_code": "20500",
+    "primary_cbsa_title": "Durham-Chapel Hill, NC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.99902474,
+    "county_parts": [
+      {
+        "county_fips": "37063",
+        "county_part_population_2025": 305116,
+        "county_part_estimate_base_2020": 283462,
+        "primary_geography_flag": "1",
+        "source_row": 50365,
+        "county_name": "Durham County",
+        "county_part_population_share_2025": 0.99854366,
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37183",
+        "county_part_population_2025": 298,
+        "county_part_estimate_base_2020": 274,
+        "primary_geography_flag": "1",
+        "source_row": 50846,
+        "county_name": "Wake County",
+        "county_part_population_share_2025": 0.00097526,
+        "cbsa_code": "39580",
+        "cbsa_title": "Raleigh-Cary, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37135",
+        "county_part_population_2025": 147,
+        "county_part_estimate_base_2020": 145,
+        "primary_geography_flag": "1",
+        "source_row": 50648,
+        "county_name": "Orange County",
+        "county_part_population_share_2025": 0.00048108,
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 305263,
+        "county_count": 2,
+        "population_share_2025": 0.99902474
+      },
+      {
+        "cbsa_code": "39580",
+        "cbsa_title": "Raleigh-Cary, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 298,
+        "county_count": 1,
+        "population_share_2025": 0.00097526
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4858016",
+    "place_geoid": "4858016",
+    "display_name": "Plano, TX",
+    "computation_county_fips": "48085",
+    "computation_county_name": "Collin County",
+    "computation_county_population_share_2025": 0.98053087,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48085",
+        "county_part_population_2025": 287323,
+        "county_part_estimate_base_2020": 279899,
+        "primary_geography_flag": "1",
+        "source_row": 72638,
+        "county_name": "Collin County",
+        "county_part_population_share_2025": 0.98053087,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48121",
+        "county_part_population_2025": 5705,
+        "county_part_estimate_base_2020": 5566,
+        "primary_geography_flag": "1",
+        "source_row": 72797,
+        "county_name": "Denton County",
+        "county_part_population_share_2025": 0.01946913,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 293028,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4829000",
+    "place_geoid": "4829000",
+    "display_name": "Garland, TX",
+    "computation_county_fips": "48113",
+    "computation_county_name": "Dallas County",
+    "computation_county_population_share_2025": 0.999331,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 249458,
+        "county_part_estimate_base_2020": 246028,
+        "primary_geography_flag": "1",
+        "source_row": 72729,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.999331,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48085",
+        "county_part_population_2025": 167,
+        "county_part_estimate_base_2020": 162,
+        "primary_geography_flag": "1",
+        "source_row": 72626,
+        "county_name": "Collin County",
+        "county_part_population_share_2025": 0.000669,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 249625,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4827684",
+    "place_geoid": "4827684",
+    "display_name": "Frisco, TX",
+    "computation_county_fips": "48085",
+    "computation_county_name": "Collin County",
+    "computation_county_population_share_2025": 0.5940073,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48085",
+        "county_part_population_2025": 140753,
+        "county_part_estimate_base_2020": 119050,
+        "primary_geography_flag": "1",
+        "source_row": 72625,
+        "county_name": "Collin County",
+        "county_part_population_share_2025": 0.5940073,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48121",
+        "county_part_population_2025": 96202,
+        "county_part_estimate_base_2020": 81481,
+        "primary_geography_flag": "1",
+        "source_row": 72779,
+        "county_name": "Denton County",
+        "county_part_population_share_2025": 0.4059927,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 236955,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0137000",
+    "place_geoid": "0137000",
+    "display_name": "Huntsville, AL",
+    "computation_county_fips": "01089",
+    "computation_county_name": "Madison County",
+    "computation_county_population_share_2025": 0.97769522,
+    "primary_cbsa_code": "26620",
+    "primary_cbsa_title": "Huntsville, AL",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.9999786,
+    "county_parts": [
+      {
+        "county_fips": "01089",
+        "county_part_population_2025": 228416,
+        "county_part_estimate_base_2020": 210625,
+        "primary_geography_flag": "1",
+        "source_row": 899,
+        "county_name": "Madison County",
+        "county_part_population_share_2025": 0.97769522,
+        "cbsa_code": "26620",
+        "cbsa_title": "Huntsville, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "290",
+        "csa_title": "Huntsville-Decatur-Albertville, AL-TN",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "01083",
+        "county_part_population_2025": 5206,
+        "county_part_estimate_base_2020": 4359,
+        "primary_geography_flag": "1",
+        "source_row": 877,
+        "county_name": "Limestone County",
+        "county_part_population_share_2025": 0.02228338,
+        "cbsa_code": "26620",
+        "cbsa_title": "Huntsville, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "290",
+        "csa_title": "Huntsville-Decatur-Albertville, AL-TN",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "01103",
+        "county_part_population_2025": 5,
+        "county_part_estimate_base_2020": 5,
+        "primary_geography_flag": "1",
+        "source_row": 967,
+        "county_name": "Morgan County",
+        "county_part_population_share_2025": 2.14e-05,
+        "cbsa_code": "19460",
+        "cbsa_title": "Decatur, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "290",
+        "csa_title": "Huntsville-Decatur-Albertville, AL-TN",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "26620",
+        "cbsa_title": "Huntsville, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 233622,
+        "county_count": 2,
+        "population_share_2025": 0.9999786
+      },
+      {
+        "cbsa_code": "19460",
+        "cbsa_title": "Decatur, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 5,
+        "county_count": 1,
+        "population_share_2025": 2.14e-05
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4659020",
+    "place_geoid": "4659020",
+    "display_name": "Sioux Falls, SD",
+    "computation_county_fips": "46099",
+    "computation_county_name": "Minnehaha County",
+    "computation_county_population_share_2025": 0.80516777,
+    "primary_cbsa_code": "43620",
+    "primary_cbsa_title": "Sioux Falls, SD-MN",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "46099",
+        "county_part_population_2025": 172103,
+        "county_part_estimate_base_2020": 156539,
+        "primary_geography_flag": "0",
+        "source_row": 69588,
+        "county_name": "Minnehaha County",
+        "county_part_population_share_2025": 0.80516777,
+        "cbsa_code": "43620",
+        "cbsa_title": "Sioux Falls, SD-MN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "46083",
+        "county_part_population_2025": 41645,
+        "county_part_estimate_base_2020": 36198,
+        "primary_geography_flag": "0",
+        "source_row": 69332,
+        "county_name": "Lincoln County",
+        "county_part_population_share_2025": 0.19483223,
+        "cbsa_code": "43620",
+        "cbsa_title": "Sioux Falls, SD-MN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "43620",
+        "cbsa_title": "Sioux Falls, SD-MN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 213748,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1921000",
+    "place_geoid": "1921000",
+    "display_name": "Des Moines, IA",
+    "computation_county_fips": "19153",
+    "computation_county_name": "Polk County",
+    "computation_county_population_share_2025": 0.99903813,
+    "primary_cbsa_code": "19780",
+    "primary_cbsa_title": "Des Moines-West Des Moines, IA",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "19153",
+        "county_part_population_2025": 211882,
+        "county_part_estimate_base_2020": 213835,
+        "primary_geography_flag": "1",
+        "source_row": 20974,
+        "county_name": "Polk County",
+        "county_part_population_share_2025": 0.99903813,
+        "cbsa_code": "19780",
+        "cbsa_title": "Des Moines-West Des Moines, IA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "218",
+        "csa_title": "Des Moines-West Des Moines-Ames, IA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "19181",
+        "county_part_population_2025": 204,
+        "county_part_estimate_base_2020": 197,
+        "primary_geography_flag": "1",
+        "source_row": 21164,
+        "county_name": "Warren County",
+        "county_part_population_share_2025": 0.00096187,
+        "cbsa_code": "19780",
+        "cbsa_title": "Des Moines-West Des Moines, IA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "218",
+        "csa_title": "Des Moines-West Des Moines-Ames, IA",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19780",
+        "cbsa_title": "Des Moines-West Des Moines, IA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 212086,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4830464",
+    "place_geoid": "4830464",
+    "display_name": "Grand Prairie, TX",
+    "computation_county_fips": "48113",
+    "computation_county_name": "Dallas County",
+    "computation_county_population_share_2025": 0.63644394,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 133293,
+        "county_part_estimate_base_2020": 124904,
+        "primary_geography_flag": "1",
+        "source_row": 72731,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.63644394,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48439",
+        "county_part_population_2025": 76110,
+        "county_part_estimate_base_2020": 71149,
+        "primary_geography_flag": "1",
+        "source_row": 73950,
+        "county_name": "Tarrant County",
+        "county_part_population_share_2025": 0.36340804,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "23104",
+        "metropolitan_division_title": "Fort Worth-Arlington-Grapevine, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48139",
+        "county_part_population_2025": 26,
+        "county_part_estimate_base_2020": 23,
+        "primary_geography_flag": "1",
+        "source_row": 72857,
+        "county_name": "Ellis County",
+        "county_part_population_share_2025": 0.00012414,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48251",
+        "county_part_population_2025": 5,
+        "county_part_estimate_base_2020": 5,
+        "primary_geography_flag": "1",
+        "source_row": 73340,
+        "county_name": "Johnson County",
+        "county_part_population_share_2025": 2.387e-05,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "23104",
+        "metropolitan_division_title": "Fort Worth-Arlington-Grapevine, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 209434,
+        "county_count": 4,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4803000",
+    "place_geoid": "4803000",
+    "display_name": "Amarillo, TX",
+    "computation_county_fips": "48381",
+    "computation_county_name": "Randall County",
+    "computation_county_population_share_2025": 0.51977283,
+    "primary_cbsa_code": "11100",
+    "primary_cbsa_title": "Amarillo, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48381",
+        "county_part_population_2025": 106621,
+        "county_part_estimate_base_2020": 98748,
+        "primary_geography_flag": "1",
+        "source_row": 73772,
+        "county_name": "Randall County",
+        "county_part_population_share_2025": 0.51977283,
+        "cbsa_code": "11100",
+        "cbsa_title": "Amarillo, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "108",
+        "csa_title": "Amarillo-Borger, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48375",
+        "county_part_population_2025": 98509,
+        "county_part_estimate_base_2020": 101663,
+        "primary_geography_flag": "1",
+        "source_row": 73758,
+        "county_name": "Potter County",
+        "county_part_population_share_2025": 0.48022717,
+        "cbsa_code": "11100",
+        "cbsa_title": "Amarillo, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "108",
+        "csa_title": "Amarillo-Borger, TX",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "11100",
+        "cbsa_title": "Amarillo, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 205130,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0454050",
+    "place_geoid": "0454050",
+    "display_name": "Peoria, AZ",
+    "computation_county_fips": "04013",
+    "computation_county_name": "Maricopa County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "38060",
+    "primary_cbsa_title": "Phoenix-Mesa-Chandler, AZ",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "04013",
+        "county_part_population_2025": 200881,
+        "county_part_estimate_base_2020": 190980,
+        "primary_geography_flag": "1",
+        "source_row": 1617,
+        "county_name": "Maricopa County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "38060",
+        "cbsa_title": "Phoenix-Mesa-Chandler, AZ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "429",
+        "csa_title": "Phoenix-Mesa, AZ",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "04025",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 1674,
+        "county_name": "Yavapai County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "39150",
+        "cbsa_title": "Prescott Valley-Prescott, AZ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "38060",
+        "cbsa_title": "Phoenix-Mesa-Chandler, AZ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 200881,
+        "county_count": 1,
+        "population_share_2025": 1.0
+      },
+      {
+        "cbsa_code": "39150",
+        "cbsa_title": "Prescott Valley-Prescott, AZ",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 0,
+        "county_count": 1,
+        "population_share_2025": 0.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:0107000",
+    "place_geoid": "0107000",
+    "display_name": "Birmingham, AL",
+    "computation_county_fips": "01073",
+    "computation_county_name": "Jefferson County",
+    "computation_county_population_share_2025": 0.99005069,
+    "primary_cbsa_code": "13820",
+    "primary_cbsa_title": "Birmingham, AL",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "01073",
+        "county_part_population_2025": 193944,
+        "county_part_estimate_base_2020": 198588,
+        "primary_geography_flag": "1",
+        "source_row": 801,
+        "county_name": "Jefferson County",
+        "county_part_population_share_2025": 0.99005069,
+        "cbsa_code": "13820",
+        "cbsa_title": "Birmingham, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "142",
+        "csa_title": "Birmingham-Cullman-Talladega, AL",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "01117",
+        "county_part_population_2025": 1949,
+        "county_part_estimate_base_2020": 1898,
+        "primary_geography_flag": "1",
+        "source_row": 1020,
+        "county_name": "Shelby County",
+        "county_part_population_share_2025": 0.00994931,
+        "cbsa_code": "13820",
+        "cbsa_title": "Birmingham, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "142",
+        "csa_title": "Birmingham-Cullman-Talladega, AL",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "13820",
+        "cbsa_title": "Birmingham, AL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 195893,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:3710740",
+    "place_geoid": "3710740",
+    "display_name": "Cary, NC",
+    "computation_county_fips": "37183",
+    "computation_county_name": "Wake County",
+    "computation_county_population_share_2025": 0.9777756,
+    "primary_cbsa_code": "39580",
+    "primary_cbsa_title": "Raleigh-Cary, NC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.9777756,
+    "county_parts": [
+      {
+        "county_fips": "37183",
+        "county_part_population_2025": 179502,
+        "county_part_estimate_base_2020": 171075,
+        "primary_geography_flag": "1",
+        "source_row": 50844,
+        "county_name": "Wake County",
+        "county_part_population_share_2025": 0.9777756,
+        "cbsa_code": "39580",
+        "cbsa_title": "Raleigh-Cary, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37037",
+        "county_part_population_2025": 4079,
+        "county_part_estimate_base_2020": 3711,
+        "primary_geography_flag": "1",
+        "source_row": 50261,
+        "county_name": "Chatham County",
+        "county_part_population_share_2025": 0.02221895,
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37063",
+        "county_part_population_2025": 1,
+        "county_part_estimate_base_2020": 1,
+        "primary_geography_flag": "1",
+        "source_row": 50363,
+        "county_name": "Durham County",
+        "county_part_population_share_2025": 5.45e-06,
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "450",
+        "csa_title": "Raleigh-Durham-Cary, NC",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "39580",
+        "cbsa_title": "Raleigh-Cary, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 179502,
+        "county_count": 1,
+        "population_share_2025": 0.9777756
+      },
+      {
+        "cbsa_code": "20500",
+        "cbsa_title": "Durham-Chapel Hill, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 4080,
+        "county_count": 2,
+        "population_share_2025": 0.0222244
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4164900",
+    "place_geoid": "4164900",
+    "display_name": "Salem, OR",
+    "computation_county_fips": "41047",
+    "computation_county_name": "Marion County",
+    "computation_county_population_share_2025": 0.83287398,
+    "primary_cbsa_code": "41420",
+    "primary_cbsa_title": "Salem, OR",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "41047",
+        "county_part_population_2025": 151399,
+        "county_part_estimate_base_2020": 146115,
+        "primary_geography_flag": "1",
+        "source_row": 61219,
+        "county_name": "Marion County",
+        "county_part_population_share_2025": 0.83287398,
+        "cbsa_code": "41420",
+        "cbsa_title": "Salem, OR",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "440",
+        "csa_title": "Portland-Vancouver-Salem, OR-WA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "41053",
+        "county_part_population_2025": 30380,
+        "county_part_estimate_base_2020": 29401,
+        "primary_geography_flag": "1",
+        "source_row": 61249,
+        "county_name": "Polk County",
+        "county_part_population_share_2025": 0.16712602,
+        "cbsa_code": "41420",
+        "cbsa_title": "Salem, OR",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "440",
+        "csa_title": "Portland-Vancouver-Salem, OR-WA",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "41420",
+        "cbsa_title": "Salem, OR",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 181779,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1703012",
+    "place_geoid": "1703012",
+    "display_name": "Aurora, IL",
+    "computation_county_fips": "17089",
+    "computation_county_name": "Kane County",
+    "computation_county_population_share_2025": 0.6112063,
+    "primary_cbsa_code": "16980",
+    "primary_cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "17089",
+        "county_part_population_2025": 110937,
+        "county_part_estimate_base_2020": 111338,
+        "primary_geography_flag": "0",
+        "source_row": 11804,
+        "county_name": "Kane County",
+        "county_part_population_share_2025": 0.6112063,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "20994",
+        "metropolitan_division_title": "Elgin, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17043",
+        "county_part_population_2025": 52191,
+        "county_part_estimate_base_2020": 51571,
+        "primary_geography_flag": "0",
+        "source_row": 10591,
+        "county_name": "DuPage County",
+        "county_part_population_share_2025": 0.2875458,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17197",
+        "county_part_population_2025": 11876,
+        "county_part_estimate_base_2020": 11686,
+        "primary_geography_flag": "0",
+        "source_row": 15019,
+        "county_name": "Will County",
+        "county_part_population_share_2025": 0.0654307,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17093",
+        "county_part_population_2025": 6501,
+        "county_part_estimate_base_2020": 5961,
+        "primary_geography_flag": "0",
+        "source_row": 12014,
+        "county_name": "Kendall County",
+        "county_part_population_share_2025": 0.0358172,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "20994",
+        "metropolitan_division_title": "Elgin, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 181505,
+        "county_count": 4,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:2270000",
+    "place_geoid": "2270000",
+    "display_name": "Shreveport, LA",
+    "computation_county_fips": "22017",
+    "computation_county_name": "Caddo Parish",
+    "computation_county_population_share_2025": 0.98452547,
+    "primary_cbsa_code": "43340",
+    "primary_cbsa_title": "Shreveport-Bossier City, LA",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "22017",
+        "county_part_population_2025": 173180,
+        "county_part_estimate_base_2020": 184734,
+        "primary_geography_flag": "1",
+        "source_row": 26950,
+        "county_name": "Caddo Parish",
+        "county_part_population_share_2025": 0.98452547,
+        "cbsa_code": "43340",
+        "cbsa_title": "Shreveport-Bossier City, LA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "508",
+        "csa_title": "Shreveport-Bossier City-Minden, LA",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "22015",
+        "county_part_population_2025": 2722,
+        "county_part_estimate_base_2020": 2814,
+        "primary_geography_flag": "1",
+        "source_row": 26938,
+        "county_name": "Bossier Parish",
+        "county_part_population_share_2025": 0.01547453,
+        "cbsa_code": "43340",
+        "cbsa_title": "Shreveport-Bossier City, LA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "508",
+        "csa_title": "Shreveport-Bossier City-Minden, LA",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "43340",
+        "cbsa_title": "Shreveport-Bossier City, LA",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 175902,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:2970000",
+    "place_geoid": "2970000",
+    "display_name": "Springfield, MO",
+    "computation_county_fips": "29077",
+    "computation_county_name": "Greene County",
+    "computation_county_population_share_2025": 0.99998822,
+    "primary_cbsa_code": "44180",
+    "primary_cbsa_title": "Springfield, MO",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "29077",
+        "county_part_population_2025": 169845,
+        "county_part_estimate_base_2020": 169141,
+        "primary_geography_flag": "1",
+        "source_row": 40402,
+        "county_name": "Greene County",
+        "county_part_population_share_2025": 0.99998822,
+        "cbsa_code": "44180",
+        "cbsa_title": "Springfield, MO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "29043",
+        "county_part_population_2025": 2,
+        "county_part_estimate_base_2020": 2,
+        "primary_geography_flag": "1",
+        "source_row": 40131,
+        "county_name": "Christian County",
+        "county_part_population_share_2025": 1.178e-05,
+        "cbsa_code": "44180",
+        "cbsa_title": "Springfield, MO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "44180",
+        "cbsa_title": "Springfield, MO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 169847,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4513330",
+    "place_geoid": "4513330",
+    "display_name": "Charleston, SC",
+    "computation_county_fips": "45019",
+    "computation_county_name": "Charleston County",
+    "computation_county_population_share_2025": 0.89530369,
+    "primary_cbsa_code": "16700",
+    "primary_cbsa_title": "Charleston-North Charleston, SC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "45019",
+        "county_part_population_2025": 142732,
+        "county_part_estimate_base_2020": 135563,
+        "primary_geography_flag": "1",
+        "source_row": 67535,
+        "county_name": "Charleston County",
+        "county_part_population_share_2025": 0.89530369,
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "45015",
+        "county_part_population_2025": 16691,
+        "county_part_estimate_base_2020": 15183,
+        "primary_geography_flag": "1",
+        "source_row": 67520,
+        "county_name": "Berkeley County",
+        "county_part_population_share_2025": 0.10469631,
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 159423,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1751622",
+    "place_geoid": "1751622",
+    "display_name": "Naperville, IL",
+    "computation_county_fips": "17043",
+    "computation_county_name": "DuPage County",
+    "computation_county_population_share_2025": 0.65753621,
+    "primary_cbsa_code": "16980",
+    "primary_cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "17043",
+        "county_part_population_2025": 100678,
+        "county_part_estimate_base_2020": 98101,
+        "primary_geography_flag": "0",
+        "source_row": 10613,
+        "county_name": "DuPage County",
+        "county_part_population_share_2025": 0.65753621,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17197",
+        "county_part_population_2025": 52436,
+        "county_part_estimate_base_2020": 51434,
+        "primary_geography_flag": "0",
+        "source_row": 15040,
+        "county_name": "Will County",
+        "county_part_population_share_2025": 0.34246379,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 153114,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1738570",
+    "place_geoid": "1738570",
+    "display_name": "Joliet, IL",
+    "computation_county_fips": "17197",
+    "computation_county_name": "Will County",
+    "computation_county_population_share_2025": 0.90442785,
+    "primary_cbsa_code": "16980",
+    "primary_cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "17197",
+        "county_part_population_2025": 137691,
+        "county_part_estimate_base_2020": 136473,
+        "primary_geography_flag": "0",
+        "source_row": 15033,
+        "county_name": "Will County",
+        "county_part_population_share_2025": 0.90442785,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17093",
+        "county_part_population_2025": 14550,
+        "county_part_estimate_base_2020": 14030,
+        "primary_geography_flag": "0",
+        "source_row": 12015,
+        "county_name": "Kendall County",
+        "county_part_population_share_2025": 0.09557215,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "20994",
+        "metropolitan_division_title": "Elgin, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 152241,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4847892",
+    "place_geoid": "4847892",
+    "display_name": "Mesquite, TX",
+    "computation_county_fips": "48113",
+    "computation_county_name": "Dallas County",
+    "computation_county_population_share_2025": 0.99860644,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 150483,
+        "county_part_estimate_base_2020": 150074,
+        "primary_geography_flag": "1",
+        "source_row": 72738,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.99860644,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48257",
+        "county_part_population_2025": 210,
+        "county_part_estimate_base_2020": 158,
+        "primary_geography_flag": "1",
+        "source_row": 73374,
+        "county_name": "Kaufman County",
+        "county_part_population_share_2025": 0.00139356,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 150693,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0877290",
+    "place_geoid": "0877290",
+    "display_name": "Thornton, CO",
+    "computation_county_fips": "08001",
+    "computation_county_name": "Adams County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "19740",
+    "primary_cbsa_title": "Denver-Aurora-Centennial, CO",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "08001",
+        "county_part_population_2025": 147766,
+        "county_part_estimate_base_2020": 141869,
+        "primary_geography_flag": "1",
+        "source_row": 4220,
+        "county_name": "Adams County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "08123",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 4623,
+        "county_name": "Weld County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "24540",
+        "cbsa_title": "Greeley, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 147766,
+        "county_count": 1,
+        "population_share_2025": 1.0
+      },
+      {
+        "cbsa_code": "24540",
+        "cbsa_title": "Greeley, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 0,
+        "county_count": 1,
+        "population_share_2025": 0.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4848072",
+    "place_geoid": "4848072",
+    "display_name": "Midland, TX",
+    "computation_county_fips": "48329",
+    "computation_county_name": "Midland County",
+    "computation_county_population_share_2025": 0.99966128,
+    "primary_cbsa_code": "33260",
+    "primary_cbsa_title": "Midland, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48329",
+        "county_part_population_2025": 147565,
+        "county_part_estimate_base_2020": 132818,
+        "primary_geography_flag": "1",
+        "source_row": 73583,
+        "county_name": "Midland County",
+        "county_part_population_share_2025": 0.99966128,
+        "cbsa_code": "33260",
+        "cbsa_title": "Midland, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "372",
+        "csa_title": "Midland-Odessa-Andrews, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48317",
+        "county_part_population_2025": 50,
+        "county_part_estimate_base_2020": 48,
+        "primary_geography_flag": "1",
+        "source_row": 73557,
+        "county_name": "Martin County",
+        "county_part_population_share_2025": 0.00033872,
+        "cbsa_code": "33260",
+        "cbsa_title": "Midland, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "372",
+        "csa_title": "Midland-Odessa-Andrews, TX",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "33260",
+        "cbsa_title": "Midland, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 147615,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1765000",
+    "place_geoid": "1765000",
+    "display_name": "Rockford, IL",
+    "computation_county_fips": "17201",
+    "computation_county_name": "Winnebago County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "40420",
+    "primary_cbsa_title": "Rockford, IL",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "17201",
+        "county_part_population_2025": 147384,
+        "county_part_estimate_base_2020": 149036,
+        "primary_geography_flag": "0",
+        "source_row": 15204,
+        "county_name": "Winnebago County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "40420",
+        "cbsa_title": "Rockford, IL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "466",
+        "csa_title": "Rockford-Freeport-Rochelle, IL",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17141",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "0",
+        "source_row": 13689,
+        "county_name": "Ogle County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "40300",
+        "cbsa_title": "Rochelle, IL",
+        "cbsa_type": "Micropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "466",
+        "csa_title": "Rockford-Freeport-Rochelle, IL",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "40420",
+        "cbsa_title": "Rockford, IL",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 147384,
+        "county_count": 1,
+        "population_share_2025": 1.0
+      },
+      {
+        "cbsa_code": "40300",
+        "cbsa_title": "Rochelle, IL",
+        "cbsa_type": "Micropolitan Statistical Area",
+        "population_2025": 0,
+        "county_count": 1,
+        "population_share_2025": 0.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4516000",
+    "place_geoid": "4516000",
+    "display_name": "Columbia, SC",
+    "computation_county_fips": "45079",
+    "computation_county_name": "Richland County",
+    "computation_county_population_share_2025": 0.9956881,
+    "primary_cbsa_code": "17900",
+    "primary_cbsa_title": "Columbia, SC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "45079",
+        "county_part_population_2025": 146401,
+        "county_part_estimate_base_2020": 136158,
+        "primary_geography_flag": "1",
+        "source_row": 67787,
+        "county_name": "Richland County",
+        "county_part_population_share_2025": 0.9956881,
+        "cbsa_code": "17900",
+        "cbsa_title": "Columbia, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "192",
+        "csa_title": "Columbia-Sumter-Orangeburg, SC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "45063",
+        "county_part_population_2025": 634,
+        "county_part_estimate_base_2020": 567,
+        "primary_geography_flag": "1",
+        "source_row": 67707,
+        "county_name": "Lexington County",
+        "county_part_population_share_2025": 0.0043119,
+        "cbsa_code": "17900",
+        "cbsa_title": "Columbia, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "192",
+        "csa_title": "Columbia-Sumter-Orangeburg, SC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "45055",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 67681,
+        "county_name": "Kershaw County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "17900",
+        "cbsa_title": "Columbia, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "192",
+        "csa_title": "Columbia-Sumter-Orangeburg, SC",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "17900",
+        "cbsa_title": "Columbia, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 147035,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4863500",
+    "place_geoid": "4863500",
+    "display_name": "Round Rock, TX",
+    "computation_county_fips": "48491",
+    "computation_county_name": "Williamson County",
+    "computation_county_population_share_2025": 0.98609165,
+    "primary_cbsa_code": "12420",
+    "primary_cbsa_title": "Austin-Round Rock-San Marcos, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48491",
+        "county_part_population_2025": 139317,
+        "county_part_estimate_base_2020": 117611,
+        "primary_geography_flag": "1",
+        "source_row": 74146,
+        "county_name": "Williamson County",
+        "county_part_population_share_2025": 0.98609165,
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48453",
+        "county_part_population_2025": 1965,
+        "county_part_estimate_base_2020": 1912,
+        "primary_geography_flag": "1",
+        "source_row": 74023,
+        "county_name": "Travis County",
+        "county_part_population_share_2025": 0.01390835,
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "12420",
+        "cbsa_title": "Austin-Round Rock-San Marcos, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 141282,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:2836000",
+    "place_geoid": "2836000",
+    "display_name": "Jackson, MS",
+    "computation_county_fips": "28049",
+    "computation_county_name": "Hinds County",
+    "computation_county_population_share_2025": 0.99648715,
+    "primary_cbsa_code": "27140",
+    "primary_cbsa_title": "Jackson, MS",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "28049",
+        "county_part_population_2025": 140700,
+        "county_part_estimate_base_2020": 153224,
+        "primary_geography_flag": "1",
+        "source_row": 38465,
+        "county_name": "Hinds County",
+        "county_part_population_share_2025": 0.99648715,
+        "cbsa_code": "27140",
+        "cbsa_title": "Jackson, MS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "298",
+        "csa_title": "Jackson-Vicksburg-Brookhaven, MS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "28089",
+        "county_part_population_2025": 494,
+        "county_part_estimate_base_2020": 494,
+        "primary_geography_flag": "1",
+        "source_row": 38581,
+        "county_name": "Madison County",
+        "county_part_population_share_2025": 0.00349868,
+        "cbsa_code": "27140",
+        "cbsa_title": "Jackson, MS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "298",
+        "csa_title": "Jackson-Vicksburg-Brookhaven, MS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "28121",
+        "county_part_population_2025": 2,
+        "county_part_estimate_base_2020": 2,
+        "primary_geography_flag": "1",
+        "source_row": 38679,
+        "county_name": "Rankin County",
+        "county_part_population_share_2025": 1.416e-05,
+        "cbsa_code": "27140",
+        "cbsa_title": "Jackson, MS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "298",
+        "csa_title": "Jackson-Vicksburg-Brookhaven, MS",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "27140",
+        "cbsa_title": "Jackson, MS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 141196,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4842508",
+    "place_geoid": "4842508",
+    "display_name": "Lewisville, TX",
+    "computation_county_fips": "48121",
+    "computation_county_name": "Denton County",
+    "computation_county_population_share_2025": 0.98955441,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48121",
+        "county_part_population_2025": 137554,
+        "county_part_estimate_base_2020": 124346,
+        "primary_geography_flag": "1",
+        "source_row": 72791,
+        "county_name": "Denton County",
+        "county_part_population_share_2025": 0.98955441,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 1452,
+        "county_part_estimate_base_2020": 1318,
+        "primary_geography_flag": "1",
+        "source_row": 72737,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.01044559,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 139006,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:3921000",
+    "place_geoid": "3921000",
+    "display_name": "Dayton, OH",
+    "computation_county_fips": "39113",
+    "computation_county_name": "Montgomery County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "19430",
+    "primary_cbsa_title": "Dayton-Kettering-Beavercreek, OH",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "39113",
+        "county_part_population_2025": 136688,
+        "county_part_estimate_base_2020": 137604,
+        "primary_geography_flag": "0",
+        "source_row": 57720,
+        "county_name": "Montgomery County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "19430",
+        "cbsa_title": "Dayton-Kettering-Beavercreek, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "212",
+        "csa_title": "Dayton-Springfield-Kettering, OH",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "39057",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "0",
+        "source_row": 56248,
+        "county_name": "Greene County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "19430",
+        "cbsa_title": "Dayton-Kettering-Beavercreek, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "212",
+        "csa_title": "Dayton-Springfield-Kettering, OH",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19430",
+        "cbsa_title": "Dayton-Kettering-Beavercreek, OH",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 136688,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4813024",
+    "place_geoid": "4813024",
+    "display_name": "Carrollton, TX",
+    "computation_county_fips": "48121",
+    "computation_county_name": "Denton County",
+    "computation_county_population_share_2025": 0.61706128,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48121",
+        "county_part_population_2025": 83033,
+        "county_part_estimate_base_2020": 81462,
+        "primary_geography_flag": "1",
+        "source_row": 72766,
+        "county_name": "Denton County",
+        "county_part_population_share_2025": 0.61706128,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 50838,
+        "county_part_estimate_base_2020": 51346,
+        "primary_geography_flag": "1",
+        "source_row": 72719,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.37780354,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48085",
+        "county_part_population_2025": 691,
+        "county_part_estimate_base_2020": 674,
+        "primary_geography_flag": "1",
+        "source_row": 72620,
+        "county_name": "Collin County",
+        "county_part_population_share_2025": 0.00513518,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 134562,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4801000",
+    "place_geoid": "4801000",
+    "display_name": "Abilene, TX",
+    "computation_county_fips": "48441",
+    "computation_county_name": "Taylor County",
+    "computation_county_population_share_2025": 0.95615102,
+    "primary_cbsa_code": "10180",
+    "primary_cbsa_title": "Abilene, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48441",
+        "county_part_population_2025": 125818,
+        "county_part_estimate_base_2020": 119468,
+        "primary_geography_flag": "1",
+        "source_row": 73979,
+        "county_name": "Taylor County",
+        "county_part_population_share_2025": 0.95615102,
+        "cbsa_code": "10180",
+        "cbsa_title": "Abilene, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "101",
+        "csa_title": "Abilene-Sweetwater, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48253",
+        "county_part_population_2025": 5770,
+        "county_part_estimate_base_2020": 5502,
+        "primary_geography_flag": "1",
+        "source_row": 73349,
+        "county_name": "Jones County",
+        "county_part_population_share_2025": 0.04384898,
+        "cbsa_code": "10180",
+        "cbsa_title": "Abilene, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "101",
+        "csa_title": "Abilene-Sweetwater, TX",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "10180",
+        "cbsa_title": "Abilene, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 131588,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4856348",
+    "place_geoid": "4856348",
+    "display_name": "Pearland, TX",
+    "computation_county_fips": "48039",
+    "computation_county_name": "Brazoria County",
+    "computation_county_population_share_2025": 0.89141076,
+    "primary_cbsa_code": "26420",
+    "primary_cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48039",
+        "county_part_population_2025": 115821,
+        "county_part_estimate_base_2020": 113599,
+        "primary_geography_flag": "1",
+        "source_row": 72453,
+        "county_name": "Brazoria County",
+        "county_part_population_share_2025": 0.89141076,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48201",
+        "county_part_population_2025": 8219,
+        "county_part_estimate_base_2020": 8121,
+        "primary_geography_flag": "1",
+        "source_row": 73116,
+        "county_name": "Harris County",
+        "county_part_population_share_2025": 0.06325714,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48157",
+        "county_part_population_2025": 5890,
+        "county_part_estimate_base_2020": 5904,
+        "primary_geography_flag": "1",
+        "source_row": 72940,
+        "county_name": "Fort Bend County",
+        "county_part_population_share_2025": 0.0453321,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 129930,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4550875",
+    "place_geoid": "4550875",
+    "display_name": "North Charleston, SC",
+    "computation_county_fips": "45019",
+    "computation_county_name": "Charleston County",
+    "computation_county_population_share_2025": 0.75137143,
+    "primary_cbsa_code": "16700",
+    "primary_cbsa_title": "Charleston-North Charleston, SC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "45019",
+        "county_part_population_2025": 97111,
+        "county_part_estimate_base_2020": 86673,
+        "primary_geography_flag": "1",
+        "source_row": 67545,
+        "county_name": "Charleston County",
+        "county_part_population_share_2025": 0.75137143,
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "45035",
+        "county_part_population_2025": 32134,
+        "county_part_estimate_base_2020": 28214,
+        "primary_geography_flag": "1",
+        "source_row": 67604,
+        "county_name": "Dorchester County",
+        "county_part_population_share_2025": 0.24862857,
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "45015",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 67525,
+        "county_name": "Berkeley County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16700",
+        "cbsa_title": "Charleston-North Charleston, SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 129245,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:4009050",
+    "place_geoid": "4009050",
+    "display_name": "Broken Arrow, OK",
+    "computation_county_fips": "40143",
+    "computation_county_name": "Tulsa County",
+    "computation_county_population_share_2025": 0.81425863,
+    "primary_cbsa_code": "46140",
+    "primary_cbsa_title": "Tulsa, OK",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "40143",
+        "county_part_population_2025": 101775,
+        "county_part_estimate_base_2020": 93184,
+        "primary_geography_flag": "1",
+        "source_row": 60712,
+        "county_name": "Tulsa County",
+        "county_part_population_share_2025": 0.81425863,
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "538",
+        "csa_title": "Tulsa-Bartlesville-Muskogee, OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "40145",
+        "county_part_population_2025": 23216,
+        "county_part_estimate_base_2020": 20368,
+        "primary_geography_flag": "1",
+        "source_row": 60728,
+        "county_name": "Wagoner County",
+        "county_part_population_share_2025": 0.18574137,
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "538",
+        "csa_title": "Tulsa-Bartlesville-Muskogee, OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "46140",
+        "cbsa_title": "Tulsa, OK",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 124991,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0803455",
+    "place_geoid": "0803455",
+    "display_name": "Arvada, CO",
+    "computation_county_fips": "08059",
+    "computation_county_name": "Jefferson County",
+    "computation_county_population_share_2025": 0.97727439,
+    "primary_cbsa_code": "19740",
+    "primary_cbsa_title": "Denver-Aurora-Centennial, CO",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "08059",
+        "county_part_population_2025": 120108,
+        "county_part_estimate_base_2020": 121446,
+        "primary_geography_flag": "1",
+        "source_row": 4401,
+        "county_name": "Jefferson County",
+        "county_part_population_share_2025": 0.97727439,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "08001",
+        "county_part_population_2025": 2793,
+        "county_part_estimate_base_2020": 2897,
+        "primary_geography_flag": "1",
+        "source_row": 4212,
+        "county_name": "Adams County",
+        "county_part_population_share_2025": 0.02272561,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 122901,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4853388",
+    "place_geoid": "4853388",
+    "display_name": "Odessa, TX",
+    "computation_county_fips": "48135",
+    "computation_county_name": "Ector County",
+    "computation_county_population_share_2025": 0.96481863,
+    "primary_cbsa_code": "36220",
+    "primary_cbsa_title": "Odessa, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.96481863,
+    "county_parts": [
+      {
+        "county_fips": "48135",
+        "county_part_population_2025": 118390,
+        "county_part_estimate_base_2020": 110648,
+        "primary_geography_flag": "1",
+        "source_row": 72844,
+        "county_name": "Ector County",
+        "county_part_population_share_2025": 0.96481863,
+        "cbsa_code": "36220",
+        "cbsa_title": "Odessa, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "372",
+        "csa_title": "Midland-Odessa-Andrews, TX",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48329",
+        "county_part_population_2025": 4317,
+        "county_part_estimate_base_2020": 3796,
+        "primary_geography_flag": "1",
+        "source_row": 73584,
+        "county_name": "Midland County",
+        "county_part_population_share_2025": 0.03518137,
+        "cbsa_code": "33260",
+        "cbsa_title": "Midland, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "372",
+        "csa_title": "Midland-Odessa-Andrews, TX",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "36220",
+        "cbsa_title": "Odessa, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 118390,
+        "county_count": 1,
+        "population_share_2025": 0.96481863
+      },
+      {
+        "cbsa_code": "33260",
+        "cbsa_title": "Midland, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 4317,
+        "county_count": 1,
+        "population_share_2025": 0.03518137
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4850820",
+    "place_geoid": "4850820",
+    "display_name": "New Braunfels, TX",
+    "computation_county_fips": "48091",
+    "computation_county_name": "Comal County",
+    "computation_county_population_share_2025": 0.77569147,
+    "primary_cbsa_code": "41700",
+    "primary_cbsa_title": "San Antonio-New Braunfels, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48091",
+        "county_part_population_2025": 95016,
+        "county_part_estimate_base_2020": 69184,
+        "primary_geography_flag": "1",
+        "source_row": 72663,
+        "county_name": "Comal County",
+        "county_part_population_share_2025": 0.77569147,
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "484",
+        "csa_title": "San Antonio-New Braunfels-Kerrville, TX",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48187",
+        "county_part_population_2025": 27476,
+        "county_part_estimate_base_2020": 21210,
+        "primary_geography_flag": "1",
+        "source_row": 73052,
+        "county_name": "Guadalupe County",
+        "county_part_population_share_2025": 0.22430853,
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "484",
+        "csa_title": "San Antonio-New Braunfels-Kerrville, TX",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "41700",
+        "cbsa_title": "San Antonio-New Braunfels, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 122492,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:2935000",
+    "place_geoid": "2935000",
+    "display_name": "Independence, MO",
+    "computation_county_fips": "29095",
+    "computation_county_name": "Jackson County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "28140",
+    "primary_cbsa_title": "Kansas City, MO-KS",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "29095",
+        "county_part_population_2025": 121675,
+        "county_part_estimate_base_2020": 122954,
+        "primary_geography_flag": "1",
+        "source_row": 40586,
+        "county_name": "Jackson County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "29047",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 40150,
+        "county_name": "Clay County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 121675,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:3731400",
+    "place_geoid": "3731400",
+    "display_name": "High Point, NC",
+    "computation_county_fips": "37081",
+    "computation_county_name": "Guilford County",
+    "computation_county_population_share_2025": 0.93602939,
+    "primary_cbsa_code": "24660",
+    "primary_cbsa_title": "Greensboro-High Point, NC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.93612063,
+    "county_parts": [
+      {
+        "county_fips": "37081",
+        "county_part_population_2025": 112858,
+        "county_part_estimate_base_2020": 107291,
+        "primary_geography_flag": "1",
+        "source_row": 50440,
+        "county_name": "Guilford County",
+        "county_part_population_share_2025": 0.93602939,
+        "cbsa_code": "24660",
+        "cbsa_title": "Greensboro-High Point, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "268",
+        "csa_title": "Greensboro--Winston-Salem--High Point, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37057",
+        "county_part_population_2025": 7254,
+        "county_part_estimate_base_2020": 6690,
+        "primary_geography_flag": "1",
+        "source_row": 50337,
+        "county_name": "Davidson County",
+        "county_part_population_share_2025": 0.06016372,
+        "cbsa_code": "49180",
+        "cbsa_title": "Winston-Salem, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "268",
+        "csa_title": "Greensboro--Winston-Salem--High Point, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37067",
+        "county_part_population_2025": 448,
+        "county_part_estimate_base_2020": 84,
+        "primary_geography_flag": "1",
+        "source_row": 50384,
+        "county_name": "Forsyth County",
+        "county_part_population_share_2025": 0.00371565,
+        "cbsa_code": "49180",
+        "cbsa_title": "Winston-Salem, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "268",
+        "csa_title": "Greensboro--Winston-Salem--High Point, NC",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "37151",
+        "county_part_population_2025": 11,
+        "county_part_estimate_base_2020": 10,
+        "primary_geography_flag": "1",
+        "source_row": 50703,
+        "county_name": "Randolph County",
+        "county_part_population_share_2025": 9.123e-05,
+        "cbsa_code": "24660",
+        "cbsa_title": "Greensboro-High Point, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "268",
+        "csa_title": "Greensboro--Winston-Salem--High Point, NC",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "24660",
+        "cbsa_title": "Greensboro-High Point, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 112869,
+        "county_count": 2,
+        "population_share_2025": 0.93612063
+      },
+      {
+        "cbsa_code": "49180",
+        "cbsa_title": "Winston-Salem, NC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 7702,
+        "county_count": 2,
+        "population_share_2025": 0.06387937
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4841980",
+    "place_geoid": "4841980",
+    "display_name": "League City, TX",
+    "computation_county_fips": "48167",
+    "computation_county_name": "Galveston County",
+    "computation_county_population_share_2025": 0.97789917,
+    "primary_cbsa_code": "26420",
+    "primary_cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48167",
+        "county_part_population_2025": 117255,
+        "county_part_estimate_base_2020": 111808,
+        "primary_geography_flag": "1",
+        "source_row": 72981,
+        "county_name": "Galveston County",
+        "county_part_population_share_2025": 0.97789917,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "48201",
+        "county_part_population_2025": 2650,
+        "county_part_estimate_base_2020": 2524,
+        "primary_geography_flag": "1",
+        "source_row": 73111,
+        "county_name": "Harris County",
+        "county_part_population_share_2025": 0.02210083,
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "288",
+        "csa_title": "Houston-Pasadena, TX",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "26420",
+        "cbsa_title": "Houston-Pasadena-The Woodlands, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 119905,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4861796",
+    "place_geoid": "4861796",
+    "display_name": "Richardson, TX",
+    "computation_county_fips": "48113",
+    "computation_county_name": "Dallas County",
+    "computation_county_population_share_2025": 0.63805234,
+    "primary_cbsa_code": "19100",
+    "primary_cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48113",
+        "county_part_population_2025": 75636,
+        "county_part_estimate_base_2020": 77298,
+        "primary_geography_flag": "1",
+        "source_row": 72740,
+        "county_name": "Dallas County",
+        "county_part_population_share_2025": 0.63805234,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48085",
+        "county_part_population_2025": 42906,
+        "county_part_estimate_base_2020": 42162,
+        "primary_geography_flag": "1",
+        "source_row": 72641,
+        "county_name": "Collin County",
+        "county_part_population_share_2025": 0.36194766,
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "19124",
+        "metropolitan_division_title": "Dallas-Plano-Irving, TX",
+        "csa_code": "206",
+        "csa_title": "Dallas-Fort Worth, TX-OK",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19100",
+        "cbsa_title": "Dallas-Fort Worth-Arlington, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 118542,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0883835",
+    "place_geoid": "0883835",
+    "display_name": "Westminster, CO",
+    "computation_county_fips": "08001",
+    "computation_county_name": "Adams County",
+    "computation_county_population_share_2025": 0.60667745,
+    "primary_cbsa_code": "19740",
+    "primary_cbsa_title": "Denver-Aurora-Centennial, CO",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "08001",
+        "county_part_population_2025": 70485,
+        "county_part_estimate_base_2020": 71467,
+        "primary_geography_flag": "1",
+        "source_row": 4221,
+        "county_name": "Adams County",
+        "county_part_population_share_2025": 0.60667745,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "08059",
+        "county_part_population_2025": 45697,
+        "county_part_estimate_base_2020": 45186,
+        "primary_geography_flag": "1",
+        "source_row": 4411,
+        "county_name": "Jefferson County",
+        "county_part_population_share_2025": 0.39332255,
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "19740",
+        "cbsa_title": "Denver-Aurora-Centennial, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 116182,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:1723074",
+    "place_geoid": "1723074",
+    "display_name": "Elgin, IL",
+    "computation_county_fips": "17089",
+    "computation_county_name": "Kane County",
+    "computation_county_population_share_2025": 0.78649243,
+    "primary_cbsa_code": "16980",
+    "primary_cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "17089",
+        "county_part_population_2025": 90821,
+        "county_part_estimate_base_2020": 90186,
+        "primary_geography_flag": "0",
+        "source_row": 11814,
+        "county_name": "Kane County",
+        "county_part_population_share_2025": 0.78649243,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "20994",
+        "metropolitan_division_title": "Elgin, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "17031",
+        "county_part_population_2025": 24655,
+        "county_part_estimate_base_2020": 24633,
+        "primary_geography_flag": "0",
+        "source_row": 10005,
+        "county_name": "Cook County",
+        "county_part_population_share_2025": 0.21350757,
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "16984",
+        "metropolitan_division_title": "Chicago-Naperville-Schaumburg, IL",
+        "csa_code": "176",
+        "csa_title": "Chicago-Naperville, IL-IN-WI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16980",
+        "cbsa_title": "Chicago-Naperville-Elgin, IL-IN",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 115476,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:3714100",
+    "place_geoid": "3714100",
+    "display_name": "Concord, NC",
+    "computation_county_fips": "37025",
+    "computation_county_name": "Cabarrus County",
+    "computation_county_population_share_2025": 1.0,
+    "primary_cbsa_code": "16740",
+    "primary_cbsa_title": "Charlotte-Concord-Gastonia, NC-SC",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "37025",
+        "county_part_population_2025": 114598,
+        "county_part_estimate_base_2020": 105316,
+        "primary_geography_flag": "1",
+        "source_row": 50209,
+        "county_name": "Cabarrus County",
+        "county_part_population_share_2025": 1.0,
+        "cbsa_code": "16740",
+        "cbsa_title": "Charlotte-Concord-Gastonia, NC-SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "172",
+        "csa_title": "Charlotte-Concord, NC-SC",
+        "central_or_outlying": "Outlying"
+      },
+      {
+        "county_fips": "37119",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "1",
+        "source_row": 50570,
+        "county_name": "Mecklenburg County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "16740",
+        "cbsa_title": "Charlotte-Concord-Gastonia, NC-SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "172",
+        "csa_title": "Charlotte-Concord, NC-SC",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "16740",
+        "cbsa_title": "Charlotte-Concord-Gastonia, NC-SC",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 114598,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": false,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:3563460",
+    "place_geoid": "3563460",
+    "display_name": "Rio Rancho, NM",
+    "computation_county_fips": "35043",
+    "computation_county_name": "Sandoval County",
+    "computation_county_population_share_2025": 0.99996504,
+    "primary_cbsa_code": "10740",
+    "primary_cbsa_title": "Albuquerque, NM",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "35043",
+        "county_part_population_2025": 114415,
+        "county_part_estimate_base_2020": 104069,
+        "primary_geography_flag": "1",
+        "source_row": 46093,
+        "county_name": "Sandoval County",
+        "county_part_population_share_2025": 0.99996504,
+        "cbsa_code": "10740",
+        "cbsa_title": "Albuquerque, NM",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "105",
+        "csa_title": "Albuquerque-Santa Fe-Los Alamos, NM",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "35001",
+        "county_part_population_2025": 4,
+        "county_part_estimate_base_2020": 4,
+        "primary_geography_flag": "1",
+        "source_row": 45976,
+        "county_name": "Bernalillo County",
+        "county_part_population_share_2025": 3.496e-05,
+        "cbsa_code": "10740",
+        "cbsa_title": "Albuquerque, NM",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "105",
+        "csa_title": "Albuquerque-Santa Fe-Los Alamos, NM",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "10740",
+        "cbsa_title": "Albuquerque, NM",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 114419,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:2646000",
+    "place_geoid": "2646000",
+    "display_name": "Lansing, MI",
+    "computation_county_fips": "26065",
+    "computation_county_name": "Ingham County",
+    "computation_county_population_share_2025": 0.95510344,
+    "primary_cbsa_code": "29620",
+    "primary_cbsa_title": "Lansing-East Lansing, MI",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "26065",
+        "county_part_population_2025": 108771,
+        "county_part_estimate_base_2020": 107634,
+        "primary_geography_flag": "0",
+        "source_row": 30510,
+        "county_name": "Ingham County",
+        "county_part_population_share_2025": 0.95510344,
+        "cbsa_code": "29620",
+        "cbsa_title": "Lansing-East Lansing, MI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "330",
+        "csa_title": "Lansing-East Lansing-Owosso, MI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "26045",
+        "county_part_population_2025": 5113,
+        "county_part_estimate_base_2020": 5007,
+        "primary_geography_flag": "0",
+        "source_row": 30109,
+        "county_name": "Eaton County",
+        "county_part_population_share_2025": 0.04489656,
+        "cbsa_code": "29620",
+        "cbsa_title": "Lansing-East Lansing, MI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "330",
+        "csa_title": "Lansing-East Lansing-Owosso, MI",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "26037",
+        "county_part_population_2025": 0,
+        "county_part_estimate_base_2020": 0,
+        "primary_geography_flag": "0",
+        "source_row": 30003,
+        "county_name": "Clinton County",
+        "county_part_population_share_2025": 0.0,
+        "cbsa_code": "29620",
+        "cbsa_title": "Lansing-East Lansing, MI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "330",
+        "csa_title": "Lansing-East Lansing-Owosso, MI",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "29620",
+        "cbsa_title": "Lansing-East Lansing, MI",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 113884,
+        "county_count": 3,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": true
+    }
+  },
+  {
+    "id": "PLACE:2941348",
+    "place_geoid": "2941348",
+    "display_name": "Lee's Summit, MO",
+    "computation_county_fips": "29095",
+    "computation_county_name": "Jackson County",
+    "computation_county_population_share_2025": 0.97379876,
+    "primary_cbsa_code": "28140",
+    "primary_cbsa_title": "Kansas City, MO-KS",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "29095",
+        "county_part_population_2025": 104697,
+        "county_part_estimate_base_2020": 98455,
+        "primary_geography_flag": "1",
+        "source_row": 40590,
+        "county_name": "Jackson County",
+        "county_part_population_share_2025": 0.97379876,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "29037",
+        "county_part_population_2025": 2817,
+        "county_part_estimate_base_2020": 2672,
+        "primary_geography_flag": "1",
+        "source_row": 40059,
+        "county_name": "Cass County",
+        "county_part_population_share_2025": 0.02620124,
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "312",
+        "csa_title": "Kansas City-Overland Park-Kansas City, MO-KS",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "28140",
+        "cbsa_title": "Kansas City, MO-KS",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 107514,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:4879000",
+    "place_geoid": "4879000",
+    "display_name": "Wichita Falls, TX",
+    "computation_county_fips": "48485",
+    "computation_county_name": "Wichita County",
+    "computation_county_population_share_2025": 0.99998038,
+    "primary_cbsa_code": "48660",
+    "primary_cbsa_title": "Wichita Falls, TX",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 1.0,
+    "county_parts": [
+      {
+        "county_fips": "48485",
+        "county_part_population_2025": 101949,
+        "county_part_estimate_base_2020": 102281,
+        "primary_geography_flag": "1",
+        "source_row": 74123,
+        "county_name": "Wichita County",
+        "county_part_population_share_2025": 0.99998038,
+        "cbsa_code": "48660",
+        "cbsa_title": "Wichita Falls, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "48077",
+        "county_part_population_2025": 2,
+        "county_part_estimate_base_2020": 2,
+        "primary_geography_flag": "1",
+        "source_row": 72599,
+        "county_name": "Clay County",
+        "county_part_population_share_2025": 1.962e-05,
+        "cbsa_code": "48660",
+        "cbsa_title": "Wichita Falls, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "",
+        "csa_title": "",
+        "central_or_outlying": "Outlying"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "48660",
+        "cbsa_title": "Wichita Falls, TX",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 101951,
+        "county_count": 2,
+        "population_share_2025": 1.0
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": false,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  },
+  {
+    "id": "PLACE:0845970",
+    "place_geoid": "0845970",
+    "display_name": "Longmont, CO",
+    "computation_county_fips": "08013",
+    "computation_county_name": "Boulder County",
+    "computation_county_population_share_2025": 0.98699418,
+    "primary_cbsa_code": "14500",
+    "primary_cbsa_title": "Boulder, CO",
+    "primary_cbsa_type": "Metropolitan Statistical Area",
+    "primary_cbsa_population_share_2025": 0.98699418,
+    "county_parts": [
+      {
+        "county_fips": "08013",
+        "county_part_population_2025": 98807,
+        "county_part_estimate_base_2020": 97623,
+        "primary_geography_flag": "1",
+        "source_row": 4261,
+        "county_name": "Boulder County",
+        "county_part_population_share_2025": 0.98699418,
+        "cbsa_code": "14500",
+        "cbsa_title": "Boulder, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      },
+      {
+        "county_fips": "08123",
+        "county_part_population_2025": 1302,
+        "county_part_estimate_base_2020": 1277,
+        "primary_geography_flag": "1",
+        "source_row": 4614,
+        "county_name": "Weld County",
+        "county_part_population_share_2025": 0.01300582,
+        "cbsa_code": "24540",
+        "cbsa_title": "Greeley, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "metropolitan_division_code": "",
+        "metropolitan_division_title": "",
+        "csa_code": "216",
+        "csa_title": "Denver-Aurora-Greeley, CO",
+        "central_or_outlying": "Central"
+      }
+    ],
+    "cbsa_parts": [
+      {
+        "cbsa_code": "14500",
+        "cbsa_title": "Boulder, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 98807,
+        "county_count": 1,
+        "population_share_2025": 0.98699418
+      },
+      {
+        "cbsa_code": "24540",
+        "cbsa_title": "Greeley, CO",
+        "cbsa_type": "Metropolitan Statistical Area",
+        "population_2025": 1302,
+        "county_count": 1,
+        "population_share_2025": 0.01300582
+      }
+    ],
+    "flags": {
+      "multi_county": true,
+      "positive_multi_county": true,
+      "multi_cbsa": true,
+      "has_non_cbsa_county_part": false,
+      "has_zero_population_county_part": false
+    }
+  }
+]

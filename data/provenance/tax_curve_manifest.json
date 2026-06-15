@@ -1,0 +1,2435 @@
+{
+  "schema_version": "1.0",
+  "status": "generated",
+  "generated_at": "2026-06-15T09:20:54.543566+00:00",
+  "policyengine_us_version": "1.729.0",
+  "tax_year": 2026,
+  "grid": {
+    "count": 1051,
+    "rules": [
+      "0 to 500000 gross: 1000 increments",
+      "500000 to 1000000 gross: 5000 increments",
+      "1000000 to 10000000 gross: 20000 increments"
+    ]
+  },
+  "sources": {
+    "city_universe": {
+      "local_path": "data/intermediate/city_universe/canonical_places_2025_pop_ge_100k.json",
+      "sha256": "fded4c005b83ccef35b3a76135b1046375ffd1fbfa3c1032746d3a29832d2bfd"
+    },
+    "tax_jurisdictions": {
+      "local_path": "data/intermediate/tax/tax_jurisdiction_manifest.json",
+      "sha256": "0877381cd6787d5636b46aedf637234ed664a851a5ac49297a82d6450c6c38f1"
+    }
+  },
+  "curves": [
+    {
+      "id": "PLACE:3651000",
+      "display_name": "New York, NY",
+      "slug": "new-york-ny",
+      "path": "data/intermediate/tax/curves/new-york-ny.json",
+      "sha256": "04055315ffc9430787c09c480cf95ff48b32a8a0634af7138d7098c48280ee71"
+    },
+    {
+      "id": "PLACE:0644000",
+      "display_name": "Los Angeles, CA",
+      "slug": "los-angeles-ca",
+      "path": "data/intermediate/tax/curves/los-angeles-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1714000",
+      "display_name": "Chicago, IL",
+      "slug": "chicago-il",
+      "path": "data/intermediate/tax/curves/chicago-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:4835000",
+      "display_name": "Houston, TX",
+      "slug": "houston-tx",
+      "path": "data/intermediate/tax/curves/houston-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0455000",
+      "display_name": "Phoenix, AZ",
+      "slug": "phoenix-az",
+      "path": "data/intermediate/tax/curves/phoenix-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:4260000",
+      "display_name": "Philadelphia, PA",
+      "slug": "philadelphia-pa",
+      "path": "data/intermediate/tax/curves/philadelphia-pa.json",
+      "sha256": "fb8ce02665dca02c24746120a14b6902a7f92bd3e808c74ffc304d467c2b5138"
+    },
+    {
+      "id": "PLACE:4865000",
+      "display_name": "San Antonio, TX",
+      "slug": "san-antonio-tx",
+      "path": "data/intermediate/tax/curves/san-antonio-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0666000",
+      "display_name": "San Diego, CA",
+      "slug": "san-diego-ca",
+      "path": "data/intermediate/tax/curves/san-diego-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4819000",
+      "display_name": "Dallas, TX",
+      "slug": "dallas-tx",
+      "path": "data/intermediate/tax/curves/dallas-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4827000",
+      "display_name": "Fort Worth, TX",
+      "slug": "fort-worth-tx",
+      "path": "data/intermediate/tax/curves/fort-worth-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1235000",
+      "display_name": "Jacksonville, FL",
+      "slug": "jacksonville-fl",
+      "path": "data/intermediate/tax/curves/jacksonville-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4805000",
+      "display_name": "Austin, TX",
+      "slug": "austin-tx",
+      "path": "data/intermediate/tax/curves/austin-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0668000",
+      "display_name": "San Jose, CA",
+      "slug": "san-jose-ca",
+      "path": "data/intermediate/tax/curves/san-jose-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3712000",
+      "display_name": "Charlotte, NC",
+      "slug": "charlotte-nc",
+      "path": "data/intermediate/tax/curves/charlotte-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:3918000",
+      "display_name": "Columbus, OH",
+      "slug": "columbus-oh",
+      "path": "data/intermediate/tax/curves/columbus-oh.json",
+      "sha256": "7efff974a7e1a82a7cc00454047d7b9e07bbab12bfc043a501d807919b6ebefe"
+    },
+    {
+      "id": "PLACE:1836003",
+      "display_name": "Indianapolis, IN",
+      "slug": "indianapolis-in",
+      "path": "data/intermediate/tax/curves/indianapolis-in.json",
+      "sha256": "9ec5afd77f4083aba5128f5e8169bb3132962a20f092f40d15fda11aeb2e560b"
+    },
+    {
+      "id": "PLACE:0667000",
+      "display_name": "San Francisco, CA",
+      "slug": "san-francisco-ca",
+      "path": "data/intermediate/tax/curves/san-francisco-ca.json",
+      "sha256": "dac37676eb5627dba7c1af8c8773cedf513840aa633f8db2bbe9e01e9464d14b"
+    },
+    {
+      "id": "PLACE:5363000",
+      "display_name": "Seattle, WA",
+      "slug": "seattle-wa",
+      "path": "data/intermediate/tax/curves/seattle-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:0820000",
+      "display_name": "Denver, CO",
+      "slug": "denver-co",
+      "path": "data/intermediate/tax/curves/denver-co.json",
+      "sha256": "f6aa68df1d095a89775103aa9d82460c15310eecaddcdd3a47702d143ee90048"
+    },
+    {
+      "id": "PLACE:4752006",
+      "display_name": "Nashville-Davidson, TN",
+      "slug": "nashville-davidson-tn",
+      "path": "data/intermediate/tax/curves/nashville-davidson-tn.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4055000",
+      "display_name": "Oklahoma City, OK",
+      "slug": "oklahoma-city-ok",
+      "path": "data/intermediate/tax/curves/oklahoma-city-ok.json",
+      "sha256": "a792bc41705aa3c792cf01e46c8a4ba4366de8ea0eb348f419665562d8a1b37a"
+    },
+    {
+      "id": "PLACE:1150000",
+      "display_name": "Washington, DC",
+      "slug": "washington-dc",
+      "path": "data/intermediate/tax/curves/washington-dc.json",
+      "sha256": "c2ae8112bd3e6019a642d0f12ffd217a6283779d699f663ba85d6315922b20c7"
+    },
+    {
+      "id": "PLACE:4824000",
+      "display_name": "El Paso, TX",
+      "slug": "el-paso-tx",
+      "path": "data/intermediate/tax/curves/el-paso-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3240000",
+      "display_name": "Las Vegas, NV",
+      "slug": "las-vegas-nv",
+      "path": "data/intermediate/tax/curves/las-vegas-nv.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2507000",
+      "display_name": "Boston, MA",
+      "slug": "boston-ma",
+      "path": "data/intermediate/tax/curves/boston-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:2622000",
+      "display_name": "Detroit, MI",
+      "slug": "detroit-mi",
+      "path": "data/intermediate/tax/curves/detroit-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:2148006",
+      "display_name": "Louisville/Jefferson County, KY",
+      "slug": "louisville-jefferson-county-ky",
+      "path": "data/intermediate/tax/curves/louisville-jefferson-county-ky.json",
+      "sha256": "cf7550338d19e1e659a4241869bb924955961a3930e9ca7084cb2ab75878a455"
+    },
+    {
+      "id": "PLACE:4159000",
+      "display_name": "Portland, OR",
+      "slug": "portland-or",
+      "path": "data/intermediate/tax/curves/portland-or.json",
+      "sha256": "c731662edfec3b7eca0daea10f9861603480778c19ed2173aee5c8a01afdcc6b"
+    },
+    {
+      "id": "PLACE:4748000",
+      "display_name": "Memphis, TN",
+      "slug": "memphis-tn",
+      "path": "data/intermediate/tax/curves/memphis-tn.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2404000",
+      "display_name": "Baltimore, MD",
+      "slug": "baltimore-md",
+      "path": "data/intermediate/tax/curves/baltimore-md.json",
+      "sha256": "e2fd7dca8e74dd87bb3a87ef3b55e1714613ce28245dc772045152cdb1516f2a"
+    },
+    {
+      "id": "PLACE:5553000",
+      "display_name": "Milwaukee, WI",
+      "slug": "milwaukee-wi",
+      "path": "data/intermediate/tax/curves/milwaukee-wi.json",
+      "sha256": "790b6b9ef8e7a441aaac8db321ba93dc9e59ff5a5915a2151309b778403d6d79"
+    },
+    {
+      "id": "PLACE:3502000",
+      "display_name": "Albuquerque, NM",
+      "slug": "albuquerque-nm",
+      "path": "data/intermediate/tax/curves/albuquerque-nm.json",
+      "sha256": "ff963aa158ef1a6fe616e4b1e6834fb7c742d60aa5ef4a2a92f0d4c07f190d46"
+    },
+    {
+      "id": "PLACE:0627000",
+      "display_name": "Fresno, CA",
+      "slug": "fresno-ca",
+      "path": "data/intermediate/tax/curves/fresno-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0477000",
+      "display_name": "Tucson, AZ",
+      "slug": "tucson-az",
+      "path": "data/intermediate/tax/curves/tucson-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:0664000",
+      "display_name": "Sacramento, CA",
+      "slug": "sacramento-ca",
+      "path": "data/intermediate/tax/curves/sacramento-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1304000",
+      "display_name": "Atlanta, GA",
+      "slug": "atlanta-ga",
+      "path": "data/intermediate/tax/curves/atlanta-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:2938000",
+      "display_name": "Kansas City, MO",
+      "slug": "kansas-city-mo",
+      "path": "data/intermediate/tax/curves/kansas-city-mo.json",
+      "sha256": "499c879cffe8519e219f5d75b20b7f61ffcbc553c4cf3adda983e9b8236001ed"
+    },
+    {
+      "id": "PLACE:0446000",
+      "display_name": "Mesa, AZ",
+      "slug": "mesa-az",
+      "path": "data/intermediate/tax/curves/mesa-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:3755000",
+      "display_name": "Raleigh, NC",
+      "slug": "raleigh-nc",
+      "path": "data/intermediate/tax/curves/raleigh-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:0816000",
+      "display_name": "Colorado Springs, CO",
+      "slug": "colorado-springs-co",
+      "path": "data/intermediate/tax/curves/colorado-springs-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:1245000",
+      "display_name": "Miami, FL",
+      "slug": "miami-fl",
+      "path": "data/intermediate/tax/curves/miami-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3137000",
+      "display_name": "Omaha, NE",
+      "slug": "omaha-ne",
+      "path": "data/intermediate/tax/curves/omaha-ne.json",
+      "sha256": "2971bab8a0ac1dc49e2d734733d3503f704e89d5621723222aee5068e31a7e2f"
+    },
+    {
+      "id": "PLACE:5182000",
+      "display_name": "Virginia Beach, VA",
+      "slug": "virginia-beach-va",
+      "path": "data/intermediate/tax/curves/virginia-beach-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:0643000",
+      "display_name": "Long Beach, CA",
+      "slug": "long-beach-ca",
+      "path": "data/intermediate/tax/curves/long-beach-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0653000",
+      "display_name": "Oakland, CA",
+      "slug": "oakland-ca",
+      "path": "data/intermediate/tax/curves/oakland-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2743000",
+      "display_name": "Minneapolis, MN",
+      "slug": "minneapolis-mn",
+      "path": "data/intermediate/tax/curves/minneapolis-mn.json",
+      "sha256": "d6ef3b57d07d966a4eaa5d7a2261217cd08781282ed94f7faad741e76d3939f1"
+    },
+    {
+      "id": "PLACE:0603526",
+      "display_name": "Bakersfield, CA",
+      "slug": "bakersfield-ca",
+      "path": "data/intermediate/tax/curves/bakersfield-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4075000",
+      "display_name": "Tulsa, OK",
+      "slug": "tulsa-ok",
+      "path": "data/intermediate/tax/curves/tulsa-ok.json",
+      "sha256": "a792bc41705aa3c792cf01e46c8a4ba4366de8ea0eb348f419665562d8a1b37a"
+    },
+    {
+      "id": "PLACE:1271000",
+      "display_name": "Tampa, FL",
+      "slug": "tampa-fl",
+      "path": "data/intermediate/tax/curves/tampa-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0804000",
+      "display_name": "Aurora, CO",
+      "slug": "aurora-co",
+      "path": "data/intermediate/tax/curves/aurora-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:4804000",
+      "display_name": "Arlington, TX",
+      "slug": "arlington-tx",
+      "path": "data/intermediate/tax/curves/arlington-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2079000",
+      "display_name": "Wichita, KS",
+      "slug": "wichita-ks",
+      "path": "data/intermediate/tax/curves/wichita-ks.json",
+      "sha256": "d72b6fda2f8a6ec76c9786e88c9196fc47ca1413691c201cb635c8022a771788"
+    },
+    {
+      "id": "PLACE:3916000",
+      "display_name": "Cleveland, OH",
+      "slug": "cleveland-oh",
+      "path": "data/intermediate/tax/curves/cleveland-oh.json",
+      "sha256": "7efff974a7e1a82a7cc00454047d7b9e07bbab12bfc043a501d807919b6ebefe"
+    },
+    {
+      "id": "PLACE:2255000",
+      "display_name": "New Orleans, LA",
+      "slug": "new-orleans-la",
+      "path": "data/intermediate/tax/curves/new-orleans-la.json",
+      "sha256": "bc120ccbfaee701d8602ba33e8d29e5e80734b0779aff86a7c5b4bdd19de267b"
+    },
+    {
+      "id": "PLACE:3231900",
+      "display_name": "Henderson, NV",
+      "slug": "henderson-nv",
+      "path": "data/intermediate/tax/curves/henderson-nv.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1571550",
+      "display_name": "Urban Honolulu CDP, HI",
+      "slug": "urban-honolulu-cdp-hi",
+      "path": "data/intermediate/tax/curves/urban-honolulu-cdp-hi.json",
+      "sha256": "e6e5ace07084dbad6af20903f90d64cee4645daeee752cf767518f456b2de701"
+    },
+    {
+      "id": "PLACE:0602000",
+      "display_name": "Anaheim, CA",
+      "slug": "anaheim-ca",
+      "path": "data/intermediate/tax/curves/anaheim-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1253000",
+      "display_name": "Orlando, FL",
+      "slug": "orlando-fl",
+      "path": "data/intermediate/tax/curves/orlando-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2146027",
+      "display_name": "Lexington-Fayette urban county, KY",
+      "slug": "lexington-fayette-urban-county-ky",
+      "path": "data/intermediate/tax/curves/lexington-fayette-urban-county-ky.json",
+      "sha256": "cf7550338d19e1e659a4241869bb924955961a3930e9ca7084cb2ab75878a455"
+    },
+    {
+      "id": "PLACE:0675000",
+      "display_name": "Stockton, CA",
+      "slug": "stockton-ca",
+      "path": "data/intermediate/tax/curves/stockton-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3451000",
+      "display_name": "Newark, NJ",
+      "slug": "newark-nj",
+      "path": "data/intermediate/tax/curves/newark-nj.json",
+      "sha256": "2761699c8e6f20ecb4c903ba8e2809d32fc48c59c08c8af07fcfad40cbf1b146"
+    },
+    {
+      "id": "PLACE:0662000",
+      "display_name": "Riverside, CA",
+      "slug": "riverside-ca",
+      "path": "data/intermediate/tax/curves/riverside-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0636770",
+      "display_name": "Irvine, CA",
+      "slug": "irvine-ca",
+      "path": "data/intermediate/tax/curves/irvine-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4817000",
+      "display_name": "Corpus Christi, TX",
+      "slug": "corpus-christi-tx",
+      "path": "data/intermediate/tax/curves/corpus-christi-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0669000",
+      "display_name": "Santa Ana, CA",
+      "slug": "santa-ana-ca",
+      "path": "data/intermediate/tax/curves/santa-ana-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3915000",
+      "display_name": "Cincinnati, OH",
+      "slug": "cincinnati-oh",
+      "path": "data/intermediate/tax/curves/cincinnati-oh.json",
+      "sha256": "7efff974a7e1a82a7cc00454047d7b9e07bbab12bfc043a501d807919b6ebefe"
+    },
+    {
+      "id": "PLACE:3728000",
+      "display_name": "Greensboro, NC",
+      "slug": "greensboro-nc",
+      "path": "data/intermediate/tax/curves/greensboro-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:4261000",
+      "display_name": "Pittsburgh, PA",
+      "slug": "pittsburgh-pa",
+      "path": "data/intermediate/tax/curves/pittsburgh-pa.json",
+      "sha256": "138f793406e852db7ae6a2b6e61aba2ba57f0c6c637d32844ec4db21747dfe84"
+    },
+    {
+      "id": "PLACE:2758000",
+      "display_name": "St. Paul, MN",
+      "slug": "st-paul-mn",
+      "path": "data/intermediate/tax/curves/st-paul-mn.json",
+      "sha256": "d6ef3b57d07d966a4eaa5d7a2261217cd08781282ed94f7faad741e76d3939f1"
+    },
+    {
+      "id": "PLACE:3719000",
+      "display_name": "Durham, NC",
+      "slug": "durham-nc",
+      "path": "data/intermediate/tax/curves/durham-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:3436000",
+      "display_name": "Jersey City, NJ",
+      "slug": "jersey-city-nj",
+      "path": "data/intermediate/tax/curves/jersey-city-nj.json",
+      "sha256": "2761699c8e6f20ecb4c903ba8e2809d32fc48c59c08c8af07fcfad40cbf1b146"
+    },
+    {
+      "id": "PLACE:3128000",
+      "display_name": "Lincoln, NE",
+      "slug": "lincoln-ne",
+      "path": "data/intermediate/tax/curves/lincoln-ne.json",
+      "sha256": "2971bab8a0ac1dc49e2d734733d3503f704e89d5621723222aee5068e31a7e2f"
+    },
+    {
+      "id": "PLACE:3251800",
+      "display_name": "North Las Vegas, NV",
+      "slug": "north-las-vegas-nv",
+      "path": "data/intermediate/tax/curves/north-las-vegas-nv.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4858016",
+      "display_name": "Plano, TX",
+      "slug": "plano-tx",
+      "path": "data/intermediate/tax/curves/plano-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0427400",
+      "display_name": "Gilbert, AZ",
+      "slug": "gilbert-az",
+      "path": "data/intermediate/tax/curves/gilbert-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:0203000",
+      "display_name": "Anchorage, AK",
+      "slug": "anchorage-ak",
+      "path": "data/intermediate/tax/curves/anchorage-ak.json",
+      "sha256": "0e12819fa6ef3d92a27be59a113ea0c0f6320ac5fa4718e7e5d1cf3e662bd30e"
+    },
+    {
+      "id": "PLACE:5548000",
+      "display_name": "Madison, WI",
+      "slug": "madison-wi",
+      "path": "data/intermediate/tax/curves/madison-wi.json",
+      "sha256": "790b6b9ef8e7a441aaac8db321ba93dc9e59ff5a5915a2151309b778403d6d79"
+    },
+    {
+      "id": "PLACE:3260600",
+      "display_name": "Reno, NV",
+      "slug": "reno-nv",
+      "path": "data/intermediate/tax/curves/reno-nv.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0412000",
+      "display_name": "Chandler, AZ",
+      "slug": "chandler-az",
+      "path": "data/intermediate/tax/curves/chandler-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:2965000",
+      "display_name": "St. Louis, MO",
+      "slug": "st-louis-mo",
+      "path": "data/intermediate/tax/curves/st-louis-mo.json",
+      "sha256": "499c879cffe8519e219f5d75b20b7f61ffcbc553c4cf3adda983e9b8236001ed"
+    },
+    {
+      "id": "PLACE:0613392",
+      "display_name": "Chula Vista, CA",
+      "slug": "chula-vista-ca",
+      "path": "data/intermediate/tax/curves/chula-vista-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1825000",
+      "display_name": "Fort Wayne, IN",
+      "slug": "fort-wayne-in",
+      "path": "data/intermediate/tax/curves/fort-wayne-in.json",
+      "sha256": "9ec5afd77f4083aba5128f5e8169bb3132962a20f092f40d15fda11aeb2e560b"
+    },
+    {
+      "id": "PLACE:3611000",
+      "display_name": "Buffalo, NY",
+      "slug": "buffalo-ny",
+      "path": "data/intermediate/tax/curves/buffalo-ny.json",
+      "sha256": "b08c5ce88502c34bd2539355678e6907f723dca48a92c750914e0e0988bf157e"
+    },
+    {
+      "id": "PLACE:4845000",
+      "display_name": "Lubbock, TX",
+      "slug": "lubbock-tx",
+      "path": "data/intermediate/tax/curves/lubbock-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4841464",
+      "display_name": "Laredo, TX",
+      "slug": "laredo-tx",
+      "path": "data/intermediate/tax/curves/laredo-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1258715",
+      "display_name": "Port St. Lucie, FL",
+      "slug": "port-st-lucie-fl",
+      "path": "data/intermediate/tax/curves/port-st-lucie-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1263000",
+      "display_name": "St. Petersburg, FL",
+      "slug": "st-petersburg-fl",
+      "path": "data/intermediate/tax/curves/st-petersburg-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3977000",
+      "display_name": "Toledo, OH",
+      "slug": "toledo-oh",
+      "path": "data/intermediate/tax/curves/toledo-oh.json",
+      "sha256": "7efff974a7e1a82a7cc00454047d7b9e07bbab12bfc043a501d807919b6ebefe"
+    },
+    {
+      "id": "PLACE:0427820",
+      "display_name": "Glendale, AZ",
+      "slug": "glendale-az",
+      "path": "data/intermediate/tax/curves/glendale-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:3775000",
+      "display_name": "Winston-Salem, NC",
+      "slug": "winston-salem-nc",
+      "path": "data/intermediate/tax/curves/winston-salem-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:4837000",
+      "display_name": "Irving, TX",
+      "slug": "irving-tx",
+      "path": "data/intermediate/tax/curves/irving-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:5116000",
+      "display_name": "Chesapeake, VA",
+      "slug": "chesapeake-va",
+      "path": "data/intermediate/tax/curves/chesapeake-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:4829000",
+      "display_name": "Garland, TX",
+      "slug": "garland-tx",
+      "path": "data/intermediate/tax/curves/garland-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0465000",
+      "display_name": "Scottsdale, AZ",
+      "slug": "scottsdale-az",
+      "path": "data/intermediate/tax/curves/scottsdale-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:1608830",
+      "display_name": "Boise City, ID",
+      "slug": "boise-city-id",
+      "path": "data/intermediate/tax/curves/boise-city-id.json",
+      "sha256": "db4fcc5279cfcb5d87b313f1affdc226307cdc32d7dd6a293ae1e6057d001cc3"
+    },
+    {
+      "id": "PLACE:5167000",
+      "display_name": "Richmond, VA",
+      "slug": "richmond-va",
+      "path": "data/intermediate/tax/curves/richmond-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:4827684",
+      "display_name": "Frisco, TX",
+      "slug": "frisco-tx",
+      "path": "data/intermediate/tax/curves/frisco-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1210275",
+      "display_name": "Cape Coral, FL",
+      "slug": "cape-coral-fl",
+      "path": "data/intermediate/tax/curves/cape-coral-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4845744",
+      "display_name": "McKinney, TX",
+      "slug": "mckinney-tx",
+      "path": "data/intermediate/tax/curves/mckinney-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0137000",
+      "display_name": "Huntsville, AL",
+      "slug": "huntsville-al",
+      "path": "data/intermediate/tax/curves/huntsville-al.json",
+      "sha256": "f344e1adb619a9ff502dca55cc0c6409e929ad4ae4f1e193ab0baf46af7f790c"
+    },
+    {
+      "id": "PLACE:5157000",
+      "display_name": "Norfolk, VA",
+      "slug": "norfolk-va",
+      "path": "data/intermediate/tax/curves/norfolk-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:1230000",
+      "display_name": "Hialeah, FL",
+      "slug": "hialeah-fl",
+      "path": "data/intermediate/tax/curves/hialeah-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:5367000",
+      "display_name": "Spokane, WA",
+      "slug": "spokane-wa",
+      "path": "data/intermediate/tax/curves/spokane-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:5370000",
+      "display_name": "Tacoma, WA",
+      "slug": "tacoma-wa",
+      "path": "data/intermediate/tax/curves/tacoma-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:0669088",
+      "display_name": "Santa Clarita, CA",
+      "slug": "santa-clarita-ca",
+      "path": "data/intermediate/tax/curves/santa-clarita-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0626000",
+      "display_name": "Fremont, CA",
+      "slug": "fremont-ca",
+      "path": "data/intermediate/tax/curves/fremont-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2205000",
+      "display_name": "Baton Rouge, LA",
+      "slug": "baton-rouge-la",
+      "path": "data/intermediate/tax/curves/baton-rouge-la.json",
+      "sha256": "bc120ccbfaee701d8602ba33e8d29e5e80734b0779aff86a7c5b4bdd19de267b"
+    },
+    {
+      "id": "PLACE:0665000",
+      "display_name": "San Bernardino, CA",
+      "slug": "san-bernardino-ca",
+      "path": "data/intermediate/tax/curves/san-bernardino-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0624680",
+      "display_name": "Fontana, CA",
+      "slug": "fontana-ca",
+      "path": "data/intermediate/tax/curves/fontana-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0648354",
+      "display_name": "Modesto, CA",
+      "slug": "modesto-ca",
+      "path": "data/intermediate/tax/curves/modesto-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4967000",
+      "display_name": "Salt Lake City, UT",
+      "slug": "salt-lake-city-ut",
+      "path": "data/intermediate/tax/curves/salt-lake-city-ut.json",
+      "sha256": "47525fce14b266ec688d25ba4d356109528fd2ef3d273b7356d705246590bb56"
+    },
+    {
+      "id": "PLACE:0649270",
+      "display_name": "Moreno Valley, CA",
+      "slug": "moreno-valley-ca",
+      "path": "data/intermediate/tax/curves/moreno-valley-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2582000",
+      "display_name": "Worcester, MA",
+      "slug": "worcester-ma",
+      "path": "data/intermediate/tax/curves/worcester-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:4659020",
+      "display_name": "Sioux Falls, SD",
+      "slug": "sioux-falls-sd",
+      "path": "data/intermediate/tax/curves/sioux-falls-sd.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3684000",
+      "display_name": "Yonkers, NY",
+      "slug": "yonkers-ny",
+      "path": "data/intermediate/tax/curves/yonkers-ny.json",
+      "sha256": "b08c5ce88502c34bd2539355678e6907f723dca48a92c750914e0e0988bf157e"
+    },
+    {
+      "id": "PLACE:1921000",
+      "display_name": "Des Moines, IA",
+      "slug": "des-moines-ia",
+      "path": "data/intermediate/tax/curves/des-moines-ia.json",
+      "sha256": "94f723bdc9871466f0fc4f80af57d6064468280dd9e44da510ef2ee92938c427"
+    },
+    {
+      "id": "PLACE:4830464",
+      "display_name": "Grand Prairie, TX",
+      "slug": "grand-prairie-tx",
+      "path": "data/intermediate/tax/curves/grand-prairie-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3722920",
+      "display_name": "Fayetteville, NC",
+      "slug": "fayetteville-nc",
+      "path": "data/intermediate/tax/curves/fayetteville-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:0541000",
+      "display_name": "Little Rock, AR",
+      "slug": "little-rock-ar",
+      "path": "data/intermediate/tax/curves/little-rock-ar.json",
+      "sha256": "05ab10e695c485cd0495c109c0ac7b0651ad3c7585edecee5fe157d10574311f"
+    },
+    {
+      "id": "PLACE:3663000",
+      "display_name": "Rochester, NY",
+      "slug": "rochester-ny",
+      "path": "data/intermediate/tax/curves/rochester-ny.json",
+      "sha256": "b08c5ce88502c34bd2539355678e6907f723dca48a92c750914e0e0988bf157e"
+    },
+    {
+      "id": "PLACE:4803000",
+      "display_name": "Amarillo, TX",
+      "slug": "amarillo-tx",
+      "path": "data/intermediate/tax/curves/amarillo-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1270600",
+      "display_name": "Tallahassee, FL",
+      "slug": "tallahassee-fl",
+      "path": "data/intermediate/tax/curves/tallahassee-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2053775",
+      "display_name": "Overland Park, KS",
+      "slug": "overland-park-ks",
+      "path": "data/intermediate/tax/curves/overland-park-ks.json",
+      "sha256": "d72b6fda2f8a6ec76c9786e88c9196fc47ca1413691c201cb635c8022a771788"
+    },
+    {
+      "id": "PLACE:1319000",
+      "display_name": "Columbus, GA",
+      "slug": "columbus-ga",
+      "path": "data/intermediate/tax/curves/columbus-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:4740000",
+      "display_name": "Knoxville, TN",
+      "slug": "knoxville-tn",
+      "path": "data/intermediate/tax/curves/knoxville-tn.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1304204",
+      "display_name": "Augusta-Richmond County consolidated government (balance), GA",
+      "slug": "augusta-richmond-county-consolidated-government-balance-ga",
+      "path": "data/intermediate/tax/curves/augusta-richmond-county-consolidated-government-balance-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:2634000",
+      "display_name": "Grand Rapids, MI",
+      "slug": "grand-rapids-mi",
+      "path": "data/intermediate/tax/curves/grand-rapids-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:0454050",
+      "display_name": "Peoria, AZ",
+      "slug": "peoria-az",
+      "path": "data/intermediate/tax/curves/peoria-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:0150000",
+      "display_name": "Mobile, AL",
+      "slug": "mobile-al",
+      "path": "data/intermediate/tax/curves/mobile-al.json",
+      "sha256": "f344e1adb619a9ff502dca55cc0c6409e929ad4ae4f1e193ab0baf46af7f790c"
+    },
+    {
+      "id": "PLACE:5374060",
+      "display_name": "Vancouver, WA",
+      "slug": "vancouver-wa",
+      "path": "data/intermediate/tax/curves/vancouver-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:0654652",
+      "display_name": "Oxnard, CA",
+      "slug": "oxnard-ca",
+      "path": "data/intermediate/tax/curves/oxnard-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0107000",
+      "display_name": "Birmingham, AL",
+      "slug": "birmingham-al",
+      "path": "data/intermediate/tax/curves/birmingham-al.json",
+      "sha256": "f344e1adb619a9ff502dca55cc0c6409e929ad4ae4f1e193ab0baf46af7f790c"
+    },
+    {
+      "id": "PLACE:4459000",
+      "display_name": "Providence, RI",
+      "slug": "providence-ri",
+      "path": "data/intermediate/tax/curves/providence-ri.json",
+      "sha256": "733e9d53bdf57b377730d8f4b61d652772c0da58bf4afee2723d1f5de2ff9c03"
+    },
+    {
+      "id": "PLACE:0151000",
+      "display_name": "Montgomery, AL",
+      "slug": "montgomery-al",
+      "path": "data/intermediate/tax/curves/montgomery-al.json",
+      "sha256": "f344e1adb619a9ff502dca55cc0c6409e929ad4ae4f1e193ab0baf46af7f790c"
+    },
+    {
+      "id": "PLACE:4714000",
+      "display_name": "Chattanooga, TN",
+      "slug": "chattanooga-tn",
+      "path": "data/intermediate/tax/curves/chattanooga-tn.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4810768",
+      "display_name": "Brownsville, TX",
+      "slug": "brownsville-tx",
+      "path": "data/intermediate/tax/curves/brownsville-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0636000",
+      "display_name": "Huntington Beach, CA",
+      "slug": "huntington-beach-ca",
+      "path": "data/intermediate/tax/curves/huntington-beach-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0473000",
+      "display_name": "Tempe, AZ",
+      "slug": "tempe-az",
+      "path": "data/intermediate/tax/curves/tempe-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:3901000",
+      "display_name": "Akron, OH",
+      "slug": "akron-oh",
+      "path": "data/intermediate/tax/curves/akron-oh.json",
+      "sha256": "7efff974a7e1a82a7cc00454047d7b9e07bbab12bfc043a501d807919b6ebefe"
+    },
+    {
+      "id": "PLACE:4715160",
+      "display_name": "Clarksville, TN",
+      "slug": "clarksville-tn",
+      "path": "data/intermediate/tax/curves/clarksville-tn.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1224000",
+      "display_name": "Fort Lauderdale, FL",
+      "slug": "fort-lauderdale-fl",
+      "path": "data/intermediate/tax/curves/fort-lauderdale-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0630000",
+      "display_name": "Glendale, CA",
+      "slug": "glendale-ca",
+      "path": "data/intermediate/tax/curves/glendale-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0653896",
+      "display_name": "Ontario, CA",
+      "slug": "ontario-ca",
+      "path": "data/intermediate/tax/curves/ontario-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0622020",
+      "display_name": "Elk Grove, CA",
+      "slug": "elk-grove-ca",
+      "path": "data/intermediate/tax/curves/elk-grove-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3710740",
+      "display_name": "Cary, NC",
+      "slug": "cary-nc",
+      "path": "data/intermediate/tax/curves/cary-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:5156000",
+      "display_name": "Newport News, VA",
+      "slug": "newport-news-va",
+      "path": "data/intermediate/tax/curves/newport-news-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:4164900",
+      "display_name": "Salem, OR",
+      "slug": "salem-or",
+      "path": "data/intermediate/tax/curves/salem-or.json",
+      "sha256": "c731662edfec3b7eca0daea10f9861603480778c19ed2173aee5c8a01afdcc6b"
+    },
+    {
+      "id": "PLACE:1703012",
+      "display_name": "Aurora, IL",
+      "slug": "aurora-il",
+      "path": "data/intermediate/tax/curves/aurora-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:0670098",
+      "display_name": "Santa Rosa, CA",
+      "slug": "santa-rosa-ca",
+      "path": "data/intermediate/tax/curves/santa-rosa-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4123850",
+      "display_name": "Eugene, OR",
+      "slug": "eugene-or",
+      "path": "data/intermediate/tax/curves/eugene-or.json",
+      "sha256": "c731662edfec3b7eca0daea10f9861603480778c19ed2173aee5c8a01afdcc6b"
+    },
+    {
+      "id": "PLACE:0659451",
+      "display_name": "Rancho Cucamonga, CA",
+      "slug": "rancho-cucamonga-ca",
+      "path": "data/intermediate/tax/curves/rancho-cucamonga-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1255775",
+      "display_name": "Pembroke Pines, FL",
+      "slug": "pembroke-pines-fl",
+      "path": "data/intermediate/tax/curves/pembroke-pines-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2270000",
+      "display_name": "Shreveport, LA",
+      "slug": "shreveport-la",
+      "path": "data/intermediate/tax/curves/shreveport-la.json",
+      "sha256": "bc120ccbfaee701d8602ba33e8d29e5e80734b0779aff86a7c5b4bdd19de267b"
+    },
+    {
+      "id": "PLACE:0471510",
+      "display_name": "Surprise, AZ",
+      "slug": "surprise-az",
+      "path": "data/intermediate/tax/curves/surprise-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:0827425",
+      "display_name": "Fort Collins, CO",
+      "slug": "fort-collins-co",
+      "path": "data/intermediate/tax/curves/fort-collins-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:4751560",
+      "display_name": "Murfreesboro, TN",
+      "slug": "murfreesboro-tn",
+      "path": "data/intermediate/tax/curves/murfreesboro-tn.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0653322",
+      "display_name": "Oceanside, CA",
+      "slug": "oceanside-ca",
+      "path": "data/intermediate/tax/curves/oceanside-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0629000",
+      "display_name": "Garden Grove, CA",
+      "slug": "garden-grove-ca",
+      "path": "data/intermediate/tax/curves/garden-grove-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0640130",
+      "display_name": "Lancaster, CA",
+      "slug": "lancaster-ca",
+      "path": "data/intermediate/tax/curves/lancaster-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2970000",
+      "display_name": "Springfield, MO",
+      "slug": "springfield-mo",
+      "path": "data/intermediate/tax/curves/springfield-mo.json",
+      "sha256": "8ea1f6926aa2cf34380cc97d18182e9d9ba42ea8c7b04ce4404f736a5897f38c"
+    },
+    {
+      "id": "PLACE:4819972",
+      "display_name": "Denton, TX",
+      "slug": "denton-tx",
+      "path": "data/intermediate/tax/curves/denton-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0662938",
+      "display_name": "Roseville, CA",
+      "slug": "roseville-ca",
+      "path": "data/intermediate/tax/curves/roseville-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4839148",
+      "display_name": "Killeen, TX",
+      "slug": "killeen-tx",
+      "path": "data/intermediate/tax/curves/killeen-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0655156",
+      "display_name": "Palmdale, CA",
+      "slug": "palmdale-ca",
+      "path": "data/intermediate/tax/curves/palmdale-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3457000",
+      "display_name": "Paterson, NJ",
+      "slug": "paterson-nj",
+      "path": "data/intermediate/tax/curves/paterson-nj.json",
+      "sha256": "2761699c8e6f20ecb4c903ba8e2809d32fc48c59c08c8af07fcfad40cbf1b146"
+    },
+    {
+      "id": "PLACE:0616350",
+      "display_name": "Corona, CA",
+      "slug": "corona-ca",
+      "path": "data/intermediate/tax/curves/corona-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:5101000",
+      "display_name": "Alexandria, VA",
+      "slug": "alexandria-va",
+      "path": "data/intermediate/tax/curves/alexandria-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:4513330",
+      "display_name": "Charleston, SC",
+      "slug": "charleston-sc",
+      "path": "data/intermediate/tax/curves/charleston-sc.json",
+      "sha256": "d9c8495f8655a336bb62f990cbef3907f292c20fa476ac551ffebcc28ac54d4e"
+    },
+    {
+      "id": "PLACE:0664224",
+      "display_name": "Salinas, CA",
+      "slug": "salinas-ca",
+      "path": "data/intermediate/tax/curves/salinas-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2036000",
+      "display_name": "Kansas City, KS",
+      "slug": "kansas-city-ks",
+      "path": "data/intermediate/tax/curves/kansas-city-ks.json",
+      "sha256": "d72b6fda2f8a6ec76c9786e88c9196fc47ca1413691c201cb635c8022a771788"
+    },
+    {
+      "id": "PLACE:1349008",
+      "display_name": "Macon-Bibb County, GA",
+      "slug": "macon-bibb-county-ga",
+      "path": "data/intermediate/tax/curves/macon-bibb-county-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:0633000",
+      "display_name": "Hayward, CA",
+      "slug": "hayward-ca",
+      "path": "data/intermediate/tax/curves/hayward-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1232000",
+      "display_name": "Hollywood, FL",
+      "slug": "hollywood-fl",
+      "path": "data/intermediate/tax/curves/hollywood-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0843000",
+      "display_name": "Lakewood, CO",
+      "slug": "lakewood-co",
+      "path": "data/intermediate/tax/curves/lakewood-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:0677000",
+      "display_name": "Sunnyvale, CA",
+      "slug": "sunnyvale-ca",
+      "path": "data/intermediate/tax/curves/sunnyvale-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2567000",
+      "display_name": "Springfield, MA",
+      "slug": "springfield-ma",
+      "path": "data/intermediate/tax/curves/springfield-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:5305210",
+      "display_name": "Bellevue, WA",
+      "slug": "bellevue-wa",
+      "path": "data/intermediate/tax/curves/bellevue-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:1751622",
+      "display_name": "Naperville, IL",
+      "slug": "naperville-il",
+      "path": "data/intermediate/tax/curves/naperville-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:0908000",
+      "display_name": "Bridgeport, CT",
+      "slug": "bridgeport-ct",
+      "path": "data/intermediate/tax/curves/bridgeport-ct.json",
+      "sha256": "30863719d787330f211cd530ad5913122758e784850b8033e818dbab824675a9"
+    },
+    {
+      "id": "PLACE:1738570",
+      "display_name": "Joliet, IL",
+      "slug": "joliet-il",
+      "path": "data/intermediate/tax/curves/joliet-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:4847892",
+      "display_name": "Mesquite, TX",
+      "slug": "mesquite-tx",
+      "path": "data/intermediate/tax/curves/mesquite-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4845384",
+      "display_name": "McAllen, TX",
+      "slug": "mcallen-tx",
+      "path": "data/intermediate/tax/curves/mcallen-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2052575",
+      "display_name": "Olathe, KS",
+      "slug": "olathe-ks",
+      "path": "data/intermediate/tax/curves/olathe-ks.json",
+      "sha256": "d72b6fda2f8a6ec76c9786e88c9196fc47ca1413691c201cb635c8022a771788"
+    },
+    {
+      "id": "PLACE:1369000",
+      "display_name": "Savannah, GA",
+      "slug": "savannah-ga",
+      "path": "data/intermediate/tax/curves/savannah-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:1225175",
+      "display_name": "Gainesville, FL",
+      "slug": "gainesville-fl",
+      "path": "data/intermediate/tax/curves/gainesville-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4856000",
+      "display_name": "Pasadena, TX",
+      "slug": "pasadena-tx",
+      "path": "data/intermediate/tax/curves/pasadena-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1254000",
+      "display_name": "Palm Bay, FL",
+      "slug": "palm-bay-fl",
+      "path": "data/intermediate/tax/curves/palm-bay-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0658072",
+      "display_name": "Pomona, CA",
+      "slug": "pomona-ca",
+      "path": "data/intermediate/tax/curves/pomona-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4876000",
+      "display_name": "Waco, TX",
+      "slug": "waco-tx",
+      "path": "data/intermediate/tax/curves/waco-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0877290",
+      "display_name": "Thornton, CO",
+      "slug": "thornton-co",
+      "path": "data/intermediate/tax/curves/thornton-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:4848072",
+      "display_name": "Midland, TX",
+      "slug": "midland-tx",
+      "path": "data/intermediate/tax/curves/midland-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1765000",
+      "display_name": "Rockford, IL",
+      "slug": "rockford-il",
+      "path": "data/intermediate/tax/curves/rockford-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:4516000",
+      "display_name": "Columbia, SC",
+      "slug": "columbia-sc",
+      "path": "data/intermediate/tax/curves/columbia-sc.json",
+      "sha256": "d9c8495f8655a336bb62f990cbef3907f292c20fa476ac551ffebcc28ac54d4e"
+    },
+    {
+      "id": "PLACE:0682954",
+      "display_name": "Visalia, CA",
+      "slug": "visalia-ca",
+      "path": "data/intermediate/tax/curves/visalia-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0622804",
+      "display_name": "Escondido, CA",
+      "slug": "escondido-ca",
+      "path": "data/intermediate/tax/curves/escondido-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3673000",
+      "display_name": "Syracuse, NY",
+      "slug": "syracuse-ny",
+      "path": "data/intermediate/tax/curves/syracuse-ny.json",
+      "sha256": "b08c5ce88502c34bd2539355678e6907f723dca48a92c750914e0e0988bf157e"
+    },
+    {
+      "id": "PLACE:1652120",
+      "display_name": "Meridian, ID",
+      "slug": "meridian-id",
+      "path": "data/intermediate/tax/curves/meridian-id.json",
+      "sha256": "db4fcc5279cfcb5d87b313f1affdc226307cdc32d7dd6a293ae1e6057d001cc3"
+    },
+    {
+      "id": "PLACE:1245975",
+      "display_name": "Miramar, FL",
+      "slug": "miramar-fl",
+      "path": "data/intermediate/tax/curves/miramar-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3421000",
+      "display_name": "Elizabeth, NJ",
+      "slug": "elizabeth-nj",
+      "path": "data/intermediate/tax/curves/elizabeth-nj.json",
+      "sha256": "2761699c8e6f20ecb4c903ba8e2809d32fc48c59c08c8af07fcfad40cbf1b146"
+    },
+    {
+      "id": "PLACE:0682590",
+      "display_name": "Victorville, CA",
+      "slug": "victorville-ca",
+      "path": "data/intermediate/tax/curves/victorville-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4863500",
+      "display_name": "Round Rock, TX",
+      "slug": "round-rock-tx",
+      "path": "data/intermediate/tax/curves/round-rock-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2836000",
+      "display_name": "Jackson, MS",
+      "slug": "jackson-ms",
+      "path": "data/intermediate/tax/curves/jackson-ms.json",
+      "sha256": "e70fe614354b66d240c87f22bac60f458014fced4853c00853eb361f2d45d63f"
+    },
+    {
+      "id": "PLACE:0973000",
+      "display_name": "Stamford, CT",
+      "slug": "stamford-ct",
+      "path": "data/intermediate/tax/curves/stamford-ct.json",
+      "sha256": "30863719d787330f211cd530ad5913122758e784850b8033e818dbab824675a9"
+    },
+    {
+      "id": "PLACE:4842508",
+      "display_name": "Lewisville, TX",
+      "slug": "lewisville-tx",
+      "path": "data/intermediate/tax/curves/lewisville-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1214400",
+      "display_name": "Coral Springs, FL",
+      "slug": "coral-springs-fl",
+      "path": "data/intermediate/tax/curves/coral-springs-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0952000",
+      "display_name": "New Haven, CT",
+      "slug": "new-haven-ct",
+      "path": "data/intermediate/tax/curves/new-haven-ct.json",
+      "sha256": "30863719d787330f211cd530ad5913122758e784850b8033e818dbab824675a9"
+    },
+    {
+      "id": "PLACE:0628000",
+      "display_name": "Fullerton, CA",
+      "slug": "fullerton-ca",
+      "path": "data/intermediate/tax/curves/fullerton-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0680000",
+      "display_name": "Torrance, CA",
+      "slug": "torrance-ca",
+      "path": "data/intermediate/tax/curves/torrance-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0653980",
+      "display_name": "Orange, CA",
+      "slug": "orange-ca",
+      "path": "data/intermediate/tax/curves/orange-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1912000",
+      "display_name": "Cedar Rapids, IA",
+      "slug": "cedar-rapids-ia",
+      "path": "data/intermediate/tax/curves/cedar-rapids-ia.json",
+      "sha256": "94f723bdc9871466f0fc4f80af57d6064468280dd9e44da510ef2ee92938c427"
+    },
+    {
+      "id": "PLACE:4983470",
+      "display_name": "West Valley City, UT",
+      "slug": "west-valley-city-ut",
+      "path": "data/intermediate/tax/curves/west-valley-city-ut.json",
+      "sha256": "47525fce14b266ec688d25ba4d356109528fd2ef3d273b7356d705246590bb56"
+    },
+    {
+      "id": "PLACE:5135000",
+      "display_name": "Hampton, VA",
+      "slug": "hampton-va",
+      "path": "data/intermediate/tax/curves/hampton-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:2684000",
+      "display_name": "Warren, MI",
+      "slug": "warren-mi",
+      "path": "data/intermediate/tax/curves/warren-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:3921000",
+      "display_name": "Dayton, OH",
+      "slug": "dayton-oh",
+      "path": "data/intermediate/tax/curves/dayton-oh.json",
+      "sha256": "7efff974a7e1a82a7cc00454047d7b9e07bbab12bfc043a501d807919b6ebefe"
+    },
+    {
+      "id": "PLACE:3825700",
+      "display_name": "Fargo, ND",
+      "slug": "fargo-nd",
+      "path": "data/intermediate/tax/curves/fargo-nd.json",
+      "sha256": "bbb982e6b66040e02a7c03f116b4c87233cd71d0c33673f962d9ab75d2af9d35"
+    },
+    {
+      "id": "PLACE:0656000",
+      "display_name": "Pasadena, CA",
+      "slug": "pasadena-ca",
+      "path": "data/intermediate/tax/curves/pasadena-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:5335415",
+      "display_name": "Kent, WA",
+      "slug": "kent-wa",
+      "path": "data/intermediate/tax/curves/kent-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:4813024",
+      "display_name": "Carrollton, TX",
+      "slug": "carrollton-tx",
+      "path": "data/intermediate/tax/curves/carrollton-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2676460",
+      "display_name": "Sterling Heights, MI",
+      "slug": "sterling-heights-mi",
+      "path": "data/intermediate/tax/curves/sterling-heights-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:0669084",
+      "display_name": "Santa Clara, CA",
+      "slug": "santa-clara-ca",
+      "path": "data/intermediate/tax/curves/santa-clara-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4801000",
+      "display_name": "Abilene, TX",
+      "slug": "abilene-tx",
+      "path": "data/intermediate/tax/curves/abilene-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4052500",
+      "display_name": "Norman, OK",
+      "slug": "norman-ok",
+      "path": "data/intermediate/tax/curves/norman-ok.json",
+      "sha256": "a792bc41705aa3c792cf01e46c8a4ba4366de8ea0eb348f419665562d8a1b37a"
+    },
+    {
+      "id": "PLACE:2915670",
+      "display_name": "Columbia, MO",
+      "slug": "columbia-mo",
+      "path": "data/intermediate/tax/curves/columbia-mo.json",
+      "sha256": "8ea1f6926aa2cf34380cc97d18182e9d9ba42ea8c7b04ce4404f736a5897f38c"
+    },
+    {
+      "id": "PLACE:4856348",
+      "display_name": "Pearland, TX",
+      "slug": "pearland-tx",
+      "path": "data/intermediate/tax/curves/pearland-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0614218",
+      "display_name": "Clovis, CA",
+      "slug": "clovis-ca",
+      "path": "data/intermediate/tax/curves/clovis-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4550875",
+      "display_name": "North Charleston, SC",
+      "slug": "north-charleston-sc",
+      "path": "data/intermediate/tax/curves/north-charleston-sc.json",
+      "sha256": "d9c8495f8655a336bb62f990cbef3907f292c20fa476ac551ffebcc28ac54d4e"
+    },
+    {
+      "id": "PLACE:1303440",
+      "display_name": "Athens-Clarke County, GA",
+      "slug": "athens-clarke-county-ga",
+      "path": "data/intermediate/tax/curves/athens-clarke-county-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:4815976",
+      "display_name": "College Station, TX",
+      "slug": "college-station-tx",
+      "path": "data/intermediate/tax/curves/college-station-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1276600",
+      "display_name": "West Palm Beach, FL",
+      "slug": "west-palm-beach-fl",
+      "path": "data/intermediate/tax/curves/west-palm-beach-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3774440",
+      "display_name": "Wilmington, NC",
+      "slug": "wilmington-nc",
+      "path": "data/intermediate/tax/curves/wilmington-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:4202000",
+      "display_name": "Allentown, PA",
+      "slug": "allentown-pa",
+      "path": "data/intermediate/tax/curves/allentown-pa.json",
+      "sha256": "4518e943dd68587a546a326feb0aa2bde784372440d53f7a829527021b4206fd"
+    },
+    {
+      "id": "PLACE:2071000",
+      "display_name": "Topeka, KS",
+      "slug": "topeka-ks",
+      "path": "data/intermediate/tax/curves/topeka-ks.json",
+      "sha256": "d72b6fda2f8a6ec76c9786e88c9196fc47ca1413691c201cb635c8022a771788"
+    },
+    {
+      "id": "PLACE:1238250",
+      "display_name": "Lakeland, FL",
+      "slug": "lakeland-fl",
+      "path": "data/intermediate/tax/curves/lakeland-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0407940",
+      "display_name": "Buckeye, AZ",
+      "slug": "buckeye-az",
+      "path": "data/intermediate/tax/curves/buckeye-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:0428380",
+      "display_name": "Goodyear, AZ",
+      "slug": "goodyear-az",
+      "path": "data/intermediate/tax/curves/goodyear-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:4009050",
+      "display_name": "Broken Arrow, OK",
+      "slug": "broken-arrow-ok",
+      "path": "data/intermediate/tax/curves/broken-arrow-ok.json",
+      "sha256": "a792bc41705aa3c792cf01e46c8a4ba4366de8ea0eb348f419665562d8a1b37a"
+    },
+    {
+      "id": "PLACE:0672016",
+      "display_name": "Simi Valley, CA",
+      "slug": "simi-valley-ca",
+      "path": "data/intermediate/tax/curves/simi-valley-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2754880",
+      "display_name": "Rochester, MN",
+      "slug": "rochester-mn",
+      "path": "data/intermediate/tax/curves/rochester-mn.json",
+      "sha256": "d6ef3b57d07d966a4eaa5d7a2261217cd08781282ed94f7faad741e76d3939f1"
+    },
+    {
+      "id": "PLACE:2240735",
+      "display_name": "Lafayette, LA",
+      "slug": "lafayette-la",
+      "path": "data/intermediate/tax/curves/lafayette-la.json",
+      "sha256": "bc120ccbfaee701d8602ba33e8d29e5e80734b0779aff86a7c5b4bdd19de267b"
+    },
+    {
+      "id": "PLACE:0681666",
+      "display_name": "Vallejo, CA",
+      "slug": "vallejo-ca",
+      "path": "data/intermediate/tax/curves/vallejo-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0616000",
+      "display_name": "Concord, CA",
+      "slug": "concord-ca",
+      "path": "data/intermediate/tax/curves/concord-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0803455",
+      "display_name": "Arvada, CO",
+      "slug": "arvada-co",
+      "path": "data/intermediate/tax/curves/arvada-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:4853388",
+      "display_name": "Odessa, TX",
+      "slug": "odessa-tx",
+      "path": "data/intermediate/tax/curves/odessa-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2511000",
+      "display_name": "Cambridge, MA",
+      "slug": "cambridge-ma",
+      "path": "data/intermediate/tax/curves/cambridge-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:4850820",
+      "display_name": "New Braunfels, TX",
+      "slug": "new-braunfels-tx",
+      "path": "data/intermediate/tax/curves/new-braunfels-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0623182",
+      "display_name": "Fairfield, CA",
+      "slug": "fairfield-ca",
+      "path": "data/intermediate/tax/curves/fairfield-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2603000",
+      "display_name": "Ann Arbor, MI",
+      "slug": "ann-arbor-mi",
+      "path": "data/intermediate/tax/curves/ann-arbor-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:0678582",
+      "display_name": "Thousand Oaks, CA",
+      "slug": "thousand-oaks-ca",
+      "path": "data/intermediate/tax/curves/thousand-oaks-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0937000",
+      "display_name": "Hartford, CT",
+      "slug": "hartford-ct",
+      "path": "data/intermediate/tax/curves/hartford-ct.json",
+      "sha256": "30863719d787330f211cd530ad5913122758e784850b8033e818dbab824675a9"
+    },
+    {
+      "id": "PLACE:0606000",
+      "display_name": "Berkeley, CA",
+      "slug": "berkeley-ca",
+      "path": "data/intermediate/tax/curves/berkeley-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2935000",
+      "display_name": "Independence, MO",
+      "slug": "independence-mo",
+      "path": "data/intermediate/tax/curves/independence-mo.json",
+      "sha256": "8ea1f6926aa2cf34380cc97d18182e9d9ba42ea8c7b04ce4404f736a5897f38c"
+    },
+    {
+      "id": "PLACE:3006550",
+      "display_name": "Billings, MT",
+      "slug": "billings-mt",
+      "path": "data/intermediate/tax/curves/billings-mt.json",
+      "sha256": "12a60a5516a306bc19b9199b42ac798fa5d54bddf70a36cd1f7168c5180aeaed"
+    },
+    {
+      "id": "PLACE:3731400",
+      "display_name": "High Point, NC",
+      "slug": "high-point-nc",
+      "path": "data/intermediate/tax/curves/high-point-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:1656260",
+      "display_name": "Nampa, ID",
+      "slug": "nampa-id",
+      "path": "data/intermediate/tax/curves/nampa-id.json",
+      "sha256": "db4fcc5279cfcb5d87b313f1affdc226307cdc32d7dd6a293ae1e6057d001cc3"
+    },
+    {
+      "id": "PLACE:2537000",
+      "display_name": "Lowell, MA",
+      "slug": "lowell-ma",
+      "path": "data/intermediate/tax/curves/lowell-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:4841980",
+      "display_name": "League City, TX",
+      "slug": "league-city-tx",
+      "path": "data/intermediate/tax/curves/league-city-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4816432",
+      "display_name": "Conroe, TX",
+      "slug": "conroe-tx",
+      "path": "data/intermediate/tax/curves/conroe-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0602252",
+      "display_name": "Antioch, CA",
+      "slug": "antioch-ca",
+      "path": "data/intermediate/tax/curves/antioch-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0646842",
+      "display_name": "Menifee, CA",
+      "slug": "menifee-ca",
+      "path": "data/intermediate/tax/curves/menifee-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4861796",
+      "display_name": "Richardson, TX",
+      "slug": "richardson-tx",
+      "path": "data/intermediate/tax/curves/richardson-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1258050",
+      "display_name": "Pompano Beach, FL",
+      "slug": "pompano-beach-fl",
+      "path": "data/intermediate/tax/curves/pompano-beach-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:3539380",
+      "display_name": "Las Cruces, NM",
+      "slug": "las-cruces-nm",
+      "path": "data/intermediate/tax/curves/las-cruces-nm.json",
+      "sha256": "ff963aa158ef1a6fe616e4b1e6834fb7c742d60aa5ef4a2a92f0d4c07f190d46"
+    },
+    {
+      "id": "PLACE:3345140",
+      "display_name": "Manchester, NH",
+      "slug": "manchester-nh",
+      "path": "data/intermediate/tax/curves/manchester-nh.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4982950",
+      "display_name": "West Jordan, UT",
+      "slug": "west-jordan-ut",
+      "path": "data/intermediate/tax/curves/west-jordan-ut.json",
+      "sha256": "47525fce14b266ec688d25ba4d356109528fd2ef3d273b7356d705246590bb56"
+    },
+    {
+      "id": "PLACE:0883835",
+      "display_name": "Westminster, CO",
+      "slug": "westminster-co",
+      "path": "data/intermediate/tax/curves/westminster-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:1822000",
+      "display_name": "Evansville, IN",
+      "slug": "evansville-in",
+      "path": "data/intermediate/tax/curves/evansville-in.json",
+      "sha256": "9ec5afd77f4083aba5128f5e8169bb3132962a20f092f40d15fda11aeb2e560b"
+    },
+    {
+      "id": "PLACE:0980000",
+      "display_name": "Waterbury, CT",
+      "slug": "waterbury-ct",
+      "path": "data/intermediate/tax/curves/waterbury-ct.json",
+      "sha256": "30863719d787330f211cd530ad5913122758e784850b8033e818dbab824675a9"
+    },
+    {
+      "id": "PLACE:1723074",
+      "display_name": "Elgin, IL",
+      "slug": "elgin-il",
+      "path": "data/intermediate/tax/curves/elgin-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:0832155",
+      "display_name": "Greeley, CO",
+      "slug": "greeley-co",
+      "path": "data/intermediate/tax/curves/greeley-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:0678120",
+      "display_name": "Temecula, CA",
+      "slug": "temecula-ca",
+      "path": "data/intermediate/tax/curves/temecula-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0660620",
+      "display_name": "Richmond, CA",
+      "slug": "richmond-ca",
+      "path": "data/intermediate/tax/curves/richmond-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3714100",
+      "display_name": "Concord, NC",
+      "slug": "concord-nc",
+      "path": "data/intermediate/tax/curves/concord-nc.json",
+      "sha256": "21ab69df5c0ae09be7b7e32256105a11e513aa74584dbf2e88e7043872e535e1"
+    },
+    {
+      "id": "PLACE:4962470",
+      "display_name": "Provo, UT",
+      "slug": "provo-ut",
+      "path": "data/intermediate/tax/curves/provo-ut.json",
+      "sha256": "47525fce14b266ec688d25ba4d356109528fd2ef3d273b7356d705246590bb56"
+    },
+    {
+      "id": "PLACE:3563460",
+      "display_name": "Rio Rancho, NM",
+      "slug": "rio-rancho-nm",
+      "path": "data/intermediate/tax/curves/rio-rancho-nm.json",
+      "sha256": "ff963aa158ef1a6fe616e4b1e6834fb7c742d60aa5ef4a2a92f0d4c07f190d46"
+    },
+    {
+      "id": "PLACE:1212875",
+      "display_name": "Clearwater, FL",
+      "slug": "clearwater-fl",
+      "path": "data/intermediate/tax/curves/clearwater-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0177256",
+      "display_name": "Tuscaloosa, AL",
+      "slug": "tuscaloosa-al",
+      "path": "data/intermediate/tax/curves/tuscaloosa-al.json",
+      "sha256": "f344e1adb619a9ff502dca55cc0c6409e929ad4ae4f1e193ab0baf46af7f790c"
+    },
+    {
+      "id": "PLACE:0650076",
+      "display_name": "Murrieta, CA",
+      "slug": "murrieta-ca",
+      "path": "data/intermediate/tax/curves/murrieta-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2646000",
+      "display_name": "Lansing, MI",
+      "slug": "lansing-mi",
+      "path": "data/intermediate/tax/curves/lansing-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:4874144",
+      "display_name": "Tyler, TX",
+      "slug": "tyler-tx",
+      "path": "data/intermediate/tax/curves/tyler-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1245060",
+      "display_name": "Miami Gardens, FL",
+      "slug": "miami-gardens-fl",
+      "path": "data/intermediate/tax/curves/miami-gardens-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:5322640",
+      "display_name": "Everett, WA",
+      "slug": "everett-wa",
+      "path": "data/intermediate/tax/curves/everett-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:4801924",
+      "display_name": "Allen, TX",
+      "slug": "allen-tx",
+      "path": "data/intermediate/tax/curves/allen-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1772000",
+      "display_name": "Springfield, IL",
+      "slug": "springfield-il",
+      "path": "data/intermediate/tax/curves/springfield-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:4807000",
+      "display_name": "Beaumont, TX",
+      "slug": "beaumont-tx",
+      "path": "data/intermediate/tax/curves/beaumont-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1372122",
+      "display_name": "South Fulton, GA",
+      "slug": "south-fulton-ga",
+      "path": "data/intermediate/tax/curves/south-fulton-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:0611194",
+      "display_name": "Carlsbad, CA",
+      "slug": "carlsbad-ca",
+      "path": "data/intermediate/tax/curves/carlsbad-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3268400",
+      "display_name": "Sparks, NV",
+      "slug": "sparks-nv",
+      "path": "data/intermediate/tax/curves/sparks-nv.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4131250",
+      "display_name": "Gresham, OR",
+      "slug": "gresham-or",
+      "path": "data/intermediate/tax/curves/gresham-or.json",
+      "sha256": "c731662edfec3b7eca0daea10f9861603480778c19ed2173aee5c8a01afdcc6b"
+    },
+    {
+      "id": "PLACE:0669196",
+      "display_name": "Santa Maria, CA",
+      "slug": "santa-maria-ca",
+      "path": "data/intermediate/tax/curves/santa-maria-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4134100",
+      "display_name": "Hillsboro, OR",
+      "slug": "hillsboro-or",
+      "path": "data/intermediate/tax/curves/hillsboro-or.json",
+      "sha256": "c731662edfec3b7eca0daea10f9861603480778c19ed2173aee5c8a01afdcc6b"
+    },
+    {
+      "id": "PLACE:1759000",
+      "display_name": "Peoria, IL",
+      "slug": "peoria-il",
+      "path": "data/intermediate/tax/curves/peoria-il.json",
+      "sha256": "b26515bbe0f845eaff79f4d2c0334ecfea3f739f64101895d68b285cfa6db76c"
+    },
+    {
+      "id": "PLACE:1216475",
+      "display_name": "Davie, FL",
+      "slug": "davie-fl",
+      "path": "data/intermediate/tax/curves/davie-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4822660",
+      "display_name": "Edinburg, TX",
+      "slug": "edinburg-tx",
+      "path": "data/intermediate/tax/curves/edinburg-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0862000",
+      "display_name": "Pueblo, CO",
+      "slug": "pueblo-co",
+      "path": "data/intermediate/tax/curves/pueblo-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:0665042",
+      "display_name": "San Buenaventura (Ventura), CA",
+      "slug": "san-buenaventura-ventura-ca",
+      "path": "data/intermediate/tax/curves/san-buenaventura-ventura-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1254200",
+      "display_name": "Palm Coast, FL",
+      "slug": "palm-coast-fl",
+      "path": "data/intermediate/tax/curves/palm-coast-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0616532",
+      "display_name": "Costa Mesa, CA",
+      "slug": "costa-mesa-ca",
+      "path": "data/intermediate/tax/curves/costa-mesa-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4965330",
+      "display_name": "St. George, UT",
+      "slug": "st-george-ut",
+      "path": "data/intermediate/tax/curves/st-george-ut.json",
+      "sha256": "47525fce14b266ec688d25ba4d356109528fd2ef3d273b7356d705246590bb56"
+    },
+    {
+      "id": "PLACE:0812815",
+      "display_name": "Centennial, CO",
+      "slug": "centennial-co",
+      "path": "data/intermediate/tax/curves/centennial-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:0619766",
+      "display_name": "Downey, CA",
+      "slug": "downey-ca",
+      "path": "data/intermediate/tax/curves/downey-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:5367167",
+      "display_name": "Spokane Valley, WA",
+      "slug": "spokane-valley-wa",
+      "path": "data/intermediate/tax/curves/spokane-valley-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:4870808",
+      "display_name": "Sugar Land, TX",
+      "slug": "sugar-land-tx",
+      "path": "data/intermediate/tax/curves/sugar-land-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:2941348",
+      "display_name": "Lee's Summit, MO",
+      "slug": "lees-summit-mo",
+      "path": "data/intermediate/tax/curves/lees-summit-mo.json",
+      "sha256": "8ea1f6926aa2cf34380cc97d18182e9d9ba42ea8c7b04ce4404f736a5897f38c"
+    },
+    {
+      "id": "PLACE:4105800",
+      "display_name": "Bend, OR",
+      "slug": "bend-or",
+      "path": "data/intermediate/tax/curves/bend-or.json",
+      "sha256": "c731662edfec3b7eca0daea10f9861603480778c19ed2173aee5c8a01afdcc6b"
+    },
+    {
+      "id": "PLACE:0637692",
+      "display_name": "Jurupa Valley, CA",
+      "slug": "jurupa-valley-ca",
+      "path": "data/intermediate/tax/curves/jurupa-valley-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4829336",
+      "display_name": "Georgetown, TX",
+      "slug": "georgetown-tx",
+      "path": "data/intermediate/tax/curves/georgetown-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:5531000",
+      "display_name": "Green Bay, WI",
+      "slug": "green-bay-wi",
+      "path": "data/intermediate/tax/curves/green-bay-wi.json",
+      "sha256": "790b6b9ef8e7a441aaac8db321ba93dc9e59ff5a5915a2151309b778403d6d79"
+    },
+    {
+      "id": "PLACE:0523290",
+      "display_name": "Fayetteville, AR",
+      "slug": "fayetteville-ar",
+      "path": "data/intermediate/tax/curves/fayetteville-ar.json",
+      "sha256": "05ab10e695c485cd0495c109c0ac7b0651ad3c7585edecee5fe157d10574311f"
+    },
+    {
+      "id": "PLACE:0660466",
+      "display_name": "Rialto, CA",
+      "slug": "rialto-ca",
+      "path": "data/intermediate/tax/curves/rialto-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2509000",
+      "display_name": "Brockton, MA",
+      "slug": "brockton-ma",
+      "path": "data/intermediate/tax/curves/brockton-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:0807850",
+      "display_name": "Boulder, CO",
+      "slug": "boulder-co",
+      "path": "data/intermediate/tax/curves/boulder-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    },
+    {
+      "id": "PLACE:1810342",
+      "display_name": "Carmel, IN",
+      "slug": "carmel-in",
+      "path": "data/intermediate/tax/curves/carmel-in.json",
+      "sha256": "9ec5afd77f4083aba5128f5e8169bb3132962a20f092f40d15fda11aeb2e560b"
+    },
+    {
+      "id": "PLACE:2621000",
+      "display_name": "Dearborn, MI",
+      "slug": "dearborn-mi",
+      "path": "data/intermediate/tax/curves/dearborn-mi.json",
+      "sha256": "4908c1d9cc494c3d784c67b231ad079ec6e604fae4de4dd8843ebebfd32ce825"
+    },
+    {
+      "id": "PLACE:0684200",
+      "display_name": "West Covina, CA",
+      "slug": "west-covina-ca",
+      "path": "data/intermediate/tax/curves/west-covina-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0485540",
+      "display_name": "Yuma, AZ",
+      "slug": "yuma-az",
+      "path": "data/intermediate/tax/curves/yuma-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:0613014",
+      "display_name": "Chico, CA",
+      "slug": "chico-ca",
+      "path": "data/intermediate/tax/curves/chico-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0622230",
+      "display_name": "El Monte, CA",
+      "slug": "el-monte-ca",
+      "path": "data/intermediate/tax/curves/el-monte-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1368516",
+      "display_name": "Sandy Springs, GA",
+      "slug": "sandy-springs-ga",
+      "path": "data/intermediate/tax/curves/sandy-springs-ga.json",
+      "sha256": "443fd940d7cb163124a8ef72da1ebd2ee24e8f4f32c75e49fdd77c7bee6a2d2a"
+    },
+    {
+      "id": "PLACE:5357745",
+      "display_name": "Renton, WA",
+      "slug": "renton-wa",
+      "path": "data/intermediate/tax/curves/renton-wa.json",
+      "sha256": "f83f251cdf9f37cd41d0f3a29cba0b3597b06abf8f2091838b59b23c3fb9fac1"
+    },
+    {
+      "id": "PLACE:1823278",
+      "display_name": "Fishers, IN",
+      "slug": "fishers-in",
+      "path": "data/intermediate/tax/curves/fishers-in.json",
+      "sha256": "9ec5afd77f4083aba5128f5e8169bb3132962a20f092f40d15fda11aeb2e560b"
+    },
+    {
+      "id": "PLACE:5176432",
+      "display_name": "Suffolk, VA",
+      "slug": "suffolk-va",
+      "path": "data/intermediate/tax/curves/suffolk-va.json",
+      "sha256": "0c13b0b0b6f49fc1a47f62ecf517bc6c6d6aa597aff47acb5ba5dd3103bb9436"
+    },
+    {
+      "id": "PLACE:2537490",
+      "display_name": "Lynn, MA",
+      "slug": "lynn-ma",
+      "path": "data/intermediate/tax/curves/lynn-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:0681554",
+      "display_name": "Vacaville, CA",
+      "slug": "vacaville-ca",
+      "path": "data/intermediate/tax/curves/vacaville-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0668252",
+      "display_name": "San Mateo, CA",
+      "slug": "san-mateo-ca",
+      "path": "data/intermediate/tax/curves/san-mateo-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1871000",
+      "display_name": "South Bend, IN",
+      "slug": "south-bend-in",
+      "path": "data/intermediate/tax/curves/south-bend-in.json",
+      "sha256": "9ec5afd77f4083aba5128f5e8169bb3132962a20f092f40d15fda11aeb2e560b"
+    },
+    {
+      "id": "PLACE:2555745",
+      "display_name": "Quincy, MA",
+      "slug": "quincy-ma",
+      "path": "data/intermediate/tax/curves/quincy-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:0608954",
+      "display_name": "Burbank, CA",
+      "slug": "burbank-ca",
+      "path": "data/intermediate/tax/curves/burbank-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0633434",
+      "display_name": "Hesperia, CA",
+      "slug": "hesperia-ca",
+      "path": "data/intermediate/tax/curves/hesperia-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:4879000",
+      "display_name": "Wichita Falls, TX",
+      "slug": "wichita-falls-tx",
+      "path": "data/intermediate/tax/curves/wichita-falls-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0680238",
+      "display_name": "Tracy, CA",
+      "slug": "tracy-ca",
+      "path": "data/intermediate/tax/curves/tracy-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:2545000",
+      "display_name": "New Bedford, MA",
+      "slug": "new-bedford-ma",
+      "path": "data/intermediate/tax/curves/new-bedford-ma.json",
+      "sha256": "e19a7bf8308221b662f6e64a970e32a1cd3e020904188d02ada9d8df1abf3f89"
+    },
+    {
+      "id": "PLACE:0621712",
+      "display_name": "El Cajon, CA",
+      "slug": "el-cajon-ca",
+      "path": "data/intermediate/tax/curves/el-cajon-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:3601000",
+      "display_name": "Albany, NY",
+      "slug": "albany-ny",
+      "path": "data/intermediate/tax/curves/albany-ny.json",
+      "sha256": "b08c5ce88502c34bd2539355678e6907f723dca48a92c750914e0e0988bf157e"
+    },
+    {
+      "id": "PLACE:0636546",
+      "display_name": "Inglewood, CA",
+      "slug": "inglewood-ca",
+      "path": "data/intermediate/tax/curves/inglewood-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:1207300",
+      "display_name": "Boca Raton, FL",
+      "slug": "boca-raton-fl",
+      "path": "data/intermediate/tax/curves/boca-raton-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:1224125",
+      "display_name": "Fort Myers, FL",
+      "slug": "fort-myers-fl",
+      "path": "data/intermediate/tax/curves/fort-myers-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0617918",
+      "display_name": "Daly City, CA",
+      "slug": "daly-city-ca",
+      "path": "data/intermediate/tax/curves/daly-city-ca.json",
+      "sha256": "04b2ea4f3eea1ee8dfe44416ffeb6730d46eaadf8fd9155f5a163e739ab30a12"
+    },
+    {
+      "id": "PLACE:0404720",
+      "display_name": "Avondale, AZ",
+      "slug": "avondale-az",
+      "path": "data/intermediate/tax/curves/avondale-az.json",
+      "sha256": "8c0a57b21849ca19838119009681ca21b503255b7952afd88a42b0b724e3e523"
+    },
+    {
+      "id": "PLACE:4864472",
+      "display_name": "San Angelo, TX",
+      "slug": "san-angelo-tx",
+      "path": "data/intermediate/tax/curves/san-angelo-tx.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:4023200",
+      "display_name": "Edmond, OK",
+      "slug": "edmond-ok",
+      "path": "data/intermediate/tax/curves/edmond-ok.json",
+      "sha256": "a792bc41705aa3c792cf01e46c8a4ba4366de8ea0eb348f419665562d8a1b37a"
+    },
+    {
+      "id": "PLACE:1919000",
+      "display_name": "Davenport, IA",
+      "slug": "davenport-ia",
+      "path": "data/intermediate/tax/curves/davenport-ia.json",
+      "sha256": "94f723bdc9871466f0fc4f80af57d6064468280dd9e44da510ef2ee92938c427"
+    },
+    {
+      "id": "PLACE:1217200",
+      "display_name": "Deltona, FL",
+      "slug": "deltona-fl",
+      "path": "data/intermediate/tax/curves/deltona-fl.json",
+      "sha256": "c2b1a22a71e47486017678ff61f9e423fe120241db266579b2ca62b56f21d5f9"
+    },
+    {
+      "id": "PLACE:0845970",
+      "display_name": "Longmont, CO",
+      "slug": "longmont-co",
+      "path": "data/intermediate/tax/curves/longmont-co.json",
+      "sha256": "d385188a18ef2add148a7016a65aad777e5c5c691af64dd8c9044a92a2085114"
+    }
+  ],
+  "qa": {
+    "city_count": 343,
+    "max_component_abs_error": 0.02,
+    "max_net_abs_error": 0.0,
+    "monotonic_violation_count": 25,
+    "partial_local_missing_count": 20
+  }
+}
